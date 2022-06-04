@@ -11,7 +11,7 @@
     "axios": "^0.21.1",
     "firebase": "^8.3.0",
     "framer-motion": "^4.1.17",
-    "node-sass": "^4.14.1",
+    "sass": "^1.45.0",
     "react": "^17.0.1",
     "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.1",

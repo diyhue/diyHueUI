@@ -7,6 +7,7 @@ import "react-dropdown/style.css";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { HueIcons } from "../icons/hass-hue-icons"
+import Select from "react-select"
 
 const Light = ({
   HOST_IP,
@@ -86,6 +87,12 @@ const Light = ({
       });
   };
 
+  let options = modelIds.map(function (modelid) {
+    return { value: modelid, label: modelid };
+  })
+
+ 
+
   return (
     <div className="devicecard light">
       <div className="row1">
@@ -100,11 +107,12 @@ const Light = ({
       </div>
       <div className="row3">
         <div className="form-control">
-          <Dropdown
-            options={modelIds}
-            value={light["modelid"]}
+          <Select 
+            options={options}
+            placeholder={light["modelid"]}
             onChange={(e) => setModelId(e.value)}
-            placeholder="Choose light modelid"
+            menuPortalTarget={document.body}
+            menuPosition={'fixed'} 
           />
         </div>
         <LightUpdate

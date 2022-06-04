@@ -11,6 +11,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   const [swversion, setSwversion] = useState("");
   const [apiVersion, setApiVersion] = useState("");
   const [remoteApi, setRemoteApi] = useState(false);
+  const [discovery, setDiscovery] = useState(true);
   const [timezone, setTimezone] = useState("");
   const [timezones, setTimezones] = useState([]);
   const [readonlyConf, setReadonlyConf] = useState({});
@@ -37,6 +38,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         setBridgeName(result.data["name"]);
         setSwversion(result.data["swversion"]);
         setApiVersion(result.data["apiversion"]);
+        setDiscovery(result.data["discovery"]);
         setRemoteApi(result.data["Remote API enabled"]);
         setTimezone(result.data["timezone"]);
         setReadonlyConf(result.data);
@@ -56,10 +58,27 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         apiversion: apiVersion,
         timezone: timezone,
         "Remote API enabled": remoteApi,
+        discovery: discovery
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
         setMessage("Successfully saved");
+        setType("none");
+        setType("success");
+      })
+      .catch((error) => {
+        console.error(error);
+        setMessage("Error occured, check browser console");
+        setType("none");
+        setType("error");
+      });
+  };
+
+  const dumpConfig = () => {
+    axios
+      .get(`${HOST_IP}/save`)
+      .then(() => {
+        setMessage("Config dumped to local disk");
         setType("none");
         setType("success");
       })
@@ -137,6 +156,18 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 <span className="slider"></span>
               </label>
             </div>
+            <div className="switchContainer">
+              <p>Discovery</p>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  value={discovery}
+                  checked={discovery}
+                  onChange={(e) => setDiscovery(e.target.checked)}
+                />
+                <span className="slider"></span>
+              </label>
+            </div>
             <div className="form-control">
               <input type="submit" value="Save" className="btn btn-block" />
             </div>
@@ -181,6 +212,12 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               value={Date(readonlyConf["localtime"])}
             />
           </div>
+
+          <div className="form-control">
+              <input type="submit" value="Force Config Dump" className="btn btn-block" 
+                 onClick={() => dumpConfig()}
+              />
+      </div>
 
       </div>
     </div>

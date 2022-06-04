@@ -120,7 +120,12 @@ const Light = ({
       <div className="row4">
         <ul>
           <li>Protocol: {light["protocol"]}</li>
-          <li>IP: {light["protocol_cfg"]["ip"]}</li>
+          {["native", "native_multi", "native_single", "wled", "esphome"].includes(light["protocol"]) ? (
+            <li style={{cursor:'pointer'}} onClick={()=> window.open("http://" + light["protocol_cfg"]["ip"], "_blank")}>IP: {light["protocol_cfg"]["ip"]}</li>
+          ): (
+            <li>IP: {light["protocol_cfg"]["ip"]}</li>
+            )}
+          
         </ul>
       </div>
 

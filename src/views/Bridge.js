@@ -115,7 +115,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <label>Software Version</label>
               <input
-                type="text"
+                type="number"
+                pattern="[0-9]+"
                 placeholder="swversion"
                 value={swversion}
                 onChange={(e) => setSwversion(e.target.value)}

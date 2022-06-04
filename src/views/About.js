@@ -1,3 +1,6 @@
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
 import {
   FaGithub,
   FaTwitter,
@@ -6,7 +9,22 @@ import {
 } from "react-icons/fa";
 import kofi from "../static/images/kofi.svg";
 
-const About = () => {
+function About() {
+
+  const [contributors, setContributors] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://api.github.com/repos/diyhue/diyhue/contributors?&per_page=150`)
+      .then((res) => {
+          setContributors(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+
   return (
     <div className="inner">
       <div className="contentContainer">
@@ -91,13 +109,14 @@ const About = () => {
         <div className="contactCard">
           <div className="name">Thank you!</div>
           <div className="position">A big thank you to everyone contributing to this project:</div>
-          contributor, contributor, contributor, contributor, contributor, contributor, contributor, contributor, contributor, contributor, contributor, contributor,
+          {contributors.map((contributor) => (
+          contributor.login + ", " ))}
         </div>
 
       </div>
       </div>
       
   );
-};
+}
 
 export default About;

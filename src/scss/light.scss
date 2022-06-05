@@ -70,8 +70,6 @@
         list-style: none;
         margin-left: 0px;
       }
-
-      
     }
   }
 
@@ -91,8 +89,6 @@
   }
 }
 
-  
-
 
 @media screen and (max-width: 750px) {
   .devicecard {
@@ -104,26 +100,3 @@
   }
 
 }
-
-@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-  .devicecard {
-    position: relative;
-    background: rgba(255, 255, 255, 0.20);
-  }
-
-  .devicecard:after{
-    content: '';
-    background: url(../static/images/background.jpg) no-repeat 50%;
-    background-size: cover;
-    filter: blur(30px);
-    transform: scale(1.1);
-    display: flex;
-    position: absolute; 
-    height: 100%;
-    width: 100%;
-    top:0;
-    left:0;
-    z-index: -1;
-  }
-
-} 

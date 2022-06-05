@@ -2,9 +2,7 @@
     &.device {
       margin-right: 20px;
     
-  
     .row1 {
-      /*outline: 1px solid green;*/
       display: flex;
       flex-direction: row;
       align-items: stretch;
@@ -14,11 +12,8 @@
   
       .icon {
         font-size: 35px;
-        flex: 0 0 60px;
-        text-align: center;
+        flex: 0 0 50px;
         display: flex;
-        align-items: center;
-        justify-content: center;
       }
   
       .text {
@@ -66,7 +61,7 @@
         }
       }
     }
-  
+
     .label {
       position: absolute;
       height: 15px;
@@ -81,60 +76,18 @@
       line-height: 45px;
       font-size: 11px;
     }
-  
-    .row4 {
-      /*outline: 1px solid red;*/
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      margin-top: 10px;
-  
-      li {
-        list-style: none;
-        margin-left: 0px;
-      }
-    }
-  }
-  
-  .contentContainer{
-  
-    &.lights{
-      margin-bottom: 20px;
-    }
+
   }
   
 }
   
-  @media screen and (max-width: 750px) {
-    .devicecard {
-      width: 100%;
-    
-      &.light{
-        margin-right: 0;
-      }
+@media screen and (max-width: 750px) {
+  .devicecard {
+    width: 100%;
+
+    &.device{
+      margin-right: 0;
     }
-  
   }
-  
-  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    .devicecard {
-      position: relative;
-      background: rgba(255, 255, 255, 0.20);
-    }
-  
-    .devicecard:after{
-      content: '';
-      background: url(../static/images/background.jpg) no-repeat 50%;
-      background-size: cover;
-      filter: blur(30px);
-      transform: scale(1.1);
-      display: flex;
-      position: absolute; 
-      height: 100%;
-      width: 100%;
-      top:0;
-      left:0;
-      z-index: -1;
-    }
-  
-  }
+
+}

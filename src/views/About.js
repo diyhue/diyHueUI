@@ -35,8 +35,14 @@ function About() {
               readOnly
               type="text"
               placeholder="bridgeid"
-              value="Hue-Emulator Version: %Version%"
-            />
+              
+            >
+              Hue-Emulator Version: %Version%
+              Architecture (Ex: x86, ARM): %Architecture%
+              OS: %OS%
+              Hardware: %Hardware%
+            </textarea>
+
           </div>
         <div className="supportsection">
           <p>Supported Devices:</p>

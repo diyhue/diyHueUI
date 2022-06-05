@@ -80,7 +80,7 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
   };
 
   return (
-    <div className="card device">
+    <>
       <div className="row1">
         <div className="icon">
           <FaMagic />
@@ -107,11 +107,11 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
       <div className="row3">
         <div className="battery">{"battery" in device["config"] && batteryLevel()}</div>
         
-        <div className="btn red">
+        <div className="iconbtn red">
           <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

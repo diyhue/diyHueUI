@@ -121,9 +121,7 @@ const Light = ({
           setMessage={setMessage}
           setType={setType}
         />
-        <div className="btn red">
-          <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />{" "}
-        </div>
+        
       </div>
       <div className="row4">
         <ul>
@@ -135,6 +133,9 @@ const Light = ({
             )}
           
         </ul>
+        <div className="iconbtn red">
+          <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />{" "}
+        </div>
       </div>
 
       {light["state"]["reachable"] || <div className="label">Offline</div>}

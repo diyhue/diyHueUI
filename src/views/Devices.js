@@ -44,7 +44,7 @@ const Devices = ({ HOST_IP, API_KEY }) => {
           setType={setType}
         />
       )}
-      <div className="devicecard">
+      <div className="devicecard device">
         {Object.entries(devices).map(([id, device]) => (
           device["protocol"] !== "none" &&
           <Device

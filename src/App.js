@@ -3,7 +3,6 @@ import axios from "axios";
 import TheLayout from "./containers/TheLayout";
 
 import "./scss/mainframe.scss";
-import "./scss/components.scss";
 import "./scss/content.scss";
 import "./scss/forms.scss";
 import "./scss/groups.scss";
@@ -11,6 +10,13 @@ import "./scss/notification.scss";
 import "./scss/modal.scss";
 import "./scss/scenepicker.scss";
 import "./scss/device.scss";
+import "./scss/light.scss";
+import "./scss/components/actionbuttons.scss";
+import "./scss/components/flipswitch.scss";
+import "./scss/components/scrollbar.scss";
+import "./scss/components/slider.scss";
+import "./scss/components/switches.scss";
+import "./scss/components/devicecard.scss";
 
 const loading = (
   <div className="pt-3 text-center">

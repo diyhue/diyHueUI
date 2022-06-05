@@ -27,7 +27,6 @@
       .switchContainer {
         flex: 0 0 60px;
         margin-top: -15px;
-  
       }
     }
   
@@ -46,13 +45,12 @@
     .row3 {
       display: flex;
       flex-direction: row;
-      align-items: stretch;
-      height: 100px;
-      height: 50px;
       align-items: center;
+      margin-top: 10px;
   
       .battery{
         margin-left: 5px;
+        margin-top: 8px;
   
         svg {
           width: 25px;

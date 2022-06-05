@@ -44,19 +44,21 @@ const Devices = ({ HOST_IP, API_KEY }) => {
           setType={setType}
         />
       )}
-      <div className="devicecard device">
-        {Object.entries(devices).map(([id, device]) => (
-          device["protocol"] !== "none" &&
-          <Device
-            key={id}
-            HOST_IP={HOST_IP}
-            api_key={API_KEY}
-            id={id}
-            device={device}
-            setType={setType}
-            setMessage={setMessage}
-          />
-        ))}
+      <div className="cardGrid">
+        <div className="devicecard device">
+          {Object.entries(devices).map(([id, device]) => (
+            device["protocol"] !== "none" &&
+            <Device
+              key={id}
+              HOST_IP={HOST_IP}
+              api_key={API_KEY}
+              id={id}
+              device={device}
+              setType={setType}
+              setMessage={setMessage}
+            />
+          ))}
+        </div>
       </div>
     </div>
     </div>

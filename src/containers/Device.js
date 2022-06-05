@@ -69,13 +69,13 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
     let battryLevel = battery + "%";
     //console.log(battery);
     if (battery > 90) {
-      return <TiBatteryFull title={battryLevel} />;
+      return <TiBatteryFull color="#27ae60" title={battryLevel} />;
     } else if (battery > 70) {
-      return <TiBatteryHigh title={battryLevel} />;
+      return <TiBatteryHigh  color="#1abc9c" title={battryLevel} />;
     } else if (battery > 40) {
-      return <TiBatteryMid title={battryLevel} />;
+      return <TiBatteryMid color="#e67e22" title={battryLevel} />;
     } else {
-      return <TiBatteryLow title={battryLevel} />;
+      return <TiBatteryLow color="#e74c3c" title={battryLevel} />;
     }
   };
 
@@ -86,18 +86,6 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
           <FaMagic />
         </div>
         <div className="text">{device["name"]}</div>
-      </div>
-      <div className="row2">
-        <div className="text">
-          {"battery" in device["config"] && batteryLevel()}
-          ModelID: {device["modelid"]} <br />
-          Type: {device["type"]} <br />
-          Protocol: {device["protocol"]} <br />
-        </div>
-      </div>
-      <div className="row3">
-        <div className="dropdown"></div>{" "}
-        {/* replace with dropdown form, (styling missing)*/}
         <div className="switchContainer">
           <label className="switch">
             <input
@@ -108,6 +96,17 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
             <span className="slider"></span>
           </label>
         </div>
+      </div>
+      <div className="row2">
+        <div className="text">
+          ModelID: {device["modelid"]} <br />
+          Type: {device["type"]} <br />
+          Protocol: {device["protocol"]} <br />
+        </div>
+      </div>
+      <div className="row3">
+        <div className="battery">{"battery" in device["config"] && batteryLevel()}</div>
+        
         <div className="btn red">
           <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />
         </div>

@@ -33,11 +33,7 @@
       align-items: center;
       justify-content: center;
 
-      svg {
-        width: 25px;
-        height: 25px;
-        transform: scale(1.5);
-      }
+      
     }
 
     .text {
@@ -47,47 +43,42 @@
       overflow: hidden;
       font-size: 18px;
     }
+
+    .switchContainer {
+      flex: 0 0 60px;
+      margin-top: -15px;
+
+    }
   }
 
   .row2 {
-    /*outline: 1px solid red;*/
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    margin-top: 5px;
 
     .text {
       flex: 1;
-      text-align: right;
+      text-align: left;
     }
   }
 
   .row3 {
-    /*outline: 1px solid blue;*/
     display: flex;
     flex-direction: row;
     align-items: stretch;
     height: 100px;
-    margin-top: 15px;
     height: 50px;
     align-items: center;
-    /*justify-content: center;*/
-    justify-content: flex-end;
 
-    .form-control{
-      margin: 0;
-      flex: 1;
-      width: 100%;
-      margin-right: 20px;
+    .battery{
+      margin-left: 5px;
 
-      .Dropdown-control{
-        width: 100%;
+      svg {
+        width: 25px;
+        height: 25px;
+        transform: scale(1.5);
       }
-    }
-
-    .switchContainer {
-      flex: 0 0 60px;
-      margin-top: -10px;
-      margin-right: 20px;
     }
 
     .btn {
@@ -98,6 +89,7 @@
       text-align: center;
       line-height: 40px;
       font-size: 20px;
+      margin-left: auto;
       cursor: pointer;
 
       svg {
@@ -112,16 +104,6 @@
         &:hover,
         &:active {
           background: #af234a;
-        }
-      }
-
-      &.blue {
-        background: #1a5088;
-        margin-right: 20px;
-
-        &:hover,
-        &:active {
-          background: #2872c2;
         }
       }
     }

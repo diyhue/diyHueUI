@@ -105,7 +105,7 @@ const Light = ({
 
         <div className="text">{light["name"]} </div>
       </div>
-      <div className="row3">
+      <div className="row2">
         <div className="form-control">
           <Select 
             options={options}
@@ -123,7 +123,7 @@ const Light = ({
         />
         
       </div>
-      <div className="row4">
+      <div className="row3">
         <ul>
           <li>Protocol: {light["protocol"]}</li>
           {["native", "native_multi", "native_single", "wled", "esphome"].includes(light["protocol"]) ? (

@@ -1,74 +1,78 @@
+.contentContainer{
+
+  &.lights{
+    margin-bottom: 20px;
+  }
+}
+
 .devicecard {
   &.light {
     margin-right: 20px;
   
-
-  .row1 {
-    /*outline: 1px solid green;*/
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    height: 50px;
-    vertical-align: middle;
-    align-items: center;
-
-    .icon {
-      font-size: 35px;
-      flex: 0 0 60px;
-      text-align: center;
+    .row1 {
+      /*outline: 1px solid green;*/
       display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      height: 50px;
+      vertical-align: middle;
       align-items: center;
-      justify-content: center;
 
-      svg {
-        width: 25px;
-        height: 25px;
-        transform: scale(1.5);
+      .icon {
+        font-size: 35px;
+        flex: 0 0 40px;
+        display: flex;
+        margin-left: 5px;
+        
+
+        svg {
+          width: 25px;
+          height: 25px;
+          transform: scale(1.5);
+        }
+      }
+
+      .text {
+        flex: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 18px;
       }
     }
 
-    .text {
-      flex: 1;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      font-size: 18px;
+    .row2 {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      height: 100px;
+      margin-top: 5px;
+      height: 50px;
+      align-items: center;
+      justify-content: flex-end;
+
+      .form-control{
+        margin: 0;
+        flex: 1;
+        width: 100%;
+      }
+
     }
-  }
 
-  .row2 {
-    /*outline: 1px solid red;*/
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
+    
+    .row3 {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      margin-top: 10px;
 
-    .text {
-      flex: 1;
-      text-align: right;
-    }
-  }
-
-  .row3 {
-    /*outline: 1px solid blue;*/
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    height: 100px;
-    margin-top: 15px;
-    height: 50px;
-    align-items: center;
-    /*justify-content: center;*/
-    justify-content: flex-end;
-
-    .form-control{
-      margin: 0;
-      flex: 1;
-      width: 100%;
-      margin-right: 20px;
+      li {
+        list-style: none;
+        margin-left: 0px;
+      }
 
       
     }
-
   }
 
   .label {
@@ -85,30 +89,10 @@
     line-height: 45px;
     font-size: 11px;
   }
-
-  .row4 {
-    /*outline: 1px solid red;*/
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    margin-top: 10px;
-
-    li {
-      list-style: none;
-      margin-left: 0px;
-    }
-
-    
-  }
 }
 
-.contentContainer{
+  
 
-  &.lights{
-    margin-bottom: 20px;
-  }
-}
-}
 
 @media screen and (max-width: 750px) {
   .devicecard {

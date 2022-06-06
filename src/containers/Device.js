@@ -80,7 +80,7 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
   };
 
   return (
-    <>
+    <div className="devicecard light">
       <div className="row1">
         <div className="icon">
           <FaMagic />
@@ -111,7 +111,7 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
           <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -17,8 +17,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install    
-      - 
-      name: Generate build
+  
+      - name: Generate build
         run: npm run build
       
       # Share artifact inside workflow

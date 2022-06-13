@@ -1,5 +1,4 @@
 import {
-  FaCouch,
   FaChevronDown,
   FaImages,
   FaLightbulb,

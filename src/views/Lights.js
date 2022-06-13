@@ -3,6 +3,8 @@ import axios from "axios";
 import Light from "../containers/Light";
 import AddLight from "../containers/AddLight";
 import Flash from "../containers/Flash";
+import { BsPlusCircle } from 'react-icons/bs';
+import { ReactComponent as ScanIcon } from '../icons/scan.svg';
 
 export default function Lights({ HOST_IP, API_KEY }) {
   const [lights, setLights] = useState({});
@@ -96,26 +98,26 @@ export default function Lights({ HOST_IP, API_KEY }) {
           setType={setType}
         />
       )}
-      <div className="contentContainer lights">
-        <div className="headline">Light Configuration</div>
-        <div className="btn generic" onClick={() => searchForLights()}>
-          Scan For Lights
-          <div className="btn btn-block"></div>
-        </div>
-        <button
-          onClick={() => setLightForm(!lightForm)}
-          className="generic"
-          style={{}}
-        >
-          Add light manually
-        </button>
+
+      <div className="actionBar">
+        <div className="btn" onClick={() => setLightForm(!lightForm)}>
+          <BsPlusCircle />
+          <p>Add light</p>
+          </div>
+        <div className="btn" onClick={() => searchForLights()}>
+        <ScanIcon />
+          <p>Scan for lights</p>
+          </div>
+      </div>
+
+      
         {lightForm && <AddLight
           setType={setType}
           setMessage={setMessage}
           HOST_IP={HOST_IP}
           API_KEY={API_KEY}>
         </AddLight>}
-      </div>
+      
       <div className="cardGrid">
         {Object.entries(lights).map(([id, light]) => (
           <Light

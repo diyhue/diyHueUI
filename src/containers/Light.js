@@ -1,8 +1,6 @@
-import { FaLightbulb } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import LightUpdate from "./LightUpdate";
 import axios from "axios";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css

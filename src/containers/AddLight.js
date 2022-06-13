@@ -57,6 +57,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
   ];
 
   return (
+    <div className="contentContainer lights">
     <form onSubmit={(e) => handleForm(e)} className="add-form">
       <div className="form-control">
       <label>Protocol:</label>
@@ -172,6 +173,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
         <input type="submit" value="Add Light" className="btn btn-block" />
       </div>
     </form>
+    </div>
   );
 };
 

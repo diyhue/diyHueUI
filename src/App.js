@@ -17,6 +17,7 @@ import "./scss/components/scrollbar.scss";
 import "./scss/components/slider.scss";
 import "./scss/components/switches.scss";
 import "./scss/components/devicecard.scss";
+import "./scss/components/addlight.scss";
 
 const loading = (
   <div className="pt-3 text-center">

@@ -30,7 +30,7 @@ function About() {
       <div className="contentContainer">
         <div className="headline">About</div>
         <div className="form-control">
-            <label>Debug information: (Copy and paste in Github issue)</label> 
+            <label>Debug information: (Work in progrss)</label> 
             <textarea
               readOnly
               type="text"
@@ -95,7 +95,7 @@ function About() {
         <div className="contactCard">
           <div className="name">David</div>
           <div className="position">Designer</div>
-          <div className="about">Designed and frontend developed the user interface and user experience. Design and producing music (<a href="https://spaceflightmemories.com">Spaceflight Memories Music</a>) is, what his life is all about.</div>
+          <div className="about">Designed and frontend developed the user interface and user experience. <br />Design and producing music (<a href="https://spaceflightmemories.com">Spaceflight Memories Music</a>) is, what his life is all about.</div>
           <div className="iconbox">
             <a href="https://github.com/fisico"><FaGithub /></a>
             <a href="https://twitter.com/sfmdavid"><FaTwitter /></a>

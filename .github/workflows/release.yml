@@ -33,7 +33,7 @@ jobs:
         with:
           name: DiyHueUI
           path: build
-          
+
   release-project:
     name: Create Release
     runs-on: ubuntu-latest
@@ -42,14 +42,14 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
-        width:
+        with:
           name: DiyHueUI
       - name: Test artifact download
         run: ls -R
 
       - name: Archive artifact
         uses: thedoctor0/zip-release@main
-        width:
+        with:
           filename: DiyHueUI.zip
 
       - name: Create Release

@@ -4,7 +4,7 @@ on:
       - "main"
 
 jobs:
-  build:
+  build-project:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,7 +25,7 @@ jobs:
       
       # Share artifact inside workflow
       - name: Share artifact inside workflow
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
-          name: react-github-actions-build
+          name: DiyHueUI
           path: build

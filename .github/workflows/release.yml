@@ -9,6 +9,7 @@ name: Create Release
 jobs:
 
   build-project:
+    name: Build Project
     runs-on: ubuntu-latest
 
     strategy:
@@ -59,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: DiyHue UI release ${{ github.ref }}
       
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1

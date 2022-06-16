@@ -52,6 +52,8 @@ const Scenes = ({
       onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
       contentLabel="Example Modal"
+      className="Modal"
+      overlayClassName="Overlay"
     >
       <div className="header">
         <div className="headline">Scene Picker</div>

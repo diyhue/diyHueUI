@@ -395,8 +395,9 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
             transition={{
               duration: 0.3,
             }}
+            onClick={() => defaultContainerView()}
           >
-            <FaChevronDown onClick={() => defaultContainerView()} />
+            <FaChevronDown/>
           </motion.div>
         </div>
       </AnimatePresence>

@@ -226,7 +226,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
           )}
         </AnimatePresence>
       </div>
-      <AnimateSharedLayout>
+      <AnimateSharedLayout exitBeforeEnter>
         {showContainer !== "closed" && (
           <motion.div
             className="row buttons"

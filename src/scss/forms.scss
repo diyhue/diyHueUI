@@ -1,5 +1,9 @@
 .form-control {
     margin-top: 20px;
+
+    &.dropdown{
+      max-width: 330px;
+    }
   
     label {
       margin: 10px 0 10px 5px;

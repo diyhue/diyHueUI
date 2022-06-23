@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
+import Select from "react-select";
 
 const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
   const [lightData, setLightData] = useState({
@@ -39,7 +38,12 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
     { value: "wiz", label: "Wiz" },
   ];
 
-  const milightGroups = ["1", "2", "3", "4"];
+  const milightGroups = [ 
+     {value: "1", label: "1" }, 
+     {value: "2", label: "2" },
+     {value: "3", label: "3" },
+     {value: "4", label: "4" },
+  ];
 
   const milightModes = [
     { value: "rgbw", label: "RGBW" },
@@ -56,17 +60,16 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
     { value: "LST002", label: "Color Strip" },
   ];
 
+
   return (
     <div className="contentContainer lights">
     <form onSubmit={(e) => handleForm(e)} className="add-form">
       <div className="form-control">
       <label>Protocol:</label>
-      <Dropdown
+      <Select 
         options={protocols}
-        value={lightData.protocol}
-        // On Dropdown component use e.value
+        placeholder={lightData.protocol}
         onChange={(e) => handleChange("protocol", e.value)}
-        placeholder="Choose light protocol"
       />
       </div>
       <div className="form-control">
@@ -82,7 +85,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
       {lightData.protocol !== "auto" && (
         <>
           <div className="form-control">
-            <label>Name</label>
+            <label>Name:</label>
             <input
               type="text"
               value={lightData.lightName}
@@ -91,11 +94,13 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <Dropdown
+            <label>Emulated light type:</label>
+            <Select 
               options={lightModelIds}
-              value={lightData.lightModelID}
+              placeholder={lightData.lightModelID}
               onChange={(e) => handleChange("lightModelID", e.value)}
-              placeholder="Emulated light type"
+              menuPortalTarget={document.body}
+              menuPosition={'fixed'} 
             />
           </div>
         </>
@@ -103,7 +108,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
       {(lightData.protocol === "milight" || lightData.protocol === "mibox") && (
         <>
           <div className="form-control">
-            <label>Device ID</label>
+            <label>Device ID:</label>
             <input
               type="text"
               value={lightData.miID}
@@ -111,23 +116,25 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
               placeholder="0x1234"
             />
           </div>
-          <Dropdown
-            options={milightModes}
-            value={lightData.miModes}
-            onChange={(e) => handleChange("miModes", e.value)}
-            placeholder="Choose light mode"
-          />
-          <Dropdown
-            options={milightGroups}
-            value={lightData.miGroups}
-            onChange={(e) => handleChange("miGroups", e.value)}
-            placeholder="Choose light group"
-          />
+          <label>Choose light mode:</label>
+          <Select 
+              options={milightModes}
+              placeholder={lightData.miModes}
+              onChange={(e) => handleChange("miModes", e.value)}
+            />
+          <label>Choose light group:</label>
+          <Select 
+              options={milightGroups}
+              placeholder={lightData.miGroups}
+              onChange={(e) => handleChange("miGroups", e.value)}
+              menuPortalTarget={document.body}
+              menuPosition={'fixed'}
+            />
         </>
       )}
       {lightData.protocol === "mibox" && (
         <div className="form-control">
-          <label>Port</label>
+          <label>Port:</label>
           <input
             type="number"
             placeholder="Mi Box port"
@@ -138,7 +145,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
       )}
       {lightData.protocol === "domoticz" && (
         <div className="form-control">
-          <label>Device ID</label>
+          <label>Device ID:</label>
           <input
             type="text"
             placeholder=""
@@ -150,7 +157,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
       {lightData.protocol === "jeedom" && (
         <>
           <div className="form-control">
-            <label>Light Api</label>
+            <label>Light Api:</label>
             <input
               type="text"
               placeholder="Light Api"
@@ -159,7 +166,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Light ID</label>
+            <label>Light ID:</label>
             <input
               type="text"
               placeholder="Light ID"

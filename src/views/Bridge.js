@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Flash from "../containers/Flash";
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
+import Select from "react-select"
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
   const [type, setType] = useState("none");
@@ -90,6 +89,11 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       });
   };
 
+  let options = timezones.map(function (timezone) {
+    return { value: timezone, label: timezone };
+  })
+
+
   return (
     <div className="inner">
       {type !== "none" && (
@@ -136,13 +140,12 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 onChange={(e) => setApiVersion(e.target.value)}
               />
             </div>
-            <div className="form-control">
+            <div className="form-control dropdown">
               <label>Timezone</label>
-              <Dropdown
-                options={timezones}
-                value={timezone}
+              <Select 
+                options={options}
                 onChange={(e) => setTimezone(e.value)}
-                placeholder="Choose light modelid"
+                placeholder={timezone}
               />
             </div>
             <div className="switchContainer">

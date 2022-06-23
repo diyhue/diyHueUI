@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { Redirect, Route, Switch, HashRouter } from "react-router-dom";
-import { CFade } from "@coreui/react";
 
 // routes config
 import routes from "../routes";
@@ -26,9 +25,7 @@ const TheContent = ({ HOST_IP, API_KEY }) => {
                     exact={route.exact}
                     name={route.name}
                     render={(props) => (
-                      <CFade>
                         <route.component API_KEY={API_KEY} HOST_IP={HOST_IP} />
-                      </CFade>
                     )}
                   />
                 )

@@ -13,7 +13,7 @@ import Light from "./GroupLight";
 import ColorPicker from "./ColorPicker";
 import ColorTempPicker from "./ColorTempPicker";
 import debounce from "lodash.debounce";
-import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { cieToRgb, colorTemperatureToRgb } from "../color";
 import { HueIcons } from "../icons/hass-hue-icons"
 
@@ -226,7 +226,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
           )}
         </AnimatePresence>
       </div>
-      <AnimateSharedLayout exitBeforeEnter>
+      <LayoutGroup>
         {showContainer !== "closed" && (
           <motion.div
             className="row buttons"
@@ -375,7 +375,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
             )}
           </AnimatePresence>
         </motion.div>
-      </AnimateSharedLayout>
+        </LayoutGroup>
       <AnimatePresence>
         <div className="row bottom">
           <motion.div

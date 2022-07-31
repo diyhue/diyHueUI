@@ -54,6 +54,7 @@ const Scenes = ({
       contentLabel="Example Modal"
       className="Modal"
       overlayClassName="Overlay"
+      ariaHideApp={false}
     >
       <div className="header">
         <div className="headline">Scene Picker</div>

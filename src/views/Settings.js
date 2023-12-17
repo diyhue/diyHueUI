@@ -87,6 +87,10 @@ const Settings = ({ HOST_IP, API_KEY }) => {
       )}
       <div className="contentContainer">
       <div className="headline">Add extra port for searching</div>
+      <p>This wil make the bridge search on other ports.</p>
+      <p>If disabled the bridge wil only search on port 80.</p>
+      <p>The standard port is 80, always include port 80.</p>
+      <p>To add ports separate the ports with "," ex: 80,81,82</p>
         <form className="add-form" onSubmit={(e) => onSubmit(e)}>
           <div className="switchContainer">
             <label className="switch">

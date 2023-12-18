@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Redirect, Route, Switch, HashRouter } from "react-router-dom";
+import { Outlet, Route, Routes, HashRouter } from "react-router-dom";
 
 // routes config
 import routes from "../routes";
@@ -15,24 +15,20 @@ const TheContent = ({ HOST_IP, API_KEY }) => {
     <div className="content">
       <Suspense fallback={loading}>
         <HashRouter>
-          <Switch>
+          <Routes>
             {routes.map((route, idx) => {
               return (
                 route.component && (
                   <Route
                     key={idx}
                     path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    render={(props) => (
-                        <route.component API_KEY={API_KEY} HOST_IP={HOST_IP} />
-                    )}
+                    element={<route.component API_KEY={API_KEY} HOST_IP={HOST_IP} />}
                   />
                 )
               );
             })}
-            <Redirect from="/" to="/groups" />
-          </Switch>
+            <Route path="/" element={<Outlet />} />
+          </Routes>
         </HashRouter>
       </Suspense>
     </div>

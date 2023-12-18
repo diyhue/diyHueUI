@@ -44,7 +44,7 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
           </div>
           <div className="sidebar">
             <ul>
-              <a href="#home">
+              <a href="#">
                 <li className={`${currentElement === "groups" ? "active" : ""}`}
                   onClick={() => itemClicked("groups")}>
                   <FaHome style={{ color: "#2BA9F0" }} /> <p>Groups</p>

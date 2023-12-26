@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Flash from "../containers/Flash";
+import { toast } from 'react-hot-toast';
 
 const Mqtt = ({ HOST_IP, API_KEY }) => {
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
   const [enable, setEnable] = useState(false);
   const [mqttServer, setMqttServer] = useState("mqtt");
   const [mqttPort, setMqttPort] = useState(1883);
@@ -30,6 +28,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
       })
       .catch((error) => {
         console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
       });
   }, [HOST_IP, API_KEY]);
 
@@ -49,26 +48,16 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage("Successfully saved, please restart the service");
-        setType("success");
+        toast.success("Successfully saved, please restart the service");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("error");
+        toast.error(`Error occurred: ${error.message}`);
       });
   };
 
   return (
     <div className="inner">
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
       <div className="contentContainer">
         <div className="headline">ZigBee2MQTT config</div>
         <form className="add-form" method="POST" onSubmit={(e) => onSubmit(e)}>

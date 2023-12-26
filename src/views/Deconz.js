@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Flash from "../containers/Flash";
+import { toast } from 'react-hot-toast';
 
 const Deconz = ({ HOST_IP, API_KEY }) => {
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
   const [enable, setEnable] = useState(false);
   const [deconzHost, setDeconzHost] = useState("127.0.0.1");
   const [deconzPort, setDeconzPort] = useState(8443);
@@ -24,6 +22,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
       })
       .catch((error) => {
         console.error(error);
+        toast.error("Error occurred, check browser console");
       });
   }, [HOST_IP, API_KEY]);
 
@@ -49,21 +48,15 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
             })
             .then((fetchedData) => {
               console.log(fetchedData.data);
-              setMessage("Connected, service restart required.");
-              setType("none");
-              setType("success");
+              toast.success("Connected, service restart required.");
             });
         } else {
-          setMessage(result.data[0]["error"]["description"]);
-          setType("none");
-          setType("error");
+          toast.error(result.data[0]["error"]["description"]);
         }
       })
       .catch((error) => {
         console.error(error);
-        setMessage(error.message);
-        setType("none");
-        setType("error");
+        toast.error(error.message);
       });
   };
 
@@ -73,29 +66,16 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
       .put(`${HOST_IP}/api/${API_KEY}/config`, { deconz: { enabled: e } })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage(`Deconz ${e ? "enabled" : "disabled"}`);
-        setType("none");
-        setType("success");
+        toast.success(`Deconz ${e ? "enabled" : "disabled"}`);
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error("Error occurred, check browser console");
       });
   };
 
-
   return (
     <div className="inner">
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
       <div className="contentContainer">
         <div className="headline">Deconz Config</div>
         <form className="add-form" onSubmit={(e) => pairDeconz(e)}>

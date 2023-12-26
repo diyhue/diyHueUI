@@ -17,7 +17,7 @@ const Devices = ({ HOST_IP, API_KEY }) => {
           })
           .catch((error) => {
             console.error(error);
-            toast.error(`Error: ${error.message}`);
+            toast.error(`Error occurred: ${error.message}`, { duration: 5000 });
           });
       }
     };
@@ -40,6 +40,8 @@ const Devices = ({ HOST_IP, API_KEY }) => {
                 key={id}
                 HOST_IP={HOST_IP}
                 api_key={API_KEY}
+                id={id}
+                device={device}
               />
             ))}
           </div>

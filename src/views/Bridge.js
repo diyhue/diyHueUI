@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Flash from "../containers/Flash";
+import { toast } from 'react-hot-toast';
 import Select from "react-select"
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
   const [bridgeName, setBridgeName] = useState("");
   const [swversion, setSwversion] = useState("");
   const [apiVersion, setApiVersion] = useState("");
@@ -61,15 +59,11 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage("Successfully saved");
-        setType("none");
-        setType("success");
+        toast.success("Successfully saved");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error(`Error occurred: ${error.message}`);
       });
   };
 
@@ -77,15 +71,11 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/save`)
       .then(() => {
-        setMessage("Config dumped to local disk");
-        setType("none");
-        setType("success");
+        toast.success("Config dumped to local disk");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error(`Error occurred: ${error.message}`);
       });
   };
 
@@ -96,14 +86,6 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
       <div className="contentContainer spacer">
         <div className="headline">Bridge Config</div>
           <form className="add-form" onSubmit={(e) => onSubmit(e)}>

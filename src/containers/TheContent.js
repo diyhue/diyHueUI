@@ -3,6 +3,7 @@ import { Outlet, Route, Routes, HashRouter } from "react-router-dom";
 
 // routes config
 import routes from "../routes";
+import { Toaster } from "react-hot-toast";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -13,6 +14,7 @@ const loading = (
 const TheContent = ({ HOST_IP, API_KEY }) => {
   return (
     <div className="content">
+      <Toaster position="top-right" />
       <Suspense fallback={loading}>
         <HashRouter>
           <Routes>

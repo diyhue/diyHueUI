@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Flash from "../containers/Flash";
+import { toast } from 'react-hot-toast';
 
 const Alarm = ({ HOST_IP, API_KEY }) => {
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
   const [enable, setEnable] = useState(false);
   const [email, setEmail] = useState("none");
 
@@ -17,6 +15,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       })
       .catch((error) => {
         console.error(error);
+        toast.error(`Error: ${error.message}`);
       });
   }, [HOST_IP, API_KEY]);
 
@@ -26,15 +25,11 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       .put(`${HOST_IP}/api/${API_KEY}/config`, { alarm: { enabled: e } })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage(`Alarm ${e ? "activated" : "deactivated"}`);
-        setType("none");
-        setType("success");
+        toast.success(`Alarm ${e ? "activated" : "deactivated"}`);
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error(`Error: ${error.message}`);
       });
   };
 
@@ -46,28 +41,17 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage("Successfully saved");
-        setType("none");
-        setType("success");
+        toast.success("Successfully saved");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error(`Error: ${error.message}`);
       });
   };
 
   return (
     <div className="inner">
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
+      
       <div className="contentContainer">
       <div className="headline">Motion notifications alarm</div>
         <form className="add-form" onSubmit={(e) => onSubmit(e)}>

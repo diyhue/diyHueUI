@@ -99,8 +99,12 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
     }
   };
 
+  const debouncedHandleBriChange = debounce(handleBriChange, 300);
+
   const debouncedChangeHandler = useCallback(
-    debounce(handleBriChange, 300),
+    (value) => {
+      debouncedHandleBriChange(value);
+    },
     []
   );
 

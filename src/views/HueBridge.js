@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Flash from "../containers/Flash";
+import { toast } from 'react-hot-toast';
 
 const HueBridge = ({ HOST_IP, API_KEY }) => {
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
   const [bridgeIp, setBridgeIp] = useState("192.168.x.x");
   const [hueUser, setHueUser] = useState("");
   const [hueKey, setHueKey] = useState("");
@@ -19,6 +17,7 @@ const HueBridge = ({ HOST_IP, API_KEY }) => {
       })
       .catch((error) => {
         console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
       });
   }, [HOST_IP, API_KEY]);
 
@@ -40,34 +39,24 @@ const HueBridge = ({ HOST_IP, API_KEY }) => {
             })
             .then((fetchedData) => {
               console.log(fetchedData.data);
-              setMessage("Connected, now scan for lights");
-              setType("none");
-              setType("success");
+              toast.success("Connected, now scan for lights");
+            })
+            .catch((error) => {
+              console.error(error);
+              toast.error(`Error occurred: ${error.message}`);
             });
         } else {
-          setMessage(result.data[0]["error"]["description"]);
-          setType("none");
-          setType("error");
+          toast.error(result.data[0]["error"]["description"]);
         }
       })
       .catch((error) => {
         console.error(error);
-        setMessage(error.message);
-        setType("none");
-        setType("error");
+        toast.error(`Error occurred: ${error.message}`);
       });
   };
 
   return (
     <div className="inner">
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
       <div className="contentContainer">
       <div className="headline">Pair original Hue Bridge</div>
         <form className="add-form" onSubmit={(e) => pairBridge(e)}>

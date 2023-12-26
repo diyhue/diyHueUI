@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Flash from "../containers/Flash";
+import { toast } from 'react-hot-toast';
 
 const Tradfri = ({ HOST_IP, API_KEY }) => {
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
   const [tradfriGwIp, setTradfriGwIp] = useState("192.168.x.x");
   const [tradfriCode, setTradfriCode] = useState("");
   const [tradfriIdentity, setTradfriIdentity] = useState("");
@@ -22,6 +20,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
       })
       .catch((error) => {
         console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
       });
   }, [HOST_IP, API_KEY]);
 
@@ -41,33 +40,19 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
         console.log(result.data);
         if (result.data["result"] === "success") {
           setTradfriPsk(result.data["psk"]["success"]);
-          setMessage("Connected, now search for lights");
-          setType("none");
-          setType("success");
+          toast.success("Connected, now search for lights");
         } else {
-          setMessage("Error:" + result.data["result"]);
-          setType("none");
-          setType("error");
+          toast.error("Error:" + result.data["result"]);
         }
       })
       .catch((error) => {
         console.error(error);
-        setMessage(error.message);
-        setType("none");
-        setType("error");
+        toast.error(`Error occurred: ${error.message}`);
       });
   };
 
   return (
     <div className="inner">
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
       <div className="contentContainer">
       <div className="headline">IKEA Tradfri Gateway</div>
         <form className="add-form" onSubmit={(e) => pairTradfri(e)}>

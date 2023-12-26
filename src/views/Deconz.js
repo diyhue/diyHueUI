@@ -70,7 +70,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Error occurred, check browser console");
+        toast.error(`Error: ${error.message}`);
       });
   };
 

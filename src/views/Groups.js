@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Group from "../containers/Group";
 import RoomSetup from "../containers/RoomSetup";
+import { toast } from 'react-hot-toast';
 
 export default function Groups({ HOST_IP, API_KEY }) {
   const [config, setConfig] = useState({
@@ -22,6 +23,7 @@ export default function Groups({ HOST_IP, API_KEY }) {
           })
           .catch((error) => {
             console.error(error);
+            toast.error(`Error occurred: ${error.message}`);
           });
       }
     };

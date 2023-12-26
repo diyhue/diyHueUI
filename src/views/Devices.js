@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Device from "../containers/Device";
-import Flash from "../containers/Flash";
-
+import { toast } from 'react-hot-toast';
 
 const Devices = ({ HOST_IP, API_KEY }) => {
   const [devices, setDevices] = useState({});
-  const [type, setType] = useState("none");
-  const [message, setMessage] = useState("no message");
 
   useEffect(() => {
     const fetchDevices = () => {
@@ -20,6 +17,7 @@ const Devices = ({ HOST_IP, API_KEY }) => {
           })
           .catch((error) => {
             console.error(error);
+            toast.error(`Error: ${error.message}`);
           });
       }
     };
@@ -35,32 +33,18 @@ const Devices = ({ HOST_IP, API_KEY }) => {
     <div className="content">
       <div className="inner">
         <div className="devicecontainer">
-            
-      {type !== "none" && (
-        <Flash
-          type={type}
-          message={message}
-          duration="5000"
-          setType={setType}
-        />
-      )}
-      <div className="cardGrid">
-          {Object.entries(devices).map(([id, device]) => (
-            device["protocol"] !== "none" &&
-            <Device
-              key={id}
-              HOST_IP={HOST_IP}
-              api_key={API_KEY}
-              id={id}
-              device={device}
-              setType={setType}
-              setMessage={setMessage}
-            />
-          ))}
+          <div className="cardGrid">
+            {Object.entries(devices).map(([id, device]) => (
+              device["protocol"] !== "none" &&
+              <Device
+                key={id}
+                HOST_IP={HOST_IP}
+                api_key={API_KEY}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
-
     </div>
   );
 };

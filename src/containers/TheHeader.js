@@ -72,7 +72,7 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
       axios
         .put(`${HOST_IP}/api/${API_KEY}/config`, {
-          swupdate2: { install: false },
+          swupdate2: { install: true },
         })
         .then((fetchedData) => {
           console.log(fetchedData.data);

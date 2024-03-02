@@ -152,6 +152,19 @@ body {
     }
   }
 
+  .installbtn {
+    display: flex;
+    align-items: center;
+    margin: 15px 15px;
+    background: rgb(128, 0, 255);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: #eee;
+    font-size: 18px;
+    font-weight: 0;
+    border: none;
+  }
+
   .hamburger {
     display: flex;
     color: #ccc;

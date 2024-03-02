@@ -106,14 +106,20 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     else if (state == "noupdates" || state == "unknown") {
       return "No Update";
     }
+    else if (state == "installing"){
+      return "installing..."
+    }
   }
-  
+
   const getClassState = (state) => {
     if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
       return "updatebtn";
     }
     else if (state == "noupdates" || state == "unknown") {
       return "checkbtn";
+    }
+    else if (state == "installing"){
+      return "installbtn"
     }
   }
 

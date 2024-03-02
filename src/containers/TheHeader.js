@@ -8,7 +8,7 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
   const [install, setInstall] = useState(false);
   const [check, setCheck] = useState(false);
-  const [state, getState] = useState("noupdates");
+  const [swstate, getState] = useState("noupdates");
 
   const iconVariants = {
     opened: {
@@ -99,25 +99,22 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     }
   }
 
-  const getUpdateState = (state, value) => {
-    let msg;
+  const getValueState = (state) => {
     if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
-      if (value == "value") {
-        msg = "Update available";
-      }
-      else if (value == "className") {
-        msg = "updatebtn";
-      }
+      return "Update available";
     }
     else if (state == "noupdates" || state == "unknown") {
-      if (value == "value") {
-        msg = "No Update";
-      }
-      else if (value == "className") {
-        msg = "checkbtn";
-      }
+      return "No Update";
     }
-    return msg
+  }
+  
+  const getClassState = (state) => {
+    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+      return "updatebtn";
+    }
+    else if (state == "noupdates" || state == "unknown") {
+      return "checkbtn";
+    }
   }
 
   return (
@@ -133,11 +130,11 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       </motion.div>
 
       <div className="switchContainer">
-        <form className="add-form" onSubmit={(e) => handleupdate(state, e)}>
+        <form className="add-form" onSubmit={(e) => handleupdate(swstate, e)}>
           <input
             type="submit"
-            value={getUpdateState(state, "value")}
-            className={getUpdateState(state, "className")}
+            value={getValueState(swstate, "value")}
+            className={getClassState(swstate, "className")}
           />
         </form>
       </div>

@@ -22,17 +22,21 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
-      .then((result) => {
-        setInstall(result.data["install"]);
-        setCheck(result.data["checkforupdate"]);
-        getState(result.data["state"]);
-      })
-      .catch((error) => {
-        console.error(error);
-        //toast.error(`Error occurred: ${error.message}`);
-      });
+    const fetchUpdate = () => {
+      if (API_KEY !== undefined) {
+        axios
+          .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
+          .then((result) => {
+            setInstall(result.data["install"]);
+            setCheck(result.data["checkforupdate"]);
+            getState(result.data["state"]);
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error(`Error occurred: ${error.message}`);
+          });
+      }
+    };
     const fetchGroups = () => {
       if (API_KEY !== undefined) {
         axios
@@ -43,13 +47,16 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           })
           .catch((error) => {
             console.error(error);
+            toast.error(`Error occurred: ${error.message}`);
           });
       }
     };
 
+    fetchUpdate();
     fetchGroups();
     const interval = setInterval(() => {
       fetchGroups();
+      fetchUpdate();
     }, 5000); // <<-- ⏱ 1000ms = 1s
     return () => clearInterval(interval);
   }, [HOST_IP, API_KEY]);
@@ -61,8 +68,56 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     axios.put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState);
   };
 
-  const handleupdate = () => {
-    toast.success("Check update");
+  const handleupdate = (state) => {
+    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+      axios
+        .put(`${HOST_IP}/api/${API_KEY}/config`, {
+          swupdate2: { install: false },
+        })
+        .then((fetchedData) => {
+          console.log(fetchedData.data);
+          toast.success("Install update");
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error(`Error occurred: ${error.message}`);
+        });
+    }
+    if (state == "noupdates" || state == "unknown") {
+      axios
+        .put(`${HOST_IP}/api/${API_KEY}/config`, {
+          swupdate2: { checkforupdate: true, install: false },
+        })
+        .then((fetchedData) => {
+          console.log(fetchedData.data);
+          toast.success("Check update");
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error(`Error occurred: ${error.message}`);
+        });
+    }
+  }
+
+  const getUpdateState = (state, value) => {
+    let msg;
+    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+      if (value == "value") {
+        msg = "Update available";
+      }
+      else if (value == "className") {
+        msg = "updatebtn";
+      }
+    }
+    else if (state == "noupdates" || state == "unknown") {
+      if (value == "value") {
+        msg = "No Update";
+      }
+      else if (value == "className") {
+        msg = "checkbtn";
+      }
+    }
+    return msg
   }
 
   return (
@@ -76,17 +131,17 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       >
         <FaBars />
       </motion.div>
+
       <div className="switchContainer">
-        <form className="add-form" onSubmit={(e) => handleupdate(e)}>
-          <input 
+        <form className="add-form" onSubmit={(e) => handleupdate(state, e)}>
+          <input
             type="submit"
-            value="Update available"
-            className="updatebtn"
-            onChange={(e) => setCheck(e.target.checked)}
+            value={getUpdateState(state, "value")}
+            className={getUpdateState(state, "className")}
           />
         </form>
       </div>
-      
+
       <div className="onbtn">
         <p>Turn all lights {group0State ? "off" : "on"}</p>
         <div className="switchContainer">

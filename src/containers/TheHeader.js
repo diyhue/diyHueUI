@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { toast } from 'react-hot-toast';
 
 const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
+  const [install, setInstall] = useState(false);
+  const [check, setCheck] = useState(false);
+  const [state, getState] = useState("noupdates");
 
   const iconVariants = {
     opened: {
@@ -18,6 +22,17 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   };
 
   useEffect(() => {
+    axios
+      .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
+      .then((result) => {
+        setInstall(result.data["install"]);
+        setCheck(result.data["checkforupdate"]);
+        getState(result.data["state"]);
+      })
+      .catch((error) => {
+        console.error(error);
+        //toast.error(`Error occurred: ${error.message}`);
+      });
     const fetchGroups = () => {
       if (API_KEY !== undefined) {
         axios
@@ -46,6 +61,10 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     axios.put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState);
   };
 
+  const handleupdate = () => {
+    toast.success("Check update");
+  }
+
   return (
     <div className="topbarRight">
       <motion.div
@@ -57,6 +76,17 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       >
         <FaBars />
       </motion.div>
+      <div className="switchContainer">
+        <form className="add-form" onSubmit={(e) => handleupdate(e)}>
+          <input 
+            type="submit"
+            value="Update available"
+            className="updatebtn"
+            onChange={(e) => setCheck(e.target.checked)}
+          />
+        </form>
+      </div>
+      
       <div className="onbtn">
         <p>Turn all lights {group0State ? "off" : "on"}</p>
         <div className="switchContainer">

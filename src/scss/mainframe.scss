@@ -112,6 +112,46 @@ body {
     }
   }
 
+  .checkbtn {
+    display: flex;
+    align-items: center;
+    margin: 15px 15px;
+    background: rgb(85, 106, 120);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: #eee;
+    font-size: 18px;
+    font-weight: 0;
+    border: none;
+  
+    &:hover,
+    &:active,
+    &:focus {
+      border: none;
+      background: rgb(61, 177, 255);
+    }
+  }
+
+  .updatebtn {
+    display: flex;
+    align-items: center;
+    margin: 15px 15px;
+    background: rgb(0, 185, 34);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: #eee;
+    font-size: 18px;
+    font-weight: 0;
+    border: none;
+  
+    &:hover,
+    &:active,
+    &:focus {
+      border: none;
+      background: rgb(67, 255, 61);
+    }
+  }
+
   .hamburger {
     display: flex;
     color: #ccc;

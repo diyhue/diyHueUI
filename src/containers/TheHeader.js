@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { toast } from 'react-hot-toast';
 
 const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
+  const [install, setInstall] = useState(false);
+  const [check, setCheck] = useState(false);
+  const [swstate, getState] = useState("noupdates");
 
   const iconVariants = {
     opened: {
@@ -18,6 +22,21 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   };
 
   useEffect(() => {
+    const fetchUpdate = () => {
+      if (API_KEY !== undefined) {
+        axios
+          .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
+          .then((result) => {
+            setInstall(result.data["install"]);
+            setCheck(result.data["checkforupdate"]);
+            getState(result.data["state"]);
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error(`Error occurred: ${error.message}`);
+          });
+      }
+    };
     const fetchGroups = () => {
       if (API_KEY !== undefined) {
         axios
@@ -28,13 +47,16 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           })
           .catch((error) => {
             console.error(error);
+            toast.error(`Error occurred: ${error.message}`);
           });
       }
     };
 
+    fetchUpdate();
     fetchGroups();
     const interval = setInterval(() => {
       fetchGroups();
+      fetchUpdate();
     }, 5000); // <<-- ⏱ 1000ms = 1s
     return () => clearInterval(interval);
   }, [HOST_IP, API_KEY]);
@@ -45,6 +67,61 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     console.log("Apply state " + JSON.stringify(newState));
     axios.put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState);
   };
+
+  const handleupdate = (state) => {
+    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+      axios
+        .put(`${HOST_IP}/api/${API_KEY}/config`, {
+          swupdate2: { install: true },
+        })
+        .then((fetchedData) => {
+          console.log(fetchedData.data);
+          toast.success("Install update");
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error(`Error occurred: ${error.message}`);
+        });
+    }
+    if (state == "noupdates" || state == "unknown") {
+      axios
+        .put(`${HOST_IP}/api/${API_KEY}/config`, {
+          swupdate2: { checkforupdate: true, install: false },
+        })
+        .then((fetchedData) => {
+          console.log(fetchedData.data);
+          toast.success("Check update");
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error(`Error occurred: ${error.message}`);
+        });
+    }
+  }
+
+  const getValueState = (state) => {
+    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+      return "Update available";
+    }
+    else if (state == "noupdates" || state == "unknown") {
+      return "No Update";
+    }
+    else if (state == "installing"){
+      return "installing..."
+    }
+  }
+
+  const getClassState = (state) => {
+    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+      return "updatebtn";
+    }
+    else if (state == "noupdates" || state == "unknown") {
+      return "checkbtn";
+    }
+    else if (state == "installing"){
+      return "installbtn"
+    }
+  }
 
   return (
     <div className="topbarRight">
@@ -57,6 +134,17 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       >
         <FaBars />
       </motion.div>
+
+      <div className="switchContainer">
+        <form className="add-form" onSubmit={(e) => handleupdate(swstate, e)}>
+          <input
+            type="submit"
+            value={getValueState(swstate, "value")}
+            className={getClassState(swstate, "className")}
+          />
+        </form>
+      </div>
+
       <div className="onbtn">
         <p>Turn all lights {group0State ? "off" : "on"}</p>
         <div className="switchContainer">

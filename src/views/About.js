@@ -51,7 +51,7 @@ function About() {
         <div className="supportsection">
           <p>Support:</p>
           <a href="https://github.com/diyhue/diyhue"><FaGithub /></a>
-          <a href="https://slackinvite.squishedmooo.com/"><FaSlack /></a>
+          <a href="https://diyhue.slack.com/"><FaSlack /></a>
         </div>
         <div className="supportsection">
           <p>License:</p>
@@ -109,6 +109,15 @@ function About() {
           <div className="about">A very special thank you to Phil for consulting us with everything React related.</div>
           <div className="iconbox">
             <a href="https://github.com/philharmonie"><FaGithub /></a>
+          </div>
+        </div>
+
+        <div className="contactCard">
+          <div className="name">Mark</div>
+          <div className="position">Maintainer & Support</div>
+          <div className="about">Maintaining the Github repository, Add api features, Fix bugs, Slack & Github support.</div>
+          <div className="iconbox">
+            <a href="https://github.com/hendriksen-mark"><FaGithub /></a>
           </div>
         </div>
 

@@ -8,6 +8,7 @@ import {
   FaSignOutAlt,
   FaInfoCircle,
   FaExclamationTriangle,
+  FaUser,
 } from "react-icons/fa";
 import { SiHomeassistant } from "react-icons/si";
 import { MdSettingsRemote } from "react-icons/md";
@@ -121,6 +122,12 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
                 <li className={`${currentElement === "about" ? "active" : ""}`}
                   onClick={() => itemClicked("about")}>
                   <FaInfoCircle style={{ color: "#722371" }} /> <p>About</p>
+                </li>
+              </a>
+              <a href="#account">
+                <li className={`${currentElement === "account" ? "active" : ""}`}
+                  onClick={() => itemClicked("account")}>
+                  <FaUser style={{ color: "#00a6ff" }} /> <p>Account</p>
                 </li>
               </a>
               <a href="/logout">

@@ -69,7 +69,7 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   };
 
   const handleupdate = (state) => {
-    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
       axios
         .put(`${HOST_IP}/api/${API_KEY}/config`, {
           swupdate2: { install: true },
@@ -83,7 +83,7 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           toast.error(`Error occurred: ${error.message}`);
         });
     }
-    if (state == "noupdates" || state == "unknown") {
+    if (state === "noupdates" || state === "unknown") {
       axios
         .put(`${HOST_IP}/api/${API_KEY}/config`, {
           swupdate2: { checkforupdate: true, install: false },
@@ -100,25 +100,25 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   }
 
   const getValueState = (state) => {
-    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
       return "Update available";
     }
-    else if (state == "noupdates" || state == "unknown") {
+    else if (state === "noupdates" || state === "unknown") {
       return "No Update";
     }
-    else if (state == "installing"){
+    else if (state === "installing"){
       return "installing..."
     }
   }
 
   const getClassState = (state) => {
-    if (state == "anyreadytoinstall" || state == "allreadytoinstall") {
+    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
       return "updatebtn";
     }
-    else if (state == "noupdates" || state == "unknown") {
+    else if (state === "noupdates" || state === "unknown") {
       return "checkbtn";
     }
-    else if (state == "installing"){
+    else if (state === "installing"){
       return "installbtn"
     }
   }
@@ -139,8 +139,8 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
         <form className="add-form" onSubmit={(e) => handleupdate(swstate, e)}>
           <input
             type="submit"
-            value={getValueState(swstate, "value")}
-            className={getClassState(swstate, "className")}
+            value={getValueState(swstate)}
+            className={getClassState(swstate)}
           />
         </form>
       </div>

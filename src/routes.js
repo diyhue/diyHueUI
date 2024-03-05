@@ -13,6 +13,7 @@ const Bridge = React.lazy(() => import('./views/Bridge'));
 const HueBridge = React.lazy(() => import('./views/HueBridge'));
 const About = React.lazy(() => import('./views/About'));
 const Settings = React.lazy(() => import('./views/Settings'));
+const Account = React.lazy(() => import('./views/Account'));
 
 const routes = [
   { path: '/', exact: true, name: 'Groups', component: Groups },
@@ -29,6 +30,7 @@ const routes = [
   { path: '/tradfri', exact: true, name: 'Tradfri', component: Tradfri },
   { path: '/about', exact: true, name: 'About', component: About },
   { path: '/settings', exact: true, name: 'Settings', component: Settings },
+  { path: '/account', exact: true, name: 'Account', component: Account },
 ];
 
 export default routes;

@@ -62,7 +62,7 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
         { label: 'Phillips', icon: <Bridge style={{ color: "#FCEE86" }} />, link: '#hue' },
       ]
     },
-    
+    { label: 'Logout', icon: <FaSignOutAlt style={{ color: "#E0E043" }} />, link: 'logout' },
   ];
   
   return (

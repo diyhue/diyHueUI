@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
         <div className='menuEntry'>
           {icon}
           <p>{label}</p>
+          <div className='submenuIcon'>{children && (isOpen ? <FaAngleUp /> : <FaAngleDown />)} </div> 
         </div>
         <div className='submenu'>
           {isOpen && children}

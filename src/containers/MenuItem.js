@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { motion } from 'framer-motion';
 
 const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,9 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
         <div className='menuEntry'>
           {icon}
           <p>{label}</p>
-          <div className='submenuIcon'>{children && (isOpen ? <FaAngleUp /> : <FaAngleDown />)} </div> 
+          <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }} className='submenuIcon'>{children && 
+              <FaAngleDown />
+          }</motion.div> 
         </div>
         <div className='submenu'>
           {isOpen && children}

@@ -35,12 +35,12 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
   
   
   const menuItems = [
-    { label: 'Groups', icon: <FaUser style={{ color: "#D85BCD" }} />, link: '#' },
-    { label: 'Lights', icon: <FaLightbulb style={{ color: "#4DB8B4" }} />, link: '#lights' },
-    { label: 'Devices', icon: <MdSettingsRemote style={{ color: "#E0E043" }} />, link: '#devices' },
+    { label: 'Groups', icon: <FaHome style={{ color: "#5b4db7" }} />, link: '#' },
+    { label: 'Lights', icon: <FaLightbulb style={{ color: "#42adc7" }} />, link: '#lights' },
+    { label: 'Devices', icon: <MdSettingsRemote style={{ color: "#81d152" }} />, link: '#devices' },
     {
       label: 'DIYHue',
-      icon: <Diybridge style={{ color: "#D85BCD" }} />,
+      icon: <Diybridge style={{ color: "#f5f263" }} />,
       link: '#diyhue',
       subItems: [
         { label: 'Linkbutton', icon: <FaLink style={{ color: "#FCEE86" }} />, link: '#linkbutton' },
@@ -52,17 +52,17 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
     },
     {
       label: 'Addons',
-      icon: <FaCog style={{ color: "#D85BCD" }} />,
+      icon: <FaCog style={{ color: "#ff9d4f" }} />,
       link: '#addons',
       subItems: [
-        { label: 'MQTT', icon: <Zigbee style={{ color: "#FCEE86" }} />, link: '#mqtt' },
-        { label: 'HA', icon: <SiHomeassistant style={{ color: "#FCEE86" }} />, link: '#ha' },
-        { label: 'Tradfri', icon: <Tradfri style={{ color: "#FCEE86" }} />, link: '#tradfri' },
-        { label: 'Deconz', icon: <Deconz style={{ color: "#FCEE86" }} />, link: '#deconz' },
-        { label: 'Phillips', icon: <Bridge style={{ color: "#FCEE86" }} />, link: '#hue' },
+        { label: 'MQTT', icon: <Zigbee style={{ color: "#ff9d4f" }} />, link: '#mqtt' },
+        { label: 'HA', icon: <SiHomeassistant style={{ color: "#ff9d4f" }} />, link: '#ha' },
+        { label: 'Tradfri', icon: <Tradfri style={{ color: "#ff9d4f" }} />, link: '#tradfri' },
+        { label: 'Deconz', icon: <Deconz style={{ color: "#ff9d4f" }} />, link: '#deconz' },
+        { label: 'Phillips', icon: <Bridge style={{ color: "#ff9d4f" }} />, link: '#hue' },
       ]
     },
-    { label: 'Logout', icon: <FaSignOutAlt style={{ color: "#E0E043" }} />, link: 'logout' },
+    { label: 'Logout', icon: <FaSignOutAlt style={{ color: "#ff5347" }} />, link: 'logout' },
   ];
   
   return (

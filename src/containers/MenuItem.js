@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
 
-
 const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleParentClick = (e) => {
     if (children) {
+      e.stopPropagation();
       setIsOpen(!isOpen);
-    } else {
+    }
+  };
+
+  const handleChildClick = (e) => {
+    if (!children) {
+      e.stopPropagation();
       onClick();
     }
   };
 
   return (
-    <a href={link}>
-        <li className={isActive ? 'active' : ''} onClick={handleClick}>
-            <div className='menuEntry'>
-                {icon}
-                <p>{label}</p>
-            </div>
-            <div className='submenu'>
-                {isOpen && children}
-            </div>
-         </li>
+    <a href={link} onClick={handleChildClick}>
+      <li className={isActive ? 'active' : ''} onClick={handleParentClick}>
+        <div className='menuEntry'>
+          {icon}
+          <p>{label}</p>
+        </div>
+        <div className='submenu'>
+          {isOpen && children}
+        </div>
+      </li>
     </a>
   );
 };

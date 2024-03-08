@@ -24,8 +24,6 @@ import "../scss/sidebar.scss";
 const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
 
   const [currentElement, setCurrentElement] = useState(window.location.hash.substring(2));
-  const [openSubmenu, setOpenSubmenu] = useState(null);
-
 
   const itemClicked = (link) => {
     if (isMobile) {
@@ -34,13 +32,7 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
     setCurrentElement(link);
   }
 
-  const toggleSubmenu = (submenu) => {
-    if (openSubmenu === submenu) {
-      setOpenSubmenu(null);
-    } else {
-      setOpenSubmenu(submenu);
-    }
-  }
+  
   
   const menuItems = [
     { label: 'Groups', icon: <FaUser style={{ color: "#D85BCD" }} />, link: '#' },

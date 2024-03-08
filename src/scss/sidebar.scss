@@ -4,12 +4,25 @@
 
   ul {
     li {
-      padding: 17px 20px;
-      color: #eee;
-      font-size: 18px;
+      
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      
       transition: all .15s ease-in-out;
+      display: flex;
+
+      .menuEntry{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 20px 7px;
+        color: #eee;
+        font-size: 18px;
+      }
+
+      .submenu{
+        margin-left: 30px;
+      }
 
       svg{
         width: 30px;
@@ -26,13 +39,20 @@
       text-decoration: none;
     }
 
-    li:hover{
+    .menuentry:hover{
       transform: scale(1.1);
     }
 
-    li.active{
+    .menuentry.active{
       background: rgba(255,255,255,.2);
       border-radius: 15px;
+    }
+
+    ul{
+      margin-left: 0;
+      li{
+
+      }
     }
 
   }

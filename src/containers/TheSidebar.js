@@ -1,3 +1,4 @@
+import { MenuItem, SubMenu } from './MenuItem';
 import { memo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -23,6 +24,8 @@ import "../scss/sidebar.scss";
 const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
 
   const [currentElement, setCurrentElement] = useState(window.location.hash.substring(2));
+  const [openSubmenu, setOpenSubmenu] = useState(null);
+
 
   const itemClicked = (link) => {
     if (isMobile) {
@@ -31,6 +34,44 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
     setCurrentElement(link);
   }
 
+  const toggleSubmenu = (submenu) => {
+    if (openSubmenu === submenu) {
+      setOpenSubmenu(null);
+    } else {
+      setOpenSubmenu(submenu);
+    }
+  }
+  
+  const menuItems = [
+    { label: 'Groups', icon: <FaUser style={{ color: "#D85BCD" }} />, link: '#' },
+    { label: 'Lights', icon: <FaLightbulb style={{ color: "#4DB8B4" }} />, link: '#lights' },
+    { label: 'Devices', icon: <MdSettingsRemote style={{ color: "#E0E043" }} />, link: '#devices' },
+    {
+      label: 'DIYHue',
+      icon: <Diybridge style={{ color: "#D85BCD" }} />,
+      link: '#diyhue',
+      subItems: [
+        { label: 'Linkbutton', icon: <FaLink style={{ color: "#FCEE86" }} />, link: '#linkbutton' },
+        { label: 'Alarm', icon: <FaExclamationTriangle style={{ color: "#FCEE86" }} />, link: '#alarm' },
+        { label: 'Settings', icon: <FaCog style={{ color: "#FCEE86" }} />, link: '#settings' },
+        { label: 'Account', icon: <FaUser style={{ color: "#FCEE86" }} />, link: '#account' },
+        { label: 'About', icon: <FaInfoCircle style={{ color: "#FCEE86" }} />, link: '#about' },
+      ]
+    },
+    {
+      label: 'Addons',
+      icon: <FaCog style={{ color: "#D85BCD" }} />,
+      link: '#addons',
+      subItems: [
+        { label: 'MQTT', icon: <Zigbee style={{ color: "#FCEE86" }} />, link: '#mqtt' },
+        { label: 'HA', icon: <SiHomeassistant style={{ color: "#FCEE86" }} />, link: '#ha' },
+        { label: 'Tradfri', icon: <Tradfri style={{ color: "#FCEE86" }} />, link: '#tradfri' },
+        { label: 'Deconz', icon: <Deconz style={{ color: "#FCEE86" }} />, link: '#deconz' },
+        { label: 'Phillips', icon: <Bridge style={{ color: "#FCEE86" }} />, link: '#hue' },
+      ]
+    },
+    
+  ];
   
   return (
     <AnimatePresence initial={false}>
@@ -44,98 +85,7 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
             <div className="headline">DiyHue</div>
           </div>
           <div className="sidebar">
-            <ul>
-              <a href="#">
-                <li className={`${currentElement === "groups" ? "active" : ""}`}
-                  onClick={() => itemClicked("groups")}>
-                  <FaHome style={{ color: "#2BA9F0" }} /> <p>Groups</p>
-                </li>
-              </a>
-              <a href="#lights">
-                <li className={`${currentElement === "lights" ? "active" : ""}`}
-                  onClick={() => itemClicked("lights")}>
-                  <FaLightbulb style={{ color: "#4DB8B4" }} /> <p>Lights</p>
-                </li>
-              </a>
-              <a href="#linkbutton">
-                <li className={`${currentElement === "linkbutton" ? "active" : ""}`}
-                  onClick={() => itemClicked("linkbutton")}>
-                  <FaLink style={{ color: "#70C877" }} /> <p>Link Button</p>
-                </li>
-              </a>
-              <a href="#bridge">
-                <li className={`${currentElement === "bridge" ? "active" : ""}`}
-                  onClick={() => itemClicked("bridge")}>
-                  <Diybridge style={{ color: "#9CD747" }} /> <p>Bridge</p>
-                </li>
-              </a>
-              <a href="#devices">
-                <li className={`${currentElement === "devices" ? "active" : ""}`}
-                  onClick={() => itemClicked("devices")}>
-                  <MdSettingsRemote style={{ color: "#E0E043" }} /> <p>Devices</p>
-                </li>
-              </a>
-              <a href="#mqtt">
-                <li className={`${currentElement === "mqtt" ? "active" : ""}`}
-                  onClick={() => itemClicked("mqtt")}>
-                  <Zigbee style={{ color: "#FCEE86" }} /> <p>MQTT</p>
-                </li>
-              </a>
-              <a href="#ha">
-                <li className={`${currentElement === "ha" ? "active" : ""}`}
-                  onClick={() => itemClicked("ha")}>
-                  <SiHomeassistant style={{ color: "#0FFEFB" }} /> <p>HA</p>
-                </li>
-              </a>
-              <a href="#deconz">
-                <li className={`${currentElement === "deconz" ? "active" : ""}`}
-                  onClick={() => itemClicked("deconz")}>
-                  <Deconz style={{ color: "#FFFEFB" }} /> <p>Deconz</p>
-                </li>
-              </a>
-              <a href="#tradfri">
-                <li className={`${currentElement === "tradfri" ? "active" : ""}`}
-                  onClick={() => itemClicked("tradfri")}>
-                  <Tradfri style={{ color: "#EBAB94" }} />{" "}
-                  <p>Tradfri</p>
-                </li>
-              </a>
-              <a href="#hue">
-                <li className={`${currentElement === "hue" ? "active" : ""}`}
-                  onClick={() => itemClicked("hue")}>
-                  <Bridge style={{ color: "#EF7B22" }} /> <p>Hue Bridge</p>
-                </li>
-              </a>
-              <a href="#alarm">
-                <li className={`${currentElement === "alarm" ? "active" : ""}`}
-                  onClick={() => itemClicked("alarm")}>
-                  <FaExclamationTriangle style={{ color: "#CD3D45" }} /> <p>Alarm</p>
-                </li>
-              </a>
-              <a href="#settings">
-                <li className={`${currentElement === "settings" ? "active" : ""}`}
-                  onClick={() => itemClicked("settings")}>
-                  <FaCog style={{ color: "#D85BCD" }} /> <p>Settings</p>
-                </li>
-              </a>
-              <a href="#about">
-                <li className={`${currentElement === "about" ? "active" : ""}`}
-                  onClick={() => itemClicked("about")}>
-                  <FaInfoCircle style={{ color: "#722371" }} /> <p>About</p>
-                </li>
-              </a>
-              <a href="#account">
-                <li className={`${currentElement === "account" ? "active" : ""}`}
-                  onClick={() => itemClicked("account")}>
-                  <FaUser style={{ color: "#00a6ff" }} /> <p>Account</p>
-                </li>
-              </a>
-              <a href="/logout">
-                <li>
-                  <FaSignOutAlt style={{ color: "#7E7E7E" }} /> <p>Logout</p>
-                </li>
-              </a>
-            </ul>
+              <SubMenu items={menuItems} currentElement={currentElement} itemClicked={itemClicked} />
           </div>
         </motion.div>
       )}

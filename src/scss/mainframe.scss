@@ -123,32 +123,37 @@ body {
     font-size: 18px;
     font-weight: 0;
     border: none;
+    transition: all .15s ease-in-out;
   
     &:hover,
     &:active,
     &:focus {
       border: none;
       background: rgb(61, 177, 255);
+      transition: all .15s ease-in-out;
     }
   }
 
   .updatebtn {
     display: flex;
     align-items: center;
-    margin: 15px 15px;
-    background: rgb(0, 185, 34);
-    padding: 10px 10px;
+    background: rgb(39, 174, 96);
+    margin-right: 10px;
+    padding: 8px 15px;
     border-radius: 10px;
     color: #eee;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 0;
     border: none;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
   
     &:hover,
     &:active,
     &:focus {
       border: none;
-      background: rgb(67, 255, 61);
+      background: rgb(37, 206, 108);
+      transition: all .15s ease-in-out;
     }
   }
 
@@ -156,13 +161,14 @@ body {
     display: flex;
     align-items: center;
     margin: 15px 15px;
-    background: rgb(128, 0, 255);
+    background: rgb(142, 68, 173);
     padding: 10px 10px;
     border-radius: 10px;
     color: #eee;
     font-size: 18px;
     font-weight: 0;
     border: none;
+    transition: all .15s ease-in-out;
   }
 
   .hamburger {

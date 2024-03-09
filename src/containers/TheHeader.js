@@ -116,10 +116,10 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       return "updatebtn";
     }
     else if (state === "noupdates" || state === "unknown") {
-      return "checkbtn";
+      return "updatebtn check";
     }
     else if (state === "installing"){
-      return "installbtn"
+      return "updatebtn install"
     }
   }
 
@@ -144,6 +144,7 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           />
         </form>
       </div>
+      
 
       <div className="onbtn">
         <p>Turn all lights {group0State ? "off" : "on"}</p>

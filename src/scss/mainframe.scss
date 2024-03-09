@@ -112,28 +112,6 @@ body {
     }
   }
 
-  .checkbtn {
-    display: flex;
-    align-items: center;
-    margin: 15px 15px;
-    background: rgb(85, 106, 120);
-    padding: 10px 10px;
-    border-radius: 10px;
-    color: #eee;
-    font-size: 18px;
-    font-weight: 0;
-    border: none;
-    transition: all .15s ease-in-out;
-  
-    &:hover,
-    &:active,
-    &:focus {
-      border: none;
-      background: rgb(61, 177, 255);
-      transition: all .15s ease-in-out;
-    }
-  }
-
   .updatebtn {
     display: flex;
     align-items: center;
@@ -147,6 +125,14 @@ body {
     border: none;
     cursor: pointer;
     transition: all .15s ease-in-out;
+
+    &.install{
+      background: rgb(142, 68, 173);
+    }
+
+    &.check{
+      background: rgb(85, 106, 120);
+    }
   
     &:hover,
     &:active,
@@ -155,20 +141,6 @@ body {
       background: rgb(37, 206, 108);
       transition: all .15s ease-in-out;
     }
-  }
-
-  .installbtn {
-    display: flex;
-    align-items: center;
-    margin: 15px 15px;
-    background: rgb(142, 68, 173);
-    padding: 10px 10px;
-    border-radius: 10px;
-    color: #eee;
-    font-size: 18px;
-    font-weight: 0;
-    border: none;
-    transition: all .15s ease-in-out;
   }
 
   .hamburger {

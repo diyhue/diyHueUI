@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { SiHomeassistant } from "react-icons/si";
 import { MdSettingsRemote } from "react-icons/md";
+import { IoExtensionPuzzle } from "react-icons/io5";
 import { Bridge } from "../icons/Bridge"
 import { Zigbee } from "../icons/Zigbee"
 import { Deconz } from "../icons/Deconz"
@@ -32,39 +33,34 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
     setCurrentElement(link);
   }
 
-  
-  
+
+
   const menuItems = [
-    { label: 'Groups', icon: <FaHome style={{ color: "#5b4db7" }} />, link: '#' },
-    { label: 'Lights', icon: <FaLightbulb style={{ color: "#42adc7" }} />, link: '#lights' },
-    { label: 'Devices', icon: <MdSettingsRemote style={{ color: "#81d152" }} />, link: '#devices' },
-    {
-      label: 'DIYHue',
-      icon: <Diybridge style={{ color: "#f5f263" }} />,
-      link: '#diyhue',
+    { label: 'Groups', icon: <FaHome style={{ color: "#2BA9F0" }} />, link: '#' },
+    { label: 'Lights', icon: <FaLightbulb style={{ color: "#4DB8B4" }} />, link: '#lights' },
+    { label: 'Devices', icon: <MdSettingsRemote style={{ color: "#E0E043" }} />, link: '#devices' },
+    { label: 'DiyHue', icon: <Diybridge style={{ color: "#D85BCD" }} />,
       subItems: [
-        { label: 'Linkbutton', icon: <FaLink style={{ color: "#FCEE86" }} />, link: '#linkbutton' },
-        { label: 'Alarm', icon: <FaExclamationTriangle style={{ color: "#FCEE86" }} />, link: '#alarm' },
-        { label: 'Settings', icon: <FaCog style={{ color: "#FCEE86" }} />, link: '#settings' },
-        { label: 'Account', icon: <FaUser style={{ color: "#FCEE86" }} />, link: '#account' },
-        { label: 'About', icon: <FaInfoCircle style={{ color: "#FCEE86" }} />, link: '#about' },
+        { label: 'Bridge', icon: <Diybridge style={{ color: "#9CD747" }} />, link: '#bridge' },
+        { label: 'Linkbutton', icon: <FaLink style={{ color: "#70C877" }} />, link: '#linkbutton' },
+        { label: 'Alarm', icon: <FaExclamationTriangle style={{ color: "#CD3D45" }} />, link: '#alarm' },
+        { label: 'Settings', icon: <FaCog style={{ color: "#D85BCD" }} />, link: '#settings' },
       ]
     },
-    {
-      label: 'Addons',
-      icon: <FaCog style={{ color: "#ff9d4f" }} />,
-      link: '#addons',
+    { label: 'Addons', icon: <IoExtensionPuzzle style={{ color: "#41f222" }} />,
       subItems: [
-        { label: 'MQTT', icon: <Zigbee style={{ color: "#ff9d4f" }} />, link: '#mqtt' },
-        { label: 'HA', icon: <SiHomeassistant style={{ color: "#ff9d4f" }} />, link: '#ha' },
-        { label: 'Tradfri', icon: <Tradfri style={{ color: "#ff9d4f" }} />, link: '#tradfri' },
-        { label: 'Deconz', icon: <Deconz style={{ color: "#ff9d4f" }} />, link: '#deconz' },
-        { label: 'Phillips', icon: <Bridge style={{ color: "#ff9d4f" }} />, link: '#hue' },
+        { label: 'MQTT', icon: <Zigbee style={{ color: "#FCEE86" }} />, link: '#mqtt' },
+        { label: 'HA', icon: <SiHomeassistant style={{ color: "#0FFEFB" }} />, link: '#ha' },
+        { label: 'Tradfri', icon: <Tradfri style={{ color: "#EBAB94" }} />, link: '#tradfri' },
+        { label: 'Deconz', icon: <Deconz style={{ color: "#FFFEFB" }} />, link: '#deconz' },
+        { label: 'Phillips', icon: <Bridge style={{ color: "#EF7B22" }} />, link: '#hue' },
       ]
     },
-    { label: 'Logout', icon: <FaSignOutAlt style={{ color: "#ff5347" }} />, link: 'logout' },
+    { label: 'Account', icon: <FaUser style={{ color: "#00a6ff" }} />, link: '#account' },
+    { label: 'About', icon: <FaInfoCircle style={{ color: "#722371" }} />, link: '#about' },
+    { label: 'Logout', icon: <FaSignOutAlt style={{ color: "#7E7E7E" }} />, link: '/logout' },
   ];
-  
+
   return (
     <AnimatePresence initial={false}>
       {showSidebar && (
@@ -77,7 +73,7 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
             <div className="headline">DiyHue</div>
           </div>
           <div className="sidebar">
-              <SubMenu items={menuItems} currentElement={currentElement} itemClicked={itemClicked} />
+            <SubMenu items={menuItems} currentElement={currentElement} itemClicked={itemClicked} />
           </div>
         </motion.div>
       )}

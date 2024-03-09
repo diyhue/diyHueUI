@@ -7,7 +7,6 @@
       
       display: flex;
       flex-direction: column;
-      
       transition: all .15s ease-in-out;
       display: flex;
 
@@ -18,6 +17,7 @@
         padding: 20px 7px;
         color: #eee;
         font-size: 18px;
+        transition: all .15s ease-in-out;
 
 
         .submenuIcon{
@@ -49,6 +49,8 @@
 
     .menuEntry:hover{
       transform: scale(1.1);
+      transition: all .15s ease-in-out;
+      padding: 20px 10px;
     }
 
     li.active{

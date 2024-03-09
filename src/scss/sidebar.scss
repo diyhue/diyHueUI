@@ -34,12 +34,13 @@
 
       svg{
         width: 30px;
-        margin-right: 10px;
+        margin-right: 0px;
         flex-shrink: 0;
       }
 
       p{
         flex-shrink: 0;
+        margin-left: 10px;
       }
     }
 

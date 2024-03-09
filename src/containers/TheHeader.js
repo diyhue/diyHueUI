@@ -113,7 +113,7 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
 
   const getClassState = (state) => {
     if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
-      return "updatebtn";
+      return "updatebtn update";
     }
     else if (state === "noupdates" || state === "unknown") {
       return "updatebtn check";

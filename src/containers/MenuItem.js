@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import { motion } from 'framer-motion';
 
 const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {

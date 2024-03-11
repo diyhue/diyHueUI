@@ -3,11 +3,10 @@ import { FaBars } from "react-icons/fa";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { toast } from 'react-hot-toast';
+import { Tooltip } from '@mui/material';
 
 const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
-  const [install, setInstall] = useState(false);
-  const [check, setCheck] = useState(false);
   const [swstate, getState] = useState("noupdates");
 
   const iconVariants = {
@@ -27,8 +26,6 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
         axios
           .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
           .then((result) => {
-            setInstall(result.data["install"]);
-            setCheck(result.data["checkforupdate"]);
             getState(result.data["state"]);
           })
           .catch((error) => {
@@ -106,20 +103,32 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
     else if (state === "noupdates" || state === "unknown") {
       return "No Update";
     }
-    else if (state === "installing"){
+    else if (state === "installing") {
       return "installing..."
     }
   }
 
   const getClassState = (state) => {
     if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
-      return "updatebtn";
+      return "updatebtn update";
     }
     else if (state === "noupdates" || state === "unknown") {
       return "updatebtn check";
     }
-    else if (state === "installing"){
+    else if (state === "installing") {
       return "updatebtn install"
+    }
+  }
+
+  const getTitleState = (state) => {
+    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
+      return "Install update";
+    }
+    else if (state === "noupdates" || state === "unknown") {
+      return "Check for update";
+    }
+    else if (state === "installing") {
+      return "Update is installing"
     }
   }
 
@@ -137,14 +146,15 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
 
       <div className="switchContainer">
         <form className="add-form" onSubmit={(e) => handleupdate(swstate, e)}>
-          <input
-            type="submit"
-            value={getValueState(swstate)}
-            className={getClassState(swstate)}
-          />
+          <Tooltip title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>} arrow>
+            <input
+              type="submit"
+              value={getValueState(swstate)}
+              className={getClassState(swstate)}
+            />
+          </Tooltip>
         </form>
       </div>
-      
 
       <div className="onbtn">
         <p>Turn all lights {group0State ? "off" : "on"}</p>

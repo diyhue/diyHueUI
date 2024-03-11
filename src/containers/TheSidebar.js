@@ -1,4 +1,4 @@
-import { MenuItem, SubMenu } from './MenuItem';
+import { SubMenu } from './MenuItem';
 import { memo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {

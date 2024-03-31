@@ -14,6 +14,7 @@ import {
 import { SiHomeassistant } from "react-icons/si";
 import { MdSettingsRemote } from "react-icons/md";
 import { IoExtensionPuzzle } from "react-icons/io5";
+import { PiUserListFill } from "react-icons/pi";
 import { Bridge } from "../icons/Bridge"
 import { Zigbee } from "../icons/Zigbee"
 import { Deconz } from "../icons/Deconz"
@@ -43,6 +44,7 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
       subItems: [
         { label: 'Bridge', icon: <Diybridge style={{ color: "#9CD747" }} />, link: '#bridge' },
         { label: 'Linkbutton', icon: <FaLink style={{ color: "#70C877" }} />, link: '#linkbutton' },
+        { label: 'App Users', icon: <PiUserListFill style={{ color: "#30cfff" }} />, link: '#users' },
         { label: 'Alarm', icon: <FaExclamationTriangle style={{ color: "#CD3D45" }} />, link: '#alarm' },
         { label: 'Settings', icon: <FaCog style={{ color: "#D85BCD" }} />, link: '#settings' },
       ]

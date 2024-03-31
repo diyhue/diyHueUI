@@ -10,8 +10,9 @@ import {
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { toast } from 'react-hot-toast';
 
-const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
+const Device = ({ HOST_IP, api_key, id, device }) => {
   const deleteAlert = () => {
     confirmAlert({
       title: "Delete device " + device["name"],
@@ -33,15 +34,11 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
       .delete(`${HOST_IP}/api/${api_key}/sensors/${id}`)
       .then((fetchedData) => {
         //console.log(fetchedData.data);
-        setMessage("Device successfully deleted");
-        setType("none");
-        setType("success");
+        toast.success("Device successfully deleted");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error("Error occured, check browser console");
       });
   };
 
@@ -50,17 +47,13 @@ const Device = ({ HOST_IP, api_key, id, device, setType, setMessage }) => {
       .put(`${HOST_IP}/api/${api_key}/sensors/${id}/config`, { on: state })
       .then((fetchedData) => {
         //console.log(fetchedData.data);
-        setMessage(
+        toast.success(
           device["name"] + " successfully " + (state ? "enabled" : "disabled")
         );
-        setType("none");
-        setType("success");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error("Error occured, check browser console");
       });
   };
 

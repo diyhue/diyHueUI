@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import { Tooltip } from '@mui/material';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
+import "./headerSection.scss";
 
 const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);

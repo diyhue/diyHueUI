@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { Outlet, Route, Routes, HashRouter } from "react-router-dom";
+import "./contentSection.scss";
 
 // routes config
 import routes from "../routes";

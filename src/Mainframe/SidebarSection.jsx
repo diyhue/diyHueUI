@@ -22,7 +22,7 @@ import { Diybridge } from "../static/icons/Diybridge"
 import { Tradfri } from "../static/icons/Tradfri"
 import logo from "../static/images/logo.svg";
 
-import "./sidebar.scss";
+import "./sidebarSection.scss";
 
 const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
 

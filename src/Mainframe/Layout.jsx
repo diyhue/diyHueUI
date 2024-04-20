@@ -4,7 +4,7 @@ import ContentSection from "./ContentSection"
 import SidebarSection from "./SidebarSection"
 import HeaderSection from "./HeaderSection"
 
-import "./mainframe.scss";
+import "./layout.scss";
 
 const Layout = ({ HOST_IP, API_KEY }) => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -17,14 +17,16 @@ const Layout = ({ HOST_IP, API_KEY }) => {
       showSidebar={showSidebar}
       setShowSidebar={setShowSidebar}
       isMobile={isMobile} />
-    <div className="columnRight">
-      <HeaderSection
-        HOST_IP={HOST_IP}
-        API_KEY={API_KEY}
-        showSidebar={showSidebar}
-        setShowSidebar={setShowSidebar}
-      />
-      <ContentSection HOST_IP={HOST_IP} API_KEY={API_KEY} />
+
+      <div className="columnRight">
+        
+        <HeaderSection
+          HOST_IP={HOST_IP}
+          API_KEY={API_KEY}
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+        />
+        <ContentSection HOST_IP={HOST_IP} API_KEY={API_KEY} />
     </div>
     </>
   );

@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Groups = React.lazy(() => import('./views/Groups'));
-const Lights = React.lazy(() => import('./views/Lights'));
-const LinkButton = React.lazy(() => import('./views/LinkButton'));
-const HA = React.lazy(() => import('./views/HA'));
-const Mqtt = React.lazy(() => import('./views/Mqtt'));
-const Deconz = React.lazy(() => import('./views/Deconz'));
-const Tradfri = React.lazy(() => import('./views/Tradfri'));
-const Alarm = React.lazy(() => import('./views/Alarm'));
-const Devices = React.lazy(() => import('./views/Devices'));
-const Bridge = React.lazy(() => import('./views/Bridge'));
-const HueBridge = React.lazy(() => import('./views/HueBridge'));
-const About = React.lazy(() => import('./views/About'));
-const Settings = React.lazy(() => import('./views/Settings'));
-const Account = React.lazy(() => import('./views/Account'));
-const Users = React.lazy(() => import('./views/AppUsers'));
+const Groups = React.lazy(() => import('./Pages/Groups'));
+const Lights = React.lazy(() => import('./Pages/Lights'));
+const LinkButton = React.lazy(() => import('./Pages/LinkButton'));
+const HA = React.lazy(() => import('./Pages/HA'));
+const Mqtt = React.lazy(() => import('./Pages/Mqtt'));
+const Deconz = React.lazy(() => import('./Pages/Deconz'));
+const Tradfri = React.lazy(() => import('./Pages/Tradfri'));
+const Alarm = React.lazy(() => import('./Pages/Alarm'));
+const Devices = React.lazy(() => import('./Pages/Devices'));
+const Bridge = React.lazy(() => import('./Pages/Bridge'));
+const HueBridge = React.lazy(() => import('./Pages/HueBridge'));
+const About = React.lazy(() => import('./Pages/About'));
+const Settings = React.lazy(() => import('./Pages/Settings'));
+const Account = React.lazy(() => import('./Pages/Account'));
+const Users = React.lazy(() => import('./Pages/AppUsers'));
 
 const routes = [
   { path: '/', exact: true, name: 'Groups', component: Groups },

@@ -8,10 +8,10 @@ import {
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { useState } from "react";
 import axios from "axios";
-import Scenes from "./Scenes";
-import Light from "./GroupLight";
+import Scenes from "../Scenes/Scenes";
+import Light from "../GroupLight/GroupLight";
 import ColorPicker from "./ColorPicker";
-import { cieToRgb, colorTemperatureToRgb } from "../color";
+import { cieToRgb, colorTemperatureToRgb } from "../../color";
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");

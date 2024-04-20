@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Device from "../containers/Device";
+import Device from "../components/Device/Device";
 import { toast } from 'react-hot-toast';
 
 const Devices = ({ HOST_IP, API_KEY }) => {

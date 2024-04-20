@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Users from "../containers/Users";
+import Users from "../components/Users/Users";
 import { toast } from 'react-hot-toast';
 
 const Config = ({ HOST_IP, API_KEY }) => {

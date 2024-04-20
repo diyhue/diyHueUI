@@ -12,6 +12,8 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { toast } from 'react-hot-toast';
 
+import "./device.scss";
+
 const Device = ({ HOST_IP, api_key, id, device }) => {
   const deleteAlert = () => {
     confirmAlert({

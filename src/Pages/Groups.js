@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Group from "../containers/Group";
-import RoomSetup from "../containers/RoomSetup";
+import Group from "../components/Group/Group";
+import RoomSetup from "../components/RoomSetup/RoomSetup";
 import { toast } from 'react-hot-toast';
 
 export default function Groups({ HOST_IP, API_KEY }) {

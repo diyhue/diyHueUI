@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Light from "../containers/Light";
-import AddLight from "../containers/AddLight";
+import Light from "../components/Light/Light";
+import AddLight from "../components/AddLight/AddLight";
 import { BsPlusCircle } from 'react-icons/bs';
-import { ReactComponent as ScanIcon } from '../icons/scan.svg';
+import { ReactComponent as ScanIcon } from '../static/icons/scan.svg';
 import { toast } from 'react-hot-toast';
 
 export default function Lights({ HOST_IP, API_KEY }) {

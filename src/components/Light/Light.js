@@ -1,10 +1,12 @@
 import { MdDeleteForever } from "react-icons/md";
-import LightUpdate from "./LightUpdate";
+import LightUpdate from "../LightUpdate/LightUpdate";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { HueIcons } from "../icons/hass-hue-icons"
+import { HueIcons } from "../../static/icons/hass-hue-icons"
 import Select from "react-select"
+
+import "./light.scss";
 
 const Light = ({
   HOST_IP,

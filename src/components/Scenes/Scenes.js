@@ -1,9 +1,9 @@
 import Modal from "react-modal";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
-import { cieToRgb, colorTemperatureToRgb } from "../color";
+import { cieToRgb, colorTemperatureToRgb } from "../../color";
 
-import nightsky from "../static/images/nightsky.jpg";
+import nightsky from "../../static/images/nightsky.jpg";
 
 const Scenes = ({
   HOST_IP,

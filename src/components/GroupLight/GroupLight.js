@@ -1,6 +1,6 @@
 import { RiAlertLine } from "react-icons/ri";
 import axios from "axios";
-import { cieToRgb, colorTemperatureToRgb } from "../color";
+import { cieToRgb, colorTemperatureToRgb } from "../../color";
 import { FaLightbulb } from "react-icons/fa";
 
 const Light = ({ HOST_IP, api_key, id, light }) => {

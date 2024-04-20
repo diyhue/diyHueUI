@@ -1,4 +1,4 @@
-import { SubMenu } from './MenuItem';
+import { SubMenu } from './MenuItem/MenuItem';
 import { memo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -15,12 +15,13 @@ import { SiHomeassistant } from "react-icons/si";
 import { MdSettingsRemote } from "react-icons/md";
 import { IoExtensionPuzzle } from "react-icons/io5";
 import { PiUserListFill } from "react-icons/pi";
-import { Bridge } from "../icons/Bridge"
-import { Zigbee } from "../icons/Zigbee"
-import { Deconz } from "../icons/Deconz"
-import { Diybridge } from "../icons/Diybridge"
-import { Tradfri } from "../icons/Tradfri"
+import { Bridge } from "../static/icons/Bridge"
+import { Zigbee } from "../static/icons/Zigbee"
+import { Deconz } from "../static/icons/Deconz"
+import { Diybridge } from "../static/icons/Diybridge"
+import { Tradfri } from "../static/icons/Tradfri"
 import logo from "../static/images/logo.svg";
+
 import "../scss/sidebar.scss";
 
 const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {

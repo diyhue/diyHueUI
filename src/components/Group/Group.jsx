@@ -14,7 +14,7 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import ColorTempPicker from "../ColorTempPicker/ColorTempPicker";
 import debounce from "lodash.debounce";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { cieToRgb, colorTemperatureToRgb } from "../../color";
+import { cieToRgb, colorTemperatureToRgb } from "../SetGroupColor/SetGroupColor";
 import { HueIcons } from "../../static/icons/hass-hue-icons"
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {

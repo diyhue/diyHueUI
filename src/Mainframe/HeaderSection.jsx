@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { toast } from 'react-hot-toast';
 import { Tooltip } from '@mui/material';
 
-const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
+const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
   const [swstate, getState] = useState("noupdates");
 
@@ -174,4 +174,4 @@ const TheHeader = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   );
 };
 
-export default TheHeader;
+export default HeaderSection;

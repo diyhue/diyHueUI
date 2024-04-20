@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TheLayout from "./components/TheLayout";
+import Layout from "./Mainframe/Layout";
 
-import "./scss/mainframe.scss";
+
 import "./scss/content.scss";
 import "./scss/forms.scss";
 import "./scss/groups.scss";
@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <React.Suspense fallback={loading}>
-      <TheLayout HOST_IP={HOST_IP} API_KEY={API_KEY} />
+      <Layout HOST_IP={HOST_IP} API_KEY={API_KEY} />
     </React.Suspense>
   );
 };

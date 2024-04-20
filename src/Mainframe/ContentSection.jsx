@@ -11,7 +11,7 @@ const loading = (
   </div>
 );
 
-const TheContent = ({ HOST_IP, API_KEY }) => {
+const ContentSection = ({ HOST_IP, API_KEY }) => {
   return (
     <div className="content">
       <Toaster position="top-right" />
@@ -37,4 +37,4 @@ const TheContent = ({ HOST_IP, API_KEY }) => {
   );
 };
 
-export default React.memo(TheContent);
+export default ContentSection;

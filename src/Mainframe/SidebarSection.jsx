@@ -1,5 +1,5 @@
-import { SubMenu } from './MenuItem/MenuItem';
-import { memo, useState } from "react";
+import { SubMenu } from '../components/MenuItem/MenuItem';
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaHome,
@@ -22,9 +22,9 @@ import { Diybridge } from "../static/icons/Diybridge"
 import { Tradfri } from "../static/icons/Tradfri"
 import logo from "../static/images/logo.svg";
 
-import "../scss/sidebar.scss";
+import "./sidebar.scss";
 
-const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
+const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
 
   const [currentElement, setCurrentElement] = useState(window.location.hash.substring(2));
 
@@ -84,4 +84,4 @@ const TheSidebar = ({ showSidebar, setShowSidebar, isMobile }) => {
   );
 };
 
-export default memo(TheSidebar);
+export default SidebarSection;

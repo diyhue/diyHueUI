@@ -1,29 +1,33 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { TheContent, TheSidebar, TheHeader } from "./index";
+import ContentSection from "./ContentSection"
+import SidebarSection from "./SidebarSection"
+import HeaderSection from "./HeaderSection"
 
-const TheLayout = ({ HOST_IP, API_KEY }) => {
+import "./mainframe.scss";
+
+const Layout = ({ HOST_IP, API_KEY }) => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSidebar, setShowSidebar] = useState(!isMobile);
 
 
   return (
     <>
-      <TheSidebar 
+      <SidebarSection 
       showSidebar={showSidebar}
       setShowSidebar={setShowSidebar}
       isMobile={isMobile} />
     <div className="columnRight">
-      <TheHeader
+      <HeaderSection
         HOST_IP={HOST_IP}
         API_KEY={API_KEY}
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
       />
-      <TheContent HOST_IP={HOST_IP} API_KEY={API_KEY} />
+      <ContentSection HOST_IP={HOST_IP} API_KEY={API_KEY} />
     </div>
     </>
   );
 };
 
-export default TheLayout;
+export default Layout;

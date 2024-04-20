@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
-import { cieToRgb, colorTemperatureToRgb } from "../../color";
+import { cieToRgb, colorTemperatureToRgb } from "../SetGroupColor/SetGroupColor";
 
 import nightsky from "../../static/images/nightsky.jpg";
 

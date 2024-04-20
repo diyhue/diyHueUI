@@ -11,7 +11,7 @@ import axios from "axios";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { toast } from 'react-hot-toast';
-
+import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import "./device.scss";
 
 const Device = ({ HOST_IP, api_key, id, device }) => {
@@ -81,16 +81,10 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
           <FaMagic />
         </div>
         <div className="text">{device["name"]}</div>
-        <div className="switchContainer">
-          <label className="switch">
-            <input
-              type="checkbox"
-              defaultChecked={device["config"]["on"]}
-              onChange={(e) => toggleDevice(e.currentTarget.checked)}
-            />
-            <span className="slider"></span>
-          </label>
-        </div>
+        <FlipSwitch 
+          onChange={(e) => toggleDevice(e)} 
+          defaultChecked={device["config"]["on"]}
+        />
       </div>
       <div className="row2">
         <div className="text">

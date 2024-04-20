@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 const HA = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -61,17 +62,11 @@ const HA = ({ HOST_IP, API_KEY }) => {
       <div className="contentContainer">
         <div className="headline">Home Assistant config</div>
         <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-          <div className="switchContainer">
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={enable}
-                checked={enable}
-                onChange={(e) => setEnable(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <FlipSwitch 
+            value={enable} 
+            onChange={(e) => setEnable(e)} 
+            checked={enable} 
+          />
           <div className="form-control">
             <label>Home Assistant IP</label>
             <input
@@ -99,30 +94,19 @@ const HA = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setHomeAssistantToken(e.target.value)}
             />
           </div>
-          <div className="switchContainer">
-            <p>Included by default</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={homeAssistantIncludeByDefault}
-                checked={homeAssistantIncludeByDefault}
-                onChange={(e) => setHomeAssistantIncludeByDefault(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>enable HTTPS</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={homeAssistantUseHttps}
-                checked={homeAssistantUseHttps}
-                onChange={(e) => setHomeAssistantUseHttps(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <FlipSwitch 
+            value={homeAssistantIncludeByDefault} 
+            onChange={(e) => setHomeAssistantIncludeByDefault(e)} 
+            checked={homeAssistantIncludeByDefault} 
+            label="Included by default"
+          />
+
+          <FlipSwitch 
+            value={homeAssistantUseHttps} 
+            onChange={(e) => setHomeAssistantUseHttps(e)} 
+            checked={homeAssistantUseHttps} 
+            label="Enable HTTPS"
+          />
           <div className="form-control">
             <input type="submit" value="Save" className="btn btn-block" />
           </div>

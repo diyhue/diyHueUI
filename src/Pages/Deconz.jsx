@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 const Deconz = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -79,17 +80,11 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
       <div className="contentContainer">
         <div className="headline">Deconz Config</div>
         <form className="add-form" onSubmit={(e) => pairDeconz(e)}>
-          <div className="switchContainer">
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={enable}
-                checked={enable}
-                onChange={(e) => toggleEnable(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+        <FlipSwitch 
+            value={enable} 
+            onChange={(e) => toggleEnable(e)} 
+            checked={enable} 
+          />
           <div className="form-control">
             <label>Deconz host</label>
             <input

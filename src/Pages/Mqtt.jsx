@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 const Mqtt = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -61,17 +62,11 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
       <div className="contentContainer">
         <div className="headline">ZigBee2MQTT config</div>
         <form className="add-form" method="POST" onSubmit={(e) => onSubmit(e)}>
-          <div className="switchContainer">
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={enable}
-                checked={enable}
-                onChange={(e) => setEnable(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <FlipSwitch 
+            value={enable} 
+            onChange={(e) => setEnable(e)} 
+            checked={enable} 
+          />
           <div className="form-control">
             <label>MQTT server</label>
             <input

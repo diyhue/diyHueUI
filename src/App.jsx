@@ -12,7 +12,7 @@ import "./scss/scenepicker.scss";
 
 
 import "./scss/components/actionbuttons.scss";
-import "./scss/components/flipswitch.scss";
+
 import "./scss/components/scrollbar.scss";
 import "./scss/components/slider.scss";
 import "./scss/components/switches.scss";

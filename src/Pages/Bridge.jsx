@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 import Select from "react-select"
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
   const [bridgeName, setBridgeName] = useState("");
@@ -130,30 +131,19 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 placeholder={timezone}
               />
             </div>
-            <div className="switchContainer">
-              <p>Remote API </p>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  value={remoteApi}
-                  checked={remoteApi}
-                  onChange={(e) => setRemoteApi(e.target.checked)}
-                />
-                <span className="slider"></span>
-              </label>
-            </div>
-            <div className="switchContainer">
-              <p>Discovery</p>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  value={discovery}
-                  checked={discovery}
-                  onChange={(e) => setDiscovery(e.target.checked)}
-                />
-                <span className="slider"></span>
-              </label>
-            </div>
+            <FlipSwitch 
+              value={remoteApi} 
+              onChange={(e) => setRemoteApi(e)} 
+              checked={remoteApi} 
+              label="Remote API"
+            />
+
+            <FlipSwitch 
+              value={discovery} 
+              onChange={(e) => setDiscovery(e)} 
+              checked={discovery} 
+              label="Discovery"
+            />
             <div className="form-control">
               <input type="submit" value="Save" className="btn btn-block" />
             </div>

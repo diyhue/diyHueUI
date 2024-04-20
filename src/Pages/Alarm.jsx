@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 const Alarm = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -55,17 +56,11 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       <div className="contentContainer">
       <div className="headline">Motion notifications alarm</div>
         <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-          <div className="switchContainer">
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={enable}
-                checked={enable}
-                onChange={(e) => toggleEnable(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+        <FlipSwitch 
+          value={enable} 
+          onChange={(e) => toggleEnable(e)} 
+          checked={enable} 
+        />
           <div className="form-control">
             <label>e-mail</label>
             <input

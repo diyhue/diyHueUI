@@ -16,6 +16,7 @@ import debounce from "lodash.debounce";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { cieToRgb, colorTemperatureToRgb } from "../SetGroupColor/SetGroupColor";
 import { HueIcons } from "../../static/icons/hass-hue-icons"
+import FlipSwitch from "../FlipSwitch/FlipSwitch";
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");
@@ -181,17 +182,11 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
           <p className="name"> {group.name} </p>
           <p className="subtext">{statusLights()}</p>
         </div>
-        <div className="switchContainer">
-          <label className="switch">
-            <input
-              type="checkbox"
-              defaultValue={group.state["any_on"]}
-              defaultChecked={group.state["any_on"]}
-              onChange={(e) => handleToggleChange(e.target.checked)}
-            />
-            <span className="slider"> </span>
-          </label>
-        </div>
+        <FlipSwitch  
+          value={group.state["any_on"]} 
+          onChange={(e) => handleToggleChange(e)} 
+          defaultChecked={group.state["any_on"]} 
+        />
       </div>
       <div className="row background">
         <AnimatePresence initial={false}>

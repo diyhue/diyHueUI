@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 const Settings = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -175,17 +176,11 @@ const Settings = ({ HOST_IP, API_KEY }) => {
         <p>The standard port is 80, always include port 80.</p>
         <p>To add ports separate the ports with "," ex: 80,81,82</p>
         <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-          <div className="switchContainer">
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={enable}
-                checked={enable}
-                onChange={(e) => toggleEnable(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <FlipSwitch 
+            value={enable} 
+            onChange={(e) => toggleEnable(e)} 
+            checked={enable} 
+          />
           <div className="form-control">
             <label>Port</label>
             <input
@@ -205,114 +200,68 @@ const Settings = ({ HOST_IP, API_KEY }) => {
         <div className="headline">Search Config</div>
         <p>Set which protocol to find.</p>
         <form className="add-form" onSubmit={(e) => onSubmit_protocol(e)}>
-          <div className="switchContainer">
-            <p>Yeelight</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={yeelight}
-                checked={yeelight}
-                onChange={(e) => setYeelight(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Native_multi</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={native_multi}
-                checked={native_multi}
-                onChange={(e) => setNative_multi(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Tasmota</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={tasmota}
-                checked={tasmota}
-                onChange={(e) => setTasmota(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Wled</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={wled}
-                checked={wled}
-                onChange={(e) => setWled(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Shelly</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={shelly}
-                checked={shelly}
-                onChange={(e) => setShelly(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Esphome</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={esphome}
-                checked={esphome}
-                onChange={(e) => setEsphome(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Hyperion</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={hyperion}
-                checked={hyperion}
-                onChange={(e) => setHyperion(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Tpkasa</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={tpkasa}
-                checked={tpkasa}
-                onChange={(e) => setTpkasa(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
-          <div className="switchContainer">
-            <p>Elgato</p>
-            <label className="switch">
-              <input
-                type="checkbox"
-                value={elgato}
-                checked={elgato}
-                onChange={(e) => setElgato(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
-          </div>
+          <FlipSwitch 
+            value={yeelight} 
+            onChange={(e) => setYeelight(e)} 
+            checked={yeelight} 
+            label="Yeelight"
+          />
+
+          <FlipSwitch 
+            value={native_multi} 
+            onChange={(e) => setNative_multi(e)} 
+            checked={native_multi} 
+            label="Native_multi"
+          />
+
+          <FlipSwitch 
+            value={tasmota} 
+            onChange={(e) => setTasmota(e)} 
+            checked={tasmota} 
+            label="Tasmota"
+          />
+
+          <FlipSwitch 
+            value={wled} 
+            onChange={(e) => setWled(e)} 
+            checked={wled} 
+            label="Wled"
+          />
+
+          <FlipSwitch 
+            value={shelly} 
+            onChange={(e) => setShelly(e)} 
+            checked={shelly} 
+            label="Shelly"
+          />
+
+          <FlipSwitch 
+            value={esphome} 
+            onChange={(e) => setEsphome(e)} 
+            checked={esphome} 
+            label="Esphome"
+          />
+
+          <FlipSwitch 
+            value={hyperion} 
+            onChange={(e) => setHyperion(e)} 
+            checked={hyperion} 
+            label="Hyperion"
+          />
+
+          <FlipSwitch 
+            value={tpkasa} 
+            onChange={(e) => setTpkasa(e)} 
+            checked={tpkasa} 
+            label="Tpkasa"
+          />
+
+          <FlipSwitch 
+            value={elgato} 
+            onChange={(e) => setElgato(e)} 
+            checked={elgato} 
+            label="Elgato"
+          />
           <div className="form-control">
             <input type="submit" value="Save" className="btn btn-block" />
           </div>

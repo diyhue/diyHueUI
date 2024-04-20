@@ -4,6 +4,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { toast } from 'react-hot-toast';
 import { Tooltip } from '@mui/material';
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+
 
 const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
@@ -157,18 +159,12 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       </div>
 
       <div className="onbtn">
-        <p>Turn all lights {group0State ? "off" : "on"}</p>
-        <div className="switchContainer">
-          <label className="switch">
-            <input
-              type="checkbox"
-              value={group0State}
-              onChange={(e) => handleToggleChange(e.target.checked)}
-              checked={group0State}
-            />
-            <span className="slider"></span>
-          </label>
-        </div>
+        <FlipSwitch 
+          value={group0State} 
+          onChange={(e) => handleToggleChange(e)} 
+          checked={group0State}
+          label={`Turn all lights ${group0State ? "off" : "on"}`} 
+        />
       </div>
     </div>
   );

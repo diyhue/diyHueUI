@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GlassContainer from "../components/ContentContainer/GlassContainer";
 
 const Mqtt = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -117,7 +118,12 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
           </div>
         </form>
       </div>
+      <GlassContainer>
+        <p>Test</p>
+      </GlassContainer>
     </div>
+
+    
   );
 };
 

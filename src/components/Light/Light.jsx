@@ -7,6 +7,7 @@ import { HueIcons } from "../../static/icons/hass-hue-icons"
 import Select from "react-select"
 
 import "./light.scss";
+import IconButton from "../IconButton/IconButton";
 
 const Light = ({
   HOST_IP,
@@ -132,9 +133,12 @@ const Light = ({
             )}
           
         </ul>
-        <div className="iconbtn red">
-          <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />{" "}
-        </div>
+        <IconButton 
+          iconName="MdDeleteForever" 
+          title="Delete" 
+          color="red" 
+          onClick={() => deleteAlert()} 
+        />
       </div>
 
       {light["state"]["reachable"] || <div className="label">Offline</div>}

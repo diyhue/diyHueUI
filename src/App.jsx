@@ -11,7 +11,7 @@ import "./scss/modal.scss";
 import "./scss/scenepicker.scss";
 
 
-import "./scss/components/actionbuttons.scss";
+
 
 import "./scss/components/scrollbar.scss";
 import "./scss/components/slider.scss";

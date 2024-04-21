@@ -12,6 +12,7 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { toast } from 'react-hot-toast';
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
+import IconButton from "../IconButton/IconButton";
 import "./device.scss";
 
 const Device = ({ HOST_IP, api_key, id, device }) => {
@@ -96,9 +97,12 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
       <div className="row3">
         <div className="battery">{"battery" in device["config"] && batteryLevel()}</div>
         
-        <div className="iconbtn red">
-          <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />
-        </div>
+        <IconButton 
+          iconName="MdDeleteForever" 
+          title="Delete" 
+          color="red" 
+          onClick={() => deleteAlert()} 
+        />
       </div>
     </div>
   );

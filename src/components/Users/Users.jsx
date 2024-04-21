@@ -1,10 +1,10 @@
-import { MdDeleteForever } from "react-icons/md";
 import { RiApps2Fill } from "react-icons/ri";
 
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { toast } from 'react-hot-toast';
+import IconButton from "../IconButton/IconButton";
 
 const Users = ({ HOST_IP, api_key, id, user }) => {
     const deleteAlert = () => {
@@ -51,9 +51,12 @@ const Users = ({ HOST_IP, api_key, id, user }) => {
           </div>
         </div>
         <div className="row3">
-          <div className="iconbtn red">
-            <MdDeleteForever title="Delete" onClick={() => deleteAlert()} />
-          </div>
+        <IconButton 
+          iconName="MdDeleteForever" 
+          title="Delete" 
+          color="red" 
+          onClick={() => deleteAlert()} 
+        />
         </div>
       </div>
     );

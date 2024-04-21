@@ -1,14 +1,6 @@
-.contentContainer{
-
-  &.lights{
-    margin-bottom: 20px;
-    max-width: 380px;
-  }
-}
-
-.devicecard {
-  &.light {
-    margin-right: 20px;
+.light {
+    padding: 10px;
+    width: 350px;
   
     .row1 {
       /*outline: 1px solid green;*/
@@ -70,7 +62,7 @@
         margin-left: 0px;
       }
     }
-  }
+  
 
   .label {
     position: absolute;
@@ -90,12 +82,9 @@
 
 
 @media screen and (max-width: 750px) {
-  .devicecard {
-    width: 100%;
-
-    &.light{
+  .light{
       margin-right: 0;
+      width: 100%;
     }
   }
 
-}

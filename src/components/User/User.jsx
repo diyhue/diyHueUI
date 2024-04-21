@@ -5,8 +5,11 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { toast } from 'react-hot-toast';
 import IconButton from "../IconButton/IconButton";
+import GlassContainer from "../GlassContainer/GlassContainer";
 
-const Users = ({ HOST_IP, api_key, id, user }) => {
+import "./user.scss";
+
+const User = ({ HOST_IP, api_key, id, user }) => {
     const deleteAlert = () => {
       confirmAlert({
         title: "Delete User " + user["name"],
@@ -37,29 +40,31 @@ const Users = ({ HOST_IP, api_key, id, user }) => {
     };
   
     return (
-      <div className="devicecard device">
-        <div className="row1">
-          <div className="icon">
-            <RiApps2Fill />
+      <GlassContainer>
+        <div className="user">
+          <div className="row1">
+            <div className="icon">
+              <RiApps2Fill />
+            </div>
+            <div className="text">{user["name"]}</div>
           </div>
-          <div className="text">{user["name"]}</div>
-        </div>
-        <div className="row2">
-          <div className="text">
-            Last use date: {user["last use date"]} <br />
-            Create date: {user["create date"]} <br />
+          <div className="row2">
+            <div className="text">
+              Last use date: {user["last use date"]} <br />
+              Create date: {user["create date"]} <br />
+            </div>
+          </div>
+          <div className="row3">
+          <IconButton 
+            iconName="MdDeleteForever" 
+            title="Delete" 
+            color="red" 
+            onClick={() => deleteAlert()} 
+          />
           </div>
         </div>
-        <div className="row3">
-        <IconButton 
-          iconName="MdDeleteForever" 
-          title="Delete" 
-          color="red" 
-          onClick={() => deleteAlert()} 
-        />
-        </div>
-      </div>
+      </GlassContainer>
     );
   };
   
-  export default Users;
+  export default User;

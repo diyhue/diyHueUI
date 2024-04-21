@@ -14,6 +14,7 @@ import { toast } from 'react-hot-toast';
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import IconButton from "../IconButton/IconButton";
 import "./device.scss";
+import GlassContainer from "../GlassContainer/GlassContainer";
 
 const Device = ({ HOST_IP, api_key, id, device }) => {
   const deleteAlert = () => {
@@ -76,35 +77,37 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
   };
 
   return (
-    <div className="devicecard device">
-      <div className="row1">
-        <div className="icon">
-          <FaMagic />
+    <GlassContainer>
+      <div className="device">
+        <div className="row1">
+          <div className="icon">
+            <FaMagic />
+          </div>
+          <div className="text">{device["name"]}</div>
+          <FlipSwitch 
+            onChange={(e) => toggleDevice(e)} 
+            defaultChecked={device["config"]["on"]}
+          />
         </div>
-        <div className="text">{device["name"]}</div>
-        <FlipSwitch 
-          onChange={(e) => toggleDevice(e)} 
-          defaultChecked={device["config"]["on"]}
-        />
-      </div>
-      <div className="row2">
-        <div className="text">
-          ModelID: {device["modelid"]} <br />
-          Type: {device["type"]} <br />
-          Protocol: {device["protocol"]} <br />
+        <div className="row2">
+          <div className="text">
+            ModelID: {device["modelid"]} <br />
+            Type: {device["type"]} <br />
+            Protocol: {device["protocol"]} <br />
+          </div>
+        </div>
+        <div className="row3">
+          <div className="battery">{"battery" in device["config"] && batteryLevel()}</div>
+          
+          <IconButton 
+            iconName="MdDeleteForever" 
+            title="Delete" 
+            color="red" 
+            onClick={() => deleteAlert()} 
+          />
         </div>
       </div>
-      <div className="row3">
-        <div className="battery">{"battery" in device["config"] && batteryLevel()}</div>
-        
-        <IconButton 
-          iconName="MdDeleteForever" 
-          title="Delete" 
-          color="red" 
-          onClick={() => deleteAlert()} 
-        />
-      </div>
-    </div>
+    </GlassContainer>
   );
 };
 

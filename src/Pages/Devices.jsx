@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Device from "../components/Device/Device";
 import { toast } from 'react-hot-toast';
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Devices = ({ HOST_IP, API_KEY }) => {
   const [devices, setDevices] = useState({});
@@ -32,8 +33,7 @@ const Devices = ({ HOST_IP, API_KEY }) => {
   return (
     <div className="content">
       <div className="inner">
-        <div className="devicecontainer">
-          <div className="cardGrid">
+          <CardGrid>
             {Object.entries(devices).map(([id, device]) => (
               device["protocol"] !== "none" &&
               <Device
@@ -44,10 +44,9 @@ const Devices = ({ HOST_IP, API_KEY }) => {
                 device={device}
               />
             ))}
-          </div>
+          </CardGrid>
         </div>
       </div>
-    </div>
   );
 };
 

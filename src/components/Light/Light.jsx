@@ -8,6 +8,7 @@ import Select from "react-select"
 
 import "./light.scss";
 import IconButton from "../IconButton/IconButton";
+import GlassContainer from "../GlassContainer/GlassContainer";
 
 const Light = ({
   HOST_IP,
@@ -94,55 +95,57 @@ const Light = ({
  
 
   return (
-    <div className="devicecard light">
-      <div className="row1">
-        <div className="icon">
-          <HueIcons
-          type = {"light-" + light["config"]["archetype"]}
-          color= "#eeeeee"
-          onClick={() => alertLight()} />
-        </div>
+    <GlassContainer>
+      <div className="light">
+        <div className="row1">
+          <div className="icon">
+            <HueIcons
+            type = {"light-" + light["config"]["archetype"]}
+            color= "#eeeeee"
+            onClick={() => alertLight()} />
+          </div>
 
-        <div className="text">{light["name"]} </div>
-      </div>
-      <div className="row2">
-        <div className="form-control">
-          <Select 
-            options={options}
-            placeholder={light["modelid"]}
-            onChange={(e) => setModelId(e.value)}
-            menuPortalTarget={document.body}
-            menuPosition={'fixed'} 
+          <div className="text">{light["name"]} </div>
+        </div>
+        <div className="row2">
+          <div className="form-control">
+            <Select 
+              options={options}
+              placeholder={light["modelid"]}
+              onChange={(e) => setModelId(e.value)}
+              menuPortalTarget={document.body}
+              menuPosition={'fixed'} 
+            />
+          </div>
+          <LightUpdate
+            light={light}
+            lightsCatalog={lightsCatalog}
+            setMessage={setMessage}
+            setType={setType}
+          />
+          
+        </div>
+        <div className="row3">
+          <ul>
+            <li>Protocol: {light["protocol"]}</li>
+            {["native", "native_multi", "native_single", "wled", "esphome"].includes(light["protocol"]) ? (
+              <li style={{cursor:'pointer'}} onClick={()=> window.open("http://" + light["protocol_cfg"]["ip"], "_blank")}>IP: {light["protocol_cfg"]["ip"]}</li>
+            ): (
+              <li>IP: {light["protocol_cfg"]["ip"]}</li>
+              )}
+            
+          </ul>
+          <IconButton 
+            iconName="MdDeleteForever" 
+            title="Delete" 
+            color="red" 
+            onClick={() => deleteAlert()} 
           />
         </div>
-        <LightUpdate
-          light={light}
-          lightsCatalog={lightsCatalog}
-          setMessage={setMessage}
-          setType={setType}
-        />
-        
-      </div>
-      <div className="row3">
-        <ul>
-          <li>Protocol: {light["protocol"]}</li>
-          {["native", "native_multi", "native_single", "wled", "esphome"].includes(light["protocol"]) ? (
-            <li style={{cursor:'pointer'}} onClick={()=> window.open("http://" + light["protocol_cfg"]["ip"], "_blank")}>IP: {light["protocol_cfg"]["ip"]}</li>
-          ): (
-            <li>IP: {light["protocol_cfg"]["ip"]}</li>
-            )}
-          
-        </ul>
-        <IconButton 
-          iconName="MdDeleteForever" 
-          title="Delete" 
-          color="red" 
-          onClick={() => deleteAlert()} 
-        />
-      </div>
 
-      {light["state"]["reachable"] || <div className="label">Offline</div>}
-    </div>
+        {light["state"]["reachable"] || <div className="label">Offline</div>}
+      </div>
+    </GlassContainer>
   );
 };
 

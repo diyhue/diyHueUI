@@ -5,6 +5,7 @@ import AddLight from "../components/AddLight/AddLight";
 import { BsPlusCircle } from 'react-icons/bs';
 import { ReactComponent as ScanIcon } from '../static/icons/scan.svg';
 import { toast } from 'react-hot-toast';
+import CardGrid from "../components/CardGrid/CardGrid";
 
 export default function Lights({ HOST_IP, API_KEY }) {
   const [lights, setLights] = useState({});
@@ -85,39 +86,36 @@ export default function Lights({ HOST_IP, API_KEY }) {
   return (
     <div className="content">
       <div className="inner">
-        <div className="devicecontainer">
-      <div className="actionBar">
-        <div className="btn" onClick={() => setLightForm(!lightForm)}>
-          <BsPlusCircle />
-          <p>Add light</p>
+          <div className="actionBar">
+            <div className="btn" onClick={() => setLightForm(!lightForm)}>
+              <BsPlusCircle />
+              <p>Add light</p>
+              </div>
+            <div className="btn" onClick={() => searchForLights()}>
+            <ScanIcon />
+              <p>Scan for lights</p>
+              </div>
           </div>
-        <div className="btn" onClick={() => searchForLights()}>
-        <ScanIcon />
-          <p>Scan for lights</p>
-          </div>
-      </div>
-
       
-        {lightForm && <AddLight
-          HOST_IP={HOST_IP}
-          API_KEY={API_KEY}>
-        </AddLight>}
-      
-      <div className="cardGrid">
-        {Object.entries(lights).map(([id, light]) => (
-          <Light
-            key={id}
+          {lightForm && <AddLight
             HOST_IP={HOST_IP}
-            api_key={API_KEY}
-            id={id}
-            light={light}
-            modelIds={modelIds}
-            lightsCatalog={lightsCatalog}
-          />
-        ))}
-      </div>
-    </div>
-    </div>
+            API_KEY={API_KEY}>
+          </AddLight>}
+      
+          <CardGrid>
+            {Object.entries(lights).map(([id, light]) => (
+              <Light
+                key={id}
+                HOST_IP={HOST_IP}
+                api_key={API_KEY}
+                id={id}
+                light={light}
+                modelIds={modelIds}
+                lightsCatalog={lightsCatalog}
+              />
+            ))}
+          </CardGrid>
+        </div>
     </div>
   );
 }

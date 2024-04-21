@@ -1,26 +1,22 @@
-.devicecard {
-    width: 380px;
+.glassContainer {
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     background: rgba(255, 255, 255, 0.09);
     background: linear-gradient(45deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0.2) 100%);
     border-radius: 20px;
-    margin-bottom: 20px;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ddd;
-    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    color: #eee;
 }
 
-
 @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    .devicecard {
+    .glassContainer {
       position: relative;
       background: rgba(255, 255, 255, 0.20);
     }
   
-    .devicecard:after{
+    .glassContainer:after{
       content: '';
       background: url(../../static/images/background.jpg) no-repeat 50%;
       background-size: cover;

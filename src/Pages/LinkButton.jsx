@@ -1,5 +1,7 @@
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
 export default function LinkButton({ HOST_IP, API_KEY }) {
   //console.log(API_KEY)
@@ -21,13 +23,15 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
 
   return (
     <div className="inner">
-      <div className="contentContainer">
-        <div className="headline">Link Button</div>
-        <p>Push this button to accept the pairing of the requested app</p>
-        <div className="linkbtn" onClick={() => pushLinkButton()}>
-          Link App
-        </div>
-      </div>
+      <GlassContainer>
+        <PageContent>
+          <div className="headline">Link Button</div>
+          <p>Push this button to accept the pairing of the requested app</p>
+          <div className="linkbtn" onClick={() => pushLinkButton()}>
+            Link App
+          </div>
+        </PageContent>
+      </GlassContainer>
     </div>
   );
 }

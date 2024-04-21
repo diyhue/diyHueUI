@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
 const Tradfri = ({ HOST_IP, API_KEY }) => {
   const [tradfriGwIp, setTradfriGwIp] = useState("192.168.x.x");
@@ -53,62 +55,64 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <div className="contentContainer">
-      <div className="headline">IKEA Tradfri Gateway</div>
-        <form className="add-form" onSubmit={(e) => pairTradfri(e)}>
-          <div className="form-control">
-            <label>Tradfri Gateway IP</label>
-            <input
-              type="text"
-              placeholder="192.168.x.x"
-              value={tradfriGwIp}
-              onChange={(e) => setTradfriGwIp(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <label>Identity</label>
-            <input
-              type="text"
-              placeholder="Identity used for pairing"
-              value={tradfriIdentity}
-              onChange={(e) => setTradfriIdentity(e.target.value)}
-            />
-          </div>
-          {tradfriPsk === "" && (
+      <GlassContainer>
+        <PageContent>
+          <div className="headline">IKEA Tradfri Gateway</div>
+          <form className="add-form" onSubmit={(e) => pairTradfri(e)}>
             <div className="form-control">
-              <label>Security Code</label>
+              <label>Tradfri Gateway IP</label>
               <input
                 type="text"
-                placeholder="Located on gateway label"
-                value={tradfriCode}
-                onChange={(e) => setTradfriCode(e.target.value)}
+                placeholder="192.168.x.x"
+                value={tradfriGwIp}
+                onChange={(e) => setTradfriGwIp(e.target.value)}
               />
             </div>
-          )}
-          {tradfriPsk !== "" && (
             <div className="form-control">
-              <label>Paired Key</label>
+              <label>Identity</label>
               <input
                 type="text"
-                readOnly
-                placeholder="Located on gateway label"
-                value={tradfriPsk}
+                placeholder="Identity used for pairing"
+                value={tradfriIdentity}
+                onChange={(e) => setTradfriIdentity(e.target.value)}
               />
             </div>
-          )}
-          <div className="form-control">
-            <input
-              type="submit"
-              value={
-                typeof tradfriPsk === "string" && tradfriPsk.length > 0
-                  ? "Change Ip"
-                  : "Pair"
-              }
-              className="btn btn-block"
-            />
-          </div>
-        </form>
-      </div>
+            {tradfriPsk === "" && (
+              <div className="form-control">
+                <label>Security Code</label>
+                <input
+                  type="text"
+                  placeholder="Located on gateway label"
+                  value={tradfriCode}
+                  onChange={(e) => setTradfriCode(e.target.value)}
+                />
+              </div>
+            )}
+            {tradfriPsk !== "" && (
+              <div className="form-control">
+                <label>Paired Key</label>
+                <input
+                  type="text"
+                  readOnly
+                  placeholder="Located on gateway label"
+                  value={tradfriPsk}
+                />
+              </div>
+            )}
+            <div className="form-control">
+              <input
+                type="submit"
+                value={
+                  typeof tradfriPsk === "string" && tradfriPsk.length > 0
+                    ? "Change Ip"
+                    : "Pair"
+                }
+                className="btn btn-block"
+              />
+            </div>
+          </form>
+        </PageContent>
+      </GlassContainer>
     </div>
   );
 };

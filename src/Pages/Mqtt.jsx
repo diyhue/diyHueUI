@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
-import GlassContainer from "../components/ContentContainer/GlassContainer";
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
 const Mqtt = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -60,66 +61,65 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <div className="contentContainer">
-        <div className="headline">ZigBee2MQTT config</div>
-        <form className="add-form" method="POST" onSubmit={(e) => onSubmit(e)}>
-          <FlipSwitch 
-            value={enable} 
-            onChange={(e) => setEnable(e)} 
-            checked={enable} 
-          />
-          <div className="form-control">
-            <label>MQTT server</label>
-            <input
-              type="text"
-              placeholder="MQTT server"
-              value={mqttServer}
-              onChange={(e) => setMqttServer(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <label>MQTT port</label>
-            <input
-              type="number"
-              placeholder="MQTT port"
-              value={mqttPort}
-              onChange={(e) => setMqttPort(parseInt(e.target.value))}
-            />
-          </div>
-          <div className="form-control">
-            <label>MQTT username</label>
-            <input
-              type="text"
-              placeholder="MQTT username"
-              value={mqttUser}
-              onChange={(e) => setMqttUser(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <label>MQTT password</label>
-            <input
-              type="text"
-              placeholder="MQTT password"
-              value={mqttPass}
-              onChange={(e) => setMqttPass(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <label>Discovery Prefix</label>
-            <input
-              type="text"
-              placeholder="Discovery prefix"
-              value={discoveryPrefix}
-              onChange={(e) => setDiscoveryPrefix(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <input type="submit" value="Save" className="btn btn-block" />
-          </div>
-        </form>
-      </div>
       <GlassContainer>
-        <p>Test</p>
+        <PageContent>
+          <div className="headline">ZigBee2MQTT config</div>
+          <form className="add-form" method="POST" onSubmit={(e) => onSubmit(e)}>
+            <FlipSwitch 
+              value={enable} 
+              onChange={(e) => setEnable(e)} 
+              checked={enable} 
+            />
+            <div className="form-control">
+              <label>MQTT server</label>
+              <input
+                type="text"
+                placeholder="MQTT server"
+                value={mqttServer}
+                onChange={(e) => setMqttServer(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label>MQTT port</label>
+              <input
+                type="number"
+                placeholder="MQTT port"
+                value={mqttPort}
+                onChange={(e) => setMqttPort(parseInt(e.target.value))}
+              />
+            </div>
+            <div className="form-control">
+              <label>MQTT username</label>
+              <input
+                type="text"
+                placeholder="MQTT username"
+                value={mqttUser}
+                onChange={(e) => setMqttUser(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label>MQTT password</label>
+              <input
+                type="text"
+                placeholder="MQTT password"
+                value={mqttPass}
+                onChange={(e) => setMqttPass(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label>Discovery Prefix</label>
+              <input
+                type="text"
+                placeholder="Discovery prefix"
+                value={discoveryPrefix}
+                onChange={(e) => setDiscoveryPrefix(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <input type="submit" value="Save" className="btn btn-block" />
+            </div>
+          </form>
+        </PageContent>
       </GlassContainer>
     </div>
 

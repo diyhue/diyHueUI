@@ -10,7 +10,7 @@ const Tradfri = React.lazy(() => import('./Pages/Tradfri'));
 const Alarm = React.lazy(() => import('./Pages/Alarm'));
 const Devices = React.lazy(() => import('./Pages/Devices'));
 const Bridge = React.lazy(() => import('./Pages/Bridge'));
-const HueBridge = React.lazy(() => import('./Pages/HueBridge'));
+const Phillips = React.lazy(() => import('./Pages/Phillips'));
 const About = React.lazy(() => import('./Pages/About'));
 const Settings = React.lazy(() => import('./Pages/Settings'));
 const Account = React.lazy(() => import('./Pages/Account'));
@@ -27,7 +27,7 @@ const routes = [
   { path: '/alarm', exact: true, name: 'Alarm', component: Alarm },
   { path: '/bridge', exact: true, name: 'Bridge', component: Bridge },
   { path: '/devices', exact: true, name: 'Devices', component: Devices },
-  { path: '/hue', exact: true, name: 'Hue Bridge', component: HueBridge },
+  { path: '/phillips', exact: true, name: 'Hue Bridge', component: Phillips },
   { path: '/tradfri', exact: true, name: 'Tradfri', component: Tradfri },
   { path: '/about', exact: true, name: 'About', component: About },
   { path: '/settings', exact: true, name: 'Settings', component: Settings },

@@ -3,7 +3,7 @@ import axios from "axios";
 import Layout from "./Mainframe/Layout";
 
 
-import "./scss/content.scss";
+
 import "./scss/forms.scss";
 import "./scss/groups.scss";
 import "./scss/notification.scss";

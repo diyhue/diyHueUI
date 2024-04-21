@@ -56,7 +56,7 @@ const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
         { label: 'HA', icon: <SiHomeassistant style={{ color: "#0FFEFB" }} />, link: '#ha' },
         { label: 'Tradfri', icon: <Tradfri style={{ color: "#EBAB94" }} />, link: '#tradfri' },
         { label: 'Deconz', icon: <Deconz style={{ color: "#FFFEFB" }} />, link: '#deconz' },
-        { label: 'Phillips', icon: <Bridge style={{ color: "#EF7B22" }} />, link: '#hue' },
+        { label: 'Phillips', icon: <Bridge style={{ color: "#EF7B22" }} />, link: '#phillips' },
       ]
     },
     { label: 'Account', icon: <FaUser style={{ color: "#00a6ff" }} />, link: '#account' },

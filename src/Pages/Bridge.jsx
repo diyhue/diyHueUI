@@ -3,6 +3,9 @@ import axios from "axios";
 import { toast } from 'react-hot-toast';
 import Select from "react-select"
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import PageContent from "../components/PageContent/PageContent";
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
   const [bridgeName, setBridgeName] = useState("");
@@ -87,7 +90,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <div className="contentContainer spacer">
+      <GlassContainer>
+        <PageContent>
         <div className="headline">Bridge Config</div>
           <form className="add-form" onSubmit={(e) => onSubmit(e)}>
             <div className="form-control">
@@ -148,9 +152,11 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               <input type="submit" value="Save" className="btn btn-block" />
             </div>
           </form>
-      </div>
+        </PageContent>
+      </GlassContainer>
 
-      <div className="contentContainer">
+      <GlassContainer>
+        <PageContent>
         <div className="headline">Readonly Config</div>
           <div className="form-control">
             <label>BridgeID</label>
@@ -193,9 +199,11 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               <input type="submit" value="Force Config Dump" className="btn btn-block" 
                  onClick={() => dumpConfig()}
               />
-      </div>
+          </div>
+      </PageContent>
+      </GlassContainer>
 
-      </div>
+      
     </div>
     
  

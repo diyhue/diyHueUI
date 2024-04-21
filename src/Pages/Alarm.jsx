@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
 const Alarm = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -52,29 +54,30 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      
-      <div className="contentContainer">
-      <div className="headline">Motion notifications alarm</div>
-        <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-        <FlipSwitch 
-          value={enable} 
-          onChange={(e) => toggleEnable(e)} 
-          checked={enable} 
-        />
-          <div className="form-control">
-            <label>e-mail</label>
-            <input
-              type="text"
-              placeholder="Notification email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+      <GlassContainer>
+        <PageContent>
+          <div className="headline">Motion notifications alarm</div>
+            <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+            <FlipSwitch 
+              value={enable} 
+              onChange={(e) => toggleEnable(e)} 
+              checked={enable} 
             />
-          </div>
-          <div className="form-control">
-            <input type="submit" value="Save" className="btn btn-block" />
-          </div>
-        </form>
-      </div>
+              <div className="form-control">
+                <label>e-mail</label>
+                <input
+                  type="text"
+                  placeholder="Notification email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <input type="submit" value="Save" className="btn btn-block" />
+              </div>
+            </form>
+        </PageContent>
+      </GlassContainer>
     </div>
   );
 };

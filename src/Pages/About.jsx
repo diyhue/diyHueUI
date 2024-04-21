@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 import axios from "axios";
 import {
   FaGithub,
@@ -27,41 +28,41 @@ function About() {
 
   return (
     <div className="inner">
-      <div className="contentContainer">
-        <div className="headline">About</div>
-        <div className="form-control">
+      <GlassContainer>
+        <PageContent>
+          <div className="headline">About</div>
+          <div className="form-control">
             <label>Debug information: (Work in progrss)</label> 
             <textarea
               readOnly
               type="text"
               placeholder="bridgeid"
-              
             >
               Hue-Emulator Version: %Version%
               Architecture (Ex: x86, ARM): %Architecture%
               OS: %OS%
               Hardware: %Hardware%
             </textarea>
-
           </div>
-        <div className="supportsection">
-          <p>Supported Devices:</p>
-          <a href="https://diyhue.readthedocs.io/en/latest/">Link</a>
-        </div>
-        <div className="supportsection">
-          <p>Support:</p>
-          <a href="https://github.com/diyhue/diyhue"><FaGithub /></a>
-          <a href="https://diyhue.slack.com/"><FaSlack /></a>
-        </div>
-        <div className="supportsection">
-          <p>License:</p>
-          <p>ABC</p>
-        </div>
-        <div className="coffee">
-          <p>Buy me a Coffee:</p>
-          <a href="https://ko-fi.com/diyhue"><img src={kofi} alt="kofi" /></a>
-        </div>
-      </div>
+          <div className="supportsection">
+            <p>Supported Devices:</p>
+            <a href="https://diyhue.readthedocs.io/en/latest/">Link</a>
+          </div>
+          <div className="supportsection">
+            <p>Support:</p>
+            <a href="https://github.com/diyhue/diyhue"><FaGithub /></a>
+            <a href="https://diyhue.slack.com/"><FaSlack /></a>
+          </div>
+          <div className="supportsection">
+            <p>License:</p>
+            <p>ABC</p>
+          </div>
+          <div className="coffee">
+            <p>Buy me a Coffee:</p>
+            <a href="https://ko-fi.com/diyhue"><img src={kofi} alt="kofi" /></a>
+          </div>
+      </PageContent>
+      </GlassContainer>
 
       <div className="creditGrid">
 
@@ -128,6 +129,8 @@ function About() {
           contributor.login + ", " ))}
         </div>
 
+        
+        
       </div>
       </div>
       

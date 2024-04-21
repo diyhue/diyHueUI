@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
 const HA = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -59,59 +61,61 @@ const HA = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <div className="contentContainer">
-        <div className="headline">Home Assistant config</div>
-        <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-          <FlipSwitch 
-            value={enable} 
-            onChange={(e) => setEnable(e)} 
-            checked={enable} 
-          />
-          <div className="form-control">
-            <label>Home Assistant IP</label>
-            <input
-              type="text"
-              placeholder="IP or hostname"
-              value={homeAssistantIp}
-              onChange={(e) => setHomeAssistantIp(e.target.value)}
+      <GlassContainer>
+        <PageContent>
+          <div className="headline">Home Assistant config</div>
+          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+            <FlipSwitch 
+              value={enable} 
+              onChange={(e) => setEnable(e)} 
+              checked={enable} 
             />
-          </div>
-          <div className="form-control">
-            <label>Home Assistant port</label>
-            <input
-              type="number"
-              placeholder="8123"
-              value={homeAssistantPort}
-              onChange={(e) => setHomeAssistantPort(e.target.value)}
+            <div className="form-control">
+              <label>Home Assistant IP</label>
+              <input
+                type="text"
+                placeholder="IP or hostname"
+                value={homeAssistantIp}
+                onChange={(e) => setHomeAssistantIp(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label>Home Assistant port</label>
+              <input
+                type="number"
+                placeholder="8123"
+                value={homeAssistantPort}
+                onChange={(e) => setHomeAssistantPort(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label>Home Assistant token</label>
+              <input
+                type="text"
+                placeholder="Token"
+                value={homeAssistantToken}
+                onChange={(e) => setHomeAssistantToken(e.target.value)}
+              />
+            </div>
+            <FlipSwitch 
+              value={homeAssistantIncludeByDefault} 
+              onChange={(e) => setHomeAssistantIncludeByDefault(e)} 
+              checked={homeAssistantIncludeByDefault} 
+              label="Included by default"
             />
-          </div>
-          <div className="form-control">
-            <label>Home Assistant token</label>
-            <input
-              type="text"
-              placeholder="Token"
-              value={homeAssistantToken}
-              onChange={(e) => setHomeAssistantToken(e.target.value)}
-            />
-          </div>
-          <FlipSwitch 
-            value={homeAssistantIncludeByDefault} 
-            onChange={(e) => setHomeAssistantIncludeByDefault(e)} 
-            checked={homeAssistantIncludeByDefault} 
-            label="Included by default"
-          />
 
-          <FlipSwitch 
-            value={homeAssistantUseHttps} 
-            onChange={(e) => setHomeAssistantUseHttps(e)} 
-            checked={homeAssistantUseHttps} 
-            label="Enable HTTPS"
-          />
-          <div className="form-control">
-            <input type="submit" value="Save" className="btn btn-block" />
-          </div>
-        </form>
-      </div>
+            <FlipSwitch 
+              value={homeAssistantUseHttps} 
+              onChange={(e) => setHomeAssistantUseHttps(e)} 
+              checked={homeAssistantUseHttps} 
+              label="Enable HTTPS"
+            />
+            <div className="form-control">
+              <input type="submit" value="Save" className="btn btn-block" />
+            </div>
+          </form>
+        </PageContent>
+      </GlassContainer>
     </div>
   );
 };

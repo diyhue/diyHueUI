@@ -1,13 +1,6 @@
-.contentContainer {
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    background: rgba(255, 255, 255, 0.09);
-    background: linear-gradient(45deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0.2) 100%);
-    border-radius: 20px;
-    box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 20px;
+.pageContent {
     width: 100%;
+    padding: 10px;
 
     &.spacer{
         margin-bottom: 20px;
@@ -132,13 +125,3 @@
 }
 
 
-@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    .contentContainer{
-        background: rgba(0, 0, 0, .6);
-    }
-
-    .contactCard{
-        background: rgba(0, 0, 0, .6) !important;
-    }
-  
-  }

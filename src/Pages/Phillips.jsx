@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
-const HueBridge = ({ HOST_IP, API_KEY }) => {
+const Phillips = ({ HOST_IP, API_KEY }) => {
   const [bridgeIp, setBridgeIp] = useState("192.168.x.x");
   const [hueUser, setHueUser] = useState("");
   const [hueKey, setHueKey] = useState("");
@@ -57,51 +59,53 @@ const HueBridge = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <div className="contentContainer">
-      <div className="headline">Pair original Hue Bridge</div>
-        <form className="add-form" onSubmit={(e) => pairBridge(e)}>
-          <div className="form-control">
-            <label>Bridge Ip</label>
-            <input
-              type="text"
-              placeholder="192.168.x.x"
-              value={bridgeIp}
-              onChange={(e) => setBridgeIp(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <label>Hue User</label>
-            <input
-              type="text"
-              placeholder="Automatically populated"
-              readOnly
-              value={hueUser}
-            />
-          </div>
-          <div className="form-control">
-            <label>Hue Key</label>
-            <input
-              type="text"
-              placeholder="Automatically populated"
-              readOnly
-              value={hueKey}
-            />
-          </div>
-          <div className="form-control">
-            <input
-              type="submit"
-              value={
-                typeof hueUser === "string" && hueUser.length > 0
-                  ? "Pair again"
-                  : "Pair"
-              }
-              className="btn btn-block"
-            />
-          </div>
-        </form>
-      </div>
+      <GlassContainer>
+        <PageContent>
+          <div className="headline">Pair original Hue Bridge</div>
+          <form className="add-form" onSubmit={(e) => pairBridge(e)}>
+            <div className="form-control">
+              <label>Bridge Ip</label>
+              <input
+                type="text"
+                placeholder="192.168.x.x"
+                value={bridgeIp}
+                onChange={(e) => setBridgeIp(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label>Hue User</label>
+              <input
+                type="text"
+                placeholder="Automatically populated"
+                readOnly
+                value={hueUser}
+              />
+            </div>
+            <div className="form-control">
+              <label>Hue Key</label>
+              <input
+                type="text"
+                placeholder="Automatically populated"
+                readOnly
+                value={hueKey}
+              />
+            </div>
+            <div className="form-control">
+              <input
+                type="submit"
+                value={
+                  typeof hueUser === "string" && hueUser.length > 0
+                    ? "Pair again"
+                    : "Pair"
+                }
+                className="btn btn-block"
+              />
+            </div>
+          </form>
+        </PageContent>
+      </GlassContainer>
     </div>
   );
 };
 
-export default HueBridge;
+export default Phillips;

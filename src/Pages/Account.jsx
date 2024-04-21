@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-hot-toast';
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
 
 const Account = ({ HOST_IP, API_KEY }) => {
     const [email, setEmail] = useState("");
@@ -46,32 +48,34 @@ const Account = ({ HOST_IP, API_KEY }) => {
     return (
         <div className="inner">
 
-            <div className="contentContainer">
-                <div className="headline">Change password for {email}</div>
-                <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-                    <div className="form-control">
-                        <label>New Password</label>
-                        <input
-                            type="password"
-                            placeholder=""
-                            value={pass}
-                            onChange={(e) => setPass(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label>Confirm Password</label>
-                        <input
-                            type="password"
-                            placeholder=""
-                            value={pass1}
-                            onChange={(e) => setPass1(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-control">
-                        <input type="submit" value="Save" className="btn btn-block" />
-                    </div>
-                </form>
-            </div>
+            <GlassContainer>
+                <PageContent>
+                    <div className="headline">Change password for {email}</div>
+                    <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+                        <div className="form-control">
+                            <label>New Password</label>
+                            <input
+                                type="password"
+                                placeholder=""
+                                value={pass}
+                                onChange={(e) => setPass(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                placeholder=""
+                                value={pass1}
+                                onChange={(e) => setPass1(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-control">
+                            <input type="submit" value="Save" className="btn btn-block" />
+                        </div>
+                    </form>
+                </PageContent>
+            </GlassContainer>
         </div>
     );
 };

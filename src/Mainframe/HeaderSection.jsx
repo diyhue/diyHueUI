@@ -63,9 +63,15 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
 
   const handleToggleChange = (state) => {
     const newState = { on: state };
-    setGroup0State(state);
     console.log("Apply state " + JSON.stringify(newState));
-    axios.put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState);
+    axios.put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState)
+      .then(response => {
+        // Only update the state if the request was successful
+        setGroup0State(state);
+      })
+      .catch(error => {
+        console.error("Error updating state: ", error);
+      });
   };
 
   const handleupdate = (state) => {

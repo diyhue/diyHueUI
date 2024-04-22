@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { cieToRgb, rgbToCie } from "../SetGroupColor/SetGroupColor";
+import { cieToRgb, rgbToCie } from "../ColorFormatConverter/ColorFormatConverter";
 import iro from "@jaames/iro";
 import axios from "axios";
 

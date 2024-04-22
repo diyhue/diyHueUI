@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { colorTemperatureToRgb } from "../SetGroupColor/SetGroupColor";
+import { colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
 import iro from "@jaames/iro";
 import axios from "axios";
 

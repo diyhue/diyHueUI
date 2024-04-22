@@ -1,0 +1,68 @@
+import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
+import { BsFillHouseDoorFill } from 'react-icons/bs';
+import { HueIcons } from "../../static/icons/hass-hue-icons"
+
+const GradientBackground = ({ group, lights }) => {
+    const getStyle = () => {
+      if (group.state["any_on"]) {
+        let lightBg = "linear-gradient(45deg, ";
+        let step = 100 / group["lights"].length;
+        for (const [index, light] of group.lights.entries()) {
+          if (lights[light]["state"]["colormode"] === "xy") {
+            if (group["lights"].length === 1) {
+              lightBg = lightBg + "rgba(200,200,200,1) 0%,";
+            }
+            lightBg =
+              lightBg +
+              cieToRgb(
+                lights[light]["state"]["xy"][0],
+                lights[light]["state"]["xy"][1],
+                254
+              ) +
+              " " +
+              Math.floor(step * (index + 1)) +
+              "%,";
+          } else if (lights[light]["state"]["colormode"] === "ct") {
+            if (group["lights"].length === 1) {
+              lightBg = lightBg + "rgba(200,200,200,1) 0%,";
+            }
+            lightBg =
+              lightBg +
+              colorTemperatureToRgb(lights[light]["state"]["ct"]) +
+              " " +
+              Math.floor(step * (index + 1)) +
+              "%,";
+          } else {
+            if (group["lights"].length === 1) {
+              lightBg = lightBg + "rgba(200,200,200,1) 0%,";
+            }
+            lightBg =
+              lightBg +
+              "rgba(255,212,93,1) " +
+              Math.floor(step * (index + 1)) +
+              "%,";
+          }
+        }
+        return {
+          background: lightBg.slice(0, -1) + ")",
+        };
+      }
+    };
+  
+    return (
+        <div className="gradient" style={getStyle()}>
+          {group["type"] === "Zone" ? (
+            <BsFillHouseDoorFill
+              style={{ fill: group.state["any_on"] ? "#3a3a3a" : "#ddd" }}
+            />
+          ) : (
+            <HueIcons
+              type = { "room-" + group.class }
+              color={ group.state["any_on"] ? "#3a3a3a" : "#ddd" }
+            />
+          )}
+        </div>
+      );
+  };
+  
+  export default GradientBackground;

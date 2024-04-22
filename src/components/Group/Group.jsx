@@ -4,7 +4,6 @@ import {
   FaLightbulb,
   FaPalette,
 } from "react-icons/fa";
-import { BsFillHouseDoorFill } from "react-icons/bs";
 import { MdInvertColors } from "react-icons/md";
 import { useState, useCallback } from "react";
 import axios from "axios";
@@ -14,9 +13,9 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import ColorTempPicker from "../ColorTempPicker/ColorTempPicker";
 import debounce from "lodash.debounce";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { cieToRgb, colorTemperatureToRgb } from "../SetGroupColor/SetGroupColor";
-import { HueIcons } from "../../static/icons/hass-hue-icons"
+import GradientBackground from "../GradientBackground/GradientBackground";
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
+import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");
@@ -109,52 +108,6 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
     []
   );
 
-  const getStyle = () => {
-    if (group.state["any_on"]) {
-      let lightBg = "linear-gradient(45deg, ";
-      let step = 100 / group["lights"].length;
-      for (const [index, light] of group.lights.entries()) {
-        if (lights[light]["state"]["colormode"] === "xy") {
-          if (group["lights"].length === 1) {
-            lightBg = lightBg + "rgba(200,200,200,1) 0%,";
-          }
-          lightBg =
-            lightBg +
-            cieToRgb(
-              lights[light]["state"]["xy"][0],
-              lights[light]["state"]["xy"][1],
-              254
-            ) +
-            " " +
-            Math.floor(step * (index + 1)) +
-            "%,";
-        } else if (lights[light]["state"]["colormode"] === "ct") {
-          if (group["lights"].length === 1) {
-            lightBg = lightBg + "rgba(200,200,200,1) 0%,";
-          }
-          lightBg =
-            lightBg +
-            colorTemperatureToRgb(lights[light]["state"]["ct"]) +
-            " " +
-            Math.floor(step * (index + 1)) +
-            "%,";
-        } else {
-          if (group["lights"].length === 1) {
-            lightBg = lightBg + "rgba(200,200,200,1) 0%,";
-          }
-          lightBg =
-            lightBg +
-            "rgba(255,212,93,1) " +
-            Math.floor(step * (index + 1)) +
-            "%,";
-        }
-      }
-      return {
-        background: lightBg.slice(0, -1) + ")",
-      };
-    }
-  };
-
   return (
     <div className="groupCard">
       <Scenes
@@ -166,18 +119,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         setSceneModal={setSceneModal}
       />
       <div className="row top">
-        <div className="gradient" style={getStyle()}>
-          {group["type"] === "Zone" ? (
-            <BsFillHouseDoorFill
-              style={{ fill: group.state["any_on"] ? "#3a3a3a" : "#ddd" }}
-            />
-          ) : (
-            <HueIcons
-              type = { "room-" + group.class }
-              color={ group.state["any_on"] ? "#3a3a3a" : "#ddd" }
-            />
-          )}
-        </div>
+        <GradientBackground group={group} lights={lights} />
         <div className="text">
           <p className="name"> {group.name} </p>
           <p className="subtext">{statusLights()}</p>
@@ -191,37 +133,10 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
       <div className="row background">
         <AnimatePresence initial={false}>
           {group.state["any_on"] && (
-            <motion.div
-              className="sliderContainer"
-              initial="collapsed"
-              animate="open"
-              exit="collapsed"
-              variants={{
-                open: {
-                  opacity: 1,
-                  height: "auto",
-                },
-                collapsed: {
-                  opacity: 0,
-                  height: 0,
-                },
-              }}
-              transition={{
-                duration: 0.3,
-              }}
-            >
-              <input
-                type="range"
-                min="1"
-                max="254"
-                defaultValue={group.action["bri"]}
-                step="1"
-                className="slider"
-                onChange={(e) =>
-                  debouncedChangeHandler(parseInt(e.target.value))
-                }
-              />
-            </motion.div>
+            <BrightnessSlider
+              defaultValue={group.action["bri"]}
+              onChange={debouncedChangeHandler}
+            />
           )}
         </AnimatePresence>
       </div>

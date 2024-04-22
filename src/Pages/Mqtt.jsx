@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 const Mqtt = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -100,7 +101,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <label>MQTT password</label>
               <input
-                type="text"
+                type="password"
                 placeholder="MQTT password"
                 value={mqttPass}
                 onChange={(e) => setMqttPass(e.target.value)}
@@ -116,7 +117,12 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <input type="submit" value="Save" className="btn btn-block" />
+              <GenericButton 
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+              />
             </div>
           </form>
         </PageContent>

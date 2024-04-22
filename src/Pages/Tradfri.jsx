@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from 'react-hot-toast';
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 const Tradfri = ({ HOST_IP, API_KEY }) => {
   const [tradfriGwIp, setTradfriGwIp] = useState("192.168.x.x");
@@ -81,7 +82,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
               <div className="form-control">
                 <label>Security Code</label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Located on gateway label"
                   value={tradfriCode}
                   onChange={(e) => setTradfriCode(e.target.value)}
@@ -100,14 +101,15 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
               </div>
             )}
             <div className="form-control">
-              <input
-                type="submit"
-                value={
-                  typeof tradfriPsk === "string" && tradfriPsk.length > 0
-                    ? "Change Ip"
-                    : "Pair"
-                }
-                className="btn btn-block"
+              <GenericButton 
+                  value={
+                    typeof tradfriPsk === "string" && tradfriPsk.length > 0
+                      ? "Change Ip"
+                      : "Pair"
+                  }
+                  color="blue"
+                  size=""
+                  type="submit"
               />
             </div>
           </form>

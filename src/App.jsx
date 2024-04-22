@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Layout from "./Mainframe/Layout";
 
-
-
 import "./scss/forms.scss";
 import "./scss/groups.scss";
 import "./scss/modal.scss";
 import "./scss/scenepicker.scss";
-
-import "./scss/components/scrollbar.scss";
-
 import "./scss/components/addlight.scss";
+
 
 const loading = (
   <div className="pt-3 text-center">

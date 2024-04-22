@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from 'react-hot-toast';
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 const Account = ({ HOST_IP, API_KEY }) => {
     const [email, setEmail] = useState("");
@@ -71,7 +72,12 @@ const Account = ({ HOST_IP, API_KEY }) => {
                             />
                         </div>
                         <div className="form-control">
-                            <input type="submit" value="Save" className="btn btn-block" />
+                            <GenericButton 
+                                value="Save"
+                                color="blue"
+                                size=""
+                                type="submit"
+                            />
                         </div>
                     </form>
                 </PageContent>

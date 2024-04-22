@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 const Deconz = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -116,14 +117,15 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <input
-                type="submit"
+              <GenericButton 
                 value={
                   typeof deconzUser === "string" && deconzUser.length > 0
                     ? "Pair again"
                     : "Pair"
                 }
-                className="btn btn-block"
+                color="blue"
+                size=""
+                type="submit"
               />
             </div>
           </form>

@@ -5,6 +5,7 @@ import Select from "react-select"
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import PageContent from "../components/PageContent/PageContent";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
@@ -149,7 +150,12 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               label="Discovery"
             />
             <div className="form-control">
-              <input type="submit" value="Save" className="btn btn-block" />
+            <GenericButton 
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+            />
             </div>
           </form>
         </PageContent>
@@ -196,8 +202,13 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
           </div>
 
           <div className="form-control">
-              <input type="submit" value="Force Config Dump" className="btn btn-block" 
-                 onClick={() => dumpConfig()}
+              
+              <GenericButton 
+                  value="Force Config Dump"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => dumpConfig()}
               />
           </div>
       </PageContent>

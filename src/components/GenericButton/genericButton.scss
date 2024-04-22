@@ -1,0 +1,43 @@
+input.btn-block {
+  background: rgba(52, 152, 219, 1);
+  padding: 20px 80px;
+  border-radius: 35px;
+  color: #eee;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: none;
+    background: rgb(61, 177, 255);
+  }
+
+  &.small{
+    padding: 20px 20px;
+  }
+
+  &.red {
+    background: rgba(231, 76, 60, 1);
+    color: #eee;
+  
+    &:hover,
+    &:active {
+      background: rgb(255, 86, 68);
+    }
+  }
+
+  &.green {
+    background: rgba(46, 204, 113, 1);
+    color: #eee;
+  
+    &:hover,
+    &:active {
+      background: rgb(53, 233, 128);
+    }
+  }
+}

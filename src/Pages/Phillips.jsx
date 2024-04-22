@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from 'react-hot-toast';
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 const Phillips = ({ HOST_IP, API_KEY }) => {
   const [bridgeIp, setBridgeIp] = useState("192.168.x.x");
@@ -91,14 +92,15 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <input
-                type="submit"
+              <GenericButton 
                 value={
                   typeof hueUser === "string" && hueUser.length > 0
                     ? "Pair again"
                     : "Pair"
                 }
-                className="btn btn-block"
+                color="blue"
+                size=""
+                type="submit"
               />
             </div>
           </form>

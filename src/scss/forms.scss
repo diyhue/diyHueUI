@@ -12,7 +12,7 @@
       color: #eee;
     }
   
-    input, .Dropdown-control, textarea{
+    input[type=text],input[type=number],input[type=password], .Dropdown-control, textarea{
       padding: 15px;
       border: none;
       background: rgba(255, 255, 255, 0.2);
@@ -23,7 +23,7 @@
       width: 300px;
     }
   
-    input:read-only{
+    input[type=text]:read-only{
       background: none;
     }
   
@@ -78,108 +78,4 @@
       border-color: rgba(52, 152, 219, 1);
     }
   
-    input.btn-block {
-      background: rgba(52, 152, 219, 1);
-      padding: 20px 60px;
-      border-radius: 35px;
-      color: #eee;
-      font-size: 18px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border: none;
-  
-      &:hover,
-      &:active,
-      &:focus {
-        border: none;
-        background: rgb(61, 177, 255);
-      }
-    }
-  
-    input.btn-block.red {
-      background: rgba(231, 76, 60, 1);
-      color: #eee;
-  
-      &:hover,
-      &:active {
-        background: rgb(255, 86, 68);
-      }
-    }
-  
-    input.btn-block.green {
-      background: rgba(46, 204, 113, 1);
-      color: #eee;
-  
-      &:hover,
-      &:active {
-        background: rgb(53, 233, 128);
-      }
-    }
   }
-  
-  /* Generic button */
-  .btn.generic, button.generic{
-      display: inline-block;
-      background: rgba(52, 152, 219, 1);
-      margin-right: 10px;
-      padding: 20px;
-      text-align: center;
-      border-radius: 35px;
-      color: #eee;
-      font-size: 18px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-  
-  
-      &:hover,&:active,&:focus{
-        border: none;
-        background: rgb(61, 177, 255);
-      }
-  }
-  /* END generic button */
-
-
-  /* Link Button */
-  .linkbtn{
-    position: relative;
-    padding: 20px;
-    margin-top: 20px;
-    width: 175px;
-    text-align: center;
-    border-radius: 45px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 25px;
-    text-transform: uppercase;
-    color: #fff;
-    letter-spacing: 3px;
-    background-image: linear-gradient(45deg, #3AD5D4, #35A6F0);
-    z-index: 1;
-    cursor: pointer;
-  }
-
-  .linkbtn::before{
-    border-radius: 45px;
-    position: absolute;
-    content: "";
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: linear-gradient(100deg, #3a9fe2, #3ae7e7);
-    z-index: -1;
-    transition: all 0.5s linear;
-    opacity: 0;
-    
-  }
-  
-  .linkbtn:hover::before {
-    opacity: 1;
-  }
-
-  .linkbtn:active::before {
-    background-image:  #35A6F0;
-  }
-
-  

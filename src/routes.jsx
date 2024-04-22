@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Groups2 = React.lazy(() => import('./Pages/Groups2'));
+const Testpage = React.lazy(() => import('./Pages/Testpage'));
 
 const Groups = React.lazy(() => import('./Pages/Groups'));
 const Lights = React.lazy(() => import('./Pages/Lights'));
@@ -19,7 +19,7 @@ const Account = React.lazy(() => import('./Pages/Account'));
 const Users = React.lazy(() => import('./Pages/AppUsers'));
 
 const routes = [
-  { path: '/groups2', exact: true, name: 'Groups2', component: Groups2 },
+  { path: '/testpage', exact: true, name: 'Testpage', component: Testpage },
   { path: '/', exact: true, name: 'Groups', component: Groups },
   { path: '/groups', exact: true, name: 'Groups', component: Groups },
   { path: '/lights', exact: true, name: 'Lights', component: Lights },

@@ -1,7 +1,7 @@
 import "./glassContainer.scss";
 
-const GlassContainer = ({ children }) => (
-    <div className="glassContainer">
+const GlassContainer = ({ children, options }) => (
+    <div className={`glassContainer ${options}`}>
       {children}
     </div>
   );

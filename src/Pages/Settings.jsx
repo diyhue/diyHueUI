@@ -172,7 +172,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
+      <GlassContainer options="spacer">
         <PageContent>
           <div className="headline">Add extra port for searching</div>
           <p>This wil make the bridge search on other ports.</p>

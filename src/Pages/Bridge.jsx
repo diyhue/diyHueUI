@@ -91,7 +91,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
+      <GlassContainer options="spacer">
         <PageContent>
         <div className="headline">Bridge Config</div>
           <form className="add-form" onSubmit={(e) => onSubmit(e)}>

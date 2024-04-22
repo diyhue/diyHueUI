@@ -13,7 +13,7 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import ColorTempPicker from "../ColorTempPicker/ColorTempPicker";
 import debounce from "lodash.debounce";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import GradientBackground from "../GradientBackground/GradientBackground";
+import GradientIndicator from "../GradientIndicator/GradientIndicator";
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
 
@@ -119,7 +119,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         setSceneModal={setSceneModal}
       />
       <div className="row top">
-        <GradientBackground group={group} lights={lights} />
+        <GradientIndicator group={group} lights={lights} />
         <div className="text">
           <p className="name"> {group.name} </p>
           <p className="subtext">{statusLights()}</p>

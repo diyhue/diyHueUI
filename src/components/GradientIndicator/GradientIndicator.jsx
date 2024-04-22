@@ -1,6 +1,7 @@
 import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
 import { BsFillHouseDoorFill } from 'react-icons/bs';
 import { HueIcons } from "../../static/icons/hass-hue-icons"
+import "./gradientIndicator.scss";
 
 const GradientBackground = ({ group, lights }) => {
     const getStyle = () => {

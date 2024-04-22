@@ -5,6 +5,7 @@ import SidebarSection from "./SidebarSection"
 import HeaderSection from "./HeaderSection"
 
 import "./layout.scss";
+import "./scrollbar.scss";
 
 const Layout = ({ HOST_IP, API_KEY }) => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });

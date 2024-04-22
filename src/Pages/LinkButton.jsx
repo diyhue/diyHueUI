@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from 'react-hot-toast';
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import './linkButton.scss'
 
 export default function LinkButton({ HOST_IP, API_KEY }) {
   //console.log(API_KEY)

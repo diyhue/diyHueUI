@@ -4,9 +4,8 @@ import Layout from "./Mainframe/Layout";
 
 
 import "./scss/groups.scss";
-import "./scss/modal.scss";
 import "./scss/scenepicker.scss";
-import "./scss/components/addlight.scss";
+
 
 
 const loading = (

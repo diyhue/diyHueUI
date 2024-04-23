@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import Select from "react-select";
 
+import "./addLight.scss"
+import GenericButton from "../GenericButton/GenericButton";
+
 const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
   const [lightData, setLightData] = useState({
     protocol: "auto",
@@ -62,7 +65,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
 
 
   return (
-    <div className="contentContainer lights">
+    
       <form onSubmit={(e) => handleForm(e)} className="add-form">
         <div className="form-control">
           <label>Protocol:</label>
@@ -181,10 +184,17 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
           </>
         )}
         <div className="form-control">
-          <input type="submit" value="Add Light" className="btn btn-block" />
+        
+          <GenericButton 
+            value="Add Light"
+            color="blue"
+            size=""
+            type="submit"
+          />
         </div>
+        
       </form>
-    </div>
+    
   );
 };
 

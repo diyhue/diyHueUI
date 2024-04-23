@@ -6,12 +6,26 @@ import { BsPlusCircle } from 'react-icons/bs';
 import { ReactComponent as ScanIcon } from '../static/icons/scan.svg';
 import { toast } from 'react-hot-toast';
 import CardGrid from "../components/CardGrid/CardGrid";
+import Wizard from "../components/Wizard/Wizard";
+
+import "./lights.scss"
 
 export default function Lights({ HOST_IP, API_KEY }) {
   const [lights, setLights] = useState({});
   const [lightsCatalog, setlightsCatalog] = useState({});
   const [modelIds, setModelIds] = useState([]);
   const [lightForm, setLightForm] = useState(false);
+
+  const [WizardIsOpen, setWizardIsOpen] = useState(false);
+
+  const openWizard = () => {
+    setWizardIsOpen(true);
+  };
+
+  const closeWizard = () => {
+    setWizardIsOpen(false);
+  };
+
 
   const searchForLights = () => {
     if (API_KEY !== undefined) {
@@ -83,11 +97,12 @@ export default function Lights({ HOST_IP, API_KEY }) {
     return () => clearInterval(interval);
   }, [HOST_IP, API_KEY]);
 
+ 
   return (
     <div className="content">
       <div className="inner">
           <div className="actionBar">
-            <div className="btn" onClick={() => setLightForm(!lightForm)}>
+            <div className="btn" onClick={openWizard}>
               <BsPlusCircle />
               <p>Add light</p>
               </div>
@@ -97,10 +112,10 @@ export default function Lights({ HOST_IP, API_KEY }) {
               </div>
           </div>
       
-          {lightForm && <AddLight
+          {/*{lightForm && <AddLight
             HOST_IP={HOST_IP}
             API_KEY={API_KEY}>
-          </AddLight>}
+          </AddLight>}*/}
       
           <CardGrid>
             {Object.entries(lights).map(([id, light]) => (
@@ -116,6 +131,14 @@ export default function Lights({ HOST_IP, API_KEY }) {
             ))}
           </CardGrid>
         </div>
+
+        <Wizard isOpen={WizardIsOpen} closeWizard={closeWizard} headline="Add Light">
+          <AddLight
+              HOST_IP={HOST_IP}
+              API_KEY={API_KEY}>
+            </AddLight>
+        </Wizard>
+
     </div>
   );
 }

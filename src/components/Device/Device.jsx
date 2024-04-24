@@ -1,4 +1,3 @@
-import { MdDeleteForever } from "react-icons/md";
 import { FaMagic } from "react-icons/fa";
 import {
   TiBatteryLow,

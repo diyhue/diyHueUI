@@ -10,7 +10,19 @@ import GlassContainer from "../GlassContainer/GlassContainer";
 import "./user.scss";
 
 const User = ({ HOST_IP, api_key, id, user }) => {
-    const deleteAlert = () => {
+  const deleteAlert = () => {
+    if (user["name"] === "WebUi") {
+      confirmAlert({
+        title: "Delete User " + user["name"] + " not allowed",
+        message: "This can't be done",
+        buttons: [
+          {
+            label: "Back",
+          },
+        ],
+      });
+    }
+    else {
       confirmAlert({
         title: "Delete User " + user["name"],
         message: "Are you sure to do this?",
@@ -24,7 +36,8 @@ const User = ({ HOST_IP, api_key, id, user }) => {
           },
         ],
       });
-    };
+    }
+  };
   
     const deleteUser = () => {
       axios

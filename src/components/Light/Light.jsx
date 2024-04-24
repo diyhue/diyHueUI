@@ -1,4 +1,3 @@
-import { MdDeleteForever } from "react-icons/md";
 import LightUpdate from "../LightUpdate/LightUpdate";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert"; // Import

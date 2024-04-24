@@ -1,6 +1,6 @@
 input.btn-block {
   background: rgba(52, 152, 219, 1);
-  padding: 20px 80px;
+  padding: 20px 60px;
   border-radius: 35px;
   color: #eee;
   font-size: 18px;
@@ -8,6 +8,7 @@ input.btn-block {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
+  width: 300px;
 
 
   &:hover,
@@ -18,6 +19,7 @@ input.btn-block {
 
   &.small{
     padding: 20px 20px;
+    width: auto;
   }
 
   &.red {

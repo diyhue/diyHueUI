@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - "main"
+      - "restructure"
 
 jobs:
   build-project:

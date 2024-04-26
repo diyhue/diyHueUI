@@ -480,12 +480,15 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       <GlassContainer options="spacer">
         <PageContent>
           <div className="headline">Bridge control</div>
-          <FlipSwitch
-            value={AdvanceConfig}
-            onChange={(e) => setAdvanceConfig(e)}
-            checked={AdvanceConfig}
-            label={`${AdvanceConfig ? "Hide" : "Show"} advanced config`}
-          />
+          <div className="form-control">
+            <GenericButton
+              value={`${AdvanceConfig ? "Hide" : "Show"} advanced config`}
+              color="blue"
+              size=""
+              type="submit"
+              onClick={() => setAdvanceConfig(!AdvanceConfig)}
+            />
+          </div>
           <div className="form-control">
             <GenericButton
               value="Force Config Dump"

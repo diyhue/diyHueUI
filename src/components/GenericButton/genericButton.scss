@@ -1,6 +1,6 @@
 input.btn-block {
   background: rgba(52, 152, 219, 1);
-  padding: 20px 60px;
+  padding: 20px 0px;
   border-radius: 35px;
   color: #eee;
   font-size: 18px;
@@ -18,7 +18,8 @@ input.btn-block {
   }
 
   &.small{
-    padding: 20px 20px;
+    font-size: 14px;
+    padding: 10px;
     width: auto;
   }
 

@@ -1,10 +1,10 @@
 .flipSwitch {
   display: flex;
-  padding: 10px;
   align-items: center;
 
   p{
-    margin-right: 10px;
+    padding: 10px;
+    margin-top: 10px;
   }
 
   .flipSwitchLabel{
@@ -19,6 +19,8 @@
   }
 
   .slider {
+    margin-bottom: 10px;
+    margin-left: 10px;
     position: absolute;
     cursor: pointer;
     top: 0;

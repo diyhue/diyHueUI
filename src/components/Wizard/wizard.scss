@@ -16,7 +16,7 @@
   .header {
     display: flex;
     font-size: 20px;
-    color: #ccc;
+    color: #fff;
 
     .headline {
       flex: 1 1 auto;
@@ -40,7 +40,14 @@
     }
   }
 
-  
+  .wizardContent {
+    p {
+      color: #ccc;
+      margin-top: 5px;
+    }
+  }
+
+
 }
   
 .Overlay {

@@ -1,8 +1,9 @@
 import { MdSystemUpdate } from "react-icons/md";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { toast } from 'react-hot-toast';
 
-const LightUpdate = ({ light, lightsCatalog, setMessage, setType }) => {
+const LightUpdate = ({ light, lightsCatalog }) => {
   const updateAlert = () => {
     confirmAlert({
       title: "Update light " + light["name"] + " firmware?",
@@ -20,9 +21,7 @@ const LightUpdate = ({ light, lightsCatalog, setMessage, setType }) => {
   };
 
   const UpdateLight = () => {
-    setMessage("Begin light firmware update");
-    setType("none");
-    setType("success");
+    toast.success("Begin light firmware update");
   };
 
   return (

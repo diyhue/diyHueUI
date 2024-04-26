@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import "./addLight.scss"
 import GenericButton from "../GenericButton/GenericButton";
 
-const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
+const AddLight = ({ HOST_IP, API_KEY }) => {
   const [lightData, setLightData] = useState({
     protocol: "auto",
   });

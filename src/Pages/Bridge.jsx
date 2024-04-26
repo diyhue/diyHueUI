@@ -173,19 +173,36 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   };
 
   const Restart = () => {
-    axios
-      .get(`${HOST_IP}/restart`)
-      .then(() => {
-        toast.success("Restart Python");
-      })
-      .catch((error) => {
-        if (error.message === "Network Error") {
-          toast.success("Restart Python");
-        } else {
-          console.error(error);
-          toast.error(`Error occurred: ${error.message}`);
-        }
-      });
+    confirmAlert({
+      title: "Restart Python.",
+      message: "Are you sure to do this?\nThis will NOT save the current config.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () =>
+            axios
+              .get(`${HOST_IP}/restart`)
+              .then(() => {
+                toast.success("Restart Python");
+              })
+              .catch((error) => {
+                if (error.message === "Network Error") {
+                  toast.success("Restart Python");
+                } else {
+                  console.error(error);
+                  toast.error(`Error occurred: ${error.message}`);
+                }
+              })
+        },
+        {
+          label: "Save first",
+          onClick: () => dumpConfig(),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   const restoreOptions = () => {

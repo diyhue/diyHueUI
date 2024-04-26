@@ -4,6 +4,7 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { HueIcons } from "../../static/icons/hass-hue-icons"
 import Select from "react-select"
+import { toast } from 'react-hot-toast';
 
 import "./light.scss";
 import IconButton from "../IconButton/IconButton";
@@ -15,8 +16,6 @@ const Light = ({
   id,
   light,
   modelIds,
-  setType,
-  setMessage,
   lightsCatalog,
 }) => {
   const deleteAlert = () => {
@@ -40,15 +39,11 @@ const Light = ({
       .delete(`${HOST_IP}/api/${api_key}/lights/${id}`)
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage("Light successfully deleted");
-        setType("none");
-        setType("success");
+        toast.success("Light successfully deleted");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error("Error occured, check browser console");
       });
   };
 
@@ -57,15 +52,11 @@ const Light = ({
       .put(`${HOST_IP}/api/${api_key}/lights/${id}/state`, { alert: "select" })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage("Light alerted");
-        setType("none");
-        setType("success");
+        toast.success("Light alerted");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error("Error occured, check browser console");
       });
   };
 
@@ -75,15 +66,11 @@ const Light = ({
       .post(`${HOST_IP}/light-types`, { [id]: modelid })
       .then((fetchedData) => {
         console.log(fetchedData.data);
-        setMessage("Modelid updated");
-        setType("none");
-        setType("success");
+        toast.success("Modelid updated");
       })
       .catch((error) => {
         console.error(error);
-        setMessage("Error occured, check browser console");
-        setType("none");
-        setType("error");
+        toast.error("Error occured, check browser console");
       });
   };
 
@@ -119,8 +106,6 @@ const Light = ({
           <LightUpdate
             light={light}
             lightsCatalog={lightsCatalog}
-            setMessage={setMessage}
-            setType={setType}
           />
           
         </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Select from "react-select";
+import { toast } from 'react-hot-toast';
 
 import "./addLight.scss"
 import GenericButton from "../GenericButton/GenericButton";
@@ -26,9 +27,7 @@ const AddLight = ({ setType, setMessage, HOST_IP, API_KEY }) => {
       config: rest,
     };
     axios.post(`${HOST_IP}/api/${API_KEY}/lights`, formattedData);
-    setMessage("Light added");
-    setType("none");
-    setType("success");
+    toast.success("Light added!");
   };
 
   const protocols = [

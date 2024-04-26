@@ -3,8 +3,6 @@ import "./flipswitch.scss";
 const FlipSwitch = ({ value, onChange, checked, defaultChecked, label }) => (<>
   <div className="flipSwitch">
     <p>{label}</p>
-  </div>
-  <div className="flipSwitch">
     <label className="flipSwitchLabel">
       <input
         type="checkbox"

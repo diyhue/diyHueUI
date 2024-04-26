@@ -24,6 +24,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   const [DebugInfo, setDebugInfo] = useState({});
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
   const [WizardName, setWizardName] = useState("");
+  const [WizardContent, setWizardContent] = useState({});
+  const [AdvanceConfig, setAdvanceConfig] = useState(false);
 
   const openWizard = () => {
     setWizardIsOpen(true);
@@ -97,6 +99,41 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       });
   };
 
+  const ConfigOptions = () => {
+    setWizardName("Force Config Dump Options")
+    setWizardContent(<>
+      <p>Where do you want to save config?</p>
+      <div className="form-control">
+        <GenericButton
+          value="DiyHue local"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => dumpConfig()}
+        />
+      </div>
+      <div className="form-control">
+        <GenericButton
+          value="DiyHue backup"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => backupConfig()}
+        />
+      </div>
+      <div className="form-control">
+        <GenericButton
+          value="Download tar"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => downloadConfig()}
+        />
+      </div>
+    </>)
+    openWizard()
+  };
+
   const dumpConfig = () => {
     axios
       .get(`${HOST_IP}/save`)
@@ -135,30 +172,6 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       });
   };
 
-  const ConfigOptions = () => {
-    confirmAlert({
-      title: "Force Config Dump Options",
-      message: "Where do you want to save config?",
-      buttons: [
-        {
-          label: "DiyHue local",
-          onClick: () => dumpConfig(),
-        },
-        {
-          label: "DiyHue backup",
-          onClick: () => backupConfig(),
-        },
-        {
-          label: "Download tar",
-          onClick: () => downloadConfig(),
-        },
-        {
-          label: "Cancel",
-        },
-      ],
-    });
-  };
-
   const Restart = () => {
     axios
       .get(`${HOST_IP}/restart`)
@@ -175,10 +188,46 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       });
   };
 
+  const restoreOptions = () => {
+    setWizardName("Reset Config Options")
+    setWizardContent(<>
+      <p>How do you want to restore config?</p>
+      <div className="form-control">
+        <GenericButton
+          value="Restore backup"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => restoreAlert()}
+        />
+      </div>
+      <div className="form-control">
+        <GenericButton
+          value="Restore backup"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => resetAlert()}
+        />
+      </div>
+    </>)
+    openWizard()
+  };
+
   const resetAlert = () => {
-    if (window.confirm("Are you sure to do this?\nThis also makes a backup")) {
-      reset_config();
-    }
+    confirmAlert({
+      title: "Reset config to default",
+      message: "Are you sure to do this?\nThis also makes a backup",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => reset_config(),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   const reset_config = () => {
@@ -195,9 +244,19 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   };
 
   const restoreAlert = () => {
-    if (window.confirm("Are you sure to do this?\nThis will NOT make a backup")) {
-      restore_config();
-    }
+    confirmAlert({
+      title: "Restore config from backup",
+      message: "Are you sure to do this?\nThis will NOT make a backup",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => restore_config(),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   const restore_config = () => {
@@ -213,44 +272,30 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       });
   };
 
-  const restoreOptions = () => {
-    confirmAlert({
-      title: "Reset Config Options",
-      message: "How do you want to restore config?",
-      buttons: [
-        {
-          label: "Restore backup",
-          onClick: () => restoreAlert(),
-        },
-        {
-          label: "Reset defaults",
-          onClick: () => resetAlert(),
-        },
-        {
-          label: "Cancel",
-        },
-      ],
-    });
-  };
-
   const debugOptions = () => {
-    confirmAlert({
-      title: "Debug download Options",
-      message: "Download full debug or log",
-      buttons: [
-        {
-          label: "Full Debug",
-          onClick: () => downloadDebugConfig(),
-        },
-        {
-          label: "Log file",
-          onClick: () => downloadLog(),
-        },
-        {
-          label: "Cancel",
-        },
-      ],
-    });
+    setWizardName("Debug download Options")
+    setWizardContent(<>
+      <p>Download full debug or log</p>
+      <div className="form-control">
+        <GenericButton
+          value="Full Debug"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => downloadDebugConfig()}
+        />
+      </div>
+      <div className="form-control">
+        <GenericButton
+          value="Log file"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={() => downloadLog()}
+        />
+      </div>
+    </>)
+    openWizard()
   };
 
   const downloadDebugConfig = () => {
@@ -284,6 +329,14 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   let options = timezones.map(function (timezone) {
     return { value: timezone, label: timezone };
   })
+
+  const advanceStatus = () => {
+    if (AdvanceConfig === true) {
+      return "submit";
+    } else {
+      return "hidden";
+    }
+  };
 
 
   return (
@@ -411,7 +464,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
       <GlassContainer options="spacer">
         <PageContent>
-          <div className="headline">System debug information: (Work in progrss)</div>
+          <div className="headline">System debug information: (Work in progress)</div>
           <div className="form-control">
             <label>Hue-Emulator Version: {DebugInfo["diyhue"]}</label>
             <label>Architecture: {DebugInfo["machine"]}</label>
@@ -426,15 +479,12 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       <GlassContainer options="spacer">
         <PageContent>
           <div className="headline">Bridge control</div>
-          <div className="form-control">
-            <GenericButton
-              value="Restart Python"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => Restart()}
-            />
-          </div>
+          <FlipSwitch
+            value={AdvanceConfig}
+            onChange={(e) => setAdvanceConfig(e)}
+            checked={AdvanceConfig}
+            label={`${AdvanceConfig ? "Hide" : "Show"} advanced config`}
+          />
           <div className="form-control">
             <GenericButton
               value="Force Config Dump"
@@ -446,15 +496,6 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
           </div>
           <div className="form-control">
             <GenericButton
-              value="Force Config Reset"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => restoreOptions()}
-            />
-          </div>
-          <div className="form-control">
-            <GenericButton
               value="Download debug"
               color="blue"
               size=""
@@ -462,13 +503,30 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               onClick={() => debugOptions()}
             />
           </div>
-          <Wizard isOpen={WizardIsOpen} closeWizard={closeWizard} headline="WizardName">
+          <div className="form-control">
+            <GenericButton
+              value="Restart Python"
+              color="blue"
+              size=""
+              type={advanceStatus()}
+              onClick={() => Restart()}
+            />
+          </div>
+          <div className="form-control">
+            <GenericButton
+              value="Force Config Reset"
+              color="blue"
+              size=""
+              type={advanceStatus()}
+              onClick={() => restoreOptions()}
+            />
+          </div>
+          <Wizard isOpen={WizardIsOpen} closeWizard={closeWizard} headline={WizardName}>
+            {WizardContent}
           </Wizard>
         </PageContent>
       </GlassContainer>
     </div>
-
-
   );
 };
 

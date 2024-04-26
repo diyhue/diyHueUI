@@ -192,6 +192,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     setWizardName("Reset Config Options")
     setWizardContent(<>
       <p>How do you want to restore config?</p>
+      <p>Please be careful of what you do!</p>
       <div className="form-control">
         <GenericButton
           value="Restore backup"
@@ -216,8 +217,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   const resetAlert = () => {
     confirmAlert({
-      title: "Reset config to default",
-      message: "Are you sure to do this?\nThis also makes a backup",
+      title: "Reset config to default.",
+      message: "Are you sure to do this?\nThis also makes a backup.",
       buttons: [
         {
           label: "Yes",
@@ -245,8 +246,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   const restoreAlert = () => {
     confirmAlert({
-      title: "Restore config from backup",
-      message: "Are you sure to do this?\nThis will NOT make a backup",
+      title: "Restore config from backup.",
+      message: "Are you sure to do this?\nThis will NOT make a backup.",
       buttons: [
         {
           label: "Yes",

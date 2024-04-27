@@ -221,7 +221,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       </div>
       <div className="form-control">
         <GenericButton
-          value="Restore backup"
+          value="Reset config"
           color="blue"
           size=""
           type="submit"

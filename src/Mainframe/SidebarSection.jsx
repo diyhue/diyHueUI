@@ -38,30 +38,30 @@ const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
 
 
   const menuItems = [
-    { label: 'Groups', icon: <FaHome style={{ color: "#2BA9F0" }} />, link: '#' },
-    { label: 'Lights', icon: <FaLightbulb style={{ color: "#4DB8B4" }} />, link: '#lights' },
-    { label: 'Devices', icon: <MdSettingsRemote style={{ color: "#E0E043" }} />, link: '#devices' },
-    { label: 'DiyHue', icon: <Diybridge style={{ color: "#D85BCD" }} />,
+    { label: 'Groups', icon: FaHome, link: '#' },
+    { label: 'Lights', icon: FaLightbulb, link: '#lights' },
+    { label: 'Devices', icon: MdSettingsRemote, link: '#devices' },
+    { label: 'DiyHue', icon: Diybridge,
       subItems: [
-        { label: 'Bridge', icon: <Diybridge style={{ color: "#9CD747" }} />, link: '#bridge' },
-        { label: 'Linkbutton', icon: <FaLink style={{ color: "#70C877" }} />, link: '#linkbutton' },
-        { label: 'App Users', icon: <PiUserListFill style={{ color: "#30cfff" }} />, link: '#users' },
-        { label: 'Alarm', icon: <FaExclamationTriangle style={{ color: "#CD3D45" }} />, link: '#alarm' },
-        { label: 'Settings', icon: <FaCog style={{ color: "#D85BCD" }} />, link: '#settings' },
+        { label: 'Bridge', icon: Diybridge, link: '#bridge' },
+        { label: 'Linkbutton', icon: FaLink, link: '#linkbutton' },
+        { label: 'App Users', icon: PiUserListFill, link: '#users' },
+        { label: 'Alarm', icon: FaExclamationTriangle, link: '#alarm' },
+        { label: 'Settings', icon: FaCog, link: '#settings' },
       ]
     },
-    { label: 'Addons', icon: <IoExtensionPuzzle style={{ color: "#41f222" }} />,
+    { label: 'Addons', icon: IoExtensionPuzzle,
       subItems: [
-        { label: 'MQTT', icon: <Zigbee style={{ color: "#FCEE86" }} />, link: '#mqtt' },
-        { label: 'HA', icon: <SiHomeassistant style={{ color: "#0FFEFB" }} />, link: '#ha' },
-        { label: 'Tradfri', icon: <Tradfri style={{ color: "#EBAB94" }} />, link: '#tradfri' },
-        { label: 'Deconz', icon: <Deconz style={{ color: "#FFFEFB" }} />, link: '#deconz' },
-        { label: 'Phillips', icon: <Bridge style={{ color: "#EF7B22" }} />, link: '#phillips' },
+        { label: 'MQTT', icon: Zigbee, link: '#mqtt' },
+        { label: 'HA', icon: SiHomeassistant, link: '#ha' },
+        { label: 'Tradfri', icon: Tradfri, link: '#tradfri' },
+        { label: 'Deconz', icon: Deconz, link: '#deconz' },
+        { label: 'Phillips', icon: Bridge, link: '#phillips' },
       ]
     },
-    { label: 'Account', icon: <FaUser style={{ color: "#00a6ff" }} />, link: '#account' },
-    { label: 'About', icon: <FaInfoCircle style={{ color: "#722371" }} />, link: '#about' },
-    { label: 'Logout', icon: <FaSignOutAlt style={{ color: "#7E7E7E" }} />, link: '/logout' },
+    { label: 'Account', icon: FaUser, link: '#account' },
+    { label: 'About', icon: FaInfoCircle, link: '#about' },
+    { label: 'Logout', icon: FaSignOutAlt, link: '/logout' },
   ];
 
   return (

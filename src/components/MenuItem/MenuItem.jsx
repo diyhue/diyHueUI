@@ -37,13 +37,22 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
   );
 };
 
+const IconColor = (items, item) => {
+  const Icon = item.icon;
+  for (let i = 0; i < items.length; i++) {
+    if (items[i]["label"] === item.label){
+      return <Icon style={{ color: "hsl(" + (360 / items.length) * i + ", 50%, 50%)" }} />
+    }
+  }
+};
+
 const SubMenu = ({ items, currentElement, itemClicked }) => (
   <ul>
     {items.map(item => (
       <MenuItem
         key={item.label}
         label={item.label}
-        icon={item.icon}
+        icon={IconColor(items, item)}
         onClick={() => itemClicked(item.link)}
         isActive={currentElement === item.link}
         link={item.link}

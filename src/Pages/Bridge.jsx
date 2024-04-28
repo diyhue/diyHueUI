@@ -77,9 +77,9 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       });
   }, [HOST_IP, API_KEY]);
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     console.log("submit");
-    e.preventDefault();
+    //e.preventDefault();
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
         name: bridgeName,
@@ -362,7 +362,6 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       <GlassContainer options="spacer">
         <PageContent>
           <div className="headline">Bridge Config</div>
-          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
             <div className="form-control">
               <label>Bridge Name</label>
               <input
@@ -423,9 +422,9 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 color="blue"
                 size=""
                 type="submit"
+                onClick={() => onSubmit()}
               />
             </div>
-          </form>
         </PageContent>
       </GlassContainer>
 

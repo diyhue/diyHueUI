@@ -48,7 +48,7 @@ const Scenes = ({
             className="scene"
             style={{
               background: `url(${nightsky})`,
-              backgroundSize: "cover",
+              backgroundSize: "300px 125px",
             }}
             onClick={() => applyScene(id)}
           >

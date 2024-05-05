@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 import { AnimatePresence } from 'framer-motion';
@@ -45,35 +45,34 @@ const GroupHeader = ({ HOST_IP, api_key, id, group, lights }) => {
     (value) => {
       debouncedHandleBriChange(value);
     },
+    // eslint-disable-next-line
     []
   );
 
-  return (
-    <div className="groupCard">
-      <div className="row top">
-        <GradientIndicator group={group} lights={lights} />
-        <div className="text">
-          <p className="name"> {group.name} </p>
-          <p className="subtext">{statusLights()}</p>
-        </div>
-        <FlipSwitch  
-          value={group.state["any_on"]} 
-          onChange={(e) => handleToggleChange(e)} 
-          defaultChecked={group.state["any_on"]} 
-        />
+  return (<>
+    <div className="row top">
+      <GradientIndicator group={group} lights={lights} />
+      <div className="text">
+        <p className="name"> {group.name} </p>
+        <p className="subtext">{statusLights()}</p>
       </div>
-      <div className="row background">
-        <AnimatePresence initial={false}>
-          {group.state["any_on"] && (
-            <BrightnessSlider
-              defaultValue={group.action["bri"]}
-              onChange={debouncedChangeHandler}
-            />
-          )}
-        </AnimatePresence>
-      </div>
+      <FlipSwitch
+        value={group.state["any_on"]}
+        onChange={(e) => handleToggleChange(e)}
+        defaultChecked={group.state["any_on"]}
+      />
     </div>
-  );
+    <div className="row background">
+      <AnimatePresence initial={false}>
+        {group.state["any_on"] && (
+          <BrightnessSlider
+            defaultValue={group.action["bri"]}
+            onChange={debouncedChangeHandler}
+          />
+        )}
+      </AnimatePresence>
+    </div>
+  </>);
 };
 
 export default GroupHeader;

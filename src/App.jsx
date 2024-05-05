@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Layout from "./Mainframe/Layout";
 
-
-import "./scss/groups.scss";
-import "./scss/scenepicker.scss";
-
-
-
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>

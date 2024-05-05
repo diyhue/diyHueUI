@@ -1,14 +1,17 @@
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import GroupHeader from './GroupHeader';
 import ButtonRow from './ButtonRow';
 import ColorPickerSection from './ColorPickerSection';
 import ColorTempPickerSection from './ColorTempPickerSection';
 import LightsSection from './LightsSection';
-import axios from 'axios';
+import Scenes from "../Scenes/Scenes";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { FaChevronDown } from "react-icons/fa";
 
 
-const Group = ({ group, lights, HOST_IP, api_key }) => {
+const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");
+  const [sceneModal, setSceneModal] = useState(false);
   const [lightsCapabilities, setLightsCapabilities] = useState([]);
 
   // Include the functions inspectLightsCapabilities, defaultContainerView, handleToggleChange, handleBriChange, statusLights here
@@ -45,86 +48,87 @@ const Group = ({ group, lights, HOST_IP, api_key }) => {
     }
   };
 
-  const handleToggleChange = (state) => {
-    const newState = {
-      on: state,
-    };
-    group.state["any_on"] = state;
-    if (!state) setShowContainer("closed");
-    //console.log("Apply state " + JSON.stringify(newState));
-    axios.put(`${HOST_IP}/api/${api_key}/groups/${id}/action`, newState);
-  };
-
-  const handleBriChange = (state) => {
-    group.action["bri"] = state;
-    const newState = {
-      bri: state,
-    };
-    //console.log("Apply state " + JSON.stringify(newState));
-    axios.put(`${HOST_IP}/api/${api_key}/groups/${id}/action`, newState);
-  };
-
-  const statusLights = () => {
-    let onLights = 0;
-    let offLights = 0;
-    for (const light of group.lights) {
-      if (lights[light]["state"]["on"] === true) onLights = onLights + 1;
-      else offLights = offLights + 1;
-    }
-    if (onLights === 0) {
-      return "All lights off";
-    } else if (offLights === 0) {
-      return "All lights on";
-    } else {
-      return onLights + " lights on";
-    }
-  };
-
-  
-
   return (
-    <div>
+    <div className="groupCard">
+      <Scenes
+        HOST_IP={HOST_IP}
+        api_key={api_key}
+        groupId={id}
+        scenes={scenes}
+        sceneModal={sceneModal}
+        setSceneModal={setSceneModal}
+      />
       <GroupHeader
         group={group}
         lights={lights}
         HOST_IP={HOST_IP}
         api_key={api_key}
-        showContainer={showContainer}
-        setShowContainer={setShowContainer}
-        handleToggleChange={handleToggleChange}
-        handleBriChange={handleBriChange}
-        statusLights={statusLights}
-        defaultContainerView={defaultContainerView}
+        id={id}
       />
-      <ButtonRow
-        showContainer={showContainer}
-        setShowContainer={setShowContainer}
-        lightsCapabilities={lightsCapabilities}
-        defaultContainerView={defaultContainerView}
-      />
-      <ColorPickerSection
-        showContainer={showContainer}
-        group={group}
-        lights={lights}
-        HOST_IP={HOST_IP}
-        api_key={api_key}
-      />
-      <ColorTempPickerSection
-        showContainer={showContainer}
-        group={group}
-        lights={lights}
-        HOST_IP={HOST_IP}
-        api_key={api_key}
-      />
-      <LightsSection
-        showContainer={showContainer}
-        group={group}
-        lights={lights}
-        HOST_IP={HOST_IP}
-        api_key={api_key}
-      />
+
+      <LayoutGroup>
+        <ButtonRow
+          defaultContainerView={defaultContainerView}
+          showContainer={showContainer}
+          setShowContainer={setShowContainer}
+          lightsCapabilities={lightsCapabilities}
+          setSceneModal={setSceneModal}
+        />
+
+        <motion.div className="row colorpicker">
+          <AnimatePresence initial={false} exitBeforeEnter>
+            <ColorPickerSection
+              showContainer={showContainer}
+              group={group}
+              lights={lights}
+              HOST_IP={HOST_IP}
+              api_key={api_key}
+            />
+            <ColorTempPickerSection
+              showContainer={showContainer}
+              group={group}
+              lights={lights}
+              HOST_IP={HOST_IP}
+              api_key={api_key}
+            />
+            <LightsSection
+              showContainer={showContainer}
+              group={group}
+              lights={lights}
+              HOST_IP={HOST_IP}
+              api_key={api_key}
+            />
+          </AnimatePresence>
+        </motion.div>
+      </LayoutGroup>
+
+      <AnimatePresence>
+        <div className="row bottom">
+          <motion.div
+            className="expandbtn"
+            initial="collapsed"
+            animate={showContainer === "closed" ? "collapsed" : "open"}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            variants={{
+              open: {
+                rotate: 180,
+              },
+              collapsed: {
+                rotate: 0,
+              },
+            }}
+            transition={{
+              duration: 0.3,
+            }}
+            onClick={() => defaultContainerView()}
+          >
+            <FaChevronDown />
+          </motion.div>
+        </div>
+      </AnimatePresence>
     </div>
   );
 };
 
-export default Group;*/
+export default Group;

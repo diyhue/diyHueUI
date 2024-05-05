@@ -103,6 +103,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     setWizardName("Force Config Dump Options")
     setWizardContent(<>
       <p>Where do you want to save config?</p>
+      <p>Never share the config.tar!</p>
       <div className="form-control">
         <GenericButton
           value="DiyHue local"
@@ -334,8 +335,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/download_log`, { responseType: 'blob' })
       .then((response) => {
-        saveAs(response.data, "diyhue.log");
-        toast.success("Download log file");
+        saveAs(response.data, "diyhue_log.tar");
+        toast.success("Download log tar");
 
       })
       .catch((error) => {
@@ -362,69 +363,69 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       <GlassContainer options="spacer">
         <PageContent>
           <div className="headline">Bridge Config</div>
-            <div className="form-control">
-              <label>Bridge Name</label>
-              <input
-                type="text"
-                placeholder="Bridge Name"
-                value={bridgeName}
-                onChange={(e) => setBridgeName(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <label>Software Version</label>
-              <input
-                type="number"
-                pattern="[0-9]+"
-                placeholder="swversion"
-                value={swversion}
-                onChange={(e) => setSwversion(e.target.value)}
-              />
-              <p>
-                <a href="https://www.philips-hue.com/en-gb/support/release-notes/bridge">
-                  check here for last versions
-                </a>
-              </p>
-            </div>
-            <div className="form-control">
-              <label>API Version</label>
-              <input
-                type="text"
-                placeholder="apiversion"
-                value={apiVersion}
-                onChange={(e) => setApiVersion(e.target.value)}
-              />
-            </div>
-            <div className="form-control dropdown">
-              <label>Timezone</label>
-              <Select
-                options={options}
-                onChange={(e) => setTimezone(e.value)}
-                placeholder={timezone}
-              />
-            </div>
-            <FlipSwitch
-              value={remoteApi}
-              onChange={(e) => setRemoteApi(e)}
-              checked={remoteApi}
-              label="Remote API"
+          <div className="form-control">
+            <label>Bridge Name</label>
+            <input
+              type="text"
+              placeholder="Bridge Name"
+              value={bridgeName}
+              onChange={(e) => setBridgeName(e.target.value)}
             />
+          </div>
+          <div className="form-control">
+            <label>Software Version</label>
+            <input
+              type="number"
+              pattern="[0-9]+"
+              placeholder="swversion"
+              value={swversion}
+              onChange={(e) => setSwversion(e.target.value)}
+            />
+            <p>
+              <a href="https://www.philips-hue.com/en-gb/support/release-notes/bridge">
+                check here for last versions
+              </a>
+            </p>
+          </div>
+          <div className="form-control">
+            <label>API Version</label>
+            <input
+              type="text"
+              placeholder="apiversion"
+              value={apiVersion}
+              onChange={(e) => setApiVersion(e.target.value)}
+            />
+          </div>
+          <div className="form-control dropdown">
+            <label>Timezone</label>
+            <Select
+              options={options}
+              onChange={(e) => setTimezone(e.value)}
+              placeholder={timezone}
+            />
+          </div>
+          <FlipSwitch
+            value={remoteApi}
+            onChange={(e) => setRemoteApi(e)}
+            checked={remoteApi}
+            label="Remote API"
+          />
 
-            <FlipSwitch
-              value={discovery}
-              onChange={(e) => setDiscovery(e)}
-              checked={discovery}
-              label="Discovery"
+          <FlipSwitch
+            value={discovery}
+            onChange={(e) => setDiscovery(e)}
+            checked={discovery}
+            label="Discovery"
+          />
+          <div className="form-control">
+            <GenericButton
+              value="Save"
+              color="blue"
+              size=""
+              type="submit"
+              onClick={() => onSubmit()}
             />
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => onSubmit()}
-              />
-            </div>
+          </div>
         </PageContent>
       </GlassContainer>
 
@@ -484,6 +485,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
           <div className="headline">System debug information: (Work in progress)</div>
           <div className="form-control">
             <label>Hue-Emulator Version: {DebugInfo["diyhue"]}</label>
+            <label>WebUI Version: {DebugInfo["webui"]}</label>
             <label>Architecture: {DebugInfo["machine"]}</label>
             <label>OS: {DebugInfo["sysname"]}</label>
             <label>{DebugInfo["sysname"]} version: {DebugInfo["os_version"]}</label>

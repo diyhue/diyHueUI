@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { toast } from 'react-hot-toast';
 import { Tooltip } from '@mui/material';
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GenericButton from "../components/GenericButton/GenericButton";
 
 import "./headerSection.scss";
 
@@ -154,23 +155,25 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       </motion.div>
 
       <div className="switchContainer">
-        <form className="add-form" onSubmit={(e) => handleupdate(swstate, e)}>
-          <Tooltip title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>} arrow>
-            <input
-              type="submit"
+        <Tooltip title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>} arrow >
+          <div>
+            <GenericButton
               value={getValueState(swstate)}
-              className={getClassState(swstate)}
+              color={getClassState(swstate)}
+              size=""
+              type="submit"
+              onClick={() => handleupdate(swstate)}
             />
-          </Tooltip>
-        </form>
+          </div>
+        </Tooltip>
       </div>
 
       <div className="onbtn">
-        <FlipSwitch 
-          value={group0State} 
-          onChange={(e) => handleToggleChange(e)} 
+        <FlipSwitch
+          value={group0State}
+          onChange={(e) => handleToggleChange(e)}
           checked={group0State}
-          label={`Turn all lights ${group0State ? "off" : "on"}`} 
+          label={`Turn all lights ${group0State ? "off" : "on"}`}
         />
       </div>
     </div>

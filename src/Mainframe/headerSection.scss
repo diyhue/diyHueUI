@@ -53,49 +53,6 @@
       }
     }
   
-    .updatebtn {
-      display: flex;
-      align-items: center;
-      margin-right: 10px;
-      padding: 8px 15px;
-      border-radius: 10px;
-      color: #eee;
-      font-size: 18px;
-      font-weight: 0;
-      border: none;
-      transition: all .15s ease-in-out;
-  
-      &.update {
-        cursor: pointer;
-        background: rgb(39, 174, 96);
-  
-        &:hover,
-        &:active,
-        &:focus {
-          border: none;
-          background: rgb(45, 239, 126);
-          transition: all .15s ease-in-out;
-        }
-      }
-  
-      &.install {
-        background: rgb(142, 68, 173);
-      }
-  
-      &.check {
-        cursor: pointer;
-        background: rgb(85, 106, 120);
-  
-        &:hover,
-        &:active,
-        &:focus {
-          border: none;
-          background: rgb(148, 173, 190);
-          transition: all .15s ease-in-out;
-        }
-      }
-    }
-  
     .hamburger {
       display: flex;
       color: #ccc;

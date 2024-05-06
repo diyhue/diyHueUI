@@ -1,14 +1,16 @@
-import LightUpdate from "../LightUpdate/LightUpdate";
 import axios from "axios";
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { HueIcons } from "../../static/icons/hass-hue-icons"
+import { confirmAlert } from "react-confirm-alert"; 
 import Select from "react-select"
 import { toast } from 'react-hot-toast';
 
-import "./light.scss";
-import IconButton from "../IconButton/IconButton";
 import GlassContainer from "../GlassContainer/GlassContainer";
+import { HueIcons } from "../../static/icons/hass-hue-icons"
+import IconButton from "../IconButton/IconButton";
+import LightUpdate from "../LightUpdate/LightUpdate";
+
+import "react-confirm-alert/src/react-confirm-alert.css";
+
+import "./light.scss";
 
 const Light = ({
   HOST_IP,

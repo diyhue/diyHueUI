@@ -7,6 +7,7 @@ import LightsSection from './LightsSection';
 import Scenes from "../Scenes/Scenes";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
+import "./groups.scss"
 
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {

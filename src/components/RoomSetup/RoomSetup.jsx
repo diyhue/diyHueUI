@@ -1,6 +1,8 @@
 import { FaApple } from "react-icons/fa";
 import { IoLogoAndroid } from "react-icons/io";
 
+import "./roomSetup.scss"
+
 function RoomSetup() {
 
     return ( 

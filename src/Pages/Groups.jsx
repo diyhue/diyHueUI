@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Group from "../components/Group2/Group";
+import Group from "../components/Group/Group";
 import RoomSetup from "../components/RoomSetup/RoomSetup";
 import { toast } from 'react-hot-toast';
 

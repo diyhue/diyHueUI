@@ -1,36 +1,21 @@
-import {
-  FaChevronDown,
-  FaImages,
-  FaLightbulb,
-  FaPalette,
-} from "react-icons/fa";
-import { MdInvertColors } from "react-icons/md";
-import { useState, useCallback } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import GroupHeader from './GroupHeader';
+import ButtonRow from './ButtonRow';
+import ColorPickerSection from './ColorPickerSection';
+import ColorTempPickerSection from './ColorTempPickerSection';
+import LightsSection from './LightsSection';
 import Scenes from "../Scenes/Scenes";
-import Light from "../GroupLight/GroupLight";
-import ColorPicker from "../ColorPicker/ColorPicker";
-import ColorTempPicker from "../ColorTempPicker/ColorTempPicker";
-import debounce from "lodash.debounce";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import GradientIndicator from "../GradientIndicator/GradientIndicator";
-import FlipSwitch from "../FlipSwitch/FlipSwitch";
-import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
+import { FaChevronDown } from "react-icons/fa";
+import "./group.scss"
+
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");
   const [sceneModal, setSceneModal] = useState(false);
   const [lightsCapabilities, setLightsCapabilities] = useState([]);
 
-  const barIconVariants = {
-    opened: {
-      opacity: 1,
-    },
-    closed: {
-      opacity: 0,
-    },
-  };
-
+  // Include the functions inspectLightsCapabilities, defaultContainerView, handleToggleChange, handleBriChange, statusLights here
   const inspectLightsCapabilities = () => {
     for (const light of group.lights) {
       if (
@@ -64,50 +49,6 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
     }
   };
 
-  const handleToggleChange = (state) => {
-    const newState = {
-      on: state,
-    };
-    group.state["any_on"] = state;
-    if (!state) setShowContainer("closed");
-    //console.log("Apply state " + JSON.stringify(newState));
-    axios.put(`${HOST_IP}/api/${api_key}/groups/${id}/action`, newState);
-  };
-
-  const handleBriChange = (state) => {
-    group.action["bri"] = state;
-    const newState = {
-      bri: state,
-    };
-    //console.log("Apply state " + JSON.stringify(newState));
-    axios.put(`${HOST_IP}/api/${api_key}/groups/${id}/action`, newState);
-  };
-
-  const statusLights = () => {
-    let onLights = 0;
-    let offLights = 0;
-    for (const light of group.lights) {
-      if (lights[light]["state"]["on"] === true) onLights = onLights + 1;
-      else offLights = offLights + 1;
-    }
-    if (onLights === 0) {
-      return "All lights off";
-    } else if (offLights === 0) {
-      return "All lights on";
-    } else {
-      return onLights + " lights on";
-    }
-  };
-
-  const debouncedHandleBriChange = debounce(handleBriChange, 300);
-
-  const debouncedChangeHandler = useCallback(
-    (value) => {
-      debouncedHandleBriChange(value);
-    },
-    []
-  );
-
   return (
     <div className="groupCard">
       <Scenes
@@ -118,179 +59,50 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         sceneModal={sceneModal}
         setSceneModal={setSceneModal}
       />
-      <div className="row top">
-        <GradientIndicator group={group} lights={lights} />
-        <div className="text">
-          <p className="name"> {group.name} </p>
-          <p className="subtext">{statusLights()}</p>
-        </div>
-        <FlipSwitch  
-          value={group.state["any_on"]} 
-          onChange={(e) => handleToggleChange(e)} 
-          defaultChecked={group.state["any_on"]} 
-          checked={group.state["any_on"]}
-        />
-      </div>
-      <div className="row background">
-        <AnimatePresence initial={false}>
-          {group.state["any_on"] && (
-            <BrightnessSlider
-              defaultValue={group.action["bri"]}
-              onChange={debouncedChangeHandler}
-            />
-          )}
-        </AnimatePresence>
-      </div>
+      <GroupHeader
+        group={group}
+        lights={lights}
+        HOST_IP={HOST_IP}
+        api_key={api_key}
+        id={id}
+      />
+
       <LayoutGroup>
-        {showContainer !== "closed" && (
-          <motion.div
-            className="row buttons"
-            initial="closed"
-            animate={showContainer === "closed" ? "closed" : "opened"}
-            variants={barIconVariants}
-          >
-            <motion.div
-              className={`btn ${
-                lightsCapabilities.includes("xy") ? "" : "disabled"
-              }`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              variants={barIconVariants}
-            >
-              <FaPalette
-                onClick={
-                  lightsCapabilities.includes("xy")
-                    ? () => setShowContainer("colorPicker")
-                    : false
-                }
-              />
-            </motion.div>
-            <motion.div
-              className={`btn ${
-                lightsCapabilities.includes("ct") ? "" : "disabled"
-              }`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <MdInvertColors
-                onClick={
-                  lightsCapabilities.includes("ct")
-                    ? () => setShowContainer("colorTempPicker")
-                    : false
-                }
-              />
-            </motion.div>
-            <motion.div
-              className="btn"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaImages onClick={() => setSceneModal(true)} />
-            </motion.div>
-            <motion.div
-              className="btn"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaLightbulb onClick={() => setShowContainer("lights")} />
-            </motion.div>
-          </motion.div>
-        )}
+        <ButtonRow
+          defaultContainerView={defaultContainerView}
+          showContainer={showContainer}
+          setShowContainer={setShowContainer}
+          lightsCapabilities={lightsCapabilities}
+          setSceneModal={setSceneModal}
+        />
+
         <motion.div className="row colorpicker">
           <AnimatePresence initial={false} exitBeforeEnter>
-            {showContainer === "colorPicker" && (
-              <motion.section
-                key="content"
-                initial="collapsed"
-                animate="open"
-                exit="collapsed"
-                variants={{
-                  open: {
-                    opacity: 1,
-                    scale: 1,
-                    height: "auto",
-                  },
-                  collapsed: {
-                    opacity: 0,
-                    scale: 0.5,
-                    height: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.3,
-                }}
-              >
-                <ColorPicker
-                  HOST_IP={HOST_IP}
-                  api_key={api_key}
-                  lights={lights}
-                  groupLights={group.lights}
-                />
-              </motion.section>
-            )}
-            {showContainer === "colorTempPicker" && (
-              <motion.section
-                key="content"
-                initial="collapsed"
-                animate="open"
-                exit="collapsed"
-                variants={{
-                  open: {
-                    opacity: 1,
-                    height: "auto",
-                    scale: 1,
-                  },
-                  collapsed: {
-                    opacity: 0,
-                    height: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.3,
-                }}
-              >
-                <ColorTempPicker
-                  HOST_IP={HOST_IP}
-                  api_key={api_key}
-                  groupId={id}
-                  group={group}
-                />
-              </motion.section>
-            )}
-            {showContainer === "lights" && (
-              <motion.div
-                className="lights"
-                initial="collapsed"
-                animate="open"
-                exit="collapsed"
-                variants={{
-                  open: {
-                    opacity: 1,
-                    height: "auto",
-                  },
-                  collapsed: {
-                    opacity: 0,
-                    height: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.3,
-                }}
-              >
-                {group.lights.map((light) => (
-                  <Light
-                    HOST_IP={HOST_IP}
-                    api_key={api_key}
-                    key={light}
-                    id={light}
-                    light={lights[light]}
-                  />
-                ))}
-              </motion.div>
-            )}
+            <ColorPickerSection
+              showContainer={showContainer}
+              group={group}
+              lights={lights}
+              HOST_IP={HOST_IP}
+              api_key={api_key}
+            />
+            <ColorTempPickerSection
+              showContainer={showContainer}
+              group={group}
+              lights={lights}
+              HOST_IP={HOST_IP}
+              api_key={api_key}
+            />
+            <LightsSection
+              showContainer={showContainer}
+              group={group}
+              lights={lights}
+              HOST_IP={HOST_IP}
+              api_key={api_key}
+            />
           </AnimatePresence>
         </motion.div>
-        </LayoutGroup>
+      </LayoutGroup>
+
       <AnimatePresence>
         <div className="row bottom">
           <motion.div
@@ -312,7 +124,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
             }}
             onClick={() => defaultContainerView()}
           >
-            <FaChevronDown/>
+            <FaChevronDown />
           </motion.div>
         </div>
       </AnimatePresence>

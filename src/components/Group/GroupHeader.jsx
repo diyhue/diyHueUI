@@ -1,10 +1,13 @@
-import React, { useCallback } from 'react';
-import axios from 'axios';
-import debounce from 'lodash.debounce';
-import { AnimatePresence } from 'framer-motion';
-import GradientIndicator from "../GradientIndicator/GradientIndicator";
-import FlipSwitch from "../FlipSwitch/FlipSwitch";
+import React, { useCallback } from "react";
+
+import axios from "axios";
+import debounce from "lodash.debounce";
+import { AnimatePresence } from "framer-motion";
+
 import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
+import FlipSwitch from "../FlipSwitch/FlipSwitch";
+import GradientIndicator from "../GradientIndicator/GradientIndicator";
+
 
 const GroupHeader = ({ HOST_IP, api_key, id, group, lights }) => {
   const handleToggleChange = (state) => {
@@ -49,30 +52,32 @@ const GroupHeader = ({ HOST_IP, api_key, id, group, lights }) => {
     []
   );
 
-  return (<>
-    <div className="row top">
-      <GradientIndicator group={group} lights={lights} />
-      <div className="text">
-        <p className="name"> {group.name} </p>
-        <p className="subtext">{statusLights()}</p>
+  return (
+    <>
+      <div className="row top">
+        <GradientIndicator group={group} lights={lights} />
+        <div className="text">
+          <p className="name"> {group.name} </p>
+          <p className="subtext">{statusLights()}</p>
+        </div>
+        <FlipSwitch
+          value={group.state["any_on"]}
+          onChange={(e) => handleToggleChange(e)}
+          defaultChecked={group.state["any_on"]}
+        />
       </div>
-      <FlipSwitch
-        value={group.state["any_on"]}
-        onChange={(e) => handleToggleChange(e)}
-        defaultChecked={group.state["any_on"]}
-      />
-    </div>
-    <div className="row background">
-      <AnimatePresence initial={false}>
-        {group.state["any_on"] && (
-          <BrightnessSlider
-            defaultValue={group.action["bri"]}
-            onChange={debouncedChangeHandler}
-          />
-        )}
-      </AnimatePresence>
-    </div>
-  </>);
+      <div className="row background">
+        <AnimatePresence initial={false}>
+          {group.state["any_on"] && (
+            <BrightnessSlider
+              defaultValue={group.action["bri"]}
+              onChange={debouncedChangeHandler}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+    </>
+  );
 };
 
 export default GroupHeader;

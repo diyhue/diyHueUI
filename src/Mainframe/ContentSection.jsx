@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
 import { Outlet, Route, Routes, HashRouter } from "react-router-dom";
-import "./contentSection.scss";
 
-// routes config
-import routes from "../routes";
 import { Toaster } from "react-hot-toast";
+
+import routes from "../routes";
+
+import "./contentSection.scss";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -25,7 +26,9 @@ const ContentSection = ({ HOST_IP, API_KEY }) => {
                   <Route
                     key={idx}
                     path={route.path}
-                    element={<route.component API_KEY={API_KEY} HOST_IP={HOST_IP} />}
+                    element={
+                      <route.component API_KEY={API_KEY} HOST_IP={HOST_IP} />
+                    }
                   />
                 )
               );

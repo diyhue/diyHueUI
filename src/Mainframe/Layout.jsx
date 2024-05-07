@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import ContentSection from "./ContentSection"
-import SidebarSection from "./SidebarSection"
-import HeaderSection from "./HeaderSection"
+
+import ContentSection from "./ContentSection";
+import SidebarSection from "./SidebarSection";
+import HeaderSection from "./HeaderSection";
 
 import "./layout.scss";
 import "./scrollbar.scss";
@@ -11,16 +12,15 @@ const Layout = ({ HOST_IP, API_KEY }) => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSidebar, setShowSidebar] = useState(!isMobile);
 
-
   return (
     <>
-      <SidebarSection 
-      showSidebar={showSidebar}
-      setShowSidebar={setShowSidebar}
-      isMobile={isMobile} />
+      <SidebarSection
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+        isMobile={isMobile}
+      />
 
       <div className="columnRight">
-        
         <HeaderSection
           HOST_IP={HOST_IP}
           API_KEY={API_KEY}
@@ -28,7 +28,7 @@ const Layout = ({ HOST_IP, API_KEY }) => {
           setShowSidebar={setShowSidebar}
         />
         <ContentSection HOST_IP={HOST_IP} API_KEY={API_KEY} />
-    </div>
+      </div>
     </>
   );
 };

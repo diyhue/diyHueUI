@@ -1,12 +1,10 @@
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 
 import "./wizard.scss";
 
 const Wizard = ({ isOpen, closeWizard, children, headline }) => {
-
-  function afterOpenModal() {
-  }
+  function afterOpenModal() {}
 
   return (
     <Modal
@@ -26,9 +24,7 @@ const Wizard = ({ isOpen, closeWizard, children, headline }) => {
           </button>
         </div>
       </div>
-      <div className="wizardContent">
-        {children}
-      </div>
+      <div className="wizardContent">{children}</div>
     </Modal>
   );
 };

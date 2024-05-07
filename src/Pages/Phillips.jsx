@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
+import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-import GenericButton from "../components/GenericButton/GenericButton";
 
 const Phillips = ({ HOST_IP, API_KEY }) => {
   const [bridgeIp, setBridgeIp] = useState("192.168.x.x");
@@ -27,7 +29,10 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
   const pairBridge = (e) => {
     e.preventDefault();
     axios
-      .post(`http://${bridgeIp}/api`, { devicetype: "diyhue#bridge", "generateclientkey":true })
+      .post(`http://${bridgeIp}/api`, {
+        devicetype: "diyhue#bridge",
+        generateclientkey: true,
+      })
       .then((result) => {
         if ("success" in result.data[0]) {
           setHueUser(result.data[0]["success"]["username"]);
@@ -92,7 +97,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <GenericButton 
+              <GenericButton
                 value={
                   typeof hueUser === "string" && hueUser.length > 0
                     ? "Pair again"

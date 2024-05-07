@@ -1,7 +1,9 @@
-import { RiAlertLine } from "react-icons/ri";
 import axios from "axios";
-import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
+
 import { FaLightbulb } from "react-icons/fa";
+import { RiAlertLine } from "react-icons/ri";
+
+import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
 
 const Light = ({ HOST_IP, api_key, id, light }) => {
   const switchLight = (newState) => {
@@ -30,37 +32,42 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
   return (
     <div className="groupCard light">
       <div className="row top">
-        <div className="gradient" style={getStyle()}><FaLightbulb /></div>
-        <div className="text"><p className="name">{light.name}{" "}
-          {light["state"]["reachable"] || <RiAlertLine title="Unrechable" />}</p></div>
-        <div className="switchContainer"><label className="switch">
-          <input
-            type="checkbox"
-            defaultChecked={light["state"]["on"]}
-            onChange={(e) => switchLight({ on: e.currentTarget.checked })}
-          />
-          <span className="slider">
-          </span></label></div>
+        <div className="gradient" style={getStyle()}>
+          <FaLightbulb />
+        </div>
+        <div className="text">
+          <p className="name">
+            {light.name}{" "}
+            {light["state"]["reachable"] || <RiAlertLine title="Unrechable" />}
+          </p>
+        </div>
+        <div className="switchContainer">
+          <label className="switch">
+            <input
+              type="checkbox"
+              defaultChecked={light["state"]["on"]}
+              onChange={(e) => switchLight({ on: e.currentTarget.checked })}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
       </div>
-      <div className="row"><div className="sliderContainer">
-        <input
-          type="range"
-          min="1"
-          max="254"
-          defaultValue={light["state"]["bri"]}
-          className="slider"
-          onChange={(e) =>
-            switchLight({ bri: parseInt(e.currentTarget.value) })
-          }
-        />
-      </div></div>
+      <div className="row">
+        <div className="sliderContainer">
+          <input
+            type="range"
+            min="1"
+            max="254"
+            defaultValue={light["state"]["bri"]}
+            className="slider"
+            onChange={(e) =>
+              switchLight({ bri: parseInt(e.currentTarget.value) })
+            }
+          />
+        </div>
+      </div>
     </div>
-
   );
 };
-
-
-
-
 
 export default Light;

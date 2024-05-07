@@ -1,12 +1,12 @@
-import { RiApps2Fill } from "react-icons/ri";
-
 import axios from "axios";
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { toast } from 'react-hot-toast';
+import { RiApps2Fill } from "react-icons/ri";
+import { confirmAlert } from "react-confirm-alert"; 
+import { toast } from "react-hot-toast";
+
 import IconButton from "../IconButton/IconButton";
 import GlassContainer from "../GlassContainer/GlassContainer";
 
+import "react-confirm-alert/src/react-confirm-alert.css"; 
 import "./user.scss";
 
 const User = ({ HOST_IP, api_key, id, user }) => {
@@ -21,8 +21,7 @@ const User = ({ HOST_IP, api_key, id, user }) => {
           },
         ],
       });
-    }
-    else {
+    } else {
       confirmAlert({
         title: "Delete User " + user["name"],
         message: "Are you sure to do this?",
@@ -38,46 +37,46 @@ const User = ({ HOST_IP, api_key, id, user }) => {
       });
     }
   };
-  
-    const deleteUser = () => {
-      axios
-        .delete(`${HOST_IP}/api/${api_key}/config/whitelist/${id}`)
-        .then((fetchedData) => {
-          //console.log(fetchedData.data);
-          toast.success("User successfully deleted");
-        })
-        .catch((error) => {
-          console.error(error);
-          toast.error(`Error occurred: ${error.message}`);
-        });
-    };
-  
-    return (
-      <GlassContainer>
-        <div className="user">
-          <div className="row1">
-            <div className="icon">
-              <RiApps2Fill />
-            </div>
-            <div className="text">{user["name"]}</div>
+
+  const deleteUser = () => {
+    axios
+      .delete(`${HOST_IP}/api/${api_key}/config/whitelist/${id}`)
+      .then((fetchedData) => {
+        //console.log(fetchedData.data);
+        toast.success("User successfully deleted");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
+      });
+  };
+
+  return (
+    <GlassContainer>
+      <div className="user">
+        <div className="row1">
+          <div className="icon">
+            <RiApps2Fill />
           </div>
-          <div className="row2">
-            <div className="text">
-              Last use date: {user["last use date"]} <br />
-              Create date: {user["create date"]} <br />
-            </div>
-          </div>
-          <div className="row3">
-          <IconButton 
-            iconName="MdDeleteForever" 
-            title="Delete" 
-            color="red" 
-            onClick={() => deleteAlert()} 
-          />
+          <div className="text">{user["name"]}</div>
+        </div>
+        <div className="row2">
+          <div className="text">
+            Last use date: {user["last use date"]} <br />
+            Create date: {user["create date"]} <br />
           </div>
         </div>
-      </GlassContainer>
-    );
-  };
-  
-  export default User;
+        <div className="row3">
+          <IconButton
+            iconName="MdDeleteForever"
+            title="Delete"
+            color="red"
+            onClick={() => deleteAlert()}
+          />
+        </div>
+      </div>
+    </GlassContainer>
+  );
+};
+
+export default User;

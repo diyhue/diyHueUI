@@ -1,17 +1,20 @@
-.Modal{
+.Modal {
   position: absolute;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  background: rgba(255, 255, 255, 0.09) ;
-  background: linear-gradient(45deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0.2) 100%);
+  background: rgba(255, 255, 255, 0.09);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
   border-radius: 20px;
   box-sizing: border-box;
   padding: 20px;
   inset: 60px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-
 
   .header {
     display: flex;
@@ -45,36 +48,30 @@
       color: #fff;
       margin-top: 5px;
     }
-    label{
+    label {
       color: #fff;
       margin-top: 5px;
     }
   }
-
-
 }
-  
+
 .Overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 @media screen and (max-width: 750px) {
-
-  .Modal{
-      inset: 10px;
-    }
-
+  .Modal {
+    inset: 10px;
+  }
 }
 
 @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-
-.Modal{
-    background: rgba(0,0,0,.7);
+  .Modal {
+    background: rgba(0, 0, 0, 0.7);
   }
-    
 }

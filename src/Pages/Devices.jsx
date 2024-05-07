@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import Device from "../components/Device/Device";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
 import CardGrid from "../components/CardGrid/CardGrid";
+import Device from "../components/Device/Device";
 
 const Devices = ({ HOST_IP, API_KEY }) => {
   const [devices, setDevices] = useState({});
@@ -33,20 +35,22 @@ const Devices = ({ HOST_IP, API_KEY }) => {
   return (
     <div className="content">
       <div className="inner">
-          <CardGrid>
-            {Object.entries(devices).map(([id, device]) => (
-              device["protocol"] !== "none" &&
-              <Device
-                key={id}
-                HOST_IP={HOST_IP}
-                api_key={API_KEY}
-                id={id}
-                device={device}
-              />
-            ))}
-          </CardGrid>
-        </div>
+        <CardGrid>
+          {Object.entries(devices).map(
+            ([id, device]) =>
+              device["protocol"] !== "none" && (
+                <Device
+                  key={id}
+                  HOST_IP={HOST_IP}
+                  api_key={API_KEY}
+                  id={id}
+                  device={device}
+                />
+              )
+          )}
+        </CardGrid>
       </div>
+    </div>
   );
 };
 

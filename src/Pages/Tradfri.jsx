@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
+import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-import GenericButton from "../components/GenericButton/GenericButton";
 
 const Tradfri = ({ HOST_IP, API_KEY }) => {
   const [tradfriGwIp, setTradfriGwIp] = useState("192.168.x.x");
@@ -101,15 +103,15 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
               </div>
             )}
             <div className="form-control">
-              <GenericButton 
-                  value={
-                    typeof tradfriPsk === "string" && tradfriPsk.length > 0
-                      ? "Change Ip"
-                      : "Pair"
-                  }
-                  color="blue"
-                  size=""
-                  type="submit"
+              <GenericButton
+                value={
+                  typeof tradfriPsk === "string" && tradfriPsk.length > 0
+                    ? "Change Ip"
+                    : "Pair"
+                }
+                color="blue"
+                size=""
+                type="submit"
               />
             </div>
           </form>

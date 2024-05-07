@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-import GenericButton from "../components/GenericButton/GenericButton";
 
 const HA = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
   const [homeAssistantIp, setHomeAssistantIp] = useState("127.0.0.1");
   const [homeAssistantPort, setHomeAssistantPort] = useState(8123);
   const [homeAssistantToken, setHomeAssistantToken] = useState("");
-  const [homeAssistantIncludeByDefault, setHomeAssistantIncludeByDefault] = useState(true);
+  const [homeAssistantIncludeByDefault, setHomeAssistantIncludeByDefault] =
+    useState(true);
   const [homeAssistantUseHttps, setHomeAssistantUseHttps] = useState(false);
 
   useEffect(() => {
@@ -26,10 +29,11 @@ const HA = ({ HOST_IP, API_KEY }) => {
         if ("homeAssistantToken" in result.data)
           setHomeAssistantToken(result.data["homeAssistantToken"]);
         if ("homeAssistantIncludeByDefault" in result.data)
-          setHomeAssistantIncludeByDefault(result.data["homeAssistantIncludeByDefault"]);
+          setHomeAssistantIncludeByDefault(
+            result.data["homeAssistantIncludeByDefault"]
+          );
         if ("homeAssistantUseHttps" in result.data)
           setHomeAssistantUseHttps(result.data["homeAssistantUseHttps"]);
-
       })
       .catch((error) => {
         console.error(error);
@@ -47,7 +51,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
           homeAssistantPort: homeAssistantPort,
           homeAssistantToken: homeAssistantToken,
           homeAssistantIncludeByDefault: homeAssistantIncludeByDefault,
-          homeAssistantUseHttps: homeAssistantUseHttps
+          homeAssistantUseHttps: homeAssistantUseHttps,
         },
       })
       .then((fetchedData) => {
@@ -66,10 +70,10 @@ const HA = ({ HOST_IP, API_KEY }) => {
         <PageContent>
           <div className="headline">Home Assistant config</div>
           <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-            <FlipSwitch 
-              value={enable} 
-              onChange={(e) => setEnable(e)} 
-              checked={enable} 
+            <FlipSwitch
+              value={enable}
+              onChange={(e) => setEnable(e)}
+              checked={enable}
             />
             <div className="form-control">
               <label>Home Assistant IP</label>
@@ -98,26 +102,21 @@ const HA = ({ HOST_IP, API_KEY }) => {
                 onChange={(e) => setHomeAssistantToken(e.target.value)}
               />
             </div>
-            <FlipSwitch 
-              value={homeAssistantIncludeByDefault} 
-              onChange={(e) => setHomeAssistantIncludeByDefault(e)} 
-              checked={homeAssistantIncludeByDefault} 
+            <FlipSwitch
+              value={homeAssistantIncludeByDefault}
+              onChange={(e) => setHomeAssistantIncludeByDefault(e)}
+              checked={homeAssistantIncludeByDefault}
               label="Included by default"
             />
 
-            <FlipSwitch 
-              value={homeAssistantUseHttps} 
-              onChange={(e) => setHomeAssistantUseHttps(e)} 
-              checked={homeAssistantUseHttps} 
+            <FlipSwitch
+              value={homeAssistantUseHttps}
+              onChange={(e) => setHomeAssistantUseHttps(e)}
+              checked={homeAssistantUseHttps}
               label="Enable HTTPS"
             />
             <div className="form-control">
-            <GenericButton 
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-            />
+              <GenericButton value="Save" color="blue" size="" type="submit" />
             </div>
           </form>
         </PageContent>

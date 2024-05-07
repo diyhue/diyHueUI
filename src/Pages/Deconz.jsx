@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-import GenericButton from "../components/GenericButton/GenericButton";
 
 const Deconz = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -84,10 +86,10 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
         <PageContent>
           <div className="headline">Deconz Config</div>
           <form className="add-form" onSubmit={(e) => pairDeconz(e)}>
-          <FlipSwitch 
-              value={enable} 
-              onChange={(e) => toggleEnable(e)} 
-              checked={enable} 
+            <FlipSwitch
+              value={enable}
+              onChange={(e) => toggleEnable(e)}
+              checked={enable}
             />
             <div className="form-control">
               <label>Deconz host</label>
@@ -117,7 +119,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <GenericButton 
+              <GenericButton
                 value={
                   typeof deconzUser === "string" && deconzUser.length > 0
                     ? "Pair again"

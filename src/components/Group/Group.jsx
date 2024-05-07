@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import GroupHeader from './GroupHeader';
-import ButtonRow from './ButtonRow';
-import ColorPickerSection from './ColorPickerSection';
-import ColorTempPickerSection from './ColorTempPickerSection';
-import LightsSection from './LightsSection';
-import Scenes from "../Scenes/Scenes";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { FaChevronDown } from "react-icons/fa";
-import "./group.scss"
+import React, { useState } from "react";
 
+import { FaChevronDown } from "react-icons/fa";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+
+import ButtonRow from "./ButtonRow";
+import ColorPickerSection from "./ColorPickerSection";
+import ColorTempPickerSection from "./ColorTempPickerSection";
+import GroupHeader from "./GroupHeader";
+import LightsSection from "./LightsSection";
+import Scenes from "../Scenes/Scenes";
+
+import "./group.scss";
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
+
 import Group from "../components/Group/Group";
 import RoomSetup from "../components/RoomSetup/RoomSetup";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 
 export default function Groups({ HOST_IP, API_KEY }) {
   const [config, setConfig] = useState({
@@ -38,7 +40,7 @@ export default function Groups({ HOST_IP, API_KEY }) {
   return (
     <div className="inner">
       <div className="cardGrid">
-        {Object.keys(config.groups).length === 0 ? ( <RoomSetup /> ): (<></>)}
+        {Object.keys(config.groups).length === 0 ? <RoomSetup /> : <></>}
         {Object.entries(config.groups)
           .filter((group) => group[1].type !== "Entertainment")
           .map(([id, group]) => (

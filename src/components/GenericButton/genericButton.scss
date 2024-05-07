@@ -10,14 +10,13 @@ input.btn-block {
   cursor: pointer;
   width: 300px;
 
-
   &:hover,
   &:active {
     border: none;
     background: rgb(61, 177, 255);
   }
 
-  &.small{
+  &.small {
     font-size: 14px;
     padding: 10px;
     width: auto;
@@ -26,7 +25,7 @@ input.btn-block {
   &.red {
     background: rgba(231, 76, 60, 1);
     color: #eee;
-  
+
     &:hover,
     &:active {
       background: rgb(255, 86, 68);
@@ -36,7 +35,7 @@ input.btn-block {
   &.green {
     background: rgba(46, 204, 113, 1);
     color: #eee;
-  
+
     &:hover,
     &:active {
       background: rgb(53, 233, 128);
@@ -44,7 +43,6 @@ input.btn-block {
   }
 
   &.updatebtn {
-
     text-transform: capitalize;
     width: auto;
 
@@ -56,7 +54,7 @@ input.btn-block {
     color: #eee;
     font-weight: 0;
     border: none;
-    transition: all .15s ease-in-out;
+    transition: all 0.15s ease-in-out;
 
     &.update {
       cursor: pointer;
@@ -67,7 +65,7 @@ input.btn-block {
       &:focus {
         border: none;
         background: rgb(45, 239, 126);
-        transition: all .15s ease-in-out;
+        transition: all 0.15s ease-in-out;
       }
     }
 
@@ -85,7 +83,7 @@ input.btn-block {
       &:focus {
         border: none;
         background: rgb(148, 173, 190);
-        transition: all .15s ease-in-out;
+        transition: all 0.15s ease-in-out;
       }
     }
   }

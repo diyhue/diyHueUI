@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
-import { colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
-import iro from "@jaames/iro";
 import axios from "axios";
+import iro from "@jaames/iro";
+
+import { colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
 
 export default function KelvinPicker({ HOST_IP, api_key, group, groupId }) {
   const pickerRef = useRef(null);

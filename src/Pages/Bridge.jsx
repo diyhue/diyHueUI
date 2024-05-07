@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
-import Select from "react-select"
+import { toast } from "react-hot-toast";
+import Select from "react-select";
+import { confirmAlert } from "react-confirm-alert";
+import { saveAs } from "file-saver";
+
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
-import PageContent from "../components/PageContent/PageContent";
-import GlassContainer from "../components/GlassContainer/GlassContainer";
 import GenericButton from "../components/GenericButton/GenericButton";
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { saveAs } from 'file-saver';
+import GlassContainer from "../components/GlassContainer/GlassContainer";
+import PageContent from "../components/PageContent/PageContent";
+
 import Wizard from "../components/Wizard/Wizard";
 
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
   const [bridgeName, setBridgeName] = useState("");
@@ -87,7 +90,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         apiversion: apiVersion,
         timezone: timezone,
         "Remote API enabled": remoteApi,
-        discovery: discovery
+        discovery: discovery,
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
@@ -100,39 +103,41 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   };
 
   const ConfigOptions = () => {
-    setWizardName("Force Config Dump Options")
-    setWizardContent(<>
-      <p>Where do you want to save config?</p>
-      <p>Never share the config.tar!</p>
-      <div className="form-control">
-        <GenericButton
-          value="DiyHue local"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => dumpConfig()}
-        />
-      </div>
-      <div className="form-control">
-        <GenericButton
-          value="DiyHue backup"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => backupConfig()}
-        />
-      </div>
-      <div className="form-control">
-        <GenericButton
-          value="Download tar"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => downloadConfig()}
-        />
-      </div>
-    </>)
-    openWizard()
+    setWizardName("Force Config Dump Options");
+    setWizardContent(
+      <>
+        <p>Where do you want to save config?</p>
+        <p>Never share the config.tar!</p>
+        <div className="form-control">
+          <GenericButton
+            value="DiyHue local"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => dumpConfig()}
+          />
+        </div>
+        <div className="form-control">
+          <GenericButton
+            value="DiyHue backup"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => backupConfig()}
+          />
+        </div>
+        <div className="form-control">
+          <GenericButton
+            value="Download tar"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => downloadConfig()}
+          />
+        </div>
+      </>
+    );
+    openWizard();
   };
 
   const dumpConfig = () => {
@@ -161,11 +166,10 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   const downloadConfig = () => {
     axios
-      .get(`${HOST_IP}/download_config`, { responseType: 'blob' })
+      .get(`${HOST_IP}/download_config`, { responseType: "blob" })
       .then((response) => {
         saveAs(response.data, "config.tar");
         toast.success("Download config tar");
-
       })
       .catch((error) => {
         console.error(error);
@@ -176,7 +180,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   const Restart = () => {
     confirmAlert({
       title: "Restart Python.",
-      message: "Are you sure to do this?\nThis will NOT save the current config.",
+      message:
+        "Are you sure to do this?\nThis will NOT save the current config.",
       buttons: [
         {
           label: "Yes",
@@ -193,7 +198,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                   console.error(error);
                   toast.error(`Error occurred: ${error.message}`);
                 }
-              })
+              }),
         },
         {
           label: "Save first",
@@ -207,30 +212,32 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   };
 
   const restoreOptions = () => {
-    setWizardName("Reset Config Options")
-    setWizardContent(<>
-      <p>How do you want to restore config?</p>
-      <p>Please be careful of what you do!</p>
-      <div className="form-control">
-        <GenericButton
-          value="Restore backup"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => restoreAlert()}
-        />
-      </div>
-      <div className="form-control">
-        <GenericButton
-          value="Reset config"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => resetAlert()}
-        />
-      </div>
-    </>)
-    openWizard()
+    setWizardName("Reset Config Options");
+    setWizardContent(
+      <>
+        <p>How do you want to restore config?</p>
+        <p>Please be careful of what you do!</p>
+        <div className="form-control">
+          <GenericButton
+            value="Restore backup"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => restoreAlert()}
+          />
+        </div>
+        <div className="form-control">
+          <GenericButton
+            value="Reset config"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => resetAlert()}
+          />
+        </div>
+      </>
+    );
+    openWizard();
   };
 
   const resetAlert = () => {
@@ -292,38 +299,39 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   };
 
   const debugOptions = () => {
-    setWizardName("Debug download Options")
-    setWizardContent(<>
-      <p>Download full debug or log</p>
-      <div className="form-control">
-        <GenericButton
-          value="Full Debug"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => downloadDebugConfig()}
-        />
-      </div>
-      <div className="form-control">
-        <GenericButton
-          value="Log file"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={() => downloadLog()}
-        />
-      </div>
-    </>)
-    openWizard()
+    setWizardName("Debug download Options");
+    setWizardContent(
+      <>
+        <p>Download full debug or log</p>
+        <div className="form-control">
+          <GenericButton
+            value="Full Debug"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => downloadDebugConfig()}
+          />
+        </div>
+        <div className="form-control">
+          <GenericButton
+            value="Log file"
+            color="blue"
+            size=""
+            type="submit"
+            onClick={() => downloadLog()}
+          />
+        </div>
+      </>
+    );
+    openWizard();
   };
 
   const downloadDebugConfig = () => {
     axios
-      .get(`${HOST_IP}/download_debug`, { responseType: 'blob' })
+      .get(`${HOST_IP}/download_debug`, { responseType: "blob" })
       .then((response) => {
         saveAs(response.data, "config_debug.tar");
         toast.success("Download debug tar");
-
       })
       .catch((error) => {
         console.error(error);
@@ -333,11 +341,10 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   const downloadLog = () => {
     axios
-      .get(`${HOST_IP}/download_log`, { responseType: 'blob' })
+      .get(`${HOST_IP}/download_log`, { responseType: "blob" })
       .then((response) => {
         saveAs(response.data, "diyhue_log.tar");
         toast.success("Download log tar");
-
       })
       .catch((error) => {
         console.error(error);
@@ -347,7 +354,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
   let options = timezones.map(function (timezone) {
     return { value: timezone, label: timezone };
-  })
+  });
 
   const advanceStatus = () => {
     if (AdvanceConfig === true) {
@@ -356,7 +363,6 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       return "hidden";
     }
   };
-
 
   return (
     <div className="inner">
@@ -482,14 +488,20 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
 
       <GlassContainer options="spacer">
         <PageContent>
-          <div className="headline">System debug information: (Work in progress)</div>
+          <div className="headline">
+            System debug information: (Work in progress)
+          </div>
           <div className="form-control">
             <label>Hue-Emulator Version: {DebugInfo["diyhue"]}</label>
             <label>WebUI Version: {DebugInfo["webui"]}</label>
             <label>Architecture: {DebugInfo["machine"]}</label>
             <label>OS: {DebugInfo["sysname"]}</label>
-            <label>{DebugInfo["sysname"]} version: {DebugInfo["os_version"]}</label>
-            <label>{DebugInfo["sysname"]} release: {DebugInfo["os_release"]}</label>
+            <label>
+              {DebugInfo["sysname"]} version: {DebugInfo["os_version"]}
+            </label>
+            <label>
+              {DebugInfo["sysname"]} release: {DebugInfo["os_release"]}
+            </label>
             <label>Hardware: %Hardware%</label>
           </div>
         </PageContent>
@@ -543,7 +555,11 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               onClick={() => restoreOptions()}
             />
           </div>
-          <Wizard isOpen={WizardIsOpen} closeWizard={closeWizard} headline={WizardName}>
+          <Wizard
+            isOpen={WizardIsOpen}
+            closeWizard={closeWizard}
+            headline={WizardName}
+          >
             {WizardContent}
           </Wizard>
         </PageContent>

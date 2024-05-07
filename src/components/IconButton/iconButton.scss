@@ -1,46 +1,46 @@
 .iconbtn {
-    flex: 0 0 40px;
-    height: 40px;
-    width: 40px;
-    border-radius: 10px;
-    text-align: center;
-    line-height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    margin-left: auto;
+  flex: 0 0 40px;
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: auto;
 
-    svg {
-      height: 1.5em;
-      width: 1.5em;
-      margin-top: 4px;
-    }
+  svg {
+    height: 1.5em;
+    width: 1.5em;
+    margin-top: 4px;
+  }
 
-    &.red {
-      background: #881a3a;
+  &.red {
+    background: #881a3a;
 
-      &:hover,
-      &:active {
-        background: #af234a;
-      }
-    }
-
-    &.blue {
-      background: #1a5088;
-      margin-right: 20px;
-
-      &:hover,
-      &:active {
-        background: #2872c2;
-      }
-    }
-
-    &.green {
-      background: #27ae60;
-      margin-right: 20px;
-
-      &:hover,
-      &:active {
-        background: #2ecc71;
-      }
+    &:hover,
+    &:active {
+      background: #af234a;
     }
   }
+
+  &.blue {
+    background: #1a5088;
+    margin-right: 20px;
+
+    &:hover,
+    &:active {
+      background: #2872c2;
+    }
+  }
+
+  &.green {
+    background: #27ae60;
+    margin-right: 20px;
+
+    &:hover,
+    &:active {
+      background: #2ecc71;
+    }
+  }
+}

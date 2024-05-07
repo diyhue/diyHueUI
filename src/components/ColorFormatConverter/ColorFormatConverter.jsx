@@ -6,8 +6,8 @@ export function cieToRgb(x, y, brightness) {
 
   var z = 1.0 - x - y;
   var Y = (brightness / 254).toFixed(2);
-  var X = Y / y * x;
-  var Z = Y / y * z;
+  var X = (Y / y) * x;
+  var Z = (Y / y) * z;
 
   //Convert to RGB using Wide RGB D65 conversion
   var red = X * 1.656492 - Y * 0.354851 - Z * 0.255038;
@@ -54,7 +54,15 @@ export function cieToRgb(x, y, brightness) {
 
   if (isNaN(blue)) blue = 0;
 
-  return "rgba(" + Math.floor(red) + "," +  Math.floor(green) + "," + Math.floor(blue) + ",1)";
+  return (
+    "rgba(" +
+    Math.floor(red) +
+    "," +
+    Math.floor(green) +
+    "," +
+    Math.floor(blue) +
+    ",1)"
+  );
 }
 
 export function colorTemperatureToRgb(mireds) {
@@ -79,7 +87,15 @@ export function colorTemperatureToRgb(mireds) {
   green = green > 255 ? 255 : green;
   blue = blue > 255 ? 255 : blue;
 
-  return "rgba(" + Math.floor(red) + "," +  Math.floor(green) + "," + Math.floor(blue) + ",1)";
+  return (
+    "rgba(" +
+    Math.floor(red) +
+    "," +
+    Math.floor(green) +
+    "," +
+    Math.floor(blue) +
+    ",1)"
+  );
 }
 
 export function rgbToCie(red, green, blue) {

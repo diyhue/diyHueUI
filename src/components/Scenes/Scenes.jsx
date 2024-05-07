@@ -1,10 +1,10 @@
 import axios from "axios";
+
 import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
-
 import nightsky from "../../static/images/nightsky.jpg";
-
 import Wizard from "../Wizard/Wizard";
-import "./scenes.scss"
+
+import "./scenes.scss";
 
 const Scenes = ({
   HOST_IP,
@@ -39,7 +39,11 @@ const Scenes = ({
   };
 
   return (
-    <Wizard isOpen={sceneModal} closeWizard={closeModal} headline={"Scene Picker"}>
+    <Wizard
+      isOpen={sceneModal}
+      closeWizard={closeModal}
+      headline={"Scene Picker"}
+    >
       {Object.entries(scenes)
         .filter((scene) => scene[1].group === groupId)
         .map(([id, scene]) => (

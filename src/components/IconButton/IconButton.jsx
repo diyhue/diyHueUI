@@ -1,5 +1,6 @@
+import * as Icons from "react-icons/md";
+
 import "./iconButton.scss";
-import * as Icons from 'react-icons/md';
 
 const IconButton = ({ iconName, title, color, onClick }) => {
   const Icon = Icons[iconName];

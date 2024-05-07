@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
+
 import axios from "axios";
+import { FaBars } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { toast } from 'react-hot-toast';
-import { Tooltip } from '@mui/material';
-import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import { toast } from "react-hot-toast";
+import { Tooltip } from "@mui/material";
+
 import GenericButton from "../components/GenericButton/GenericButton";
+import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+
 
 import "./headerSection.scss";
 
@@ -65,12 +68,13 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const handleToggleChange = (state) => {
     const newState = { on: state };
     console.log("Apply state " + JSON.stringify(newState));
-    axios.put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState)
-      .then(response => {
+    axios
+      .put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState)
+      .then((response) => {
         // Only update the state if the request was successful
         setGroup0State(state);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error updating state: ", error);
       });
   };
@@ -104,43 +108,37 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           toast.error(`Error occurred: ${error.message}`);
         });
     }
-  }
+  };
 
   const getValueState = (state) => {
     if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
       return "Update available";
-    }
-    else if (state === "noupdates" || state === "unknown") {
+    } else if (state === "noupdates" || state === "unknown") {
       return "No Update";
+    } else if (state === "installing") {
+      return "installing...";
     }
-    else if (state === "installing") {
-      return "installing..."
-    }
-  }
+  };
 
   const getClassState = (state) => {
     if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
       return "updatebtn update";
-    }
-    else if (state === "noupdates" || state === "unknown") {
+    } else if (state === "noupdates" || state === "unknown") {
       return "updatebtn check";
+    } else if (state === "installing") {
+      return "updatebtn install";
     }
-    else if (state === "installing") {
-      return "updatebtn install"
-    }
-  }
+  };
 
   const getTitleState = (state) => {
     if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
       return "Install update";
-    }
-    else if (state === "noupdates" || state === "unknown") {
+    } else if (state === "noupdates" || state === "unknown") {
       return "Check for update";
+    } else if (state === "installing") {
+      return "Update is installing";
     }
-    else if (state === "installing") {
-      return "Update is installing"
-    }
-  }
+  };
 
   return (
     <div className="topbarRight">
@@ -155,7 +153,10 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       </motion.div>
 
       <div className="switchContainer">
-        <Tooltip title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>} arrow >
+        <Tooltip
+          title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>}
+          arrow
+        >
           <div>
             <GenericButton
               value={getValueState(swstate)}

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import User from "../components/User/User";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
 import CardGrid from "../components/CardGrid/CardGrid";
+import User from "../components/User/User";
 
 const Config = ({ HOST_IP, API_KEY }) => {
   const [whitelist, setWhitelist] = useState({});
@@ -33,19 +35,19 @@ const Config = ({ HOST_IP, API_KEY }) => {
   return (
     <div className="content">
       <div className="inner">
-          <CardGrid>
-            {Object.entries(whitelist).map(([id, user]) => (
-              <User
-                key={id}
-                HOST_IP={HOST_IP}
-                api_key={API_KEY}
-                id={id}
-                user={user}
-              />
-            ))}
-          </CardGrid>
-        </div>
+        <CardGrid>
+          {Object.entries(whitelist).map(([id, user]) => (
+            <User
+              key={id}
+              HOST_IP={HOST_IP}
+              api_key={API_KEY}
+              id={id}
+              user={user}
+            />
+          ))}
+        </CardGrid>
       </div>
+    </div>
   );
 };
 

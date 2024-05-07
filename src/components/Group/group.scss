@@ -1,10 +1,8 @@
-.cardGrid{
+.cardGrid {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 }
-
-
 
 .groupCard {
   flex-shrink: 0;
@@ -12,7 +10,11 @@
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   background: rgba(255, 255, 255, 0.09);
-  background: linear-gradient(45deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0.2) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
   border-radius: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
@@ -20,12 +22,10 @@
   /*border: 1px solid rgba(255, 255, 255, 0.05);*/
   overflow: hidden;
 
-  &.light{
+  &.light {
     width: 100%;
     border-radius: 14px;
   }
-
-  
 
   .row {
     display: flex;
@@ -48,16 +48,16 @@
       align-items: center;
     }
 
-    &.colorpicker{
+    &.colorpicker {
       align-items: center;
       justify-content: center;
 
-      section{
+      section {
         padding: 20px;
       }
     }
 
-    &.buttons{
+    &.buttons {
       width: 100%;
       background: rgba(0, 0, 0, 0.2);
       border-bottom-left-radius: 20px;
@@ -74,28 +74,26 @@
         font-size: 20px;
         padding: 5px;
         transition: color 0.1s ease;
-  
-        &.active{
+
+        &.active {
           color: rgba(4, 154, 255, 0.8);
         }
-  
-        &:hover{
+
+        &:hover {
           color: rgba(255, 255, 255, 0.9);
           cursor: pointer;
           transition: color 0.2s ease;
         }
-  
-        &.disabled{
+
+        &.disabled {
           color: rgba(255, 255, 255, 0.4);
           cursor: not-allowed;
           pointer-events: all !important;
         }
-      }      
+      }
     }
 
-    
-
-    .lights{
+    .lights {
       width: 100%;
       padding: 20px;
     }
@@ -127,7 +125,7 @@
       padding-top: 10px;
     }
 
-    .show{
+    .show {
       padding: 20px;
     }
 
@@ -138,7 +136,7 @@
       color: rgba(255, 255, 255, 0.6);
       transition: color 0.1s ease;
 
-      &:hover{
+      &:hover {
         color: rgba(255, 255, 255, 0.9);
         cursor: pointer;
         transition: color 0.2s ease;
@@ -154,62 +152,49 @@
       padding: 5px;
       transition: color 0.1s ease;
 
-      &.active{
+      &.active {
         color: rgba(4, 154, 255, 0.8);
       }
 
-      &:hover{
+      &:hover {
         color: rgba(255, 255, 255, 0.9);
         cursor: pointer;
         transition: color 0.2s ease;
       }
 
-      &.disabled{
+      &.disabled {
         color: rgba(255, 255, 255, 0.4);
         cursor: not-allowed;
         pointer-events: all !important;
       }
     }
-
-    
-    
-
-    
-
   }
 }
 
 @media screen and (max-width: 750px) {
-
-  .groupCard{
+  .groupCard {
     width: 100%;
   }
-
 }
 
-
-
 @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-  
-
   .groupCard {
     position: relative;
     background: rgba(255, 255, 255, 0.25);
   }
 
-  .groupCard:after{
-    content: '';
+  .groupCard:after {
+    content: "";
     background: url(../../static/images/background.jpg) no-repeat 50%;
     background-size: cover;
     filter: blur(30px);
     transform: scale(1.1);
     display: flex;
-    position: absolute; 
+    position: absolute;
     height: 100%;
     width: 100%;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     z-index: -1;
   }
-
 }

@@ -12,85 +12,75 @@
     width: 180px;
   }
 
-
   .sidebar {
     height: 100%;
     overflow-y: auto;
-  
+
     ul {
       li {
-        
         display: flex;
         flex-direction: column;
-        transition: all .15s ease-in-out;
+        transition: all 0.15s ease-in-out;
         display: flex;
-  
-        .menuEntry{
+
+        .menuEntry {
           display: flex;
           flex-direction: row;
           align-items: center;
           padding: 20px 7px;
           color: #eee;
           font-size: 18px;
-          transition: all .15s ease-in-out;
-  
-  
-          .submenuIcon{
+          transition: all 0.15s ease-in-out;
+
+          .submenuIcon {
             margin-left: auto;
             display: flex;
             align-items: center;
             justify-content: center;
           }
         }
-  
-        .submenu{
+
+        .submenu {
           margin-left: 30px;
         }
-  
-        svg{
+
+        svg {
           width: 30px;
           margin-right: 0px;
           flex-shrink: 0;
         }
-  
-        p{
+
+        p {
           flex-shrink: 0;
           margin-left: 10px;
         }
       }
-  
+
       a {
         text-decoration: none;
       }
-  
-      .menuEntry:hover{
+
+      .menuEntry:hover {
         transform: scale(1.1);
-        transition: all .15s ease-in-out;
+        transition: all 0.15s ease-in-out;
         padding: 20px 10px;
       }
-  
-      li.active{
-        background: rgba(255,255,255,.2);
+
+      li.active {
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 20px;
       }
-  
-      ul{
+
+      ul {
         margin-left: 0;
-        li{
-  
+        li {
         }
       }
-  
     }
   }
-
-
 }
 
-
-
 @media screen and (max-width: 750px) {
-
   .columnLeft {
     &.active {
       position: absolute;
@@ -101,14 +91,10 @@
       -webkit-backdrop-filter: blur(20px);
     }
   }
-
 }
 
-
 @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-
-  .columnLeft
-  {
+  .columnLeft {
     background: rgba(0, 0, 0, 0.5);
   }
 }

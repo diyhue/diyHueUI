@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
-import { cieToRgb, rgbToCie } from "../ColorFormatConverter/ColorFormatConverter";
-import iro from "@jaames/iro";
 import axios from "axios";
+import iro from "@jaames/iro";
+
+import { cieToRgb, rgbToCie, } from "../ColorFormatConverter/ColorFormatConverter";
 
 export default function KelvinPicker({
   HOST_IP,

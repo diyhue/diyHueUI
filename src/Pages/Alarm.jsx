@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-import GenericButton from "../components/GenericButton/GenericButton";
 
 const Alarm = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -58,30 +60,25 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">Motion notifications alarm</div>
-            <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-            <FlipSwitch 
-              value={enable} 
-              onChange={(e) => toggleEnable(e)} 
-              checked={enable} 
+          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+            <FlipSwitch
+              value={enable}
+              onChange={(e) => toggleEnable(e)}
+              checked={enable}
             />
-              <div className="form-control">
-                <label>e-mail</label>
-                <input
-                  type="text"
-                  placeholder="Notification email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="form-control">
-                <GenericButton 
-                  value="Save"
-                  color="blue"
-                  size=""
-                  type="submit"
-                />
-              </div>
-            </form>
+            <div className="form-control">
+              <label>e-mail</label>
+              <input
+                type="text"
+                placeholder="Notification email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <GenericButton value="Save" color="blue" size="" type="submit" />
+            </div>
+          </form>
         </PageContent>
       </GlassContainer>
     </div>

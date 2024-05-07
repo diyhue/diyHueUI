@@ -22,16 +22,15 @@
     &:hover {
       border: 2px solid #ddd;
       background-size: cover;
-      
     }
 
-    .dimmer{
+    .dimmer {
       display: flex;
       background: rgba(0, 0, 0, 0.5);
       padding: 10px;
       border-radius: 15px;
       flex: 0 0 auto;
-      
+
       .color {
         flex: 0 0 auto;
         width: 30px;
@@ -70,9 +69,5 @@
   }
 }
 
-
 @media screen and (max-width: 750px) {
-  
 }
-
-

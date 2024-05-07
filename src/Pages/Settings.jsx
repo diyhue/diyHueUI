@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
+import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-import GenericButton from "../components/GenericButton/GenericButton";
 
 const Settings = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -117,7 +119,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
     setEnable(e);
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
-        port: { enabled: e }
+        port: { enabled: e },
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
@@ -180,10 +182,10 @@ const Settings = ({ HOST_IP, API_KEY }) => {
           <p>The standard port is 80, always include port 80.</p>
           <p>To add ports separate the ports with "," ex: 80,81,82</p>
           <form className="add-form" onSubmit={(e) => onSubmit(e)}>
-            <FlipSwitch 
-              value={enable} 
-              onChange={(e) => toggleEnable(e)} 
-              checked={enable} 
+            <FlipSwitch
+              value={enable}
+              onChange={(e) => toggleEnable(e)}
+              checked={enable}
             />
             <div className="form-control">
               <label>Port</label>
@@ -206,75 +208,70 @@ const Settings = ({ HOST_IP, API_KEY }) => {
           <div className="headline">Search Config</div>
           <p>Set which protocol to find.</p>
           <form className="add-form" onSubmit={(e) => onSubmit_protocol(e)}>
-            <FlipSwitch 
-              value={yeelight} 
-              onChange={(e) => setYeelight(e)} 
-              checked={yeelight} 
+            <FlipSwitch
+              value={yeelight}
+              onChange={(e) => setYeelight(e)}
+              checked={yeelight}
               label="Yeelight"
             />
 
-            <FlipSwitch 
-              value={native_multi} 
-              onChange={(e) => setNative_multi(e)} 
-              checked={native_multi} 
+            <FlipSwitch
+              value={native_multi}
+              onChange={(e) => setNative_multi(e)}
+              checked={native_multi}
               label="Native_multi"
             />
 
-            <FlipSwitch 
-              value={tasmota} 
-              onChange={(e) => setTasmota(e)} 
-              checked={tasmota} 
+            <FlipSwitch
+              value={tasmota}
+              onChange={(e) => setTasmota(e)}
+              checked={tasmota}
               label="Tasmota"
             />
 
-            <FlipSwitch 
-              value={wled} 
-              onChange={(e) => setWled(e)} 
-              checked={wled} 
+            <FlipSwitch
+              value={wled}
+              onChange={(e) => setWled(e)}
+              checked={wled}
               label="Wled"
             />
 
-            <FlipSwitch 
-              value={shelly} 
-              onChange={(e) => setShelly(e)} 
-              checked={shelly} 
+            <FlipSwitch
+              value={shelly}
+              onChange={(e) => setShelly(e)}
+              checked={shelly}
               label="Shelly"
             />
 
-            <FlipSwitch 
-              value={esphome} 
-              onChange={(e) => setEsphome(e)} 
-              checked={esphome} 
+            <FlipSwitch
+              value={esphome}
+              onChange={(e) => setEsphome(e)}
+              checked={esphome}
               label="Esphome"
             />
 
-            <FlipSwitch 
-              value={hyperion} 
-              onChange={(e) => setHyperion(e)} 
-              checked={hyperion} 
+            <FlipSwitch
+              value={hyperion}
+              onChange={(e) => setHyperion(e)}
+              checked={hyperion}
               label="Hyperion"
             />
 
-            <FlipSwitch 
-              value={tpkasa} 
-              onChange={(e) => setTpkasa(e)} 
-              checked={tpkasa} 
+            <FlipSwitch
+              value={tpkasa}
+              onChange={(e) => setTpkasa(e)}
+              checked={tpkasa}
               label="Tpkasa"
             />
 
-            <FlipSwitch 
-              value={elgato} 
-              onChange={(e) => setElgato(e)} 
-              checked={elgato} 
+            <FlipSwitch
+              value={elgato}
+              onChange={(e) => setElgato(e)}
+              checked={elgato}
               label="Elgato"
             />
             <div className="form-control">
-            <GenericButton 
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-            />
+              <GenericButton value="Save" color="blue" size="" type="submit" />
             </div>
           </form>
         </PageContent>

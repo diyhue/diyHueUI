@@ -1,7 +1,5 @@
 import { confirmAlert } from "react-confirm-alert";
-
 import { MdSystemUpdate } from "react-icons/md";
-
 import { toast } from "react-hot-toast";
 
 import "react-confirm-alert/src/react-confirm-alert.css";

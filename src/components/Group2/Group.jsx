@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 
 import { FaChevronDown } from "react-icons/fa";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, LayoutGroup } from "framer-motion";
 
 import ButtonRow from "./ButtonRow";
-import ColorPickerSection from "./ColorPickerSection";
-import ColorTempPickerSection from "./ColorTempPickerSection";
 import GroupHeader from "./GroupHeader";
-import LightsSection from "./LightsSection";
+import Color from "./color";
 import Scenes from "../Scenes/Scenes";
 
 import "./group.scss";
@@ -61,15 +59,16 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         sceneModal={sceneModal}
         setSceneModal={setSceneModal}
       />
-      <GroupHeader
-        group={group}
-        lights={lights}
-        HOST_IP={HOST_IP}
-        api_key={api_key}
-        id={id}
-      />
 
       <LayoutGroup>
+        <GroupHeader
+          group={group}
+          lights={lights}
+          HOST_IP={HOST_IP}
+          api_key={api_key}
+          id={id}
+        />
+
         <ButtonRow
           defaultContainerView={defaultContainerView}
           showContainer={showContainer}
@@ -78,34 +77,14 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
           setSceneModal={setSceneModal}
         />
 
-        <motion.div className="row colorpicker">
-          <AnimatePresence initial={false} mode="wait">
-            <ColorPickerSection
-              showContainer={showContainer}
-              group={group}
-              lights={lights}
-              HOST_IP={HOST_IP}
-              api_key={api_key}
-            />
-            <ColorTempPickerSection
-              showContainer={showContainer}
-              group={group}
-              lights={lights}
-              HOST_IP={HOST_IP}
-              api_key={api_key}
-            />
-            <LightsSection
-              showContainer={showContainer}
-              group={group}
-              lights={lights}
-              HOST_IP={HOST_IP}
-              api_key={api_key}
-            />
-          </AnimatePresence>
-        </motion.div>
-      </LayoutGroup>
+        <Color
+          showContainer={showContainer}
+          group={group}
+          lights={lights}
+          HOST_IP={HOST_IP}
+          api_key={api_key}
+        />
 
-      <AnimatePresence>
         <div className="row bottom">
           <motion.div
             className="expandbtn"
@@ -129,7 +108,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
             <FaChevronDown />
           </motion.div>
         </div>
-      </AnimatePresence>
+      </LayoutGroup>
     </div>
   );
 };

@@ -10,7 +10,6 @@ import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
-
 import Wizard from "../components/Wizard/Wizard";
 
 import "react-confirm-alert/src/react-confirm-alert.css";

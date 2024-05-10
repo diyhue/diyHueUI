@@ -23,15 +23,15 @@ const ButtonRow = ({
   const nametonumber = (page) => {
     console.log("nametonumber: " + page)
     if (page === "colorPicker"){
-      console.log("return 0")
+      console.log("return 1")
       return 1
     }
     else if (page === "colorTempPicker"){
-      console.log("return 1")
+      console.log("return 2")
       return 2
     }
     else if (page === "lights"){
-      console.log("return 2")
+      console.log("return 3")
       return 3
     }
     else {

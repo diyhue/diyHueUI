@@ -8,13 +8,10 @@ import "./gradientIndicator.scss";
 const GradientBackground = ({ group, lights }) => {
   const getStyle = () => {
     if (group.state["any_on"]) {
-      let lightBg = "linear-gradient(45deg, ";
+      let lightBg = "linear-gradient(45deg, rgba(200,200,200,1) 0%,";
       let step = 100 / group["lights"].length;
       for (const [index, light] of group.lights.entries()) {
-        if (lights[light]["state"]["colormode"] === "xy") {
-          if (group["lights"].length === 1) {
-            lightBg = lightBg + "rgba(200,200,200,1) 0%,";
-          }
+        if (lights[light]["state"]["colormode"] === "xy" && lights[light]["state"]["on"]) {
           lightBg =
             lightBg +
             cieToRgb(
@@ -25,20 +22,14 @@ const GradientBackground = ({ group, lights }) => {
             " " +
             Math.floor(step * (index + 1)) +
             "%,";
-        } else if (lights[light]["state"]["colormode"] === "ct") {
-          if (group["lights"].length === 1) {
-            lightBg = lightBg + "rgba(200,200,200,1) 0%,";
-          }
+        } else if (lights[light]["state"]["colormode"] === "ct" && lights[light]["state"]["on"]) {
           lightBg =
             lightBg +
             colorTemperatureToRgb(lights[light]["state"]["ct"]) +
             " " +
             Math.floor(step * (index + 1)) +
             "%,";
-        } else {
-          if (group["lights"].length === 1) {
-            lightBg = lightBg + "rgba(200,200,200,1) 0%,";
-          }
+        } else if (lights[light]["state"]["on"]){
           lightBg =
             lightBg +
             "rgba(255,212,93,1) " +

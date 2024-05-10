@@ -17,10 +17,12 @@ const LightsSection = ({ showContainer, group, lights, HOST_IP, api_key }) => {
             variants={{
               open: {
                 opacity: 1,
+                scale: 1,
                 height: "auto",
               },
               collapsed: {
                 opacity: 0,
+                scale: 0.5,
                 height: 0,
               },
             }}

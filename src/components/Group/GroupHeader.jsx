@@ -63,7 +63,7 @@ const GroupHeader = ({ HOST_IP, api_key, id, group, lights }) => {
         <FlipSwitch
           value={group.state["any_on"]}
           onChange={(e) => handleToggleChange(e)}
-          defaultChecked={group.state["any_on"]}
+          checked={group.state["any_on"]}
         />
       </div>
       <div className="row background">

@@ -81,7 +81,7 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
           <div className="text">{device["name"]}</div>
           <FlipSwitch
             onChange={(e) => toggleDevice(e)}
-            defaultChecked={device["config"]["on"]}
+            checked={device["config"]["on"]}
           />
         </div>
         <div className="row2">

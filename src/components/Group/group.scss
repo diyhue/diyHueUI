@@ -53,7 +53,7 @@
       justify-content: center;
 
       section {
-        padding: 20px;
+        padding: 0 20px 20px 20px;
       }
     }
 
@@ -65,6 +65,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 20px;
 
       .btn {
         text-align: center;
@@ -95,7 +96,7 @@
 
     .lights {
       width: 100%;
-      padding: 20px;
+      //padding: 20px;
     }
 
     .text {

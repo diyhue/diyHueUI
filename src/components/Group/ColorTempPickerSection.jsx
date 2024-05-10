@@ -28,11 +28,12 @@ const ColorTempPickerSection = ({
               },
               collapsed: {
                 opacity: 0,
+                scale: 0.5,
                 height: 0,
               },
             }}
             transition={{
-              duration: 0.1,
+              duration: 0.2,
             }}
           >
             <ColorTempPicker

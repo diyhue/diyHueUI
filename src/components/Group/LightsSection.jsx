@@ -25,7 +25,7 @@ const LightsSection = ({ showContainer, group, lights, HOST_IP, api_key }) => {
               },
             }}
             transition={{
-              duration: 0.1,
+              duration: 0.2,
             }}
           >
             {group.lights.map((light) => (

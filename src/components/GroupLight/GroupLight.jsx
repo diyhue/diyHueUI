@@ -2,8 +2,11 @@ import axios from "axios";
 
 import { FaLightbulb } from "react-icons/fa";
 import { RiAlertLine } from "react-icons/ri";
+import { AnimatePresence } from "framer-motion";
 
 import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
+import FlipSwitch from "../FlipSwitch/FlipSwitch";
+import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
 
 const Light = ({ HOST_IP, api_key, id, light }) => {
   const switchLight = (newState) => {
@@ -23,7 +26,7 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
       } else if (light["state"]["colormode"] === "ct") {
         lightBg = colorTemperatureToRgb(light["state"]["ct"]);
       } else {
-        lightBg = "linear-gradient(90deg, rgba(255,212,93,1))";
+        lightBg = "rgba(255,212,93,1)";
       }
       return { background: lightBg };
     }
@@ -41,30 +44,21 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
             {light["state"]["reachable"] || <RiAlertLine title="Unrechable" />}
           </p>
         </div>
-        <div className="switchContainer">
-          <label className="switch">
-            <input
-              type="checkbox"
-              defaultChecked={light["state"]["on"]}
-              onChange={(e) => switchLight({ on: e.currentTarget.checked })}
-            />
-            <span className="slider"></span>
-          </label>
-        </div>
+        <FlipSwitch
+          value={light["state"]["on"]}
+          checked={light["state"]["on"]}
+          onChange={(e) => switchLight({ on: e })}
+        />
       </div>
       <div className="row">
-        <div className="sliderContainer">
-          <input
-            type="range"
-            min="1"
-            max="254"
-            defaultValue={light["state"]["bri"]}
-            className="slider"
-            onChange={(e) =>
-              switchLight({ bri: parseInt(e.currentTarget.value) })
-            }
-          />
-        </div>
+        <AnimatePresence initial={false}>
+          {light["state"]["on"] && (
+            <BrightnessSlider
+              defaultValue={light["state"]["bri"]}
+              onChange={(e) => switchLight({ bri: e })}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

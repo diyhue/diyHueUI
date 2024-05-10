@@ -1,6 +1,6 @@
 import "./flipswitch.scss";
 
-const FlipSwitch = ({ value, onChange, checked, defaultChecked, label }) => (
+const FlipSwitch = ({ value, onChange, checked, label }) => (
   <>
     <div className="flipSwitch">
       <p>{label}</p>
@@ -10,7 +10,6 @@ const FlipSwitch = ({ value, onChange, checked, defaultChecked, label }) => (
           value={value}
           onChange={(e) => onChange(e.target.checked)}
           checked={checked}
-          defaultChecked={defaultChecked}
         />
         <span className="slider"></span>
       </label>

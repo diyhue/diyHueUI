@@ -12,6 +12,7 @@ import "./group.scss";
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   const [showContainer, setShowContainer] = useState("closed");
+  const [direction, setdirection] = useState(1);
   const [sceneModal, setSceneModal] = useState(false);
   const [lightsCapabilities, setLightsCapabilities] = useState([]);
 
@@ -39,13 +40,17 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
     if (showContainer === "closed") {
       if (lightsCapabilities.includes("xy")) {
         setShowContainer("colorPicker");
+        setdirection(1);
       } else if (lightsCapabilities.includes("ct")) {
         setShowContainer("colorTempPicker");
+        setdirection(1);
       } else {
         setShowContainer("lights");
+        setdirection(1);
       }
     } else {
       setShowContainer("closed");
+      setdirection(1);
     }
   };
 
@@ -75,10 +80,12 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
           setShowContainer={setShowContainer}
           lightsCapabilities={lightsCapabilities}
           setSceneModal={setSceneModal}
+          setdirection={setdirection}
         />
 
         <Color
           showContainer={showContainer}
+          direction={direction}
           group={group}
           lights={lights}
           HOST_IP={HOST_IP}

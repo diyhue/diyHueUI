@@ -9,6 +9,7 @@ const ButtonRow = ({
   setShowContainer,
   lightsCapabilities,
   setSceneModal,
+  setdirection,
 }) => {
   const barIconVariants = {
     opened: {
@@ -17,6 +18,35 @@ const ButtonRow = ({
     closed: {
       opacity: 0,
     },
+  };
+
+  const nametonumber = (page) => {
+    console.log("nametonumber: " + page)
+    if (page === "colorPicker"){
+      console.log("return 0")
+      return 1
+    }
+    else if (page === "colorTempPicker"){
+      console.log("return 1")
+      return 2
+    }
+    else if (page === "lights"){
+      console.log("return 2")
+      return 3
+    }
+    else {
+      console.log("nametonumber error")
+    }
+  }
+
+  const paginate = (new_page) => {
+    if (nametonumber(new_page) < nametonumber(showContainer)) {
+      setShowContainer(new_page);
+      setdirection(-1);
+    } else if (nametonumber(new_page) > nametonumber(showContainer)) {
+      setShowContainer(new_page);
+      setdirection(1);
+    }
   };
 
   return (
@@ -40,7 +70,7 @@ const ButtonRow = ({
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FaPalette onClick={() => setShowContainer("colorPicker")} />
+              <FaPalette onClick={() => paginate("colorPicker")} />
             </motion.div>
           )}
 
@@ -51,7 +81,7 @@ const ButtonRow = ({
               whileTap={{ scale: 0.9 }}
             >
               <MdInvertColors
-                onClick={() => setShowContainer("colorTempPicker")}
+                onClick={() => paginate("colorTempPicker")}
               />
             </motion.div>
           )}
@@ -69,7 +99,7 @@ const ButtonRow = ({
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
           >
-            <FaLightbulb onClick={() => setShowContainer("lights")} />
+            <FaLightbulb onClick={() => paginate("lights")} />
           </motion.div>
         </motion.div>
       )}

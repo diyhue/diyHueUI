@@ -6,35 +6,61 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import ColorTempPicker from "../ColorTempPicker/ColorTempPicker";
 import Light from "../GroupLight/GroupLight";
 
-const color = ({
-    showContainer,
-    group,
-    lights,
-    HOST_IP,
-    api_key,
-}) => {
+const color = ({ showContainer, direction, group, lights, HOST_IP, api_key, }) => {
+
+    /*const variants = {
+        enter: {
+            x: "-100%",
+            opacity: 0,
+        },
+        center: {
+            zIndex: 1,
+            y: 0,
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            height: "auto",
+        },
+        exit: {
+            zIndex: 0,
+            x: "100%",
+            opacity: 0
+        }
+    };*/
+
+    const variants = {
+        enter: {
+            x: (direction > 0 ? "100%" : "-100%"),
+            opacity: 0,
+        },
+
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1,
+        },
+        exit: {
+            zIndex: 0,
+            x: (direction < 0 ? "-100%" : "100%"),
+            opacity: 0,
+        },
+
+    };
+
     return (
         <motion.div className="row colorpicker">
-            <AnimatePresence initial={false} mode="wait">
+            <AnimatePresence mode="wait" custom={direction}>
                 {showContainer !== "closed" && (
                     <motion.section
                         key={showContainer}
-                        initial="collapsed"
-                        animate="open"
-                        exit="collapsed"
-                        variants={{
-                            open: {
-                                opacity: 1,
-                                scale: 1,
-                                height: "auto",
-                            },
-                            collapsed: {
-                                opacity: 0,
-                                height: 0,
-                            },
-                        }}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        custom={direction}
+                        variants={variants}
                         transition={{
-                            duration: 0.3,
+                            x: { duration: 0.15 },
+                            opacity: { duration: 0.5 }
                         }}
                     >
                         {showContainer === "colorTempPicker" && (

@@ -30,7 +30,7 @@ const color = ({ showContainer, direction, group, lights, HOST_IP, api_key, }) =
 
     const variants = {
         enter: {
-            x: (direction > 0 ? "100%" : "-100%"),
+            x: (direction > 0 ? "200px" : "-200px"),
             opacity: 0,
         },
 
@@ -41,7 +41,7 @@ const color = ({ showContainer, direction, group, lights, HOST_IP, api_key, }) =
         },
         exit: {
             zIndex: 0,
-            x: (direction < 0 ? "-100%" : "100%"),
+            x: (direction < 0 ? "-200px" : "200px"),
             opacity: 0,
         },
 
@@ -60,7 +60,8 @@ const color = ({ showContainer, direction, group, lights, HOST_IP, api_key, }) =
                         variants={variants}
                         transition={{
                             x: { duration: 0.15 },
-                            opacity: { duration: 0.5 }
+                            opacity: { duration: 0.15 },
+                            ease: "easeInOut"
                         }}
                     >
                         {showContainer === "colorTempPicker" && (

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Testpage = React.lazy(() => import("./Pages/Groups2"));
+const Testpage = React.lazy(() => import("./Pages/Testpage"));
 
 const Groups = React.lazy(() => import("./Pages/Groups"));
 const Lights = React.lazy(() => import("./Pages/Lights"));

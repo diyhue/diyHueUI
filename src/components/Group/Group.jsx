@@ -61,15 +61,16 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         sceneModal={sceneModal}
         setSceneModal={setSceneModal}
       />
-      <GroupHeader
-        group={group}
-        lights={lights}
-        HOST_IP={HOST_IP}
-        api_key={api_key}
-        id={id}
-      />
 
       <LayoutGroup>
+        <GroupHeader
+          group={group}
+          lights={lights}
+          HOST_IP={HOST_IP}
+          api_key={api_key}
+          id={id}
+        />
+
         <ButtonRow
           defaultContainerView={defaultContainerView}
           showContainer={showContainer}
@@ -78,31 +79,27 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
           setSceneModal={setSceneModal}
         />
 
-        <motion.div className="row colorpicker">
-          <AnimatePresence initial={false} mode="wait">
-            <ColorPickerSection
-              showContainer={showContainer}
-              group={group}
-              lights={lights}
-              HOST_IP={HOST_IP}
-              api_key={api_key}
-            />
-            <ColorTempPickerSection
-              showContainer={showContainer}
-              group={group}
-              lights={lights}
-              HOST_IP={HOST_IP}
-              api_key={api_key}
-            />
-            <LightsSection
-              showContainer={showContainer}
-              group={group}
-              lights={lights}
-              HOST_IP={HOST_IP}
-              api_key={api_key}
-            />
-          </AnimatePresence>
-        </motion.div>
+        <ColorPickerSection
+          showContainer={showContainer}
+          group={group}
+          lights={lights}
+          HOST_IP={HOST_IP}
+          api_key={api_key}
+        />
+        <ColorTempPickerSection
+          showContainer={showContainer}
+          group={group}
+          lights={lights}
+          HOST_IP={HOST_IP}
+          api_key={api_key}
+        />
+        <LightsSection
+          showContainer={showContainer}
+          group={group}
+          lights={lights}
+          HOST_IP={HOST_IP}
+          api_key={api_key}
+        />
       </LayoutGroup>
 
       <AnimatePresence>

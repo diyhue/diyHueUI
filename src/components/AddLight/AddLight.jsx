@@ -65,8 +65,8 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
   ];
 
   return (
-    <form onSubmit={(e) => handleForm(e)} className="add-form">
-      <div className="form-control">
+    <form className="add-form">
+      <div className="form-control dropdown">
         <label>Protocol:</label>
         <Select
           options={protocols}
@@ -95,7 +95,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
               placeholder="Name used on diyhue"
             />
           </div>
-          <div className="form-control">
+          <div className="form-control dropdown">
             <label>Emulated light type:</label>
             <Select
               options={lightModelIds}
@@ -118,7 +118,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
               placeholder="0x1234"
             />
           </div>
-          <div className="form-control">
+          <div className="form-control dropdown">
             <label>Choose light mode:</label>
             <Select
               options={milightModes}
@@ -126,7 +126,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => handleChange("miModes", e.value)}
             />
           </div>
-          <div className="form-control">
+          <div className="form-control dropdown">
             <label>Choose light group:</label>
             <Select
               options={milightGroups}
@@ -183,7 +183,13 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         </>
       )}
       <div className="form-control">
-        <GenericButton value="Add Light" color="blue" size="" type="submit" />
+        <GenericButton 
+        value="Add Light" 
+        color="blue" 
+        size="" 
+        type="submit"
+        onClick={(e) => handleForm(e)}
+        />
       </div>
     </form>
   );

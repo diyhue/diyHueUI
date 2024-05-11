@@ -46,7 +46,7 @@ const IconColor = (items, item) => {
     if (items[i]["label"] === item.label) {
       return (
         <Icon
-          style={{ color: "hsl(" + (360 / items.length) * i + ", 100%, 50%)" }}
+          style={{ color: "hsl(" + (360 / items.length) * i + ", 50%, 50%)" }}
         />
       );
     }

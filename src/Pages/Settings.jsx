@@ -131,11 +131,10 @@ const Settings = ({ HOST_IP, API_KEY }) => {
       });
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
-        port: { enabled: enable, ports: port.match(/\d+/g).map(Number) },
+        port: { enabled: enable, ports: port.toString().match(/\d+/g).map(Number) },
       })
       .then((fetchedData) => {
         console.log(fetchedData.data);
@@ -148,8 +147,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
       });
   };
 
-  const onSubmit_protocol = (e) => {
-    e.preventDefault();
+  const onSubmit_protocol = () => {
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
         yeelight: { enabled: yeelight },
@@ -181,7 +179,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
           <p>If disabled the bridge wil only search on port 80.</p>
           <p>The standard port is 80, always include port 80.</p>
           <p>To add ports separate the ports with "," ex: 80,81,82</p>
-          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+          <form className="add-form">
             <FlipSwitch
               value={enable}
               onChange={(e) => toggleEnable(e)}
@@ -197,7 +195,13 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <input type="submit" value="Save" className="btn btn-block" />
+              <GenericButton
+              value="Save"
+              color="blue"
+              size=""
+              type="submit"
+              onClick={() => onSubmit()}
+              />
             </div>
           </form>
         </PageContent>
@@ -207,7 +211,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
         <PageContent>
           <div className="headline">Search Config</div>
           <p>Set which protocol to find.</p>
-          <form className="add-form" onSubmit={(e) => onSubmit_protocol(e)}>
+          <form className="add-form">
             <FlipSwitch
               value={yeelight}
               onChange={(e) => setYeelight(e)}
@@ -271,7 +275,13 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               label="Elgato"
             />
             <div className="form-control">
-              <GenericButton value="Save" color="blue" size="" type="submit" />
+              <GenericButton
+              value="Save"
+              color="blue"
+              size=""
+              type="submit"
+              onClick={() => onSubmit_protocol()}
+              />
             </div>
           </form>
         </PageContent>

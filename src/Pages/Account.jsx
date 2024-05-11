@@ -24,7 +24,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
       });
   }, [HOST_IP, API_KEY]);
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     if (pass !== pass1) {
       console.error("Password not the same");
       toast.error("Password not the same");
@@ -32,7 +32,6 @@ const Account = ({ HOST_IP, API_KEY }) => {
       console.error("Password can not be empty");
       toast.error("Password can not be empty");
     } else if (pass === pass1) {
-      e.preventDefault();
       axios
         .put(`${HOST_IP}/api/${API_KEY}/config`, {
           users: { [email]: { password: pass } },
@@ -53,7 +52,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">Change password for {email}</div>
-          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+          <form className="add-form">
             <div className="form-control">
               <label>New Password</label>
               <input
@@ -73,7 +72,13 @@ const Account = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <GenericButton value="Save" color="blue" size="" type="submit" />
+              <GenericButton
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => onSubmit()}
+              />
             </div>
           </form>
         </PageContent>

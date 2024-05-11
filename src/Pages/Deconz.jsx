@@ -32,8 +32,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
       });
   }, [HOST_IP, API_KEY]);
 
-  const pairDeconz = (e) => {
-    e.preventDefault();
+  const pairDeconz = () => {
     axios
       .post(
         `http://${deconzHost}:${deconzPort}/api`,
@@ -85,7 +84,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">Deconz Config</div>
-          <form className="add-form" onSubmit={(e) => pairDeconz(e)}>
+          <form className="add-form">
             <FlipSwitch
               value={enable}
               onChange={(e) => toggleEnable(e)}
@@ -128,6 +127,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
                 color="blue"
                 size=""
                 type="submit"
+                onClick={() => pairDeconz()}
               />
             </div>
           </form>

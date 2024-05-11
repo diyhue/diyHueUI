@@ -29,8 +29,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
       });
   }, [HOST_IP, API_KEY]);
 
-  const pairTradfri = (e) => {
-    e.preventDefault();
+  const pairTradfri = () => {
     axios
       .post(
         `${HOST_IP}/tradfri`,
@@ -61,7 +60,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">IKEA Tradfri Gateway</div>
-          <form className="add-form" onSubmit={(e) => pairTradfri(e)}>
+          <form className="add-form">
             <div className="form-control">
               <label>Tradfri Gateway IP</label>
               <input
@@ -112,6 +111,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
                 color="blue"
                 size=""
                 type="submit"
+                onClick={() => pairTradfri()}
               />
             </div>
           </form>

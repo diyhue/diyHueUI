@@ -39,8 +39,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       });
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
         alarm: { enabled: enable, email: email },
@@ -60,7 +59,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">Motion notifications alarm</div>
-          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+          <form className="add-form">
             <FlipSwitch
               value={enable}
               onChange={(e) => toggleEnable(e)}
@@ -76,7 +75,13 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <GenericButton value="Save" color="blue" size="" type="submit" />
+              <GenericButton
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={(e) => onSubmit(e)}
+              />
             </div>
           </form>
         </PageContent>

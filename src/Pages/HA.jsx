@@ -40,9 +40,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
       });
   }, [HOST_IP, API_KEY]);
 
-  const onSubmit = (e) => {
-    console.log("submit");
-    e.preventDefault();
+  const onSubmit = () => {
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
         homeassistant: {
@@ -69,7 +67,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">Home Assistant config</div>
-          <form className="add-form" onSubmit={(e) => onSubmit(e)}>
+          <form className="add-form">
             <FlipSwitch
               value={enable}
               onChange={(e) => setEnable(e)}
@@ -116,7 +114,13 @@ const HA = ({ HOST_IP, API_KEY }) => {
               label="Enable HTTPS"
             />
             <div className="form-control">
-              <GenericButton value="Save" color="blue" size="" type="submit" />
+              <GenericButton
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => onSubmit()}
+              />
             </div>
           </form>
         </PageContent>

@@ -26,8 +26,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
       });
   }, [HOST_IP, API_KEY]);
 
-  const pairBridge = (e) => {
-    e.preventDefault();
+  const pairBridge = () => {
     axios
       .post(`http://${bridgeIp}/api`, {
         devicetype: "diyhue#bridge",
@@ -68,7 +67,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
       <GlassContainer>
         <PageContent>
           <div className="headline">Pair original Hue Bridge</div>
-          <form className="add-form" onSubmit={(e) => pairBridge(e)}>
+          <form className="add-form">
             <div className="form-control">
               <label>Bridge Ip</label>
               <input
@@ -106,6 +105,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
                 color="blue"
                 size=""
                 type="submit"
+                onClick={() => pairBridge()}
               />
             </div>
           </form>

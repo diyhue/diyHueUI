@@ -28,8 +28,16 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
       ip: lightip,
       config: rest,
     };
-    axios.post(`${HOST_IP}/api/${API_KEY}/lights`, formattedData);
-    toast.success("Light added!");
+    axios
+      .post(`${HOST_IP}/api/${API_KEY}/lights`, formattedData)
+      .then(() => {
+        toast.success("Light added!");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
+      });
+    
   };
 
   const protocols = [
@@ -69,6 +77,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
       <div className="form-control dropdown">
         <label>Protocol:</label>
         <Select
+          defaultValue={protocols[0]}
           options={protocols}
           placeholder={lightData.protocol}
           onChange={(e) => handleChange("protocol", e.value)}
@@ -154,7 +163,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
           <label>Device ID:</label>
           <input
             type="text"
-            placeholder=""
+            placeholder="Device ID"
             value={lightData.domoticzID}
             onChange={(e) => handleChange("domoticzID", e.target.value)}
           />

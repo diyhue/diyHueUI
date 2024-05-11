@@ -10,6 +10,7 @@ const Scenes = ({
   HOST_IP,
   api_key,
   groupId,
+  group,
   scenes,
   sceneModal,
   setSceneModal,
@@ -42,7 +43,7 @@ const Scenes = ({
     <Wizard
       isOpen={sceneModal}
       closeWizard={closeModal}
-      headline={"Scene Picker"}
+      headline={"Scene Picker for " + group.name}
     >
       {Object.entries(scenes)
         .filter((scene) => scene[1].group === groupId)

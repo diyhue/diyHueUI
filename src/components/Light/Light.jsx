@@ -90,6 +90,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
         <div className="row2">
           <div className="form-control">
             <Select
+              defaultValue={{ value: light["modelid"], label: light["modelid"] }}
               options={options}
               placeholder={light["modelid"]}
               onChange={(e) => setModelId(e.value)}

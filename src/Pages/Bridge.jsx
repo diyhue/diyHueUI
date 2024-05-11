@@ -407,6 +407,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               options={options}
               onChange={(e) => setTimezone(e.value)}
               placeholder={timezone}
+              menuPortalTarget={document.body}
+              menuPosition={"fixed"}
             />
           </div>
           <FlipSwitch
@@ -539,7 +541,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
           <div className="form-control">
             <GenericButton
               value="Restart Python"
-              color="blue"
+              color="red"
               size=""
               type={advanceStatus()}
               onClick={() => Restart()}
@@ -548,7 +550,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
           <div className="form-control">
             <GenericButton
               value="Force Config Reset"
-              color="blue"
+              color="red"
               size=""
               type={advanceStatus()}
               onClick={() => restoreOptions()}

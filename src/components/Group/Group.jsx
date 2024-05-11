@@ -57,6 +57,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         HOST_IP={HOST_IP}
         api_key={api_key}
         groupId={id}
+        group={group}
         scenes={scenes}
         sceneModal={sceneModal}
         setSceneModal={setSceneModal}

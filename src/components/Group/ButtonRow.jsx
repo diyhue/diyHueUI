@@ -35,7 +35,7 @@ const ButtonRow = ({
           >
             {lightsCapabilities.includes("xy") && (
               <motion.div
-                className={"btn"}
+                className={`btn ${showContainer === "colorPicker" ? "active" : ""}`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -45,7 +45,7 @@ const ButtonRow = ({
 
             {lightsCapabilities.includes("ct") && (
               <motion.div
-                className={"btn"}
+                className={`btn ${showContainer === "colorTempPicker" ? "active" : ""}`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -64,7 +64,7 @@ const ButtonRow = ({
             </motion.div>
 
             <motion.div
-              className={"btn"}
+              className={`btn ${showContainer === "lights" ? "active" : ""}`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >

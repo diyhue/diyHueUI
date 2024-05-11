@@ -17,7 +17,6 @@ export default function Lights({ HOST_IP, API_KEY }) {
   const [lights, setLights] = useState({});
   const [lightsCatalog, setlightsCatalog] = useState({});
   const [modelIds, setModelIds] = useState([]);
-  const [lightForm, setLightForm] = useState(false);
 
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
 
@@ -124,11 +123,6 @@ export default function Lights({ HOST_IP, API_KEY }) {
             </motion.div>
           </div>
         </div>
-
-        {/*{lightForm && <AddLight
-            HOST_IP={HOST_IP}
-            API_KEY={API_KEY}>
-          </AddLight>}*/}
 
         <CardGrid>
           {Object.entries(lights).map(([id, light]) => (

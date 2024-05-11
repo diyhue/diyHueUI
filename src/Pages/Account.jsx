@@ -11,6 +11,8 @@ const Account = ({ HOST_IP, API_KEY }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [pass1, setPass1] = useState("");
+  const [strength, setStrength] = useState('');
+  const [strengthColor, setStrengthColor] = useState('black');
 
   useEffect(() => {
     axios
@@ -47,6 +49,47 @@ const Account = ({ HOST_IP, API_KEY }) => {
     }
   };
 
+  function evaluatePasswordStrength(password) {
+    let score = 0;
+
+    if (!password) return '';
+
+    // Check password length
+    if (password.length > 8) score += 1;
+    // Contains lowercase
+    if (/[a-z]/.test(password)) score += 1;
+    // Contains uppercase
+    if (/[A-Z]/.test(password)) score += 1;
+    // Contains numbers
+    if (/\d/.test(password)) score += 1;
+    // Contains special characters
+    if (/[^A-Za-z0-9]/.test(password)) score += 1;
+
+    switch (score) {
+      case 0:
+      case 1:
+      case 2:
+        setStrengthColor('red');
+        return 'Weak';
+      case 3:
+        setStrengthColor('orange');
+        return 'Medium';
+      case 4:
+      case 5:
+        setStrengthColor('green');
+        return 'Strong';
+      default:
+        return '';
+    }
+  }
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+
+    setPass(value);
+    setStrength(evaluatePasswordStrength(value));
+  };
+
   return (
     <div className="inner">
       <GlassContainer>
@@ -57,20 +100,43 @@ const Account = ({ HOST_IP, API_KEY }) => {
               <label>New Password</label>
               <input
                 type="password"
-                placeholder=""
+                placeholder="Enter Password"
                 value={pass}
-                onChange={(e) => setPass(e.target.value)}
+                onChange={(e) => handleChange(e)}
               />
             </div>
+            <small>
+                Password strength:{' '}
+                <span
+                  style={{
+                    fontWeight: 'bold',
+                    color: strengthColor,
+                  }}
+                >
+                  {strength}
+                </span>
+              </small>
             <div className="form-control">
               <label>Confirm Password</label>
               <input
                 type="password"
-                placeholder=""
+                placeholder="Repeat Password"
                 value={pass1}
                 onChange={(e) => setPass1(e.target.value)}
               />
             </div>
+            {pass !== pass1 && (
+            <small>
+                <span
+                  style={{
+                    fontWeight: 'bold',
+                    color: 'red',
+                  }}
+                >
+                  {"Passwords don't match"}
+                </span>
+              </small>
+              )}
             <div className="form-control">
               <GenericButton
                 value="Save"

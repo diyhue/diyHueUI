@@ -1,8 +1,9 @@
 import axios from "axios";
-import { confirmAlert } from "react-confirm-alert"; 
+import { confirmAlert } from "react-confirm-alert";
 import { FaMagic } from "react-icons/fa";
 import { TiBatteryLow, TiBatteryMid, TiBatteryHigh, TiBatteryFull, } from "react-icons/ti";
 import { toast } from "react-hot-toast";
+import { Tooltip } from "@mui/material";
 
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import IconButton from "../IconButton/IconButton";
@@ -92,9 +93,16 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
           </div>
         </div>
         <div className="row3">
-          <div className="battery">
-            {"battery" in device["config"] && batteryLevel()}
-          </div>
+          {"battery" in device["config"] &&
+            <Tooltip
+            title={<p style={{ fontSize: "18px" }}>{device["config"]["battery"] + "%"}</p>}
+              arrow
+            >
+              <div className="battery">
+                {batteryLevel()}
+              </div>
+            </Tooltip>
+          }
 
           <IconButton
             iconName="MdDeleteForever"

@@ -28,6 +28,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   const [WizardName, setWizardName] = useState("");
   const [WizardContent, setWizardContent] = useState({});
   const [AdvanceConfig, setAdvanceConfig] = useState(false);
+  const [UpdateTime, setUpdateTime] = useState("");
 
   const openWizard = () => {
     setWizardIsOpen(true);
@@ -43,7 +44,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         axios
           .get(`${HOST_IP}/api/${API_KEY}/info/timezones`)
           .then((fetchedData) => {
-            console.log(fetchedData.data);
+            //console.log(fetchedData.data);
             setTimezones(fetchedData.data);
           })
           .catch((error) => {
@@ -62,6 +63,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         setDiscovery(result.data["discovery"]);
         setRemoteApi(result.data["Remote API enabled"]);
         setTimezone(result.data["timezone"]);
+        setUpdateTime(result.data["swupdate2"]["autoinstall"]["updatetime"].replace("T", ""))
         setReadonlyConf(result.data);
       })
       .catch((error) => {
@@ -71,7 +73,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/info`)
       .then((result) => {
-        console.log(result.data);
+        //console.log(result.data);
         setDebugInfo(result.data);
       })
       .catch((error) => {
@@ -378,7 +380,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Software Version</label>
+            <label>Software Version (checks automatic at {UpdateTime})</label>
             <input
               type="number"
               pattern="[0-9]+"
@@ -393,7 +395,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </p>
           </div>
           <div className="form-control">
-            <label>API Version</label>
+            <label>API Version (checks automatic at {UpdateTime})</label>
             <input
               type="text"
               placeholder="apiversion"

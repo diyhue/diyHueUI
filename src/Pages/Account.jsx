@@ -94,8 +94,16 @@ const Account = ({ HOST_IP, API_KEY }) => {
     <div className="inner">
       <GlassContainer>
         <PageContent>
-          <div className="headline">Change password for {email}</div>
+          <div className="headline">Change password</div>
           <form className="add-form">
+            <div className="form-control">
+              <label>User Name</label>
+              <input
+                readOnly
+                type="text"
+                value={email}
+              />
+            </div>
             <div className="form-control">
               <label>New Password</label>
               <input
@@ -106,16 +114,16 @@ const Account = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <small>
-                Password strength:{' '}
-                <span
-                  style={{
-                    fontWeight: 'bold',
-                    color: strengthColor,
-                  }}
-                >
-                  {strength}
-                </span>
-              </small>
+              Password strength:{' '}
+              <span
+                style={{
+                  fontWeight: 'bold',
+                  color: strengthColor,
+                }}
+              >
+                {strength}
+              </span>
+            </small>
             <div className="form-control">
               <label>Confirm Password</label>
               <input
@@ -126,7 +134,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             {pass !== pass1 && (
-            <small>
+              <small>
                 <span
                   style={{
                     fontWeight: 'bold',
@@ -136,7 +144,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
                   {"Passwords don't match"}
                 </span>
               </small>
-              )}
+            )}
             <div className="form-control">
               <GenericButton
                 value="Save"

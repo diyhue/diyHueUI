@@ -1,10 +1,10 @@
 import "./flipswitch.scss";
 
-const FlipSwitch = ({ value, onChange, checked, label }) => (
+const FlipSwitch = ({ value, onChange, checked, label, position }) => (
   <>
     <div className="flipSwitch">
       <p>{label}</p>
-      <label className="flipSwitchLabel">
+      <label className={`flipSwitchLabel ${position}`}>
         <input
           type="checkbox"
           value={value}

@@ -184,6 +184,8 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               value={enable}
               onChange={(e) => toggleEnable(e)}
               checked={enable}
+              label="Enable"
+              position="right"
             />
             <div className="form-control">
               <label>Port</label>
@@ -217,6 +219,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setYeelight(e)}
               checked={yeelight}
               label="Yeelight"
+              position="right"
             />
 
             <FlipSwitch
@@ -224,6 +227,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setNative_multi(e)}
               checked={native_multi}
               label="Native_multi"
+              position="right"
             />
 
             <FlipSwitch
@@ -231,6 +235,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setTasmota(e)}
               checked={tasmota}
               label="Tasmota"
+              position="right"
             />
 
             <FlipSwitch
@@ -238,6 +243,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setWled(e)}
               checked={wled}
               label="Wled"
+              position="right"
             />
 
             <FlipSwitch
@@ -245,6 +251,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setShelly(e)}
               checked={shelly}
               label="Shelly"
+              position="right"
             />
 
             <FlipSwitch
@@ -252,6 +259,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setEsphome(e)}
               checked={esphome}
               label="Esphome"
+              position="right"
             />
 
             <FlipSwitch
@@ -259,6 +267,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setHyperion(e)}
               checked={hyperion}
               label="Hyperion"
+              position="right"
             />
 
             <FlipSwitch
@@ -266,6 +275,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setTpkasa(e)}
               checked={tpkasa}
               label="Tpkasa"
+              position="right"
             />
 
             <FlipSwitch
@@ -273,6 +283,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setElgato(e)}
               checked={elgato}
               label="Elgato"
+              position="right"
             />
             <div className="form-control">
               <GenericButton

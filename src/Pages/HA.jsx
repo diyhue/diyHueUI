@@ -72,6 +72,8 @@ const HA = ({ HOST_IP, API_KEY }) => {
               value={enable}
               onChange={(e) => setEnable(e)}
               checked={enable}
+              label="Enable"
+              position="right"
             />
             <div className="form-control">
               <label>Home Assistant IP</label>
@@ -105,6 +107,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setHomeAssistantIncludeByDefault(e)}
               checked={homeAssistantIncludeByDefault}
               label="Included by default"
+              position="right"
             />
 
             <FlipSwitch
@@ -112,6 +115,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
               onChange={(e) => setHomeAssistantUseHttps(e)}
               checked={homeAssistantUseHttps}
               label="Enable HTTPS"
+              position="right"
             />
             <div className="form-control">
               <GenericButton

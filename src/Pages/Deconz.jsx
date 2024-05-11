@@ -89,6 +89,8 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               value={enable}
               onChange={(e) => toggleEnable(e)}
               checked={enable}
+              label="Enable"
+              position="right"
             />
             <div className="form-control">
               <label>Deconz host</label>

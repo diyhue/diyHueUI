@@ -416,6 +416,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             onChange={(e) => setRemoteApi(e)}
             checked={remoteApi}
             label="Remote API"
+            position="right"
           />
 
           <FlipSwitch
@@ -423,6 +424,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             onChange={(e) => setDiscovery(e)}
             checked={discovery}
             label="Discovery"
+            position="right"
           />
           <div className="form-control">
             <GenericButton

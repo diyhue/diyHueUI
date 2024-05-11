@@ -68,6 +68,8 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               value={enable}
               onChange={(e) => setEnable(e)}
               checked={enable}
+              label="Enable"
+              position="right"
             />
             <div className="form-control">
               <label>MQTT server</label>

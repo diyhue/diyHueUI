@@ -11,7 +11,6 @@ import IconButton from "../IconButton/IconButton";
 import GlassContainer from "../GlassContainer/GlassContainer";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
-import "./device.scss";
 
 const Device = ({ HOST_IP, api_key, id, device }) => {
   const deleteAlert = () => {
@@ -75,7 +74,7 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
 
   return (
     <GlassContainer>
-      <div className="device">
+      <div className="top">
         <div className="row1">
           <div className="icon">
             <FaMagic />
@@ -87,16 +86,16 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
           />
         </div>
         <div className="row2">
-          <div className="text">
-            ModelID: {device["modelid"]} <br />
-            Type: {device["type"]} <br />
-            Protocol: {device["protocol"]} <br />
+          <ul>
+            <li>ModelID: {device["modelid"]}</li>
+            <li>Type: {device["type"]}</li>
+            <li>Protocol: {device["protocol"]}</li>
+          </ul>
           </div>
-        </div>
-        <div className="row3">
+        <div className="row2">
           {"battery" in device["config"] &&
             <Tooltip
-            title={<p style={{ fontSize: "18px" }}>{device["config"]["battery"] + "%"}</p>}
+              title={<p style={{ fontSize: "18px" }}>{device["config"]["battery"] + "%"}</p>}
               arrow
             >
               <div className="battery">

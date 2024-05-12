@@ -10,7 +10,6 @@ import { ReactComponent as ScanIcon } from "../static/icons/scan.svg";
 import Light from "../components/Light/Light";
 import Wizard from "../components/Wizard/Wizard";
 import IconButton from "../components/IconButton/IconButton";
-import PageContent from "../components/PageContent/PageContent";
 
 const Lights = ({ HOST_IP, API_KEY }) => {
   const [lights, setLights] = useState({});
@@ -102,41 +101,39 @@ const Lights = ({ HOST_IP, API_KEY }) => {
   return (
     <div className="content">
       <div className="inner">
-        <PageContent>
-          <CardGrid>
-            <IconButton
-              iconName={BsPlusCircle}
-              title="Delete"
-              size="big"
-              color="btn"
-              label="Add light"
-              onClick={() => openWizard()}
-            />
+        <CardGrid>
+          <IconButton
+            iconName={BsPlusCircle}
+            title="Delete"
+            size="big"
+            color="btn"
+            label="Add light"
+            onClick={() => openWizard()}
+          />
 
-            <IconButton
-              iconName={ScanIcon}
-              title="Delete"
-              size="big"
-              color="btn"
-              label="Scan for lights"
-              onClick={() => searchForLights()}
-            />
-          </CardGrid>
+          <IconButton
+            iconName={ScanIcon}
+            title="Delete"
+            size="big"
+            color="btn"
+            label="Scan for lights"
+            onClick={() => searchForLights()}
+          />
+        </CardGrid>
 
-          <CardGrid>
-            {Object.entries(lights).map(([id, light]) => (
-              <Light
-                key={id}
-                HOST_IP={HOST_IP}
-                api_key={API_KEY}
-                id={id}
-                light={light}
-                modelIds={modelIds}
-                lightsCatalog={lightsCatalog}
-              />
-            ))}
-          </CardGrid>
-        </PageContent>
+        <CardGrid>
+          {Object.entries(lights).map(([id, light]) => (
+            <Light
+              key={id}
+              HOST_IP={HOST_IP}
+              api_key={API_KEY}
+              id={id}
+              light={light}
+              modelIds={modelIds}
+              lightsCatalog={lightsCatalog}
+            />
+          ))}
+        </CardGrid>
       </div>
 
       <Wizard

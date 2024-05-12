@@ -11,8 +11,6 @@ import LightUpdate from "../LightUpdate/LightUpdate";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-import "./light.scss";
-
 const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
   const deleteAlert = () => {
     confirmAlert({
@@ -76,7 +74,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
 
   return (
     <GlassContainer>
-      <div className="light">
+      <div className="top">
         <div className="row1">
           <div className="icon">
             <HueIcons
@@ -96,7 +94,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
           menuPortalTarget={document.body}
           menuPosition={"fixed"}
         />
-        <div className="row3">
+        <div className="row2">
           <ul>
             <li>Protocol: {light["protocol"]}</li>
             {[

@@ -1,14 +1,13 @@
 import axios from "axios";
 import { RiApps2Fill } from "react-icons/ri";
-import { confirmAlert } from "react-confirm-alert"; 
+import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 
 import IconButton from "../IconButton/IconButton";
 import GlassContainer from "../GlassContainer/GlassContainer";
 
-import "react-confirm-alert/src/react-confirm-alert.css"; 
-import "./user.scss";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const User = ({ HOST_IP, api_key, id, user }) => {
   const deleteAlert = () => {
@@ -54,7 +53,7 @@ const User = ({ HOST_IP, api_key, id, user }) => {
 
   return (
     <GlassContainer>
-      <div className="user">
+      <div className="top">
         <div className="row1">
           <div className="icon">
             <RiApps2Fill />
@@ -62,13 +61,11 @@ const User = ({ HOST_IP, api_key, id, user }) => {
           <div className="text">{user["name"]}</div>
         </div>
         <div className="row2">
-          <div className="text">
-            Last use date: {user["last use date"].replace("T", " ")} <br />
-            Create date: {user["create date"].replace("T", " ")} <br />
-          </div>
-        </div>
-        <div className="row3">
-        <IconButton
+          <ul>
+            <li>Last use date: {user["last use date"].replace("T", " ")}</li>
+            <li>Create date: {user["create date"].replace("T", " ")}</li>
+          </ul>
+          <IconButton
             iconName={MdDeleteForever}
             title="Delete"
             size="small"

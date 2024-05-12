@@ -1,6 +1,5 @@
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import Select from "react-select";
 import { toast } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 
@@ -8,6 +7,7 @@ import GlassContainer from "../GlassContainer/GlassContainer";
 import { HueIcons } from "../../static/icons/hass-hue-icons";
 import IconButton from "../IconButton/IconButton";
 import LightUpdate from "../LightUpdate/LightUpdate";
+import SelectMenu from "../SelectMenu/SelectMenu";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 
@@ -86,13 +86,12 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
 
           <div className="text">{light["name"]} </div>
         </div>
-        <Select
+        <SelectMenu
           defaultValue={{ value: light["modelid"], label: light["modelid"] }}
+          label=""
           options={options}
+          onChange={(e) => setModelId(e)}
           placeholder={light["modelid"]}
-          onChange={(e) => setModelId(e.value)}
-          menuPortalTarget={document.body}
-          menuPosition={"fixed"}
         />
         <div className="row2">
           <ul>
@@ -117,9 +116,9 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
             )}
           </ul>
           <LightUpdate
-          light={light}
-          lightsCatalog={lightsCatalog}
-        />
+            light={light}
+            lightsCatalog={lightsCatalog}
+          />
           <IconButton
             iconName={MdDeleteForever}
             title="Delete"

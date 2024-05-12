@@ -62,8 +62,8 @@ const User = ({ HOST_IP, api_key, id, user }) => {
         </div>
         <div className="row2">
           <div className="text">
-            Last use date: {user["last use date"]} <br />
-            Create date: {user["create date"]} <br />
+            Last use date: {user["last use date"].replace("T", " ")} <br />
+            Create date: {user["create date"].replace("T", " ")} <br />
           </div>
         </div>
         <div className="row3">

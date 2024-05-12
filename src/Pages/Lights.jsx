@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { BsPlusCircle } from "react-icons/bs";
-import { motion } from "framer-motion";
 
 import AddLight from "../components/AddLight/AddLight";
 import CardGrid from "../components/CardGrid/CardGrid";
 import { ReactComponent as ScanIcon } from "../static/icons/scan.svg";
 import Light from "../components/Light/Light";
 import Wizard from "../components/Wizard/Wizard";
+import IconButton from "../components/IconButton/IconButton";
+import PageContent from "../components/PageContent/PageContent";
 
-import "./lights.scss";
-
-export default function Lights({ HOST_IP, API_KEY }) {
+const Lights = ({ HOST_IP, API_KEY }) => {
   const [lights, setLights] = useState({});
   const [lightsCatalog, setlightsCatalog] = useState({});
   const [modelIds, setModelIds] = useState([]);
@@ -103,40 +102,41 @@ export default function Lights({ HOST_IP, API_KEY }) {
   return (
     <div className="content">
       <div className="inner">
-        <div className="actionBar">
-          <div className="btn">
-            <motion.div
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <BsPlusCircle onClick={openWizard} />
-              <p>Add light</p>
-            </motion.div>
-          </div>
-          <div className="btn">
-            <motion.div
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ScanIcon onClick={searchForLights} />
-              <p>Scan for lights</p>
-            </motion.div>
-          </div>
-        </div>
-
-        <CardGrid>
-          {Object.entries(lights).map(([id, light]) => (
-            <Light
-              key={id}
-              HOST_IP={HOST_IP}
-              api_key={API_KEY}
-              id={id}
-              light={light}
-              modelIds={modelIds}
-              lightsCatalog={lightsCatalog}
+        <PageContent>
+          <CardGrid>
+            <IconButton
+              iconName={BsPlusCircle}
+              title="Delete"
+              size="big"
+              color="btn"
+              label="Add light"
+              onClick={() => openWizard()}
             />
-          ))}
-        </CardGrid>
+
+            <IconButton
+              iconName={ScanIcon}
+              title="Delete"
+              size="big"
+              color="btn"
+              label="Scan for lights"
+              onClick={() => searchForLights()}
+            />
+          </CardGrid>
+
+          <CardGrid>
+            {Object.entries(lights).map(([id, light]) => (
+              <Light
+                key={id}
+                HOST_IP={HOST_IP}
+                api_key={API_KEY}
+                id={id}
+                light={light}
+                modelIds={modelIds}
+                lightsCatalog={lightsCatalog}
+              />
+            ))}
+          </CardGrid>
+        </PageContent>
       </div>
 
       <Wizard
@@ -149,3 +149,5 @@ export default function Lights({ HOST_IP, API_KEY }) {
     </div>
   );
 }
+
+export default Lights;

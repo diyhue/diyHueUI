@@ -2,6 +2,7 @@ import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
 import Select from "react-select";
 import { toast } from "react-hot-toast";
+import { MdDeleteForever } from "react-icons/md";
 
 import GlassContainer from "../GlassContainer/GlassContainer";
 import { HueIcons } from "../../static/icons/hass-hue-icons";
@@ -87,19 +88,14 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
 
           <div className="text">{light["name"]} </div>
         </div>
-        <div className="row2">
-          <div className="form-control">
-            <Select
-              defaultValue={{ value: light["modelid"], label: light["modelid"] }}
-              options={options}
-              placeholder={light["modelid"]}
-              onChange={(e) => setModelId(e.value)}
-              menuPortalTarget={document.body}
-              menuPosition={"fixed"}
-            />
-          </div>
-          <LightUpdate light={light} lightsCatalog={lightsCatalog} />
-        </div>
+        <Select
+          defaultValue={{ value: light["modelid"], label: light["modelid"] }}
+          options={options}
+          placeholder={light["modelid"]}
+          onChange={(e) => setModelId(e.value)}
+          menuPortalTarget={document.body}
+          menuPosition={"fixed"}
+        />
         <div className="row3">
           <ul>
             <li>Protocol: {light["protocol"]}</li>
@@ -122,9 +118,14 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
               <li>IP: {light["protocol_cfg"]["ip"]}</li>
             )}
           </ul>
+          <LightUpdate
+          light={light}
+          lightsCatalog={lightsCatalog}
+        />
           <IconButton
-            iconName="MdDeleteForever"
+            iconName={MdDeleteForever}
             title="Delete"
+            size="small"
             color="red"
             onClick={() => deleteAlert()}
           />

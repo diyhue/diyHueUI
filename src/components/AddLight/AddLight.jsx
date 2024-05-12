@@ -71,132 +71,130 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
     { value: "LST002", label: "Color Strip" },
   ];
 
-  return (
-    <form className="add-form">
-      <div className="form-control">
-        <SelectMenu
-          label="Protocol:"
-          defaultValue={protocols[0]}
-          options={protocols}
-          placeholder={lightData.protocol}
-          onChange={(e) => handleChange("protocol", e.value)}
-        />
-      </div>
-      <div className="form-control">
-        <GenericText
-          label="NLight IP Addressame"
-          type="text"
-          placeholder="192.168.x.x"
-          value={lightData.ip}
-          // On regular HTML input components use e.taget.value
-          onChange={(e) => handleChange("ip", e.target.value)}
-        />
-      </div>
-      {lightData.protocol !== "auto" && (
-        <>
-          <div className="form-control">
-            <GenericText
-              label="Name"
-              type="text"
-              placeholder="Name used on diyhue"
-              value={lightData.lightName}
-              onChange={(e) => handleChange("lightName", e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <SelectMenu
-              label="Emulated light type:"
-              options={lightModelIds}
-              placeholder={lightData.lightModelID}
-              onChange={(e) => handleChange("lightModelID", e.value)}
-            />
-          </div>
-        </>
-      )}
-      {(lightData.protocol === "milight" || lightData.protocol === "mibox") && (
-        <>
-          <div className="form-control">
-            <GenericText
-              label="Device ID"
-              type="text"
-              placeholder="0x1234"
-              value={lightData.miID}
-              onChange={(e) => handleChange("miID", e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <SelectMenu
-              label="Choose light mode:"
-              options={milightModes}
-              placeholder={lightData.miModes}
-              onChange={(e) => handleChange("miModes", e.value)}
-            />
-          </div>
-          <div className="form-control">
-            <SelectMenu
-              label="Choose light group:"
-              options={milightGroups}
-              placeholder={lightData.miGroups}
-              onChange={(e) => handleChange("miGroups", e.value)}
-            />
-          </div>
-        </>
-      )}
-      {lightData.protocol === "mibox" && (
+  return (<>
+    <div className="form-control">
+      <SelectMenu
+        label="Protocol:"
+        defaultValue={protocols[0]}
+        options={protocols}
+        placeholder={lightData.protocol}
+        onChange={(e) => handleChange("protocol", e)}
+      />
+    </div>
+    <div className="form-control">
+      <GenericText
+        label="Light IP Address"
+        type="text"
+        placeholder="192.168.x.x"
+        value={lightData.ip}
+        // On regular HTML input components use e.taget.value
+        onChange={(e) => handleChange("ip", e.target.value)}
+      />
+    </div>
+    {lightData.protocol !== "auto" && (
+      <>
         <div className="form-control">
           <GenericText
-            label="Port"
-            type="number"
-            placeholder="Mi Box port"
-            value={lightData.miBoxPort}
-            onChange={(e) => handleChange("miboxPort", e.target.value)}
+            label="Name"
+            type="text"
+            placeholder="Name used on diyhue"
+            value={lightData.lightName}
+            onChange={(e) => handleChange("lightName", e.target.value)}
           />
         </div>
-      )}
-      {lightData.protocol === "domoticz" && (
+        <div className="form-control">
+          <SelectMenu
+            label="Emulated light type:"
+            options={lightModelIds}
+            placeholder={lightData.lightModelID}
+            onChange={(e) => handleChange("lightModelID", e)}
+          />
+        </div>
+      </>
+    )}
+    {(lightData.protocol === "milight" || lightData.protocol === "mibox") && (
+      <>
         <div className="form-control">
           <GenericText
             label="Device ID"
             type="text"
-            placeholder="Device ID"
-            value={lightData.domoticzID}
-            onChange={(e) => handleChange("domoticzID", e.target.value)}
+            placeholder="0x1234"
+            value={lightData.miID}
+            onChange={(e) => handleChange("miID", e.target.value)}
           />
         </div>
-      )}
-      {lightData.protocol === "jeedom" && (
-        <>
-          <div className="form-control">
-            <GenericText
-              label="Light Api"
-              type="text"
-              placeholder="Light Api"
-              value={lightData.jeedomlightAPI}
-              onChange={(e) => handleChange("jeedomlightAPI", e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <GenericText
-              label="Light ID"
-              type="text"
-              placeholder="Light ID"
-              value={lightData.jeedomlightID}
-              onChange={(e) => handleChange("jeedomlightID", e.target.value)}
-            />
-          </div>
-        </>
-      )}
+        <div className="form-control">
+          <SelectMenu
+            label="Choose light mode:"
+            options={milightModes}
+            placeholder={lightData.miModes}
+            onChange={(e) => handleChange("miModes", e)}
+          />
+        </div>
+        <div className="form-control">
+          <SelectMenu
+            label="Choose light group:"
+            options={milightGroups}
+            placeholder={lightData.miGroups}
+            onChange={(e) => handleChange("miGroups", e)}
+          />
+        </div>
+      </>
+    )}
+    {lightData.protocol === "mibox" && (
       <div className="form-control">
-        <GenericButton
-          value="Add Light"
-          color="blue"
-          size=""
-          type="submit"
-          onClick={(e) => handleForm(e)}
+        <GenericText
+          label="Port"
+          type="number"
+          placeholder="Mi Box port"
+          value={lightData.miBoxPort}
+          onChange={(e) => handleChange("miboxPort", e.target.value)}
         />
       </div>
-    </form>
-  );
+    )}
+    {lightData.protocol === "domoticz" && (
+      <div className="form-control">
+        <GenericText
+          label="Device ID"
+          type="text"
+          placeholder="Device ID"
+          value={lightData.domoticzID}
+          onChange={(e) => handleChange("domoticzID", e.target.value)}
+        />
+      </div>
+    )}
+    {lightData.protocol === "jeedom" && (
+      <>
+        <div className="form-control">
+          <GenericText
+            label="Light Api"
+            type="text"
+            placeholder="Light Api"
+            value={lightData.jeedomlightAPI}
+            onChange={(e) => handleChange("jeedomlightAPI", e.target.value)}
+          />
+        </div>
+        <div className="form-control">
+          <GenericText
+            label="Light ID"
+            type="text"
+            placeholder="Light ID"
+            value={lightData.jeedomlightID}
+            onChange={(e) => handleChange("jeedomlightID", e.target.value)}
+          />
+        </div>
+      </>
+    )}
+    <div className="form-control">
+      <GenericButton
+        value="Add Light"
+        color="blue"
+        size=""
+        type="submit"
+        onClick={(e) => handleForm(e)}
+      />
+    </div>
+  </>);
 };
 
 export default AddLight;

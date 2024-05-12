@@ -408,25 +408,28 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <SelectMenu
               label="Timezone"
               options={options}
-              onChange={(e) => setTimezone(e.value)}
+              onChange={(e) => setTimezone(e)}
               placeholder={timezone}
             />
           </div>
-          <FlipSwitch
-            value={remoteApi}
-            onChange={(e) => setRemoteApi(e)}
-            checked={remoteApi}
-            label="Remote API"
-            position="right"
-          />
-
-          <FlipSwitch
-            value={discovery}
-            onChange={(e) => setDiscovery(e)}
-            checked={discovery}
-            label="Discovery"
-            position="right"
-          />
+          <div className="form-control">
+            <FlipSwitch
+              value={remoteApi}
+              onChange={(e) => setRemoteApi(e)}
+              checked={remoteApi}
+              label="Remote API"
+              position="right"
+            />
+          </div>
+          <div className="form-control">
+            <FlipSwitch
+              value={discovery}
+              onChange={(e) => setDiscovery(e)}
+              checked={discovery}
+              label="Discovery"
+              position="right"
+            />
+          </div>
           <div className="form-control">
             <GenericButton
               value="Save"

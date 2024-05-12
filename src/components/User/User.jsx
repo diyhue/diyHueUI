@@ -2,6 +2,7 @@ import axios from "axios";
 import { RiApps2Fill } from "react-icons/ri";
 import { confirmAlert } from "react-confirm-alert"; 
 import { toast } from "react-hot-toast";
+import { MdDeleteForever } from "react-icons/md";
 
 import IconButton from "../IconButton/IconButton";
 import GlassContainer from "../GlassContainer/GlassContainer";
@@ -67,9 +68,10 @@ const User = ({ HOST_IP, api_key, id, user }) => {
           </div>
         </div>
         <div className="row3">
-          <IconButton
-            iconName="MdDeleteForever"
+        <IconButton
+            iconName={MdDeleteForever}
             title="Delete"
+            size="small"
             color="red"
             onClick={() => deleteAlert()}
           />

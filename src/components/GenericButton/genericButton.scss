@@ -1,5 +1,7 @@
-input.btn-block {
-  background: rgba(52, 152, 219, 1);
+.btn-block {
+  position: relative;
+  margin: auto;
+  text-align: center;
   padding: 20px 0px;
   border-radius: 35px;
   color: #eee;
@@ -9,36 +11,63 @@ input.btn-block {
   border: none;
   cursor: pointer;
   width: 300px;
-
-  &:hover,
-  &:active {
-    border: none;
-    background: rgb(61, 177, 255);
-  }
+  transition: all 0.5s linear;
 
   &.small {
     font-size: 14px;
     padding: 10px;
-    width: auto;
+    width: fit-content;
+  }
+
+  &::before {
+    border-radius: 35px;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.5s linear;
+    opacity: 0;
+  }
+
+  &.blue {
+    background-image: linear-gradient(45deg, #3ad5d4, #35a6f0);
+    z-index: 1;
+
+    &::before {
+      background-image: linear-gradient(100deg, #35a6f0, #3ad5d4);
+    }
+    
+    &:hover::before {
+      opacity: 1;
+    }
   }
 
   &.red {
-    background: rgba(231, 76, 60, 1);
-    color: #eee;
+    background-image: linear-gradient(45deg, #ff86c6, #f03535);
+    z-index: 1;
 
-    &:hover,
-    &:active {
-      background: rgb(255, 86, 68);
+    &::before {
+      background-image: linear-gradient(100deg, #f03535, #ff86c6);
+    }
+    
+    &:hover::before {
+      opacity: 1;
     }
   }
 
   &.green {
-    background: rgba(46, 204, 113, 1);
-    color: #eee;
+    background-image: linear-gradient(45deg, #86ffd7, #35f035);
+    z-index: 1;
 
-    &:hover,
-    &:active {
-      background: rgb(53, 233, 128);
+    &::before {
+      background-image: linear-gradient(100deg, #35f035, #86ffd7);
+    }
+    
+    &:hover::before {
+      opacity: 1;
     }
   }
 
@@ -50,7 +79,6 @@ input.btn-block {
     align-items: center;
     padding: 8px 15px;
     border-radius: 10px;
-    color: #eee;
     font-weight: 0;
     border: none;
     transition: all 0.15s ease-in-out;

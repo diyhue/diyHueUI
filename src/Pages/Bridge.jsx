@@ -357,13 +357,13 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     return { value: timezone, label: timezone };
   });
 
-  const advanceStatus = () => {
+  /*const advanceStatus = () => {
     if (AdvanceConfig === true) {
       return "submit";
     } else {
       return "hidden";
     }
-  };
+  };*/
 
   return (
     <div className="inner">
@@ -542,24 +542,26 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               onClick={() => debugOptions()}
             />
           </div>
-          <div className="form-control">
-            <GenericButton
-              value="Restart Python"
-              color="red"
-              size=""
-              type={advanceStatus()}
-              onClick={() => Restart()}
-            />
-          </div>
-          <div className="form-control">
-            <GenericButton
-              value="Force Config Reset"
-              color="red"
-              size=""
-              type={advanceStatus()}
-              onClick={() => restoreOptions()}
-            />
-          </div>
+          {AdvanceConfig === true && (<>
+            <div className="form-control">
+              <GenericButton
+                value="Restart Python"
+                color="red"
+                size=""
+                type="submit"
+                onClick={() => Restart()}
+              />
+            </div>
+            <div className="form-control">
+              <GenericButton
+                value="Force Config Reset"
+                color="red"
+                size=""
+                type="submit"
+                onClick={() => restoreOptions()}
+              />
+            </div>
+          </>)}
           <Wizard
             isOpen={WizardIsOpen}
             closeWizard={closeWizard}

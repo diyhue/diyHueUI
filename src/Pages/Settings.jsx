@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -188,8 +189,8 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               position="right"
             />
             <div className="form-control">
-              <label>Port</label>
-              <input
+              <GenericText
+                label="Port"
                 type="text"
                 placeholder="Aditional ports"
                 value={port}
@@ -198,11 +199,11 @@ const Settings = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <GenericButton
-              value="Save"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => onSubmit()}
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => onSubmit()}
               />
             </div>
           </form>
@@ -287,11 +288,11 @@ const Settings = ({ HOST_IP, API_KEY }) => {
             />
             <div className="form-control">
               <GenericButton
-              value="Save"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => onSubmit_protocol()}
+                value="Save"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => onSubmit_protocol()}
               />
             </div>
           </form>

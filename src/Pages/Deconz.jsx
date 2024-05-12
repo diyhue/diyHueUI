@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -93,8 +94,8 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               position="right"
             />
             <div className="form-control">
-              <label>Deconz host</label>
-              <input
+              <GenericText
+                label="Deconz host"
                 type="text"
                 placeholder="Deconz host"
                 value={deconzHost}
@@ -102,8 +103,8 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Deconz port</label>
-              <input
+              <GenericText
+                label="Deconz port"
                 type="number"
                 placeholder="Deconz port"
                 value={deconzPort}
@@ -111,8 +112,8 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Deconz User</label>
-              <input
+              <GenericText
+                label="Deconz User"
                 type="text"
                 placeholder="Automatically populated"
                 readOnly

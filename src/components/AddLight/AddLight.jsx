@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 import axios from "axios";
-import Select from "react-select";
 import { toast } from "react-hot-toast";
 
 import GenericButton from "../GenericButton/GenericButton";
-
-import "./addLight.scss";
+import GenericText from "../GenericText/GenericText";
+import SelectMenu from "../SelectMenu/SelectMenu";
 
 const AddLight = ({ HOST_IP, API_KEY }) => {
   const [lightData, setLightData] = useState({
@@ -37,7 +36,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
-    
+
   };
 
   const protocols = [
@@ -74,9 +73,9 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
 
   return (
     <form className="add-form">
-      <div className="form-control dropdown">
-        <label>Protocol:</label>
-        <Select
+      <div className="form-control">
+        <SelectMenu
+          label="Protocol:"
           defaultValue={protocols[0]}
           options={protocols}
           placeholder={lightData.protocol}
@@ -84,8 +83,8 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         />
       </div>
       <div className="form-control">
-        <label>Light IP Address:</label>
-        <input
+        <GenericText
+          label="NLight IP Addressame"
           type="text"
           placeholder="192.168.x.x"
           value={lightData.ip}
@@ -96,22 +95,20 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
       {lightData.protocol !== "auto" && (
         <>
           <div className="form-control">
-            <label>Name:</label>
-            <input
+            <GenericText
+              label="Name"
               type="text"
+              placeholder="Name used on diyhue"
               value={lightData.lightName}
               onChange={(e) => handleChange("lightName", e.target.value)}
-              placeholder="Name used on diyhue"
             />
           </div>
-          <div className="form-control dropdown">
-            <label>Emulated light type:</label>
-            <Select
+          <div className="form-control">
+            <SelectMenu
+              label="Emulated light type:"
               options={lightModelIds}
               placeholder={lightData.lightModelID}
               onChange={(e) => handleChange("lightModelID", e.value)}
-              menuPortalTarget={document.body}
-              menuPosition={"fixed"}
             />
           </div>
         </>
@@ -119,38 +116,36 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
       {(lightData.protocol === "milight" || lightData.protocol === "mibox") && (
         <>
           <div className="form-control">
-            <label>Device ID:</label>
-            <input
+            <GenericText
+              label="Device ID"
               type="text"
+              placeholder="0x1234"
               value={lightData.miID}
               onChange={(e) => handleChange("miID", e.target.value)}
-              placeholder="0x1234"
             />
           </div>
-          <div className="form-control dropdown">
-            <label>Choose light mode:</label>
-            <Select
+          <div className="form-control">
+            <SelectMenu
+              label="Choose light mode:"
               options={milightModes}
               placeholder={lightData.miModes}
               onChange={(e) => handleChange("miModes", e.value)}
             />
           </div>
-          <div className="form-control dropdown">
-            <label>Choose light group:</label>
-            <Select
+          <div className="form-control">
+            <SelectMenu
+              label="Choose light group:"
               options={milightGroups}
               placeholder={lightData.miGroups}
               onChange={(e) => handleChange("miGroups", e.value)}
-              menuPortalTarget={document.body}
-              menuPosition={"fixed"}
             />
           </div>
         </>
       )}
       {lightData.protocol === "mibox" && (
         <div className="form-control">
-          <label>Port:</label>
-          <input
+          <GenericText
+            label="Port"
             type="number"
             placeholder="Mi Box port"
             value={lightData.miBoxPort}
@@ -160,8 +155,8 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
       )}
       {lightData.protocol === "domoticz" && (
         <div className="form-control">
-          <label>Device ID:</label>
-          <input
+          <GenericText
+            label="Device ID"
             type="text"
             placeholder="Device ID"
             value={lightData.domoticzID}
@@ -172,8 +167,8 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
       {lightData.protocol === "jeedom" && (
         <>
           <div className="form-control">
-            <label>Light Api:</label>
-            <input
+            <GenericText
+              label="Light Api"
               type="text"
               placeholder="Light Api"
               value={lightData.jeedomlightAPI}
@@ -181,8 +176,8 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Light ID:</label>
-            <input
+            <GenericText
+              label="Light ID"
               type="text"
               placeholder="Light ID"
               value={lightData.jeedomlightID}
@@ -192,12 +187,12 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         </>
       )}
       <div className="form-control">
-        <GenericButton 
-        value="Add Light" 
-        color="blue" 
-        size="" 
-        type="submit"
-        onClick={(e) => handleForm(e)}
+        <GenericButton
+          value="Add Light"
+          color="blue"
+          size=""
+          type="submit"
+          onClick={(e) => handleForm(e)}
         />
       </div>
     </form>

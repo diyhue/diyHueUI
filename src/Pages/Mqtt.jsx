@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -72,8 +73,8 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               position="right"
             />
             <div className="form-control">
-              <label>MQTT server</label>
-              <input
+              <GenericText
+                label="MQTT server"
                 type="text"
                 placeholder="MQTT server"
                 value={mqttServer}
@@ -81,8 +82,8 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>MQTT port</label>
-              <input
+              <GenericText
+                label="MQTT port"
                 type="number"
                 placeholder="MQTT port"
                 value={mqttPort}
@@ -90,8 +91,8 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>MQTT username</label>
-              <input
+              <GenericText
+                label="MQTT username"
                 type="text"
                 placeholder="MQTT username"
                 value={mqttUser}
@@ -99,8 +100,8 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>MQTT password</label>
-              <input
+              <GenericText
+                label="MQTT password"
                 type="password"
                 placeholder="MQTT password"
                 value={mqttPass}
@@ -108,8 +109,8 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Discovery Prefix</label>
-              <input
+              <GenericText
+                label="Discovery Prefix"
                 type="text"
                 placeholder="Discovery prefix"
                 value={discoveryPrefix}

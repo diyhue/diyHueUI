@@ -5,8 +5,6 @@ import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 import GenericButton from "../components/GenericButton/GenericButton";
 
-import "./linkButton.scss";
-
 export default function LinkButton({ HOST_IP, API_KEY }) {
   //console.log(API_KEY)
 

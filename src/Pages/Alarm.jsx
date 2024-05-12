@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -68,8 +69,8 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
               position="right"
             />
             <div className="form-control">
-              <label>e-mail</label>
-              <input
+              <GenericText
+                label="e-mail"
                 type="text"
                 placeholder="Notification email"
                 value={email}

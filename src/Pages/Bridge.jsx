@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Select from "react-select";
 import { confirmAlert } from "react-confirm-alert";
 import { saveAs } from "file-saver";
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
+import SelectMenu from "../components/SelectMenu/SelectMenu";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 import Wizard from "../components/Wizard/Wizard";
@@ -371,8 +372,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         <PageContent>
           <div className="headline">Bridge Config</div>
           <div className="form-control">
-            <label>Bridge Name</label>
-            <input
+            <GenericText
+              label="Bridge Name"
               type="text"
               placeholder="Bridge Name"
               value={bridgeName}
@@ -380,8 +381,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Software Version (checks automatic at {UpdateTime})</label>
-            <input
+            <GenericText
+              label={`Software Version (checks automatic at ${UpdateTime})`}
               type="number"
               pattern="[0-9]+"
               placeholder="swversion"
@@ -395,22 +396,20 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </p>
           </div>
           <div className="form-control">
-            <label>API Version (checks automatic at {UpdateTime})</label>
-            <input
+            <GenericText
+              label={`API Version (checks automatic at ${UpdateTime})`}
               type="text"
               placeholder="apiversion"
               value={apiVersion}
               onChange={(e) => setApiVersion(e.target.value)}
             />
           </div>
-          <div className="form-control dropdown">
-            <label>Timezone</label>
-            <Select
+          <div className="form-control">
+            <SelectMenu
+              label="Timezone"
               options={options}
               onChange={(e) => setTimezone(e.value)}
               placeholder={timezone}
-              menuPortalTarget={document.body}
-              menuPosition={"fixed"}
             />
           </div>
           <FlipSwitch
@@ -444,8 +443,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         <PageContent>
           <div className="headline">Readonly Config</div>
           <div className="form-control">
-            <label>BridgeID</label>
-            <input
+            <GenericText
+              label="BridgeID"
               readOnly
               type="text"
               placeholder="bridgeid"
@@ -453,8 +452,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Ip Address</label>
-            <input
+            <GenericText
+              label="Ip Address"
               readOnly
               type="text"
               placeholder="ip"
@@ -462,8 +461,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Gateway</label>
-            <input
+            <GenericText
+              label="Gateway"
               readOnly
               type="text"
               placeholder="gateway"
@@ -471,8 +470,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Mac</label>
-            <input
+            <GenericText
+              label="Mac"
               readOnly
               type="text"
               placeholder="mac"
@@ -480,8 +479,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             />
           </div>
           <div className="form-control">
-            <label>Local time</label>
-            <input
+            <GenericText
+              label="Local time"
               readOnly
               type="text"
               placeholder="time"

@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -62,8 +63,8 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
           <div className="headline">IKEA Tradfri Gateway</div>
           <form className="add-form">
             <div className="form-control">
-              <label>Tradfri Gateway IP</label>
-              <input
+              <GenericText
+                label="Tradfri Gateway IP"
                 type="text"
                 placeholder="192.168.x.x"
                 value={tradfriGwIp}
@@ -71,8 +72,8 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Identity</label>
-              <input
+              <GenericText
+                label="Identity"
                 type="text"
                 placeholder="Identity used for pairing"
                 value={tradfriIdentity}
@@ -81,8 +82,8 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
             </div>
             {tradfriPsk === "" && (
               <div className="form-control">
-                <label>Security Code</label>
-                <input
+                <GenericText
+                  label="Security Code"
                   type="password"
                   placeholder="Located on gateway label"
                   value={tradfriCode}
@@ -92,8 +93,8 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
             )}
             {tradfriPsk !== "" && (
               <div className="form-control">
-                <label>Paired Key</label>
-                <input
+                <GenericText
+                  label="Paired Key"
                   type="text"
                   readOnly
                   placeholder="Located on gateway label"

@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -69,8 +70,8 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
           <div className="headline">Pair original Hue Bridge</div>
           <form className="add-form">
             <div className="form-control">
-              <label>Bridge Ip</label>
-              <input
+              <GenericText
+                label="Bridge Ip"
                 type="text"
                 placeholder="192.168.x.x"
                 value={bridgeIp}
@@ -78,8 +79,8 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Hue User</label>
-              <input
+              <GenericText
+                label="Hue User"
                 type="text"
                 placeholder="Automatically populated"
                 readOnly
@@ -87,8 +88,8 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Hue Key</label>
-              <input
+              <GenericText
+                label="Hue Key"
                 type="text"
                 placeholder="Automatically populated"
                 readOnly

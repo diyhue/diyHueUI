@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -76,8 +77,8 @@ const HA = ({ HOST_IP, API_KEY }) => {
               position="right"
             />
             <div className="form-control">
-              <label>Home Assistant IP</label>
-              <input
+              <GenericText
+                label="Home Assistant IP"
                 type="text"
                 placeholder="IP or hostname"
                 value={homeAssistantIp}
@@ -85,8 +86,8 @@ const HA = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Home Assistant port</label>
-              <input
+              <GenericText
+                label="Home Assistant port"
                 type="number"
                 placeholder="8123"
                 value={homeAssistantPort}
@@ -94,8 +95,8 @@ const HA = ({ HOST_IP, API_KEY }) => {
               />
             </div>
             <div className="form-control">
-              <label>Home Assistant token</label>
-              <input
+              <GenericText
+                label="Home Assistant token"
                 type="password"
                 placeholder="Token"
                 value={homeAssistantToken}

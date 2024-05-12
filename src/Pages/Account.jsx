@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import GenericButton from "../components/GenericButton/GenericButton";
+import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 
@@ -97,16 +98,16 @@ const Account = ({ HOST_IP, API_KEY }) => {
           <div className="headline">Change password</div>
           <form className="add-form">
             <div className="form-control">
-              <label>User Name</label>
-              <input
+              <GenericText
+                label="User Name"
                 readOnly
                 type="text"
                 value={email}
               />
             </div>
             <div className="form-control">
-              <label>New Password</label>
-              <input
+              <GenericText
+                label="New Password"
                 type="password"
                 placeholder="Enter Password"
                 value={pass}
@@ -125,8 +126,8 @@ const Account = ({ HOST_IP, API_KEY }) => {
               </span>
             </small>
             <div className="form-control">
-              <label>Confirm Password</label>
-              <input
+              <GenericText
+                label="Confirm Password"
                 type="password"
                 placeholder="Repeat Password"
                 value={pass1}

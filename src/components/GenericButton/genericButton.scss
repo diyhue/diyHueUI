@@ -59,11 +59,12 @@
   }
 
   &.green {
-    background-image: linear-gradient(45deg, #86ffd7, #35f035);
+    color: black;
+    background-image: linear-gradient(45deg, #86ffcd, #2ecc71);
     z-index: 1;
 
     &::before {
-      background-image: linear-gradient(100deg, #35f035, #86ffd7);
+      background-image: linear-gradient(100deg, #2ecc71, #86ffcd);
     }
     
     &:hover::before {

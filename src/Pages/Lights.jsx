@@ -11,7 +11,7 @@ import Light from "../components/Light/Light";
 import Wizard from "../components/Wizard/Wizard";
 import IconButton from "../components/IconButton/IconButton";
 
-const Lights = ({ HOST_IP, API_KEY }) => {
+export default function Lights({ HOST_IP, API_KEY }) {
   const [lights, setLights] = useState({});
   const [lightsCatalog, setlightsCatalog] = useState({});
   const [modelIds, setModelIds] = useState([]);
@@ -146,5 +146,3 @@ const Lights = ({ HOST_IP, API_KEY }) => {
     </div>
   );
 }
-
-export default Lights;

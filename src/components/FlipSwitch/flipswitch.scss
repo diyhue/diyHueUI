@@ -1,6 +1,5 @@
 .flipSwitch {
   display: flex;
-  margin-right: 10px;
   align-items: center;
 
   p {
@@ -15,7 +14,7 @@
     height: 32px;
 
     &.right {
-      margin-right: 10px;
+      margin-right: 0px;
       margin-left: auto;
     }
 

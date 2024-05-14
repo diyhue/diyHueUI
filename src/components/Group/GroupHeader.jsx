@@ -60,11 +60,13 @@ const GroupHeader = ({ HOST_IP, api_key, id, group, lights }) => {
           <p className="name"> {group.name} </p>
           <p className="subtext">{statusLights()}</p>
         </div>
-        <FlipSwitch
-          value={group.state["any_on"]}
-          onChange={(e) => handleToggleChange(e)}
-          checked={group.state["any_on"]}
-        />
+        <div className="flipSwitch">
+          <FlipSwitch
+            value={group.state["any_on"]}
+            onChange={(e) => handleToggleChange(e)}
+            checked={group.state["any_on"]}
+          />
+        </div>
       </div>
       <div className="row background">
         <AnimatePresence initial={false}>

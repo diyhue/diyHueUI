@@ -76,7 +76,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
     <GlassContainer>
       <div className="top">
         <div className="row1">
-          <div className="icon">
+          <div className="hueicon">
             <HueIcons
               type={"light-" + light["config"]["archetype"]}
               color="#eeeeee"

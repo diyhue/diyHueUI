@@ -72,7 +72,6 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
   ];
 
   return (<>
-    <div className="form-control">
       <SelectMenu
         label="Protocol:"
         defaultValue={protocols[0]}
@@ -80,7 +79,6 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         placeholder={lightData.protocol}
         onChange={(e) => handleChange("protocol", e)}
       />
-    </div>
     <div className="form-control">
       <GenericText
         label="Light IP Address"

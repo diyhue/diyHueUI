@@ -2,6 +2,13 @@
   width: auto;
   padding: 10px;
 
+  label {
+    margin: 10px 0 10px 0px;
+    display: block;
+    font-size: 14px;
+    color: #eee;
+  }
+
   &.spacer {
     margin-bottom: 20px;
   }

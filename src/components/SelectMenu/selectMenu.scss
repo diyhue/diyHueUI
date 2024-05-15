@@ -2,13 +2,6 @@
   width: 100%;
 }
 
-label {
-  margin: 10px 0 10px 5px;
-  display: block;
-  font-size: 14px;
-  color: #eee;
-}
-
 .Dropdown-root.is-open {
   .Dropdown-control {
     border-bottom-right-radius: 0;
@@ -24,7 +17,6 @@ label {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   color: #333;
-  width: 300px;
 
   .Dropdown-option {
     color: #333;

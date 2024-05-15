@@ -104,7 +104,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
         <CardGrid>
           <IconButton
             iconName={BsPlusCircle}
-            title="Delete"
+            title="Add light"
             size="big"
             color="btn"
             label="Add light"
@@ -113,7 +113,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
 
           <IconButton
             iconName={ScanIcon}
-            title="Delete"
+            title="Scan for lights"
             size="big"
             color="btn"
             label="Scan for lights"

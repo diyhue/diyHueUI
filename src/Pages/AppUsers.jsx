@@ -33,7 +33,6 @@ const Config = ({ HOST_IP, API_KEY }) => {
   }, [HOST_IP, API_KEY]);
 
   return (
-    <div className="content">
       <div className="inner">
         <CardGrid>
           {Object.entries(whitelist).map(([id, user]) => (
@@ -47,7 +46,6 @@ const Config = ({ HOST_IP, API_KEY }) => {
           ))}
         </CardGrid>
       </div>
-    </div>
   );
 };
 

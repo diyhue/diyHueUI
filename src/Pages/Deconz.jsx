@@ -8,6 +8,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Deconz = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -82,60 +83,62 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Deconz Config</div>
-          <form className="add-form">
-            <FlipSwitch
-              value={enable}
-              onChange={(e) => toggleEnable(e)}
-              checked={enable}
-              label="Enable"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericText
-                label="Deconz host"
-                type="text"
-                placeholder="Deconz host"
-                value={deconzHost}
-                onChange={(e) => setDeconzHost(e.target.value)}
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Deconz Config</div>
+            <form className="add-form">
+              <FlipSwitch
+                value={enable}
+                onChange={(e) => toggleEnable(e)}
+                checked={enable}
+                label="Enable"
+                position="right"
               />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Deconz port"
-                type="number"
-                placeholder="Deconz port"
-                value={deconzPort}
-                onChange={(e) => setDeconzPort(parseInt(e.target.value))}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Deconz User"
-                type="text"
-                placeholder="Automatically populated"
-                readOnly
-                value={deconzUser}
-              />
-            </div>
-            <div className="form-control">
-              <GenericButton
-                value={
-                  typeof deconzUser === "string" && deconzUser.length > 0
-                    ? "Pair again"
-                    : "Pair"
-                }
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => pairDeconz()}
-              />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+              <div className="form-control">
+                <GenericText
+                  label="Deconz host"
+                  type="text"
+                  placeholder="Deconz host"
+                  value={deconzHost}
+                  onChange={(e) => setDeconzHost(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Deconz port"
+                  type="number"
+                  placeholder="Deconz port"
+                  value={deconzPort}
+                  onChange={(e) => setDeconzPort(parseInt(e.target.value))}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Deconz User"
+                  type="text"
+                  placeholder="Automatically populated"
+                  readOnly
+                  value={deconzUser}
+                />
+              </div>
+              <div className="form-control">
+                <GenericButton
+                  value={
+                    typeof deconzUser === "string" && deconzUser.length > 0
+                      ? "Pair again"
+                      : "Pair"
+                  }
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => pairDeconz()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

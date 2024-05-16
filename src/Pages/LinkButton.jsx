@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 import GenericButton from "../components/GenericButton/GenericButton";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 export default function LinkButton({ HOST_IP, API_KEY }) {
   //console.log(API_KEY)
@@ -25,20 +26,22 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Link Button</div>
-          <p>Push this button to accept the pairing of the requested app</p>
-          <div className="form-control">
-            <GenericButton
-              value="Link App"
-              color="blue"
-              size=""
-              onClick={() => pushLinkButton()}
-            />
-          </div>
-        </PageContent>
-      </GlassContainer>
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Link Button</div>
+            <p>Push this button to accept the pairing of the requested app</p>
+            <div className="form-control">
+              <GenericButton
+                value="Link App"
+                color="blue"
+                size=""
+                onClick={() => pushLinkButton()}
+              />
+            </div>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 }

@@ -12,7 +12,7 @@ const BrightnessSlider = ({ defaultValue, onChange }) => {
       variants={{
         open: {
           opacity: 1,
-          height: "auto",
+          height: 25,
         },
         collapsed: {
           opacity: 0,

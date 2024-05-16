@@ -8,6 +8,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const HA = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -65,71 +66,73 @@ const HA = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Home Assistant config</div>
-          <form className="add-form">
-            <FlipSwitch
-              value={enable}
-              onChange={(e) => setEnable(e)}
-              checked={enable}
-              label="Enable"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericText
-                label="Home Assistant IP"
-                type="text"
-                placeholder="IP or hostname"
-                value={homeAssistantIp}
-                onChange={(e) => setHomeAssistantIp(e.target.value)}
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Home Assistant config</div>
+            <form className="add-form">
+              <FlipSwitch
+                value={enable}
+                onChange={(e) => setEnable(e)}
+                checked={enable}
+                label="Enable"
+                position="right"
               />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Home Assistant port"
-                type="number"
-                placeholder="8123"
-                value={homeAssistantPort}
-                onChange={(e) => setHomeAssistantPort(e.target.value)}
+              <div className="form-control">
+                <GenericText
+                  label="Home Assistant IP"
+                  type="text"
+                  placeholder="IP or hostname"
+                  value={homeAssistantIp}
+                  onChange={(e) => setHomeAssistantIp(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Home Assistant port"
+                  type="number"
+                  placeholder="8123"
+                  value={homeAssistantPort}
+                  onChange={(e) => setHomeAssistantPort(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Home Assistant token"
+                  type="password"
+                  placeholder="Token"
+                  value={homeAssistantToken}
+                  onChange={(e) => setHomeAssistantToken(e.target.value)}
+                />
+              </div>
+              <FlipSwitch
+                value={homeAssistantIncludeByDefault}
+                onChange={(e) => setHomeAssistantIncludeByDefault(e)}
+                checked={homeAssistantIncludeByDefault}
+                label="Included by default"
+                position="right"
               />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Home Assistant token"
-                type="password"
-                placeholder="Token"
-                value={homeAssistantToken}
-                onChange={(e) => setHomeAssistantToken(e.target.value)}
-              />
-            </div>
-            <FlipSwitch
-              value={homeAssistantIncludeByDefault}
-              onChange={(e) => setHomeAssistantIncludeByDefault(e)}
-              checked={homeAssistantIncludeByDefault}
-              label="Included by default"
-              position="right"
-            />
 
-            <FlipSwitch
-              value={homeAssistantUseHttps}
-              onChange={(e) => setHomeAssistantUseHttps(e)}
-              checked={homeAssistantUseHttps}
-              label="Enable HTTPS"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => onSubmit()}
+              <FlipSwitch
+                value={homeAssistantUseHttps}
+                onChange={(e) => setHomeAssistantUseHttps(e)}
+                checked={homeAssistantUseHttps}
+                label="Enable HTTPS"
+                position="right"
               />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+              <div className="form-control">
+                <GenericButton
+                  value="Save"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => onSubmit()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

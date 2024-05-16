@@ -1,5 +1,5 @@
 import "./cardGrid.scss";
 
-const CardGrid = ({ children }) => <div className="cardGrid">{children}</div>;
+const CardGrid = ({ children, options }) => <div className={`cardGrid ${options}`}>{children}</div>;
 
 export default CardGrid;

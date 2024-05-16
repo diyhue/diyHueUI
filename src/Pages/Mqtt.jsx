@@ -8,6 +8,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Mqtt = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -61,74 +62,76 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">ZigBee2MQTT config</div>
-          <form className="add-form">
-            <FlipSwitch
-              value={enable}
-              onChange={(e) => setEnable(e)}
-              checked={enable}
-              label="Enable"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericText
-                label="MQTT server"
-                type="text"
-                placeholder="MQTT server"
-                value={mqttServer}
-                onChange={(e) => setMqttServer(e.target.value)}
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">ZigBee2MQTT config</div>
+            <form className="add-form">
+              <FlipSwitch
+                value={enable}
+                onChange={(e) => setEnable(e)}
+                checked={enable}
+                label="Enable"
+                position="right"
               />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="MQTT port"
-                type="number"
-                placeholder="MQTT port"
-                value={mqttPort}
-                onChange={(e) => setMqttPort(parseInt(e.target.value))}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="MQTT username"
-                type="text"
-                placeholder="MQTT username"
-                value={mqttUser}
-                onChange={(e) => setMqttUser(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="MQTT password"
-                type="password"
-                placeholder="MQTT password"
-                value={mqttPass}
-                onChange={(e) => setMqttPass(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Discovery Prefix"
-                type="text"
-                placeholder="Discovery prefix"
-                value={discoveryPrefix}
-                onChange={(e) => setDiscoveryPrefix(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => onSubmit()}
-              />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+              <div className="form-control">
+                <GenericText
+                  label="MQTT server"
+                  type="text"
+                  placeholder="MQTT server"
+                  value={mqttServer}
+                  onChange={(e) => setMqttServer(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="MQTT port"
+                  type="number"
+                  placeholder="MQTT port"
+                  value={mqttPort}
+                  onChange={(e) => setMqttPort(parseInt(e.target.value))}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="MQTT username"
+                  type="text"
+                  placeholder="MQTT username"
+                  value={mqttUser}
+                  onChange={(e) => setMqttUser(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="MQTT password"
+                  type="password"
+                  placeholder="MQTT password"
+                  value={mqttPass}
+                  onChange={(e) => setMqttPass(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Discovery Prefix"
+                  type="text"
+                  placeholder="Discovery prefix"
+                  value={discoveryPrefix}
+                  onChange={(e) => setDiscoveryPrefix(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericButton
+                  value="Save"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => onSubmit()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

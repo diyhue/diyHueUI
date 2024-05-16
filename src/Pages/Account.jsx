@@ -7,6 +7,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Account = ({ HOST_IP, API_KEY }) => {
   const [email, setEmail] = useState("");
@@ -93,71 +94,73 @@ const Account = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Change password</div>
-          <form className="add-form">
-            <div className="form-control">
-              <GenericText
-                label="User Name"
-                readOnly
-                type="text"
-                value={email}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="New Password"
-                type="password"
-                placeholder="Enter Password"
-                value={pass}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <small>
-              Password strength:{' '}
-              <span
-                style={{
-                  fontWeight: 'bold',
-                  color: strengthColor,
-                }}
-              >
-                {strength}
-              </span>
-            </small>
-            <div className="form-control">
-              <GenericText
-                label="Confirm Password"
-                type="password"
-                placeholder="Repeat Password"
-                value={pass1}
-                onChange={(e) => setPass1(e.target.value)}
-              />
-            </div>
-            {pass !== pass1 && (
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Change password</div>
+            <form className="add-form">
+              <div className="form-control">
+                <GenericText
+                  label="User Name"
+                  readOnly
+                  type="text"
+                  value={email}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="New Password"
+                  type="password"
+                  placeholder="Enter Password"
+                  value={pass}
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
               <small>
+                Password strength:{' '}
                 <span
                   style={{
                     fontWeight: 'bold',
-                    color: 'red',
+                    color: strengthColor,
                   }}
                 >
-                  {"Passwords don't match"}
+                  {strength}
                 </span>
               </small>
-            )}
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => onSubmit()}
-              />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+              <div className="form-control">
+                <GenericText
+                  label="Confirm Password"
+                  type="password"
+                  placeholder="Repeat Password"
+                  value={pass1}
+                  onChange={(e) => setPass1(e.target.value)}
+                />
+              </div>
+              {pass !== pass1 && (
+                <small>
+                  <span
+                    style={{
+                      fontWeight: 'bold',
+                      color: 'red',
+                    }}
+                  >
+                    {"Passwords don't match"}
+                  </span>
+                </small>
+              )}
+              <div className="form-control">
+                <GenericButton
+                  value="Save"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => onSubmit()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

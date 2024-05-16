@@ -8,6 +8,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Settings = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -173,131 +174,133 @@ const Settings = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer options="spacer">
-        <PageContent>
-          <div className="headline">Add extra port for searching</div>
-          <p>This wil make the bridge search on other ports.</p>
-          <p>If disabled the bridge wil only search on port 80.</p>
-          <p>The standard port is 80, always include port 80.</p>
-          <p>To add ports separate the ports with "," ex: 80,81,82</p>
-          <form className="add-form">
-            <FlipSwitch
-              value={enable}
-              onChange={(e) => toggleEnable(e)}
-              checked={enable}
-              label="Enable"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericText
-                label="Port"
-                type="text"
-                placeholder="Aditional ports"
-                value={port}
-                onChange={(e) => setPort(e.target.value)}
+      <CardGrid options="main">
+        <GlassContainer options="spacer">
+          <PageContent>
+            <div className="headline">Add extra port for searching</div>
+            <p>This wil make the bridge search on other ports.</p>
+            <p>If disabled the bridge wil only search on port 80.</p>
+            <p>The standard port is 80, always include port 80.</p>
+            <p>To add ports separate the ports with "," ex: 80,81,82</p>
+            <form className="add-form">
+              <FlipSwitch
+                value={enable}
+                onChange={(e) => toggleEnable(e)}
+                checked={enable}
+                label="Enable"
+                position="right"
               />
-            </div>
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => onSubmit()}
+              <div className="form-control">
+                <GenericText
+                  label="Port"
+                  type="text"
+                  placeholder="Aditional ports"
+                  value={port}
+                  onChange={(e) => setPort(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericButton
+                  value="Save"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => onSubmit()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Search Config</div>
+            <p>Set which protocol to find.</p>
+            <form className="add-form">
+              <FlipSwitch
+                value={yeelight}
+                onChange={(e) => setYeelight(e)}
+                checked={yeelight}
+                label="Yeelight"
+                position="right"
               />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
 
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Search Config</div>
-          <p>Set which protocol to find.</p>
-          <form className="add-form">
-            <FlipSwitch
-              value={yeelight}
-              onChange={(e) => setYeelight(e)}
-              checked={yeelight}
-              label="Yeelight"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={native_multi}
-              onChange={(e) => setNative_multi(e)}
-              checked={native_multi}
-              label="Native_multi"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={tasmota}
-              onChange={(e) => setTasmota(e)}
-              checked={tasmota}
-              label="Tasmota"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={wled}
-              onChange={(e) => setWled(e)}
-              checked={wled}
-              label="Wled"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={shelly}
-              onChange={(e) => setShelly(e)}
-              checked={shelly}
-              label="Shelly"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={esphome}
-              onChange={(e) => setEsphome(e)}
-              checked={esphome}
-              label="Esphome"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={hyperion}
-              onChange={(e) => setHyperion(e)}
-              checked={hyperion}
-              label="Hyperion"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={tpkasa}
-              onChange={(e) => setTpkasa(e)}
-              checked={tpkasa}
-              label="Tpkasa"
-              position="right"
-            />
-
-            <FlipSwitch
-              value={elgato}
-              onChange={(e) => setElgato(e)}
-              checked={elgato}
-              label="Elgato"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => onSubmit_protocol()}
+              <FlipSwitch
+                value={native_multi}
+                onChange={(e) => setNative_multi(e)}
+                checked={native_multi}
+                label="Native_multi"
+                position="right"
               />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+
+              <FlipSwitch
+                value={tasmota}
+                onChange={(e) => setTasmota(e)}
+                checked={tasmota}
+                label="Tasmota"
+                position="right"
+              />
+
+              <FlipSwitch
+                value={wled}
+                onChange={(e) => setWled(e)}
+                checked={wled}
+                label="Wled"
+                position="right"
+              />
+
+              <FlipSwitch
+                value={shelly}
+                onChange={(e) => setShelly(e)}
+                checked={shelly}
+                label="Shelly"
+                position="right"
+              />
+
+              <FlipSwitch
+                value={esphome}
+                onChange={(e) => setEsphome(e)}
+                checked={esphome}
+                label="Esphome"
+                position="right"
+              />
+
+              <FlipSwitch
+                value={hyperion}
+                onChange={(e) => setHyperion(e)}
+                checked={hyperion}
+                label="Hyperion"
+                position="right"
+              />
+
+              <FlipSwitch
+                value={tpkasa}
+                onChange={(e) => setTpkasa(e)}
+                checked={tpkasa}
+                label="Tpkasa"
+                position="right"
+              />
+
+              <FlipSwitch
+                value={elgato}
+                onChange={(e) => setElgato(e)}
+                checked={elgato}
+                label="Elgato"
+                position="right"
+              />
+              <div className="form-control">
+                <GenericButton
+                  value="Save"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => onSubmit_protocol()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

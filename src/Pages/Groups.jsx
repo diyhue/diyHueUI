@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 import Group from "../components/Group/Group";
 import RoomSetup from "../components/RoomSetup/RoomSetup";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 export default function Groups({ HOST_IP, API_KEY }) {
   const [config, setConfig] = useState({
@@ -39,7 +40,7 @@ export default function Groups({ HOST_IP, API_KEY }) {
 
   return (
     <div className="inner">
-      <div className="cardGrid">
+      <CardGrid>
         {Object.keys(config.groups).length === 0 ? <RoomSetup /> : <></>}
         {Object.entries(config.groups)
           .filter((group) => group[1].type !== "Entertainment")
@@ -54,7 +55,7 @@ export default function Groups({ HOST_IP, API_KEY }) {
               scenes={config.scenes}
             />
           ))}
-      </div>
+      </CardGrid>
     </div>
   );
 }

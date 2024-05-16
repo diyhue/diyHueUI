@@ -7,6 +7,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Tradfri = ({ HOST_IP, API_KEY }) => {
   const [tradfriGwIp, setTradfriGwIp] = useState("192.168.x.x");
@@ -58,66 +59,68 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">IKEA Tradfri Gateway</div>
-          <form className="add-form">
-            <div className="form-control">
-              <GenericText
-                label="Tradfri Gateway IP"
-                type="text"
-                placeholder="192.168.x.x"
-                value={tradfriGwIp}
-                onChange={(e) => setTradfriGwIp(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Identity"
-                type="text"
-                placeholder="Identity used for pairing"
-                value={tradfriIdentity}
-                onChange={(e) => setTradfriIdentity(e.target.value)}
-              />
-            </div>
-            {tradfriPsk === "" && (
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">IKEA Tradfri Gateway</div>
+            <form className="add-form">
               <div className="form-control">
                 <GenericText
-                  label="Security Code"
-                  type="password"
-                  placeholder="Located on gateway label"
-                  value={tradfriCode}
-                  onChange={(e) => setTradfriCode(e.target.value)}
-                />
-              </div>
-            )}
-            {tradfriPsk !== "" && (
-              <div className="form-control">
-                <GenericText
-                  label="Paired Key"
+                  label="Tradfri Gateway IP"
                   type="text"
-                  readOnly
-                  placeholder="Located on gateway label"
-                  value={tradfriPsk}
+                  placeholder="192.168.x.x"
+                  value={tradfriGwIp}
+                  onChange={(e) => setTradfriGwIp(e.target.value)}
                 />
               </div>
-            )}
-            <div className="form-control">
-              <GenericButton
-                value={
-                  typeof tradfriPsk === "string" && tradfriPsk.length > 0
-                    ? "Change Ip"
-                    : "Pair"
-                }
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => pairTradfri()}
-              />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+              <div className="form-control">
+                <GenericText
+                  label="Identity"
+                  type="text"
+                  placeholder="Identity used for pairing"
+                  value={tradfriIdentity}
+                  onChange={(e) => setTradfriIdentity(e.target.value)}
+                />
+              </div>
+              {tradfriPsk === "" && (
+                <div className="form-control">
+                  <GenericText
+                    label="Security Code"
+                    type="password"
+                    placeholder="Located on gateway label"
+                    value={tradfriCode}
+                    onChange={(e) => setTradfriCode(e.target.value)}
+                  />
+                </div>
+              )}
+              {tradfriPsk !== "" && (
+                <div className="form-control">
+                  <GenericText
+                    label="Paired Key"
+                    type="text"
+                    readOnly
+                    placeholder="Located on gateway label"
+                    value={tradfriPsk}
+                  />
+                </div>
+              )}
+              <div className="form-control">
+                <GenericButton
+                  value={
+                    typeof tradfriPsk === "string" && tradfriPsk.length > 0
+                      ? "Change Ip"
+                      : "Pair"
+                  }
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => pairTradfri()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

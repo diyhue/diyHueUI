@@ -4,6 +4,10 @@
   align-items: flex-start;
   gap: 20px;
 
+  &.main{
+    display: block;
+  }
+
   .top {
     padding: 10px;
   
@@ -83,9 +87,15 @@
   }
   
   @media screen and (max-width: 750px) {
+  display: flex;
+  justify-content: center;
     .device {
       width: 100%;
       margin-right: 0;
+    }
+    &.main{
+      display: flex;
+  justify-content: center;
     }
   }
   

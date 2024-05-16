@@ -12,6 +12,7 @@ import SelectMenu from "../components/SelectMenu/SelectMenu";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 import Wizard from "../components/Wizard/Wizard";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 
@@ -358,221 +359,215 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     return { value: timezone, label: timezone };
   });
 
-  /*const advanceStatus = () => {
-    if (AdvanceConfig === true) {
-      return "submit";
-    } else {
-      return "hidden";
-    }
-  };*/
-
   return (
     <div className="inner">
-      <GlassContainer options="spacer">
-        <PageContent>
-          <div className="headline">Bridge Config</div>
-          <div className="form-control">
-            <GenericText
-              label="Bridge Name"
-              type="text"
-              placeholder="Bridge Name"
-              value={bridgeName}
-              onChange={(e) => setBridgeName(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <GenericText
-              label={`Software Version (checks automatic at ${UpdateTime})`}
-              type="number"
-              pattern="[0-9]+"
-              placeholder="swversion"
-              value={swversion}
-              onChange={(e) => setSwversion(e.target.value)}
-            />
-            <p>
-              <a href="https://www.philips-hue.com/en-gb/support/release-notes/bridge">
-                check here for last versions
-              </a>
-            </p>
-          </div>
-          <div className="form-control">
-            <GenericText
-              label={`API Version (checks automatic at ${UpdateTime})`}
-              type="text"
-              placeholder="apiversion"
-              value={apiVersion}
-              onChange={(e) => setApiVersion(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <SelectMenu
-              label="Timezone"
-              options={options}
-              onChange={(e) => setTimezone(e)}
-              placeholder={timezone}
-            />
-          </div>
-          <div className="form-control">
-            <FlipSwitch
-              value={remoteApi}
-              onChange={(e) => setRemoteApi(e)}
-              checked={remoteApi}
-              label="Remote API"
-              position="right"
-            />
-          </div>
-          <div className="form-control">
-            <FlipSwitch
-              value={discovery}
-              onChange={(e) => setDiscovery(e)}
-              checked={discovery}
-              label="Discovery"
-              position="right"
-            />
-          </div>
-          <div className="form-control">
-            <GenericButton
-              value="Save"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => onSubmit()}
-            />
-          </div>
-        </PageContent>
-      </GlassContainer>
-
-      <GlassContainer options="spacer">
-        <PageContent>
-          <div className="headline">Readonly Config</div>
-          <div className="form-control">
-            <GenericText
-              label="BridgeID"
-              readOnly
-              type="text"
-              placeholder="bridgeid"
-              value={readonlyConf["bridgeid"]}
-            />
-          </div>
-          <div className="form-control">
-            <GenericText
-              label="Ip Address"
-              readOnly
-              type="text"
-              placeholder="ip"
-              value={readonlyConf["ipaddress"]}
-            />
-          </div>
-          <div className="form-control">
-            <GenericText
-              label="Gateway"
-              readOnly
-              type="text"
-              placeholder="gateway"
-              value={readonlyConf["gateway"]}
-            />
-          </div>
-          <div className="form-control">
-            <GenericText
-              label="Mac"
-              readOnly
-              type="text"
-              placeholder="mac"
-              value={readonlyConf["mac"]}
-            />
-          </div>
-          <div className="form-control">
-            <GenericText
-              label="Local time"
-              readOnly
-              type="text"
-              placeholder="time"
-              value={Date(readonlyConf["localtime"])}
-            />
-          </div>
-        </PageContent>
-      </GlassContainer>
-
-      <GlassContainer options="spacer">
-        <PageContent>
-          <div className="headline">
-            System debug information: (Work in progress)
-          </div>
-          <div className="form-control">
-            <label>Hue-Emulator Version: {DebugInfo["diyhue"]}</label>
-            <label>WebUI Version: {DebugInfo["webui"]}</label>
-            <label>Architecture: {DebugInfo["machine"]}</label>
-            <label>OS: {DebugInfo["sysname"]}</label>
-            <label>
-              {DebugInfo["sysname"]} version: {DebugInfo["os_version"]}
-            </label>
-            <label>
-              {DebugInfo["sysname"]} release: {DebugInfo["os_release"]}
-            </label>
-            <label>Hardware: %Hardware%</label>
-          </div>
-        </PageContent>
-      </GlassContainer>
-
-      <GlassContainer options="spacer">
-        <PageContent>
-          <div className="headline">Bridge control</div>
-          <div className="form-control">
-            <GenericButton
-              value={`${AdvanceConfig ? "Hide" : "Show"} advanced config`}
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => setAdvanceConfig(!AdvanceConfig)}
-            />
-          </div>
-          <div className="form-control">
-            <GenericButton
-              value="Force Config Dump"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => ConfigOptions()}
-            />
-          </div>
-          <div className="form-control">
-            <GenericButton
-              value="Download debug"
-              color="blue"
-              size=""
-              type="submit"
-              onClick={() => debugOptions()}
-            />
-          </div>
-          {AdvanceConfig === true && (<>
+      <CardGrid options="main">
+        <GlassContainer options="spacer">
+          <PageContent>
+            <div className="headline">Bridge Config</div>
             <div className="form-control">
-              <GenericButton
-                value="Restart Python"
-                color="red"
-                size=""
-                type="submit"
-                onClick={() => Restart()}
+              <GenericText
+                label="Bridge Name"
+                type="text"
+                placeholder="Bridge Name"
+                value={bridgeName}
+                onChange={(e) => setBridgeName(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <GenericText
+                label={`Software Version (checks automatic at ${UpdateTime})`}
+                type="number"
+                pattern="[0-9]+"
+                placeholder="swversion"
+                value={swversion}
+                onChange={(e) => setSwversion(e.target.value)}
+              />
+              <p>
+                <a href="https://www.philips-hue.com/en-gb/support/release-notes/bridge">
+                  check here for last versions
+                </a>
+              </p>
+            </div>
+            <div className="form-control">
+              <GenericText
+                label={`API Version (checks automatic at ${UpdateTime})`}
+                type="text"
+                placeholder="apiversion"
+                value={apiVersion}
+                onChange={(e) => setApiVersion(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <SelectMenu
+                label="Timezone"
+                options={options}
+                onChange={(e) => setTimezone(e)}
+                placeholder={timezone}
+              />
+            </div>
+            <div className="form-control">
+              <FlipSwitch
+                value={remoteApi}
+                onChange={(e) => setRemoteApi(e)}
+                checked={remoteApi}
+                label="Remote API"
+                position="right"
+              />
+            </div>
+            <div className="form-control">
+              <FlipSwitch
+                value={discovery}
+                onChange={(e) => setDiscovery(e)}
+                checked={discovery}
+                label="Discovery"
+                position="right"
               />
             </div>
             <div className="form-control">
               <GenericButton
-                value="Force Config Reset"
-                color="red"
+                value="Save"
+                color="blue"
                 size=""
                 type="submit"
-                onClick={() => restoreOptions()}
+                onClick={() => onSubmit()}
               />
             </div>
-          </>)}
-          <Wizard
-            isOpen={WizardIsOpen}
-            closeWizard={closeWizard}
-            headline={WizardName}
-          >
-            {WizardContent}
-          </Wizard>
-        </PageContent>
-      </GlassContainer>
+          </PageContent>
+        </GlassContainer>
+
+        <GlassContainer options="spacer">
+          <PageContent>
+            <div className="headline">Readonly Config</div>
+            <div className="form-control">
+              <GenericText
+                label="BridgeID"
+                readOnly
+                type="text"
+                placeholder="bridgeid"
+                value={readonlyConf["bridgeid"]}
+              />
+            </div>
+            <div className="form-control">
+              <GenericText
+                label="Ip Address"
+                readOnly
+                type="text"
+                placeholder="ip"
+                value={readonlyConf["ipaddress"]}
+              />
+            </div>
+            <div className="form-control">
+              <GenericText
+                label="Gateway"
+                readOnly
+                type="text"
+                placeholder="gateway"
+                value={readonlyConf["gateway"]}
+              />
+            </div>
+            <div className="form-control">
+              <GenericText
+                label="Mac"
+                readOnly
+                type="text"
+                placeholder="mac"
+                value={readonlyConf["mac"]}
+              />
+            </div>
+            <div className="form-control">
+              <GenericText
+                label="Local time"
+                readOnly
+                type="text"
+                placeholder="time"
+                value={Date(readonlyConf["localtime"])}
+              />
+            </div>
+          </PageContent>
+        </GlassContainer>
+
+        <GlassContainer options="spacer">
+          <PageContent>
+            <div className="headline">
+              System debug information: (Work in progress)
+            </div>
+            <div className="form-control">
+              <label>Hue-Emulator Version: {DebugInfo["diyhue"]}</label>
+              <label>WebUI Version: {DebugInfo["webui"]}</label>
+              <label>Architecture: {DebugInfo["machine"]}</label>
+              <label>OS: {DebugInfo["sysname"]}</label>
+              <label>
+                {DebugInfo["sysname"]} version: {DebugInfo["os_version"]}
+              </label>
+              <label>
+                {DebugInfo["sysname"]} release: {DebugInfo["os_release"]}
+              </label>
+              <label>Hardware: %Hardware%</label>
+            </div>
+          </PageContent>
+        </GlassContainer>
+
+        <GlassContainer options="spacer">
+          <PageContent>
+            <div className="headline">Bridge control</div>
+            <div className="form-control">
+              <GenericButton
+                value={`${AdvanceConfig ? "Hide" : "Show"} advanced config`}
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => setAdvanceConfig(!AdvanceConfig)}
+              />
+            </div>
+            <div className="form-control">
+              <GenericButton
+                value="Force Config Dump"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => ConfigOptions()}
+              />
+            </div>
+            <div className="form-control">
+              <GenericButton
+                value="Download debug"
+                color="blue"
+                size=""
+                type="submit"
+                onClick={() => debugOptions()}
+              />
+            </div>
+            {AdvanceConfig === true && (<>
+              <div className="form-control">
+                <GenericButton
+                  value="Restart Python"
+                  color="red"
+                  size=""
+                  type="submit"
+                  onClick={() => Restart()}
+                />
+              </div>
+              <div className="form-control">
+                <GenericButton
+                  value="Force Config Reset"
+                  color="red"
+                  size=""
+                  type="submit"
+                  onClick={() => restoreOptions()}
+                />
+              </div>
+            </>)}
+            <Wizard
+              isOpen={WizardIsOpen}
+              closeWizard={closeWizard}
+              headline={WizardName}
+            >
+              {WizardContent}
+            </Wizard>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

@@ -50,7 +50,7 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
           onChange={(e) => switchLight({ on: e })}
         />
       </div>
-      <div className="row">
+      <div className="row background">
         <AnimatePresence initial={false}>
           {light["state"]["on"] && (
             <BrightnessSlider

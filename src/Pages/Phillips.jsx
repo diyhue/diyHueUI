@@ -7,6 +7,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Phillips = ({ HOST_IP, API_KEY }) => {
   const [bridgeIp, setBridgeIp] = useState("192.168.x.x");
@@ -65,53 +66,55 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Pair original Hue Bridge</div>
-          <form className="add-form">
-            <div className="form-control">
-              <GenericText
-                label="Bridge Ip"
-                type="text"
-                placeholder="192.168.x.x"
-                value={bridgeIp}
-                onChange={(e) => setBridgeIp(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Hue User"
-                type="text"
-                placeholder="Automatically populated"
-                readOnly
-                value={hueUser}
-              />
-            </div>
-            <div className="form-control">
-              <GenericText
-                label="Hue Key"
-                type="text"
-                placeholder="Automatically populated"
-                readOnly
-                value={hueKey}
-              />
-            </div>
-            <div className="form-control">
-              <GenericButton
-                value={
-                  typeof hueUser === "string" && hueUser.length > 0
-                    ? "Pair again"
-                    : "Pair"
-                }
-                color="blue"
-                size=""
-                type="submit"
-                onClick={() => pairBridge()}
-              />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Pair original Hue Bridge</div>
+            <form className="add-form">
+              <div className="form-control">
+                <GenericText
+                  label="Bridge Ip"
+                  type="text"
+                  placeholder="192.168.x.x"
+                  value={bridgeIp}
+                  onChange={(e) => setBridgeIp(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Hue User"
+                  type="text"
+                  placeholder="Automatically populated"
+                  readOnly
+                  value={hueUser}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Hue Key"
+                  type="text"
+                  placeholder="Automatically populated"
+                  readOnly
+                  value={hueKey}
+                />
+              </div>
+              <div className="form-control">
+                <GenericButton
+                  value={
+                    typeof hueUser === "string" && hueUser.length > 0
+                      ? "Pair again"
+                      : "Pair"
+                  }
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={() => pairBridge()}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
     </div>
   );
 };

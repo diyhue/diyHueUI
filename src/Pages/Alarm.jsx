@@ -8,6 +8,7 @@ import GenericButton from "../components/GenericButton/GenericButton";
 import GenericText from "../components/GenericText/GenericText";
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
+import CardGrid from "../components/CardGrid/CardGrid";
 
 const Alarm = ({ HOST_IP, API_KEY }) => {
   const [enable, setEnable] = useState(false);
@@ -57,40 +58,41 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
 
   return (
     <div className="inner">
-      <GlassContainer>
-        <PageContent>
-          <div className="headline">Motion notifications alarm</div>
-          <form className="add-form">
-            <FlipSwitch
-              value={enable}
-              onChange={(e) => toggleEnable(e)}
-              checked={enable}
-              label="Enable"
-              position="right"
-            />
-            <div className="form-control">
-              <GenericText
-                label="e-mail"
-                type="text"
-                placeholder="Notification email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+      <CardGrid options="main">
+        <GlassContainer>
+          <PageContent>
+            <div className="headline">Motion notifications alarm</div>
+            <form className="add-form">
+              <FlipSwitch
+                value={enable}
+                onChange={(e) => toggleEnable(e)}
+                checked={enable}
+                label="Enable"
+                position="right"
               />
-            </div>
-            <div className="form-control">
-              <GenericButton
-                value="Save"
-                color="blue"
-                size=""
-                type="submit"
-                onClick={(e) => onSubmit(e)}
-              />
-            </div>
-          </form>
-        </PageContent>
-      </GlassContainer>
-    </div>
-  );
+              <div className="form-control">
+                <GenericText
+                  label="e-mail"
+                  type="text"
+                  placeholder="Notification email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericButton
+                  value="Save"
+                  color="blue"
+                  size=""
+                  type="submit"
+                  onClick={(e) => onSubmit(e)}
+                />
+              </div>
+            </form>
+          </PageContent>
+        </GlassContainer>
+      </CardGrid>
+    </div>);
 };
 
 export default Alarm;

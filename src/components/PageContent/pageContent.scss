@@ -123,6 +123,17 @@
       }
     }
   }
+  @media screen and (max-width: 750px) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .contactCard {
+      gap: 20;
+      margin-right: unset;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 /* --- Forms ---*/

@@ -42,6 +42,7 @@ const Config = ({ HOST_IP, API_KEY }) => {
               api_key={API_KEY}
               id={id}
               user={user}
+              whitelist={whitelist}
             />
           ))}
         </CardGrid>

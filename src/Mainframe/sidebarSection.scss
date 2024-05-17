@@ -5,12 +5,7 @@
   flex-shrink: 0;
   width: 0;
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   background: rgba(0, 0, 0, 0.2);
-
-  &.active {
-    width: 180px;
-  }
 
   .sidebar {
     height: 100%;
@@ -81,16 +76,7 @@
 }
 
 @media screen and (max-width: 750px) {
-  .columnLeft {
-    &.active {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 9000;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-  }
+
 }
 
 @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {

@@ -7,7 +7,7 @@ import ColorTempPicker from "../ColorTempPicker/ColorTempPicker";
 const ColorTempPickerSection = ({
   showContainer,
   group,
-  lights,
+  groupId,
   HOST_IP,
   api_key,
 }) => {
@@ -38,7 +38,7 @@ const ColorTempPickerSection = ({
           >
             <ColorTempPicker
               group={group}
-              lights={lights}
+              groupId={groupId}
               HOST_IP={HOST_IP}
               api_key={api_key}
             />

@@ -90,7 +90,7 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
         <ColorTempPickerSection
           showContainer={showContainer}
           group={group}
-          lights={lights}
+          groupId={id}
           HOST_IP={HOST_IP}
           api_key={api_key}
         />

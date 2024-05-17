@@ -32,7 +32,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
     axios
       .delete(`${HOST_IP}/api/${api_key}/lights/${id}`)
       .then((fetchedData) => {
-        //console.log(fetchedData.data);
+        console.log(fetchedData.data);
         toast.success("Light successfully deleted");
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
     axios
       .put(`${HOST_IP}/api/${api_key}/lights/${id}/state`, { alert: "select" })
       .then((fetchedData) => {
-        //console.log(fetchedData.data);
+        console.log(fetchedData.data);
         toast.success("Light alerted");
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
   };
 
   const setModelId = (modelid) => {
-    //console.log({ [id]: modelid });
+    console.log({ [id]: modelid });
     axios
       .post(`${HOST_IP}/light-types`, { [id]: modelid })
       .then((fetchedData) => {

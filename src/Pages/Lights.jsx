@@ -31,7 +31,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
       axios
         .post(`${HOST_IP}/api/${API_KEY}/lights`, "")
         .then((fetchedData) => {
-          console.log(fetchedData.data);
+          //console.log(fetchedData.data);
           toast.success("Searching for new lights...");
         })
         .catch((error) => {
@@ -47,7 +47,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
         axios
           .get(`${HOST_IP}/lights`)
           .then((fetchedData) => {
-            console.log(fetchedData.data);
+            //console.log(fetchedData.data);
             setLights(fetchedData.data);
           })
           .catch((error) => {
@@ -62,7 +62,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
         axios
           .get(`${HOST_IP}/light-types`)
           .then((fetchedData) => {
-            console.log(fetchedData.data);
+            //console.log(fetchedData.data);
             setModelIds(fetchedData.data["result"]);
           })
           .catch((error) => {
@@ -79,7 +79,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
             `https://raw.githubusercontent.com/diyhue/Lights/master/catalog.json`
           )
           .then((fetchedData) => {
-            console.log(fetchedData.data);
+            //console.log(fetchedData.data);
             setlightsCatalog(fetchedData.data);
           })
           .catch((error) => {

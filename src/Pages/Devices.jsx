@@ -15,7 +15,7 @@ const Devices = ({ HOST_IP, API_KEY }) => {
         axios
           .get(`${HOST_IP}/sensors`)
           .then((fetchedData) => {
-            console.log(fetchedData.data);
+            //console.log(fetchedData.data);
             setDevices(fetchedData.data);
           })
           .catch((error) => {

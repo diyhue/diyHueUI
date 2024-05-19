@@ -15,7 +15,7 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
         linkbutton: { lastlinkbuttonpushed: (Date.now() / 1000) | 0 },
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success("Pairing is allowed for 30 seconds");
       })
       .catch((error) => {

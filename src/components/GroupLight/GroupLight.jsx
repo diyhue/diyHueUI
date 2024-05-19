@@ -10,7 +10,7 @@ import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
 
 const Light = ({ HOST_IP, api_key, id, light }) => {
   const switchLight = (newState) => {
-    console.log("Apply state " + JSON.stringify(newState));
+    //console.log("Apply state " + JSON.stringify(newState));
     axios.put(`${HOST_IP}/api/${api_key}/lights/${id}/state`, newState);
   };
 

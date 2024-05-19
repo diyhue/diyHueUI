@@ -124,7 +124,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
         port: { enabled: e },
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success(`Port ${e ? "activated" : "deactivated"}`);
       })
       .catch((error) => {
@@ -139,8 +139,8 @@ const Settings = ({ HOST_IP, API_KEY }) => {
         port: { enabled: enable, ports: port.toString().match(/\d+/g).map(Number) },
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
-        console.log([port]);
+        //console.log(fetchedData.data);
+        //console.log([port]);
         toast.success("Successfully saved");
       })
       .catch((error) => {
@@ -163,7 +163,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
         elgato: { enabled: elgato },
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success("Successfully saved");
       })
       .catch((error) => {
@@ -196,7 +196,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="Aditional ports"
                   value={port}
-                  onChange={(e) => setPort(e.target.value)}
+                  onChange={(e) => setPort(e)}
                 />
               </div>
               <div className="form-control">

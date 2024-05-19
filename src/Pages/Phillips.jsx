@@ -47,7 +47,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
               },
             })
             .then((fetchedData) => {
-              console.log(fetchedData.data);
+              //console.log(fetchedData.data);
               toast.success("Connected, now scan for lights");
             })
             .catch((error) => {
@@ -77,7 +77,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="192.168.x.x"
                   value={bridgeIp}
-                  onChange={(e) => setBridgeIp(e.target.value)}
+                  onChange={(e) => setBridgeIp(e)}
                 />
               </div>
               <div className="form-control">
@@ -85,7 +85,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
                   label="Hue User"
                   type="text"
                   placeholder="Automatically populated"
-                  readOnly
+                  readOnly={true}
                   value={hueUser}
                 />
               </div>
@@ -94,7 +94,7 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
                   label="Hue Key"
                   type="text"
                   placeholder="Automatically populated"
-                  readOnly
+                  readOnly={true}
                   value={hueKey}
                 />
               </div>

@@ -32,7 +32,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, { alarm: { enabled: e } })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success(`Alarm ${e ? "activated" : "deactivated"}`);
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
         alarm: { enabled: enable, email: email },
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success("Successfully saved");
       })
       .catch((error) => {

@@ -84,7 +84,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   }, [HOST_IP, API_KEY]);
 
   const onSubmit = () => {
-    console.log("submit");
+    //console.log("submit");
     //e.preventDefault();
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, {
@@ -96,7 +96,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         discovery: discovery,
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success("Successfully saved");
       })
       .catch((error) => {

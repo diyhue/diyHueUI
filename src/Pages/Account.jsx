@@ -41,7 +41,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
           users: { [email]: { password: pass } },
         })
         .then((fetchedData) => {
-          console.log(fetchedData.data);
+          //console.log(fetchedData.data);
           toast.success("Successfully saved");
         })
         .catch((error) => {

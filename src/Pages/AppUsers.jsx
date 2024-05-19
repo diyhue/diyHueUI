@@ -15,7 +15,7 @@ const Config = ({ HOST_IP, API_KEY }) => {
         axios
           .get(`${HOST_IP}/api/${API_KEY}/config`)
           .then((fetchedData) => {
-            console.log(fetchedData.data);
+            //console.log(fetchedData.data);
             setWhitelist(fetchedData.data.whitelist);
           })
           .catch((error) => {

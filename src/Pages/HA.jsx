@@ -55,7 +55,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
         },
       })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success("Successfully saved, please restart the service");
       })
       .catch((error) => {

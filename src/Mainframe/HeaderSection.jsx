@@ -67,7 +67,7 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
 
   const handleToggleChange = (state) => {
     const newState = { on: state };
-    console.log("Apply state " + JSON.stringify(newState));
+    //console.log("Apply state " + JSON.stringify(newState));
     axios
       .put(`${HOST_IP}/api/${API_KEY}/groups/0/action`, newState)
       .then((response) => {
@@ -86,7 +86,7 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           swupdate2: { install: true },
         })
         .then((fetchedData) => {
-          console.log(fetchedData.data);
+          //console.log(fetchedData.data);
           toast.success("Install update");
         })
         .catch((error) => {
@@ -100,7 +100,7 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
           swupdate2: { checkforupdate: true, install: false },
         })
         .then((fetchedData) => {
-          console.log(fetchedData.data);
+          //console.log(fetchedData.data);
           toast.success("Check update");
         })
         .catch((error) => {

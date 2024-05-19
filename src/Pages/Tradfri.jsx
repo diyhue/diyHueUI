@@ -43,7 +43,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
         { timeout: 2000 }
       )
       .then((result) => {
-        console.log(result.data);
+        //console.log(result.data);
         if (result.data["result"] === "success") {
           setTradfriPsk(result.data["psk"]["success"]);
           toast.success("Connected, now search for lights");
@@ -70,7 +70,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="192.168.x.x"
                   value={tradfriGwIp}
-                  onChange={(e) => setTradfriGwIp(e.target.value)}
+                  onChange={(e) => setTradfriGwIp(e)}
                 />
               </div>
               <div className="form-control">
@@ -79,7 +79,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="Identity used for pairing"
                   value={tradfriIdentity}
-                  onChange={(e) => setTradfriIdentity(e.target.value)}
+                  onChange={(e) => setTradfriIdentity(e)}
                 />
               </div>
               {tradfriPsk === "" && (
@@ -89,7 +89,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
                     type="password"
                     placeholder="Located on gateway label"
                     value={tradfriCode}
-                    onChange={(e) => setTradfriCode(e.target.value)}
+                    onChange={(e) => setTradfriCode(e)}
                   />
                 </div>
               )}
@@ -98,7 +98,7 @@ const Tradfri = ({ HOST_IP, API_KEY }) => {
                   <GenericText
                     label="Paired Key"
                     type="text"
-                    readOnly
+                    readOnly={true}
                     placeholder="Located on gateway label"
                     value={tradfriPsk}
                   />

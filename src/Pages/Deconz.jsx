@@ -54,7 +54,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
               },
             })
             .then((fetchedData) => {
-              console.log(fetchedData.data);
+              //console.log(fetchedData.data);
               toast.success("Connected, service restart required.");
             });
         } else {
@@ -72,7 +72,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
     axios
       .put(`${HOST_IP}/api/${API_KEY}/config`, { deconz: { enabled: e } })
       .then((fetchedData) => {
-        console.log(fetchedData.data);
+        //console.log(fetchedData.data);
         toast.success(`Deconz ${e ? "enabled" : "disabled"}`);
       })
       .catch((error) => {

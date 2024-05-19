@@ -1,6 +1,6 @@
 import "./flipswitch.scss";
 
-const FlipSwitch = ({ value, onChange, checked, label, position }) => (
+const FlipSwitch = ({ value = '', onChange = undefined, checked = false, label = '', position = undefined }) => (
   <>
     <div className="flipSwitch">
       <p>{label}</p>

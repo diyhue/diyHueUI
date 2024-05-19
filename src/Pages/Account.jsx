@@ -100,7 +100,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
               <div className="form-control">
                 <GenericText
                   label="User Name"
-                  readOnly
+                  readOnly={true}
                   type="text"
                   value={email}
                 />

@@ -118,7 +118,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
                   label="Deconz User"
                   type="text"
                   placeholder="Automatically populated"
-                  readOnly
+                  readOnly={true}
                   value={deconzUser}
                 />
               </div>

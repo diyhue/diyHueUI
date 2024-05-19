@@ -1,6 +1,6 @@
 import "./genericText.scss";
 
-const GenericText = ({ label, value, placeholder, readOnly, type, onChange, pattern }) => {
+const GenericText = ({ label = '', value = '', placeholder = '', readOnly = false, type = 'text', onChange = undefined, pattern = '' }) => {
     return (<>
         <label>{label}</label>
         <input

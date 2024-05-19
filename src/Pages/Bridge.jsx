@@ -442,7 +442,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <GenericText
                 label="BridgeID"
-                readOnly
+                readOnly={true}
                 type="text"
                 placeholder="bridgeid"
                 value={readonlyConf["bridgeid"]}
@@ -451,7 +451,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <GenericText
                 label="Ip Address"
-                readOnly
+                readOnly={true}
                 type="text"
                 placeholder="ip"
                 value={readonlyConf["ipaddress"]}
@@ -460,7 +460,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <GenericText
                 label="Gateway"
-                readOnly
+                readOnly={true}
                 type="text"
                 placeholder="gateway"
                 value={readonlyConf["gateway"]}
@@ -469,7 +469,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <GenericText
                 label="Mac"
-                readOnly
+                readOnly={true}
                 type="text"
                 placeholder="mac"
                 value={readonlyConf["mac"]}
@@ -478,7 +478,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             <div className="form-control">
               <GenericText
                 label="Local time"
-                readOnly
+                readOnly={true}
                 type="text"
                 placeholder="time"
                 value={Date(readonlyConf["localtime"])}

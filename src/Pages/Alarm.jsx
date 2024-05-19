@@ -76,7 +76,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="Notification email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e)}
                 />
               </div>
               <div className="form-control">

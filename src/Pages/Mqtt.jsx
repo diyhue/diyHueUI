@@ -80,7 +80,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="MQTT server"
                   value={mqttServer}
-                  onChange={(e) => setMqttServer(e.target.value)}
+                  onChange={(e) => setMqttServer(e)}
                 />
               </div>
               <div className="form-control">
@@ -89,7 +89,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
                   type="number"
                   placeholder="MQTT port"
                   value={mqttPort}
-                  onChange={(e) => setMqttPort(parseInt(e.target.value))}
+                  onChange={(e) => setMqttPort(parseInt(e))}
                 />
               </div>
               <div className="form-control">
@@ -98,7 +98,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="MQTT username"
                   value={mqttUser}
-                  onChange={(e) => setMqttUser(e.target.value)}
+                  onChange={(e) => setMqttUser(e)}
                 />
               </div>
               <div className="form-control">
@@ -107,7 +107,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
                   type="password"
                   placeholder="MQTT password"
                   value={mqttPass}
-                  onChange={(e) => setMqttPass(e.target.value)}
+                  onChange={(e) => setMqttPass(e)}
                 />
               </div>
               <div className="form-control">
@@ -116,7 +116,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="Discovery prefix"
                   value={discoveryPrefix}
-                  onChange={(e) => setDiscoveryPrefix(e.target.value)}
+                  onChange={(e) => setDiscoveryPrefix(e)}
                 />
               </div>
               <div className="form-control">

@@ -86,7 +86,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         placeholder="192.168.x.x"
         value={lightData.ip}
         // On regular HTML input components use e.taget.value
-        onChange={(e) => handleChange("ip", e.target.value)}
+        onChange={(e) => handleChange("ip", e)}
       />
     </div>
     {lightData.protocol !== "auto" && (
@@ -97,7 +97,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
             type="text"
             placeholder="Name used on diyhue"
             value={lightData.lightName}
-            onChange={(e) => handleChange("lightName", e.target.value)}
+            onChange={(e) => handleChange("lightName", e)}
           />
         </div>
         <div className="form-control">
@@ -118,7 +118,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
             type="text"
             placeholder="0x1234"
             value={lightData.miID}
-            onChange={(e) => handleChange("miID", e.target.value)}
+            onChange={(e) => handleChange("miID", e)}
           />
         </div>
         <div className="form-control">
@@ -146,7 +146,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
           type="number"
           placeholder="Mi Box port"
           value={lightData.miBoxPort}
-          onChange={(e) => handleChange("miboxPort", e.target.value)}
+          onChange={(e) => handleChange("miboxPort", e)}
         />
       </div>
     )}
@@ -157,7 +157,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
           type="text"
           placeholder="Device ID"
           value={lightData.domoticzID}
-          onChange={(e) => handleChange("domoticzID", e.target.value)}
+          onChange={(e) => handleChange("domoticzID", e)}
         />
       </div>
     )}
@@ -169,7 +169,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
             type="text"
             placeholder="Light Api"
             value={lightData.jeedomlightAPI}
-            onChange={(e) => handleChange("jeedomlightAPI", e.target.value)}
+            onChange={(e) => handleChange("jeedomlightAPI", e)}
           />
         </div>
         <div className="form-control">
@@ -178,7 +178,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
             type="text"
             placeholder="Light ID"
             value={lightData.jeedomlightID}
-            onChange={(e) => handleChange("jeedomlightID", e.target.value)}
+            onChange={(e) => handleChange("jeedomlightID", e)}
           />
         </div>
       </>

@@ -371,7 +371,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 type="text"
                 placeholder="Bridge Name"
                 value={bridgeName}
-                onChange={(e) => setBridgeName(e.target.value)}
+                onChange={(e) => setBridgeName(e)}
               />
             </div>
             <div className="form-control">
@@ -381,7 +381,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 pattern="[0-9]+"
                 placeholder="swversion"
                 value={swversion}
-                onChange={(e) => setSwversion(e.target.value)}
+                onChange={(e) => setSwversion(e)}
               />
               <p>
                 <a href="https://www.philips-hue.com/en-gb/support/release-notes/bridge">
@@ -395,7 +395,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 type="text"
                 placeholder="apiversion"
                 value={apiVersion}
-                onChange={(e) => setApiVersion(e.target.value)}
+                onChange={(e) => setApiVersion(e)}
               />
             </div>
             <div className="form-control">

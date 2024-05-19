@@ -86,10 +86,8 @@ const Account = ({ HOST_IP, API_KEY }) => {
   }
 
   const handleChange = (event) => {
-    const { value } = event.target;
-
-    setPass(value);
-    setStrength(evaluatePasswordStrength(value));
+    setPass(event);
+    setStrength(evaluatePasswordStrength(event));
   };
 
   return (
@@ -133,7 +131,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
                   type="password"
                   placeholder="Repeat Password"
                   value={pass1}
-                  onChange={(e) => setPass1(e.target.value)}
+                  onChange={(e) => setPass1(e)}
                 />
               </div>
               {pass !== pass1 && (

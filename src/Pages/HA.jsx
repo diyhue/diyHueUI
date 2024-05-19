@@ -84,7 +84,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="IP or hostname"
                   value={homeAssistantIp}
-                  onChange={(e) => setHomeAssistantIp(e.target.value)}
+                  onChange={(e) => setHomeAssistantIp(e)}
                 />
               </div>
               <div className="form-control">
@@ -93,7 +93,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
                   type="number"
                   placeholder="8123"
                   value={homeAssistantPort}
-                  onChange={(e) => setHomeAssistantPort(e.target.value)}
+                  onChange={(e) => setHomeAssistantPort(e)}
                 />
               </div>
               <div className="form-control">
@@ -102,7 +102,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
                   type="password"
                   placeholder="Token"
                   value={homeAssistantToken}
-                  onChange={(e) => setHomeAssistantToken(e.target.value)}
+                  onChange={(e) => setHomeAssistantToken(e)}
                 />
               </div>
               <FlipSwitch

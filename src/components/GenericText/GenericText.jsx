@@ -9,7 +9,7 @@ const GenericText = ({ label, value, placeholder, readOnly, type, onChange, patt
             pattern={pattern}
             placeholder={placeholder}
             value={value}
-            onChange={(e) => onChange && onChange(e)}
+            onChange={(e) => onChange && onChange(e.target.value)}
         />
     </>);
 };

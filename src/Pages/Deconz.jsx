@@ -101,7 +101,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
                   type="text"
                   placeholder="Deconz host"
                   value={deconzHost}
-                  onChange={(e) => setDeconzHost(e.target.value)}
+                  onChange={(e) => setDeconzHost(e)}
                 />
               </div>
               <div className="form-control">
@@ -110,7 +110,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
                   type="number"
                   placeholder="Deconz port"
                   value={deconzPort}
-                  onChange={(e) => setDeconzPort(parseInt(e.target.value))}
+                  onChange={(e) => setDeconzPort(parseInt(e))}
                 />
               </div>
               <div className="form-control">

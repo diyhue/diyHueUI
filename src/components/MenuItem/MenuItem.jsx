@@ -20,22 +20,26 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
     }
   };
 
-  return (
+  const menuItemContent = (
+    <li className={isActive ? "active" : ""} onClick={handleParentClick}>
+      <div className="menuEntry">
+        {icon}
+        <p>{label}</p>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="submenuIcon"
+        >
+          {children && <FaAngleDown />}
+        </motion.div>
+      </div>
+      <div className="submenu">{isOpen && children}</div>
+    </li>
+  );
+
+  return children ? menuItemContent : (
     <a href={link} onClick={handleChildClick}>
-      <li className={isActive ? "active" : ""} onClick={handleParentClick}>
-        <div className="menuEntry">
-          {icon}
-          <p>{label}</p>
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="submenuIcon"
-          >
-            {children && <FaAngleDown />}
-          </motion.div>
-        </div>
-        <div className="submenu">{isOpen && children}</div>
-      </li>
+      {menuItemContent}
     </a>
   );
 };

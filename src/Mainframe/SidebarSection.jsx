@@ -66,8 +66,8 @@ const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
         <motion.div
           className="columnLeft"
           animate={{ width: 180 }}
-          initial={{ width: 0 }}
-          exit={{ width: 0 }}
+          initial={{ width: -1 }}
+          exit={{ width: -1 }}
         >
           <div className="topbarLeft active">
             <div className="logo">

@@ -11,6 +11,7 @@ import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 
 import "./headerSection.scss";
+import NotificationCenter from "../components/NotificationCenter/NotificationCenter";
 
 const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
@@ -151,6 +152,13 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       >
         <FaBars />
       </motion.div>
+
+      <NotificationCenter
+        notifications={true}
+        updating={true}
+      >
+
+      </NotificationCenter>
 
       <div className="switchContainer">
         <Tooltip

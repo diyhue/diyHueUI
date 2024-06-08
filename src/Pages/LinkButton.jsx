@@ -11,16 +11,23 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
 
   const pushLinkButton = () => {
     axios
-      .put(`${HOST_IP}/api/${API_KEY}/config`, {
-        linkbutton: { lastlinkbuttonpushed: (Date.now() / 1000) | 0 },
-      })
-      .then((fetchedData) => {
-        //console.log(fetchedData.data);
-        toast.success("Pairing is allowed for 30 seconds");
+      .get(`${HOST_IP}/api/${API_KEY}/config`)
+      .then((result) => {
+        axios
+          .put(`${HOST_IP}/api/${API_KEY}/config`, {
+            linkbutton: { lastlinkbuttonpushed: ((new Date(result.data["localtime"]).getTime() / 1000).toFixed(0)) | 0 },
+          })
+          .then((fetchedData) => {
+            //console.log(fetchedData.data);
+            toast.success("Pairing is allowed for 30 seconds");
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error(`Error occurred: ${error.message}`);
+          });
       })
       .catch((error) => {
         console.error(error);
-        toast.error(`Error occurred: ${error.message}`);
       });
   };
 

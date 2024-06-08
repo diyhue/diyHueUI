@@ -4,9 +4,6 @@ import axios from "axios";
 import { FaBars } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
-import { Tooltip } from "@mui/material";
-
-import GenericButton from "../components/GenericButton/GenericButton";
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 
 
@@ -15,7 +12,6 @@ import NotificationCenter from "../components/NotificationCenter/NotificationCen
 
 const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   const [group0State, setGroup0State] = useState(false);
-  const [swstate, getState] = useState("noupdates");
 
   const iconVariants = {
     opened: {
@@ -29,19 +25,6 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
   };
 
   useEffect(() => {
-    const fetchUpdate = () => {
-      if (API_KEY !== undefined) {
-        axios
-          .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
-          .then((result) => {
-            getState(result.data["state"]);
-          })
-          .catch((error) => {
-            console.error(error);
-            toast.error(`Error occurred: ${error.message}`);
-          });
-      }
-    };
     const fetchGroups = () => {
       if (API_KEY !== undefined) {
         axios
@@ -57,11 +40,9 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       }
     };
 
-    fetchUpdate();
     fetchGroups();
     const interval = setInterval(() => {
       fetchGroups();
-      fetchUpdate();
     }, 5000); // <<-- ⏱ 1000ms = 1s
     return () => clearInterval(interval);
   }, [HOST_IP, API_KEY]);
@@ -80,67 +61,6 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       });
   };
 
-  const handleupdate = (state) => {
-    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
-      axios
-        .put(`${HOST_IP}/api/${API_KEY}/config`, {
-          swupdate2: { install: true },
-        })
-        .then((fetchedData) => {
-          //console.log(fetchedData.data);
-          toast.success("Install update");
-        })
-        .catch((error) => {
-          console.error(error);
-          toast.error(`Error occurred: ${error.message}`);
-        });
-    }
-    if (state === "noupdates" || state === "unknown") {
-      axios
-        .put(`${HOST_IP}/api/${API_KEY}/config`, {
-          swupdate2: { checkforupdate: true, install: false },
-        })
-        .then((fetchedData) => {
-          //console.log(fetchedData.data);
-          toast.success("Check update");
-        })
-        .catch((error) => {
-          console.error(error);
-          toast.error(`Error occurred: ${error.message}`);
-        });
-    }
-  };
-
-  const getValueState = (state) => {
-    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
-      return "Update available";
-    } else if (state === "noupdates" || state === "unknown") {
-      return "No Update";
-    } else if (state === "installing") {
-      return "installing...";
-    }
-  };
-
-  const getClassState = (state) => {
-    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
-      return "updatebtn update";
-    } else if (state === "noupdates" || state === "unknown") {
-      return "updatebtn check";
-    } else if (state === "installing") {
-      return "updatebtn install";
-    }
-  };
-
-  const getTitleState = (state) => {
-    if (state === "anyreadytoinstall" || state === "allreadytoinstall") {
-      return "Install update";
-    } else if (state === "noupdates" || state === "unknown") {
-      return "Check for update";
-    } else if (state === "installing") {
-      return "Update is installing";
-    }
-  };
-
   return (
     <div className="topbarRight">
       <motion.div
@@ -156,26 +76,9 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       <NotificationCenter
         notifications={true}
         updating={true}
-      >
-
-      </NotificationCenter>
-
-      <div className="switchContainer">
-        <Tooltip
-          title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>}
-          arrow
-        >
-          <div>
-            <GenericButton
-              value={getValueState(swstate)}
-              color={getClassState(swstate)}
-              size=""
-              type="submit"
-              onClick={() => handleupdate(swstate)}
-            />
-          </div>
-        </Tooltip>
-      </div>
+        HOST_IP={HOST_IP}
+        API_KEY={API_KEY}
+      />
 
       <div className="onbtn">
         <FlipSwitch

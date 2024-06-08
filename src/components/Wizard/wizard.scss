@@ -19,6 +19,15 @@
   height: fit-content;
   margin: auto;
 
+  &.notificationCenter {
+    position: unset;
+    max-width: 300px;
+    width: 100%;
+    min-height: 300px;
+    margin-top: 60px;
+    margin-right: 76px; //226,305
+  }
+
   .header {
     display: flex;
     font-size: 20px;
@@ -33,6 +42,7 @@
       flex: 0 0 auto;
 
       button {
+        cursor: pointer;
         background: none;
         width: 25px;
         height: 25px;
@@ -59,6 +69,17 @@
   }
 }
 
+.Modal.notificationCenter:before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  width: 0;
+  left: 139px;
+  top: -21px;
+  border: 10px solid transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
 .Overlay {
   position: fixed;
   top: 0;
@@ -66,6 +87,10 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
+
+  &.notificationCenter {
+    background-color: rgba(0, 0, 0, 0);
+  }
 }
 
 @media screen and (max-width: 750px) {

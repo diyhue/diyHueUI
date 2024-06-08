@@ -3,7 +3,7 @@ import { FaTimes } from "react-icons/fa";
 
 import "./wizard.scss";
 
-const Wizard = ({ isOpen, closeWizard, children, headline }) => {
+const Wizard = ({ isOpen, closeWizard, children, headline, type='' }) => {
   function afterOpenModal() {}
 
   return (
@@ -12,8 +12,8 @@ const Wizard = ({ isOpen, closeWizard, children, headline }) => {
       onAfterOpen={afterOpenModal}
       onRequestClose={closeWizard}
       contentLabel="Wizard"
-      className="Modal"
-      overlayClassName="Overlay"
+      className={`Modal ${type}`}
+      overlayClassName={`Overlay ${type}`}
       ariaHideApp={false}
     >
       <div className="header">

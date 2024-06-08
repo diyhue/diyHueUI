@@ -1,103 +1,51 @@
-.notificationCenterContainer{
+.notificationCenterContainer {
+  position: relative;
+  //margin-right: 10px;
+
+  .notificationBtn {
+    cursor: pointer;
     position: relative;
-    margin-right: 10px;
-    
+    height: 25px;
 
-    .notificationBtn{
-        position: relative;
-        height: 25px;
-
-        .notificationDot{
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            position: absolute;
-            top: 15px;
-            left: 13px;
-            background: rgb(255, 0, 0);
-        }
-
-        .updating {
-            width: 10px;
-            height: 2px;
-            background: #fff;
-            border-radius: 5px;
-            animation: updating 1s infinite alternate;
-        }
-
-        svg{
-            fill: #fff;
-            height: 100%;
-            width: auto;
-        }
+    .notificationDot {
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      position: absolute;
+      top: 15px;
+      left: 13px;
+      background: rgb(255, 0, 0);
     }
 
-    .notificationCenter{
-        display: none;
-        
-       
-
-
-        &.active{
-            display: block;
-            width: 300px;
-            height: 300px;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            background: rgba(0, 0, 0, 0.09);
-            background: linear-gradient(
-                45deg,
-                rgba(0, 0, 0, 0.05) 0%,
-                rgba(0, 0, 0, 0.2) 100%
-            );
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 10px;
-            color: #eee;
-            position: absolute;
-            top: 58px;
-            left: -125px;
-        }
-
-        .entry{
-            
-
-        }
-
-        .arrow{
-            position: absolute;
-            height: 20px;
-            width: 30px;
-            clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-            top: -20.5px;
-            left: 125px;
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            background: rgba(0, 0, 0, 0.09);
-            background: linear-gradient(
-                45deg,
-                rgba(0, 0, 0, 0.05) 0%,
-                rgba(0, 0, 0, 0.2) 100%
-            );
-        }
+    .updating {
+      width: 10px;
+      height: 2px;
+      background: #fff;
+      border-radius: 5px;
+      animation: updating ease-in-out 1s infinite alternate;
     }
 
+    svg {
+      fill: #fff;
+      height: 100%;
+      width: auto;
+    }
+  }
 }
 
-
 @-webkit-keyframes updating {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(15px);
-    }
+  0% {
+    transform: translateX(0);
   }
-  @keyframes updating {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(15px);
-    }
+  100% {
+    transform: translateX(15px);
   }
+}
+@keyframes updating {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(15px);
+  }
+}

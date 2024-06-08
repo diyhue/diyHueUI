@@ -9,7 +9,7 @@ import "./layout.scss";
 import "./scrollbar.scss";
 
 const Layout = ({ HOST_IP, API_KEY }) => {
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const isMobile = useMediaQuery({ query: `(max-width: 750px)` });
   const [showSidebar, setShowSidebar] = useState(!isMobile);
 
   return (
@@ -27,7 +27,10 @@ const Layout = ({ HOST_IP, API_KEY }) => {
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
         />
-        <ContentSection HOST_IP={HOST_IP} API_KEY={API_KEY} />
+        <ContentSection
+          HOST_IP={HOST_IP}
+          API_KEY={API_KEY}
+        />
       </div>
     </>
   );

@@ -19,7 +19,7 @@ import "./sidebarSection.scss";
 
 const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
   const [currentElement, setCurrentElement] = useState(
-    window.location.hash.substring(2)
+    "#" + window.location.hash.substring(1)
   );
 
   const itemClicked = (link) => {

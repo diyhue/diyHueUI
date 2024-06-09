@@ -135,7 +135,7 @@ const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications }) => {
       <Wizard
         isOpen={WizardIsOpen}
         closeWizard={closeWizard}
-        headline={"notificationCenter"}
+        headline={"Notifications"}
         type={"notificationCenter"}
       >
         {WizardContent}

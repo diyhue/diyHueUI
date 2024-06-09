@@ -1,0 +1,76 @@
+.topbarLeft {
+  flex-shrink: 0;
+  height: 50px;
+  display: flex;
+
+  .logo {
+    display: flex;
+    flex: 0 0 auto;
+    height: 30px;
+    margin: 10px 10px 15px 10px;
+    width: 30px;
+
+    img {
+      max-height: 30px;
+    }
+  }
+
+  .headline {
+    flex: 1 1 auto;
+    display: flex;
+    color: #eee;
+    line-height: 50px;
+    font-size: 18px;
+    letter-spacing: 5px;
+  }
+}
+
+.topbarRight {
+  flex-shrink: 0;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.2);
+
+  .onbtn {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+
+    p {
+      color: #ccc;
+      margin: 15px 15px;
+    }
+
+    .switchContainer {
+      margin-right: 20px;
+      width: 60px;
+      height: 35px;
+    }
+  }
+
+  .hamburger {
+    display: flex;
+    color: #ccc;
+    align-items: center;
+    font-size: 25px;
+    margin-right: auto;
+    margin-left: 10px;
+    transition: color 0.1s ease;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .topbarRight {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}

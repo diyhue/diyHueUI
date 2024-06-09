@@ -1,0 +1,86 @@
+.columnLeft {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.2);
+
+  .sidebar {
+    height: 100%;
+    overflow-y: auto;
+
+    ul {
+      li {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.15s ease-in-out;
+        display: flex;
+
+        .menuEntry {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 20px 7px;
+          color: #eee;
+          font-size: 18px;
+          transition: all 0.15s ease-in-out;
+
+          .submenuIcon {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .submenu {
+          margin-left: 30px;
+        }
+
+        svg {
+          width: 30px;
+          margin-right: 0px;
+          flex-shrink: 0;
+        }
+
+        p {
+          flex-shrink: 0;
+          margin-left: 10px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .menuEntry:hover {
+        transform: scale(1.1);
+        transition: all 0.15s ease-in-out;
+        padding: 20px 10px;
+      }
+
+      li.active {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+      }
+
+      ul {
+        margin-left: 0;
+        li {
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .columnLeft {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}

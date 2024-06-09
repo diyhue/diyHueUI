@@ -1,0 +1,77 @@
+.iconbtn {
+  &.small {
+    flex: 0 0 40px;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+
+    svg {
+      height: 1.5em;
+      width: 1.5em;
+      margin-top: 4px;
+    }
+
+    &.red {
+      background: #881a3a;
+
+      &:hover,
+      &:active {
+        background: #af234a;
+      }
+    }
+
+    &.blue {
+      background: #1a5088;
+      margin-right: 20px;
+
+      &:hover,
+      &:active {
+        background: #2872c2;
+      }
+    }
+
+    &.green {
+      background: #27ae60;
+      margin-right: 20px;
+
+      &:hover,
+      &:active {
+        background: #2ecc71;
+      }
+    }
+  }
+
+  &.big {
+    &.btn {
+      cursor: pointer;
+      margin-bottom: 10px;
+      display: table;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+
+      &:hover,
+      &:active {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+      }
+
+      svg {
+        fill: #fff;
+        height: 75px;
+        width: auto;
+      }
+
+      p {
+        text-align: center;
+        color: #fff;
+        margin-top: 5px;
+      }
+    }
+  }
+}

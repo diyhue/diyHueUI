@@ -1,0 +1,50 @@
+.hueSwitch {
+  width: 240px;
+  padding: 50px 60px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #f3f3f3;
+  box-shadow: rgba(0, 0, 0, 0.25) -4px 5px 12px 2px;
+
+  .inner {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) -4px 5px 12px 2px;
+
+    .button {
+      width: 100%;
+      height: 80px;
+      background: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        color: #aaa;
+      }
+
+      &:hover {
+        background: #6295d6;
+      }
+
+      &.top {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+
+      &.bottom {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
+
+    .spacer {
+      width: 100%;
+      height: 1.5px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}

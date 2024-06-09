@@ -1,0 +1,106 @@
+.Modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.09);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  inset: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+
+  &.notificationCenter {
+    position: unset;
+    max-width: 300px;
+    width: 100%;
+    min-height: 300px;
+    margin-top: 60px;
+    margin-right: 76px; //226,305
+  }
+
+  .header {
+    display: flex;
+    font-size: 20px;
+    color: #ccc;
+    margin-bottom: 10px;
+
+    .headline {
+      flex: 1 1 auto;
+    }
+
+    .iconbox {
+      flex: 0 0 auto;
+
+      button {
+        cursor: pointer;
+        background: none;
+        width: 25px;
+        height: 25px;
+        border: none;
+
+        svg {
+          color: #ccc;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .wizardContent {
+    p {
+      color: #fff;
+      margin-top: 5px;
+    }
+    label {
+      color: #fff;
+      margin-top: 5px;
+    }
+  }
+}
+
+.Modal.notificationCenter:before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  width: 0;
+  left: 139px;
+  top: -21px;
+  border: 10px solid transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  &.notificationCenter {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .Modal {
+    inset: 10px;
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .Modal {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}

@@ -1,0 +1,51 @@
+.notificationCenterContainer {
+  position: relative;
+  //margin-right: 10px;
+
+  .notificationBtn {
+    cursor: pointer;
+    position: relative;
+    height: 25px;
+
+    .notificationDot {
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      position: absolute;
+      top: 15px;
+      left: 13px;
+      background: rgb(255, 0, 0);
+    }
+
+    .updating {
+      width: 10px;
+      height: 2px;
+      background: #fff;
+      border-radius: 5px;
+      animation: updating ease-in-out 1s infinite alternate;
+    }
+
+    svg {
+      fill: #fff;
+      height: 100%;
+      width: auto;
+    }
+  }
+}
+
+@-webkit-keyframes updating {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(15px);
+  }
+}
+@keyframes updating {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(15px);
+  }
+}

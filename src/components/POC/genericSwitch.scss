@@ -1,0 +1,49 @@
+/* Generic Zigbee */
+.genericSwitch {
+  width: 240px;
+  height: 240px;
+  padding: 25px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  background: #f3f3f3;
+  box-shadow: rgba(0, 0, 0, 0.25) -4px 5px 12px 2px;
+
+  .inner {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    overflow: hidden;
+
+    .row {
+      width: 55px;
+      flex-direction: column;
+
+      &.right {
+        margin-left: auto;
+      }
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        margin-bottom: 1px;
+        background: #f3f3f3;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 0px;
+
+        svg {
+          color: #aaa;
+        }
+
+        &:hover {
+          background: #6295d6;
+        }
+      }
+    }
+  }
+}

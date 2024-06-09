@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DIYHue",
+  "name": "DIYHue Webapp",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,24 @@
       "sizes": "512x512"
     }
   ],
+  "screenshots": [
+    {
+     "src": "screenshot_desktop.jpg",
+      "sizes": "2556x1238",
+      "type": "image/jpg",
+      "form_factor": "wide",
+      "label": "DIYHue App"
+    },
+    {
+      "src": "screenshot_mobile.jpg",
+       "sizes": "1179x2379",
+       "type": "image/jpg",
+       "form_factor": "narrow",
+       "label": "DIYHue App"
+     }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000000"
 }

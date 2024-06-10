@@ -7,7 +7,7 @@ import GenericButton from "../GenericButton/GenericButton";
 import GenericText from "../GenericText/GenericText";
 import SelectMenu from "../SelectMenu/SelectMenu";
 
-const AddLight = ({ HOST_IP, API_KEY }) => {
+const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
   const [lightData, setLightData] = useState({
     protocol: "auto",
   });
@@ -19,8 +19,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
     });
   };
 
-  const handleForm = (evt) => {
-    evt.preventDefault();
+  const handleForm = () => {
     const { protocol: lightproto, ip: lightip, ...rest } = lightData;
     const formattedData = {
       protocol: lightproto,
@@ -36,7 +35,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
-
+      closeWizard()
   };
 
   const protocols = [

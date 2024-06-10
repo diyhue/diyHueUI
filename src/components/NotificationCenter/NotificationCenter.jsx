@@ -65,6 +65,7 @@ const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications }) => {
           toast.error(`Error occurred: ${error.message}`);
         });
     }
+    closeWizard()
   };
 
   const getValueState = (state) => {

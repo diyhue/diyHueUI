@@ -22,8 +22,6 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link, items, curre
               if (subItems[i].link === currentElement) {
                 //console.log("subItems[i].link: " + subItems[i].link);
                 return true;
-              } else {
-                return false
               }
             }
           }

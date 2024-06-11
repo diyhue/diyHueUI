@@ -1,28 +1,24 @@
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 
 import { motion } from "framer-motion";
 import { FaAngleDown } from "react-icons/fa";
 
 const MenuItem = ({ label, icon, onClick, isActive, children, link, items, currentElement }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useMediaQuery({ query: `(max-width: 750px)` });
 
   const submenuActive = () => {
-    if (isMobile) {
-      if (label === "DiyHue" || label === "Addons") {
-        //console.log("label: " + label);
-        for (let x = 0; x < items.length; x++) {
-          if (items[x]["label"] === label) {
-            //console.log("items[x]label: " + items[x]["label"]);
-            const subItems = items[x].subItems
-            //console.log("subItems.length: " + subItems.length);
-            for (let i = 0; i < subItems.length; i++) {
-              //console.table("subItems: " + subItems[i].label);
-              if (subItems[i].link === currentElement) {
-                //console.log("subItems[i].link: " + subItems[i].link);
-                return true;
-              }
+    if (label === "DiyHue" || label === "Addons") {
+      //console.log("label: " + label);
+      for (let x = 0; x < items.length; x++) {
+        if (items[x]["label"] === label) {
+          //console.log("items[x]label: " + items[x]["label"]);
+          const subItems = items[x].subItems
+          //console.log("subItems.length: " + subItems.length);
+          for (let i = 0; i < subItems.length; i++) {
+            //console.table("subItems: " + subItems[i].label);
+            if (subItems[i].link === currentElement) {
+              //console.log("subItems[i].link: " + subItems[i].link);
+              setIsOpen(true);
             }
           }
         }

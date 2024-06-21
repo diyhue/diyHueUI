@@ -8,16 +8,11 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link, items, curre
 
   const submenuActive = () => {
     if (label === "DiyHue" || label === "Addons") {
-      //console.log("label: " + label);
       for (let x = 0; x < items.length; x++) {
         if (items[x]["label"] === label) {
-          //console.log("items[x]label: " + items[x]["label"]);
           const subItems = items[x].subItems
-          //console.log("subItems.length: " + subItems.length);
           for (let i = 0; i < subItems.length; i++) {
-            //console.table("subItems: " + subItems[i].label);
             if (subItems[i].link === currentElement) {
-              //console.log("subItems[i].link: " + subItems[i].link);
               setIsOpen(true);
             }
           }

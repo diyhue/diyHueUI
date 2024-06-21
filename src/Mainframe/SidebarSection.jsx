@@ -38,7 +38,7 @@ const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
       icon: Diybridge,
       subItems: [
         { label: "Bridge", icon: Diybridge, link: "#bridge" },
-        { label: "Linkbutton", icon: FaLink, link: "#linkbutton" },
+        { label: "Link button", icon: FaLink, link: "#linkbutton" },
         { label: "App Users", icon: PiUserListFill, link: "#users" },
         { label: "Alarm", icon: FaExclamationTriangle, link: "#alarm" },
         { label: "Settings", icon: FaCog, link: "#settings" },

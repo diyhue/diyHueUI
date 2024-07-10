@@ -189,7 +189,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
         color="blue"
         size=""
         type="submit"
-        onClick={(e) => handleForm(e)}
+        onClick={() => handleForm()}
       />
     </div>
   </>);

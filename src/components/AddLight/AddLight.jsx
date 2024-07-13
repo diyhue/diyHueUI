@@ -19,8 +19,7 @@ const AddLight = ({ HOST_IP, API_KEY }) => {
     });
   };
 
-  const handleForm = (evt) => {
-    evt.preventDefault();
+  const handleForm = () => {
     const { protocol: lightproto, ip: lightip, ...rest } = lightData;
     const formattedData = {
       protocol: lightproto,

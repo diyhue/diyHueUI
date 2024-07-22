@@ -141,7 +141,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
         closeWizard={closeWizard}
         headline="Add Light"
       >
-        <AddLight HOST_IP={HOST_IP} API_KEY={API_KEY}></AddLight>
+        <AddLight HOST_IP={HOST_IP} API_KEY={API_KEY} closeWizard={closeWizard}></AddLight>
       </Wizard>
     </div>
   );

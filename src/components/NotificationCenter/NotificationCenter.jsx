@@ -1,11 +1,14 @@
-import { FaBell } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import "./notificationCenter.scss";
-import Wizard from "../Wizard/Wizard";
-import GenericButton from "../GenericButton/GenericButton";
+
+import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Tooltip } from "@mui/material";
-import axios from "axios";
+import { FaBell } from "react-icons/fa";
+
+import Wizard from "../Wizard/Wizard";
+import GenericButton from "../GenericButton/GenericButton";
+
+import "./notificationCenter.scss";
 
 
 const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications }) => {
@@ -65,6 +68,7 @@ const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications }) => {
           toast.error(`Error occurred: ${error.message}`);
         });
     }
+    closeWizard()
   };
 
   const getValueState = (state) => {

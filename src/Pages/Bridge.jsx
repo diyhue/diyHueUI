@@ -153,6 +153,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+    closeWizard()
   };
 
   const backupConfig = () => {
@@ -165,6 +166,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+    closeWizard()
   };
 
   const downloadConfig = () => {
@@ -178,6 +180,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+    closeWizard()
   };
 
   const Restart = () => {
@@ -270,6 +273,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+    closeWizard()
   };
 
   const restoreAlert = () => {
@@ -299,6 +303,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+    closeWizard()
   };
 
   const debugOptions = () => {
@@ -340,6 +345,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+    closeWizard()
   };
 
   const downloadLog = () => {
@@ -353,6 +359,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
+
+    closeWizard()
   };
 
   let options = timezones.map(function (timezone) {

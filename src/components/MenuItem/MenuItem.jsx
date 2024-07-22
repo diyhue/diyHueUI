@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { motion } from "framer-motion";
 import { FaAngleDown } from "react-icons/fa";
 
-const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
+const MenuItem = ({ label, icon, onClick, isActive, children, link, items, currentElement }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const submenuActive = () => {
+    if (label === "DiyHue" || label === "Addons") {
+      for (let x = 0; x < items.length; x++) {
+        if (items[x]["label"] === label) {
+          const subItems = items[x].subItems
+          for (let i = 0; i < subItems.length; i++) {
+            if (subItems[i].link === currentElement) {
+              setIsOpen(true);
+            }
+          }
+        }
+      }
+    }
+  }
+
 
   const handleParentClick = (e) => {
     if (children) {
@@ -26,14 +42,14 @@ const MenuItem = ({ label, icon, onClick, isActive, children, link }) => {
         {icon}
         <p>{label}</p>
         <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
+          animate={{ rotate: (isOpen || submenuActive()) ? 180 : 0 }}
           transition={{ duration: 0.3 }}
           className="submenuIcon"
         >
           {children && <FaAngleDown />}
         </motion.div>
       </div>
-      <div className="submenu">{isOpen && children}</div>
+      <div className="submenu">{(isOpen || submenuActive()) && children}</div>
     </li>
   );
 
@@ -67,6 +83,8 @@ const SubMenu = ({ items, currentElement, itemClicked }) => (
         onClick={() => itemClicked(item.link)}
         isActive={currentElement === item.link}
         link={item.link}
+        items={items}
+        currentElement={currentElement}
       >
         {item.subItems && (
           <SubMenu

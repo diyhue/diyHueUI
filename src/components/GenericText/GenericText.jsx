@@ -1,6 +1,6 @@
 import "./genericText.scss";
 
-const GenericText = ({ label = '', value = '', placeholder = '', readOnly = false, type = 'text', onChange = undefined, pattern = '' }) => {
+const GenericText = ({ label = '', value = '', placeholder = '', readOnly = false, type = 'text', onChange = undefined, pattern = '', autoComplete = '' }) => {
     return (<>
         <label>{label}</label>
         <input
@@ -10,6 +10,7 @@ const GenericText = ({ label = '', value = '', placeholder = '', readOnly = fals
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange && onChange(e.target.value)}
+            autoComplete={autoComplete}
         />
     </>);
 };

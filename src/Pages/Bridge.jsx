@@ -59,6 +59,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/api/${API_KEY}/config`)
       .then((result) => {
+        console.log(result.data);
         setBridgeName(result.data["name"]);
         setSwversion(result.data["swversion"]);
         setApiVersion(result.data["apiversion"]);
@@ -501,15 +502,17 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               System debug information: (Work in progress)
             </div>
             <div className="form-control">
-            <div contenteditable="false">
-                Hue-Emulator Version: {DebugInfo["diyhue"]}<br></br>
-                WebUI Version: {DebugInfo["webui"]}<br></br>
-                Architecture: {DebugInfo["machine"]}<br></br>
-                OS: {DebugInfo["sysname"]}<br></br>
-                {DebugInfo["sysname"]} version: {DebugInfo["os_version"]}<br></br>
-                {DebugInfo["sysname"]} release: {DebugInfo["os_release"]}<br></br>
-                Hardware: %Hardware%
-              </div>
+              <label>Hue-Emulator Version: {DebugInfo["diyhue"]}</label>
+              <label>WebUI Version: {DebugInfo["webui"]}</label>
+              <label>Architecture: {DebugInfo["machine"]}</label>
+              <label>OS: {DebugInfo["sysname"]}</label>
+              <label>
+                {DebugInfo["sysname"]} version: {DebugInfo["os_version"]}
+              </label>
+              <label>
+                {DebugInfo["sysname"]} release: {DebugInfo["os_release"]}
+              </label>
+              <label>Hardware: %Hardware%</label>
             </div>
           </PageContent>
         </GlassContainer>

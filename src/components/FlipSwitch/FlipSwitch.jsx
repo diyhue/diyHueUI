@@ -6,6 +6,7 @@ const FlipSwitch = ({ value = '', onChange = undefined, checked = false, label =
       <p>{label}</p>
       <label className={`flipSwitchLabel ${position}`}>
         <input
+          id={label}
           type="checkbox"
           value={value}
           onChange={(e) => onChange(e.target.checked)}

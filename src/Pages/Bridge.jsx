@@ -489,7 +489,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                 readOnly={true}
                 type="text"
                 placeholder="time"
-                value={Date(readonlyConf["localtime"])}
+                value={new Date(readonlyConf["localtime"])}
               />
             </div>
           </PageContent>

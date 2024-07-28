@@ -2,7 +2,7 @@ import "./genericText.scss";
 
 const GenericText = ({ label = '', value = '', placeholder = '', readOnly = false, type = 'text', onChange = undefined, pattern = '', autoComplete = 'off' }) => {
     return (<>
-        <label for={label}>{label}</label>
+        <label htmlFor={label}>{label}</label>
         <input
             id={label}
             readOnly={readOnly}

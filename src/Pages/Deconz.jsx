@@ -89,6 +89,7 @@ const Deconz = ({ HOST_IP, API_KEY }) => {
             <div className="headline">Deconz Config</div>
             <form className="add-form">
               <FlipSwitch
+                id="Deconz"
                 value={enable}
                 onChange={(e) => toggleEnable(e)}
                 checked={enable}

@@ -417,6 +417,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <FlipSwitch
+                id="Remote API"
                 value={remoteApi}
                 onChange={(e) => setRemoteApi(e)}
                 checked={remoteApi}
@@ -426,6 +427,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <FlipSwitch
+                id="Discovery"
                 value={discovery}
                 onChange={(e) => setDiscovery(e)}
                 checked={discovery}

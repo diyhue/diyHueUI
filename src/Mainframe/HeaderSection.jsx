@@ -82,6 +82,7 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
 
       <div className="onbtn">
         <FlipSwitch
+          id="onbtn"
           value={group0State}
           onChange={(e) => handleToggleChange(e)}
           checked={group0State}

@@ -64,6 +64,7 @@ const Alarm = ({ HOST_IP, API_KEY }) => {
             <div className="headline">Motion notifications alarm</div>
             <form className="add-form">
               <FlipSwitch
+                id="alarm"
                 value={enable}
                 onChange={(e) => toggleEnable(e)}
                 checked={enable}

@@ -184,6 +184,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
             <p>To add ports separate the ports with "," ex: 80,81,82</p>
             <form className="add-form">
               <FlipSwitch
+                id="ports"
                 value={enable}
                 onChange={(e) => toggleEnable(e)}
                 checked={enable}
@@ -218,6 +219,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
             <p>Set which protocol to find.</p>
             <form className="add-form">
               <FlipSwitch
+                id="Yeelight"
                 value={yeelight}
                 onChange={(e) => setYeelight(e)}
                 checked={yeelight}
@@ -226,6 +228,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Native_multi"
                 value={native_multi}
                 onChange={(e) => setNative_multi(e)}
                 checked={native_multi}
@@ -234,6 +237,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Tasmota"
                 value={tasmota}
                 onChange={(e) => setTasmota(e)}
                 checked={tasmota}
@@ -242,6 +246,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Wled"
                 value={wled}
                 onChange={(e) => setWled(e)}
                 checked={wled}
@@ -250,6 +255,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Shelly"
                 value={shelly}
                 onChange={(e) => setShelly(e)}
                 checked={shelly}
@@ -258,6 +264,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Esphome"
                 value={esphome}
                 onChange={(e) => setEsphome(e)}
                 checked={esphome}
@@ -266,6 +273,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Hyperion"
                 value={hyperion}
                 onChange={(e) => setHyperion(e)}
                 checked={hyperion}
@@ -274,6 +282,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Tpkasa"
                 value={tpkasa}
                 onChange={(e) => setTpkasa(e)}
                 checked={tpkasa}
@@ -282,6 +291,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
               />
 
               <FlipSwitch
+                id="Elgato"
                 value={elgato}
                 onChange={(e) => setElgato(e)}
                 checked={elgato}

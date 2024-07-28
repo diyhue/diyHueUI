@@ -45,6 +45,7 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
           </p>
         </div>
         <FlipSwitch
+          id={"light " + id}
           value={light["state"]["on"]}
           checked={light["state"]["on"]}
           onChange={(e) => switchLight({ on: e })}

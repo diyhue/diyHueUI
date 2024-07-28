@@ -72,6 +72,7 @@ const HA = ({ HOST_IP, API_KEY }) => {
             <div className="headline">Home Assistant config</div>
             <form className="add-form">
               <FlipSwitch
+                id="ha"
                 value={enable}
                 onChange={(e) => setEnable(e)}
                 checked={enable}

@@ -62,6 +62,7 @@ const GroupHeader = ({ HOST_IP, api_key, id, group, lights }) => {
         </div>
         <div className="flipSwitch">
           <FlipSwitch
+            id={"group " + id}
             value={group.state["any_on"]}
             onChange={(e) => handleToggleChange(e)}
             checked={group.state["any_on"]}

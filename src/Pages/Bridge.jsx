@@ -59,7 +59,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/api/${API_KEY}/config`)
       .then((result) => {
-        console.log(result.data);
+        //console.log(result.data);
         setBridgeName(result.data["name"]);
         setSwversion(result.data["swversion"]);
         setApiVersion(result.data["apiversion"]);

@@ -1,12 +1,12 @@
 import axios from "axios";
 
-import { FaLightbulb } from "react-icons/fa";
 import { RiAlertLine } from "react-icons/ri";
 import { AnimatePresence } from "framer-motion";
 
 import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import BrightnessSlider from "../BrightnessSlider/BrightnessSlider";
+import { HueIcons } from "../../static/icons/hass-hue-icons";
 
 const Light = ({ HOST_IP, api_key, id, light }) => {
   const switchLight = (newState) => {
@@ -36,7 +36,10 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
     <div className="groupCard light">
       <div className="row top">
         <div className="gradient" style={getStyle()}>
-          <FaLightbulb />
+          <HueIcons
+            type={"light-" + light["config"]["archetype"]}
+            color="#eeeeee"
+          />
         </div>
         <div className="text">
           <p className="name">
@@ -45,6 +48,7 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
           </p>
         </div>
         <FlipSwitch
+          id={"light " + id}
           value={light["state"]["on"]}
           checked={light["state"]["on"]}
           onChange={(e) => switchLight({ on: e })}

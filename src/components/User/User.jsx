@@ -76,7 +76,7 @@ const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
         {Object.entries(whitelist)
           .filter((new_user) => new_user[1].name !== user["name"])
           .map(([new_id, new_user]) => (
-            <div className="form-control">
+            <div key={new_id} className="form-control">
               <GenericButton
                 value={new_user["name"]}
                 color="blue"

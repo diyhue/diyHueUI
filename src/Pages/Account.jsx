@@ -103,6 +103,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
                   readOnly={true}
                   type="text"
                   value={email}
+                  autoComplete="username"
                 />
               </div>
               <div className="form-control">
@@ -112,6 +113,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
                   placeholder="Enter Password"
                   value={pass}
                   onChange={(e) => handleChange(e)}
+                  autoComplete="new-password"
                 />
               </div>
               <small>
@@ -132,6 +134,7 @@ const Account = ({ HOST_IP, API_KEY }) => {
                   placeholder="Repeat Password"
                   value={pass1}
                   onChange={(e) => setPass1(e)}
+                  autoComplete="new-password"
                 />
               </div>
               {pass !== pass1 && (

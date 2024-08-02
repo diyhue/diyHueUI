@@ -59,6 +59,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/api/${API_KEY}/config`)
       .then((result) => {
+        //console.log(result.data);
         setBridgeName(result.data["name"]);
         setSwversion(result.data["swversion"]);
         setApiVersion(result.data["apiversion"]);
@@ -416,6 +417,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <FlipSwitch
+                id="Remote API"
                 value={remoteApi}
                 onChange={(e) => setRemoteApi(e)}
                 checked={remoteApi}
@@ -425,6 +427,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <FlipSwitch
+                id="Discovery"
                 value={discovery}
                 onChange={(e) => setDiscovery(e)}
                 checked={discovery}

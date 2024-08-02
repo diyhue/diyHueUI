@@ -68,6 +68,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
             <div className="headline">ZigBee2MQTT config</div>
             <form className="add-form">
               <FlipSwitch
+                id="mqtt"
                 value={enable}
                 onChange={(e) => setEnable(e)}
                 checked={enable}

@@ -118,7 +118,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             color="blue"
             size=""
             type="submit"
-            onClick={() => dumpConfig()}
+            onClick={() => dumpConfig(false)}
           />
         </div>
         <div className="form-control">
@@ -144,11 +144,14 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     openWizard();
   };
 
-  const dumpConfig = () => {
+  const dumpConfig = (restart) => {
     axios
       .get(`${HOST_IP}/save`)
       .then(() => {
         toast.success("Config dumped to local disk");
+        if (restart === true){
+          Restart();
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -184,7 +187,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
     closeWizard()
   };
 
-  const Restart = () => {
+  const RestartAlert = () => {
     confirmAlert({
       title: "Restart Python.",
       message:
@@ -192,30 +195,33 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
       buttons: [
         {
           label: "Yes",
-          onClick: () =>
-            axios
-              .get(`${HOST_IP}/restart`)
-              .then(() => {
-                toast.success("Restart Python");
-              })
-              .catch((error) => {
-                if (error.message === "Network Error") {
-                  toast.success("Restart Python");
-                } else {
-                  console.error(error);
-                  toast.error(`Error occurred: ${error.message}`);
-                }
-              }),
+          onClick: () => Restart(),
         },
         {
           label: "Save first",
-          onClick: () => dumpConfig(),
+          onClick: () => dumpConfig(true),
         },
         {
           label: "No",
         },
       ],
     });
+  };
+
+  const Restart = () => {
+    axios
+      .get(`${HOST_IP}/restart`)
+      .then(() => {
+        toast.success("Restart Python");
+      })
+      .catch((error) => {
+        if (error.message === "Network Error") {
+          toast.success("Restart Python");
+        } else {
+          console.error(error);
+          toast.error(`Error occurred: ${error.message}`);
+        }
+      })
   };
 
   const restoreOptions = () => {
@@ -556,7 +562,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
                   color="red"
                   size=""
                   type="submit"
-                  onClick={() => Restart()}
+                  onClick={() => RestartAlert()}
                 />
               </div>
               <div className="form-control">

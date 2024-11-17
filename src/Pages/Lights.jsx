@@ -6,7 +6,7 @@ import { BsPlusCircle } from "react-icons/bs";
 
 import AddLight from "../components/AddLight/AddLight";
 import CardGrid from "../components/CardGrid/CardGrid";
-import { ReactComponent as ScanIcon } from "../static/icons/scan.svg";
+import { ScanIcon } from "../static/icons/scan";
 import Light from "../components/Light/Light";
 import Wizard from "../components/Wizard/Wizard";
 import IconButton from "../components/IconButton/IconButton";

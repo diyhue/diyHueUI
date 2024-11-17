@@ -22,7 +22,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
-  background: url("../static/images/background.jpg") no-repeat;
+  background: url("../static/images/background.webp") no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: bottom center;
@@ -44,6 +44,6 @@ body {
 
 @media screen and (max-width: 750px) {
   body {
-    background-image: url("../static/images/mobile_background.png");
+    background-image: url("../static/images/mobile_background.webp");
   }
 }

@@ -4,7 +4,7 @@ const FlipSwitch = ({ value = '', onChange = undefined, checked = false, label =
   <>
     <div className="flipSwitch">
       <p>{label}</p>
-      <label className={`flipSwitchLabel ${position}`}>
+      <label htmlFor={id} className={`flipSwitchLabel ${position}`}>
         <input
           id={id}
           type="checkbox"

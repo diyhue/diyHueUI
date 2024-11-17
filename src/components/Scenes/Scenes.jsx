@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { cieToRgb, colorTemperatureToRgb } from "../ColorFormatConverter/ColorFormatConverter";
-import nightsky from "../../static/images/nightsky.jpg";
+import nightsky from "../../static/images/nightsky.webp";
 import Wizard from "../Wizard/Wizard";
 
 import "./scenes.scss";

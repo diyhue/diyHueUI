@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
 
     steps:
       - name: Clone repository
@@ -27,7 +27,9 @@ jobs:
       
       # Share artifact inside workflow
       - name: Share artifact inside workflow
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DiyHueUI
-          path: build
+          path: |
+            build
+            dist

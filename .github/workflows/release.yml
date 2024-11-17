@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
 
     steps:
       - name: Clone repository
@@ -30,10 +30,12 @@ jobs:
       
       # Share artifact inside workflow
       - name: Share artifact inside workflow
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DiyHueUI
-          path: build
+          path: |
+            build
+            dist
 
   release-project:
     name: Create Release
@@ -42,7 +44,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: DiyHueUI
       - name: Test artifact download
@@ -51,23 +53,15 @@ jobs:
       - name: Archive artifact
         uses: thedoctor0/zip-release@main
         with:
-          filename: DiyHueUI.zip
+          filename: DiyHueUI-release.zip
 
-      - name: Create Release
+      - name: Create and Upload Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}
-          release_name: DiyHue UI release ${{ github.ref }}
-      
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: DiyHueUI.zip
-          asset_name: DiyHueUI-release.zip
-          asset_content_type: application/zip
+          tag_name: ${{ github.ref_name }}
+          name: DiyHue UI release ${{ github.ref_name }}
+          files: DiyHueUI-release.zip
+          make_latest: true

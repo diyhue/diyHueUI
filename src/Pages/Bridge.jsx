@@ -31,6 +31,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   const [WizardContent, setWizardContent] = useState({});
   const [AdvanceConfig, setAdvanceConfig] = useState(false);
   const [UpdateTime, setUpdateTime] = useState("");
+  const [LogLevel, setLogLevel] = useState("INFO");
 
   const openWizard = () => {
     setWizardIsOpen(true);
@@ -67,6 +68,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         setRemoteApi(result.data["Remote API enabled"]);
         setTimezone(result.data["timezone"]);
         setUpdateTime(result.data["swupdate2"]["autoinstall"]["updatetime"].replace("T", ""))
+        setLogLevel(result.data["LogLevel"]);
         setReadonlyConf(result.data);
       })
       .catch((error) => {
@@ -95,6 +97,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         timezone: timezone,
         "Remote API enabled": remoteApi,
         discovery: discovery,
+        loglevel: LogLevel,
       })
       .then((fetchedData) => {
         //console.log(fetchedData.data);
@@ -233,7 +236,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         <div className="form-control">
           <GenericButton
             value="Restore backup"
-            color="blue"
+            color="red"
             size=""
             type="submit"
             onClick={() => restoreAlert()}
@@ -242,15 +245,54 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
         <div className="form-control">
           <GenericButton
             value="Reset config"
-            color="blue"
+            color="red"
             size=""
             type="submit"
             onClick={() => resetAlert()}
           />
         </div>
+        <div className="form-control">
+          <GenericButton
+            value="Remove certificate"
+            color="red"
+            size=""
+            type="submit"
+            onClick={() => certAlert()}
+          />
+        </div>
       </>
     );
     openWizard();
+  };
+
+  const certAlert = () => {
+    confirmAlert({
+      title: "Remove certificate.",
+      message: "Are you sure to do this?\nThis also makes a backup.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => remove_cert(),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
+  const remove_cert = () => {
+    axios
+      .get(`${HOST_IP}/remove_cert`)
+      .then(() => {
+        toast.success("Certificate removed");
+        Restart();
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
+      });
+    closeWizard()
   };
 
   const resetAlert = () => {
@@ -423,6 +465,16 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <FlipSwitch
+                id="Debug"
+                value={LogLevel === "DEBUG" ? true : false}
+                onChange={(e) => setLogLevel(e === true ? "DEBUG" : "INFO")}
+                checked={LogLevel === "DEBUG" ? true : false}
+                label="Temporarily Enable Debug Log"
+                position="right"
+              />
+            </div>
+            <div className="form-control">
+              <FlipSwitch
                 id="Remote API"
                 value={remoteApi}
                 onChange={(e) => setRemoteApi(e)}
@@ -467,10 +519,10 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <GenericText
-                label="Ip Address"
+                label="IP Address"
                 readOnly={true}
                 type="text"
-                placeholder="ip"
+                placeholder="iP"
                 value={readonlyConf["ipaddress"]}
               />
             </div>
@@ -485,7 +537,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <GenericText
-                label="Mac"
+                label="MAC Address"
                 readOnly={true}
                 type="text"
                 placeholder="mac"
@@ -514,12 +566,8 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               <label>WebUI Version: {DebugInfo["webui"]}</label>
               <label>Architecture: {DebugInfo["machine"]}</label>
               <label>OS: {DebugInfo["sysname"]}</label>
-              <label>
-                {DebugInfo["sysname"]} version: {DebugInfo["os_version"]}
-              </label>
-              <label>
-                {DebugInfo["sysname"]} release: {DebugInfo["os_release"]}
-              </label>
+              <label>{DebugInfo["sysname"]} version: {DebugInfo["os_version"]}</label>
+              <label>{DebugInfo["sysname"]} release: {DebugInfo["os_release"]}</label>
               <label>Hardware: %Hardware%</label>
             </div>
           </PageContent>

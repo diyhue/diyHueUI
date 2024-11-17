@@ -33,7 +33,7 @@ const Settings = ({ HOST_IP, API_KEY }) => {
     axios
       .get(`${HOST_IP}/api/${API_KEY}/config/port`)
       .then((result) => {
-        setEnable(result.data["enabled"]);
+        setPort_Enable(result.data["enabled"]);
         setPort(result.data["ports"]);
       })
       .catch((error) => {

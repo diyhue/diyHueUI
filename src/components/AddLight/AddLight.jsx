@@ -46,6 +46,7 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
     { value: "milight", label: "MiLight" },
     { value: "mibox", label: "Mi Box" },
     { value: "wiz", label: "Wiz" },
+    { value: "dummy", label: "Dummy" },
   ];
 
   const milightGroups = [
@@ -84,7 +85,6 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
         type="text"
         placeholder="192.168.x.x"
         value={lightData.ip}
-        // On regular HTML input components use e.taget.value
         onChange={(e) => handleChange("ip", e)}
       />
     </div>

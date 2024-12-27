@@ -38,7 +38,12 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
       <CardGrid options="main">
         <GlassContainer options="spacer">
           <PageContent>
-            <div className="headline"><IoIosWarning style={{ color: "red" }} />Check TimeZone before pressing Link Button<IoIosWarning style={{ color: "red" }}/></div>
+            <div className="headline">
+              <IoIosWarning style={{ color: "red" }}/>
+              Caution
+              <IoIosWarning style={{ color: "red" }}/>
+            </div>
+            <p>Check<a href="#bridge">TimeZone</a> before pressing Link Button</p>
           </PageContent>
         </GlassContainer>
 

@@ -13,6 +13,7 @@ import { Diybridge } from "../static/icons/Diybridge";
 import { SubMenu } from "../components/MenuItem/MenuItem";
 import { Tradfri } from "../static/icons/Tradfri";
 import { Zigbee } from "../static/icons/Zigbee";
+import { Govee } from "../static/icons/Govee";
 import logo from "../static/images/logo.svg";
 
 import "./sidebarSection.scss";
@@ -53,6 +54,7 @@ const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
         { label: "Tradfri", icon: Tradfri, link: "#tradfri" },
         { label: "Deconz", icon: Deconz, link: "#deconz" },
         { label: "Phillips", icon: Bridge, link: "#phillips" },
+        { label: "Govee", icon: Govee, link: "#govee" },
       ],
     },
     { label: "Account", icon: FaUser, link: "#account" },

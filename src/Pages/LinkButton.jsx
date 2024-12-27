@@ -1,6 +1,8 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+import { IoIosWarning } from "react-icons/io";
+
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 import GenericButton from "../components/GenericButton/GenericButton";
@@ -34,7 +36,13 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
   return (
     <div className="inner">
       <CardGrid options="main">
-        <GlassContainer>
+        <GlassContainer options="spacer">
+          <PageContent>
+            <div className="headline"><IoIosWarning style={{ color: "red" }} />Check TimeZone before pressing Link Button<IoIosWarning style={{ color: "red" }}/></div>
+          </PageContent>
+        </GlassContainer>
+
+        <GlassContainer options="spacer">
           <PageContent>
             <div className="headline">Link Button</div>
             <p>Push this button to accept the pairing of the requested app</p>

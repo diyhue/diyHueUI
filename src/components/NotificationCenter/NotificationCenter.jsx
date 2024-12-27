@@ -104,7 +104,7 @@ const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications }) => {
   const openWizard = () => {
     setWizardContent(
       <>
-        <div className="switchContainer">
+      <div className="switchContainer">
         <Tooltip
           title={<p style={{ fontSize: "18px" }}>{getTitleState(swstate)}</p>}
           arrow

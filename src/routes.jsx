@@ -17,6 +17,7 @@ const About = React.lazy(() => import("./Pages/About"));
 const Settings = React.lazy(() => import("./Pages/Settings"));
 const Account = React.lazy(() => import("./Pages/Account"));
 const Users = React.lazy(() => import("./Pages/AppUsers"));
+const Govee = React.lazy(() => import("./Pages/Govee"));
 
 const routes = [
   { path: "/testpage", exact: true, name: "Testpage", component: Testpage },
@@ -36,6 +37,7 @@ const routes = [
   { path: "/settings", exact: true, name: "Settings", component: Settings },
   { path: "/account", exact: true, name: "Account", component: Account },
   { path: "/users", exact: true, name: "App Users", component: Users },
+  { path: "/govee", exact: true, name: "Govee", component: Govee },
 ];
 
 export default routes;

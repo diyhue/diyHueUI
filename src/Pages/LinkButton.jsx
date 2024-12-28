@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
-import { IoIosWarning } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
@@ -10,6 +10,21 @@ import CardGrid from "../components/CardGrid/CardGrid";
 
 export default function LinkButton({ HOST_IP, API_KEY }) {
   //console.log(API_KEY)
+
+  const [configTimezone, setConfigTimezone] = useState("");
+  const clientTimezone = new Date().toString().match(/\(([^\)]+)\)$/)[1];
+  
+  useEffect(() => {
+    axios
+      .get(`${HOST_IP}/api/${API_KEY}/config`)
+      .then((response) => {
+        const { timezone } = response.data;
+        setConfigTimezone(timezone);
+      })
+      .catch((error) => {
+        console.error("Error fetching config: ", error);
+      });
+  }, [HOST_IP, API_KEY]);
 
   const pushLinkButton = () => {
     axios
@@ -36,17 +51,18 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
   return (
     <div className="inner">
       <CardGrid options="main">
-        <GlassContainer options="spacer">
-          <PageContent>
-            <div className="headline">
-              <IoIosWarning style={{ color: "red" }}/>
-              Caution
-              <IoIosWarning style={{ color: "red" }}/>
-            </div>
-            <p>Check<a href="#bridge">TimeZone</a> before pressing Link Button</p>
-          </PageContent>
-        </GlassContainer>
-
+          <GlassContainer options="red spacer">
+            <PageContent>
+              <div className="headline" style={{ color: "red" }}>
+                Caution!
+              </div>
+              <p>Check<Link to="/bridge">TimeZone</Link> before pressing Link Button</p>
+              <br />
+              <p style={{ fontSize: ".8rem" }}>Timezone in config: {configTimezone} </p>
+              <p style={{ fontSize: ".8rem" }} >Your Timezone: {clientTimezone}</p>
+              
+            </PageContent>
+          </GlassContainer>
         <GlassContainer options="spacer">
           <PageContent>
             <div className="headline">Link Button</div>

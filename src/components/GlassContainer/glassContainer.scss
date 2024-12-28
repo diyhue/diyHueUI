@@ -15,6 +15,15 @@
   width: fit-content;
   min-width: 380px;
 
+  &.red {
+    background: linear-gradient(
+      45deg,
+      rgba(255, 0, 0, 0.04) 0%,
+      rgba(255, 0, 0, 0.15) 100%
+    );
+    border: 1px solid rgba(255, 0, 0, 0.05);
+  }
+
   &.spacer {
     margin-bottom: 40px;
   }

@@ -27,7 +27,7 @@ const BrightnessSlider = ({ defaultValue, onChange }) => {
         type="range"
         min="1"
         max="254"
-        defaultValue={defaultValue}
+        defaultValue={Math.round((defaultValue / 100) * 253) + 1}
         step="1"
         className="slider"
         onChange={(e) => onChange(parseInt(e.target.value))}

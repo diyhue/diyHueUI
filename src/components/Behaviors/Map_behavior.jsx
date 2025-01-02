@@ -34,35 +34,35 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
   };
 
   const getTime = () => {
-    if (Behavior["script_id"] === "ff8957e3-2eb9-4699-a0c8-ad2cb3ede704") {
-      if (Behavior["configuration"]["when"]["time_point"]["type"] === "time") {
-        return Behavior["configuration"]["when"]["time_point"]["time"]["hour"] + ":" + (Behavior["configuration"]["when"]["time_point"]["time"]["minute"] < 2 ? "0" + Behavior["configuration"]["when"]["time_point"]["time"]["minute"] : Behavior["configuration"]["when"]["time_point"]["time"]["minute"]);
+    const { when, when_extended, duration } = Behavior["configuration"];
+    const timePoint = when?.["time_point"];
+    const timeExtended = when_extended?.["start_at"]?.["time_point"];
+  
+    const formatTime = (time) => `${time["hour"]}:${time["minute"].toString().padStart(2, '0')}`;
+    const getTimePoint = (point) => {
+      if (!point) return "";
+      switch (point["type"]) {
+        case "time":
+          return formatTime(point["time"]);
+        case "sunrise":
+          return "Sunrise";
+        case "sunset":
+          return "Sunset";
+        default:
+          return "";
       }
-      if (Behavior["configuration"]["when"]["time_point"]["type"] === "sunrise") {
-        return "Sunrise";
-      }
-    }
-    if (Behavior["script_id"] === "7e571ac6-f363-42e1-809a-4cbf6523ed72") {
-      if (Behavior["configuration"]["when"]["time_point"]["type"] === "time") {
-        return Behavior["configuration"]["when"]["time_point"]["time"]["hour"] + ":" + (Behavior["configuration"]["when"]["time_point"]["time"]["minute"] < 2 ? "0" + Behavior["configuration"]["when"]["time_point"]["time"]["minute"] : Behavior["configuration"]["when"]["time_point"]["time"]["minute"]);
-      }
-      if (Behavior["configuration"]["when"]["time_point"]["type"] === "sunset") {
-        return "Sunset";
-      }
-    }
-    if (Behavior["script_id"] === "7238c707-8693-4f19-9095-ccdc1444d228"){
-      if (Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["type"] === "time") {
-        return Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["hour"] + ":" + (Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["minute"] < 2 ? "0" + Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["minute"] : Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["minute"]);
-      }
-      if (Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["type"] === "sunrise") {
-        return "Sunrise";
-      }
-      if (Behavior["configuration"]["when_extended"]["start_at"]["time_point"]["type"] === "sunset") {
-        return "Sunset";
-      }
-    }
-    if (Behavior["script_id"] === "e73bc72d-96b1-46f8-aa57-729861f80c78") {
-      return new Date(Behavior["configuration"]["duration"]["seconds"] * 1000).toISOString().substring(11, 11 + 8);
+    };
+  
+    switch (Behavior["script_id"]) {
+      case "ff8957e3-2eb9-4699-a0c8-ad2cb3ede704":
+      case "7e571ac6-f363-42e1-809a-4cbf6523ed72":
+        return getTimePoint(timePoint);
+      case "7238c707-8693-4f19-9095-ccdc1444d228":
+        return getTimePoint(timeExtended);
+      case "e73bc72d-96b1-46f8-aa57-729861f80c78":
+        return new Date(duration?.["seconds"] * 1000).toISOString().substring(11, 19);
+      default:
+        return "";
     }
   }
 

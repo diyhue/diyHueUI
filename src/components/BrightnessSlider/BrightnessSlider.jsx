@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import "./brightnessSlider.scss";
 
-const BrightnessSlider = ({ defaultValue, onChange }) => {
+const BrightnessSlider = ({ defaultValue, onChange, max = "254" }) => {
+  const [value, setValue] = useState(Math.round((defaultValue / 100) * max));
+
+  const handleChange = (e) => {
+    const newValue = parseInt(e.target.value);
+    setValue(newValue);
+    onChange(newValue);
+  };
+
   return (
     <motion.div
       className="sliderContainer"
@@ -26,12 +35,13 @@ const BrightnessSlider = ({ defaultValue, onChange }) => {
       <input
         type="range"
         min="1"
-        max="254"
-        defaultValue={Math.round((defaultValue / 100) * 253) + 1}
+        max={max}
+        value={value}
         step="1"
         className="slider"
-        onChange={(e) => onChange(parseInt(e.target.value))}
+        onChange={handleChange}
       />
+      <div className="sliderValue">{value}</div>
     </motion.div>
   );
 };

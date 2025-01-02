@@ -16,6 +16,7 @@ import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
+  console.log(Behavior);
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
 
   const openWizard = () => {
@@ -57,12 +58,14 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
     const timePoint = when?.["time_point"];
     const timeExtended = when_extended?.["start_at"]?.["time_point"];
 
-    const formatTime = (time) => `${time["hour"]}:${time["minute"].toString().padStart(2, '0')}`;
+    const formatTime = (hour, minute, second) => 
+      new Date(((hour * 3600) + (minute * 60) + second) * 1000).toISOString().substring(11, 19);
+
     const getTimePoint = (point) => {
       if (!point) return "";
       switch (point["type"]) {
         case "time":
-          return formatTime(point["time"]);
+          return formatTime(point["time"]["hour"], point["time"]["minute"], 0);
         case "sunrise":
           return "Sunrise";
         case "sunset":
@@ -79,7 +82,7 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
       case "7238c707-8693-4f19-9095-ccdc1444d228":
         return getTimePoint(timeExtended);
       case "e73bc72d-96b1-46f8-aa57-729861f80c78":
-        return new Date(duration?.["seconds"] * 1000).toISOString().substring(11, 19);
+        return formatTime(0, 0, duration?.["seconds"])
       default:
         return "";
     }
@@ -141,12 +144,13 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
       </GlassContainer>
       <Wizard
         isOpen={WizardIsOpen}
-        closeWizard={closeWizard}
-        headline="Add Behaviors"
+        closeWizard={() => closeWizard(false)}
+        headline="Edit Behavior"
       >
         <Edit_behavior
           HOST_IP={HOST_IP}
           API_KEY={API_KEY}
+          Behavior_item={Behavior}
           closeWizard={closeWizard}
         ></Edit_behavior>
       </Wizard>

@@ -53,7 +53,7 @@ export default function KelvinPicker({
         colors: colors,
       });
       //console.log(picker.current.state.color.rgb)
-      picker.current.on("input:end", onChange);
+      picker.current.on("input:end", onChange, { passive: true });
     }
   }, [groupLights, lights, HOST_IP, api_key]);
   return <div ref={pickerRef}></div>;

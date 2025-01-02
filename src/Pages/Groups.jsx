@@ -21,8 +21,18 @@ export default function Groups({ HOST_IP, API_KEY }) {
         axios
           .get(`${HOST_IP}/api/${API_KEY}`)
           .then((fetchedData) => {
-            //console.log(fetchedData.data);
-            setConfig(fetchedData.data);
+            const { config, lights, groups, scenes } = fetchedData.data;
+            setConfig((prevConfig) => {
+              if (
+                JSON.stringify(prevConfig.lights) !== JSON.stringify(lights) ||
+                JSON.stringify(prevConfig.groups) !== JSON.stringify(groups)
+              ) {
+                //console.log("Updating config");
+                return { config, lights, groups, scenes };
+              }
+              //console.log("No changes to config");
+              return prevConfig;
+            });
           })
           .catch((error) => {
             console.error(error);

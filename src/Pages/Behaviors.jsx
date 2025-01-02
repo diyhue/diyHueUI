@@ -12,7 +12,7 @@ import Make_Behaviors from "../components/Behaviors/Make_behavior";
 
 const Behaviors = ({ HOST_IP, API_KEY }) => {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
-  const [Behaviors, setBehaviors] = useState({});
+  const [Behaviors, setBehaviors] = useState([]);
 
   const openWizard = () => {
     setWizardIsOpen(true);
@@ -53,9 +53,16 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
             }
           )
           .then((fetchedData) => {
-            //console.log(fetchedData.data["data"]);
-            setBehaviors(fetchedData.data["data"]);
-          })
+            const behavior_data = fetchedData.data["data"];
+            setBehaviors((prevConfig) => {
+                if (
+                  JSON.stringify(prevConfig) !== JSON.stringify(behavior_data)
+                ) {
+                  return behavior_data;
+                }
+                return prevConfig;
+              });
+            })
           .catch((error) => {
             console.error(error);
             toast.error(`Error occurred: ${error.message}`);
@@ -85,7 +92,7 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
         </CardGrid>
 
         <CardGrid>
-          {Object.entries(Behaviors).map(([id, Behavior]) => (
+          {Behaviors.length > 0 && Object.entries(Behaviors).map(([id, Behavior]) => (
             <Map_Behavior
               key={id}
               HOST_IP={HOST_IP}

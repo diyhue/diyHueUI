@@ -79,7 +79,6 @@ const Make_Behaviors = ({ HOST_IP, API_KEY, closeWizard }) => {
         options={types}
         placeholder={"Wake Up"}
         onChange={(e) => handleChange("script_id", e)}
-        style={{ zIndex: 1500 }} // Ensure it is above the wizard content
       />
     </div>
     <div className="form-control">
@@ -100,7 +99,6 @@ const Make_Behaviors = ({ HOST_IP, API_KEY, closeWizard }) => {
         options={days}
         placeholder={"Monday"}
         onChange={(e) => handleChange("recurrence_days", e)}
-        style={{ zIndex: 1500 }} // Ensure it is above the wizard content
       />
     </div>
     <div className="form-control">

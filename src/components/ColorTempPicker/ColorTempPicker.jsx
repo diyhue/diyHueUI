@@ -36,7 +36,7 @@ export default function KelvinPicker({ HOST_IP, api_key, group, groupId }) {
         ],
         color: colorTemperatureToRgb(group["action"]["ct"]),
       });
-      picker.current.on("input:end", onChange);
+      picker.current.on("input:end", onChange, { passive: true });
     }
   }, [group, groupId, HOST_IP, api_key]);
   return <div ref={pickerRef}></div>;

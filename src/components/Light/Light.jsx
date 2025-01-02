@@ -2,6 +2,7 @@ import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
+import { Tooltip } from "@mui/material";
 
 import GlassContainer from "../GlassContainer/GlassContainer";
 import { HueIcons } from "../../static/icons/hass-hue-icons";
@@ -76,13 +77,14 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
     <GlassContainer>
       <div className="top">
         <div className="row1">
-          <div className="hueicon">
-            <HueIcons
-              type={"light-" + light["config"]["archetype"]}
-              color="#eeeeee"
-              onClick={() => alertLight()}
-            />
-          </div>
+          <Tooltip title="Alert" arrow>
+            <div className="hueicon" onClick={() => alertLight()}>
+              <HueIcons
+                type={"light-" + light["config"]["archetype"]}
+                color="#eeeeee"
+              />
+            </div>
+          </Tooltip>
 
           <div className="text">{light["name"]} </div>
         </div>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import GenericSwitch from "../components/POC/GenericSwitch";
 import HueSwitch from "../components/POC/HueSwitch";
 import Wizard from "../components/Wizard/Wizard";
+import { HueIcons, HUE_ICONS_MAP } from "../static/icons/hass-hue-icons";
 
 export default function Testpage({ HOST_IP, API_KEY }) {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function Testpage({ HOST_IP, API_KEY }) {
   const closeWizard = () => {
     setWizardIsOpen(false);
   };
+  const iconTypes = Object.keys(HUE_ICONS_MAP);
 
   return (
     <div className="inner">
@@ -25,6 +27,19 @@ export default function Testpage({ HOST_IP, API_KEY }) {
         <Wizard isOpen={WizardIsOpen} closeWizard={closeWizard}>
           <p>Test Text</p>
         </Wizard>
+      </div>
+      <div className="icon-list">
+        <h3>Available Icons:</h3>
+        <ul>
+          {iconTypes.map((iconType) => (
+            <li key={iconType}>
+              {iconType}
+              <div className="hueicon">
+                <HueIcons type={iconType} color="#eeeeee" />
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

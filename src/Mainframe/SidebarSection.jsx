@@ -6,6 +6,7 @@ import { SiHomeassistant } from "react-icons/si";
 import { MdSettingsRemote } from "react-icons/md";
 import { IoExtensionPuzzle } from "react-icons/io5";
 import { PiUserListFill } from "react-icons/pi";
+import { BsFillLightningFill } from "react-icons/bs";
 
 import { Bridge } from "../static/icons/Bridge";
 import { Deconz } from "../static/icons/Deconz";
@@ -34,6 +35,7 @@ const SidebarSection = ({ showSidebar, setShowSidebar, isMobile }) => {
     { label: "Groups", icon: FaHome, link: "#" },
     { label: "Lights", icon: FaLightbulb, link: "#lights" },
     { label: "Devices", icon: MdSettingsRemote, link: "#devices" },
+    { label: "Automations", icon: BsFillLightningFill, link: "#behaviors" },
     {
       label: "DiyHue",
       icon: Diybridge,

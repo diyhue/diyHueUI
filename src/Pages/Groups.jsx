@@ -39,7 +39,7 @@ export default function Groups({ HOST_IP, API_KEY }) {
   }, [HOST_IP, API_KEY]);
 
   return (
-    <div className="inner">
+    <div className="inner" key={JSON.stringify(config)}>
       <CardGrid>
         {Object.keys(config.groups).length === 0 ? <RoomSetup /> : <></>}
         {Object.entries(config.groups)

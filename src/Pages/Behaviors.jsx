@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { BsPlusCircle } from "react-icons/bs";
+import { confirmAlert } from "react-confirm-alert";
 
 import IconButton from "../components/IconButton/IconButton";
 import Wizard from "../components/Wizard/Wizard";
@@ -17,9 +18,28 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
     setWizardIsOpen(true);
   };
 
-  const closeWizard = () => {
-    setWizardIsOpen(false);
-  };
+  const closeWizard = (save = false) => {
+      if (save) {
+        console.log("Close wizard and save");
+        setWizardIsOpen(false);
+      } else {
+        console.log("Close wizard without saving");
+        confirmAlert({
+          title: "Confirm to close",
+          message: "You have unsaved changes. Are you sure you want to close?",
+          buttons: [
+            {
+              label: "Yes",
+              onClick: () => setWizardIsOpen(false),
+            },
+            {
+              label: "No",
+              onClick: () => {},
+            },
+          ],
+        });
+      }
+    };
 
   useEffect(() => {
     const fetchLights = () => {
@@ -79,7 +99,7 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
 
       <Wizard
         isOpen={WizardIsOpen}
-        closeWizard={closeWizard}
+        closeWizard={() => closeWizard(false)}
         headline="Add Behaviors"
       >
         <Make_Behaviors HOST_IP={HOST_IP} API_KEY={API_KEY} closeWizard={closeWizard}></Make_Behaviors>

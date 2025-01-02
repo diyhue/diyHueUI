@@ -16,15 +16,34 @@ import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
-    const [WizardIsOpen, setWizardIsOpen] = useState(false);
-  
-    const openWizard = () => {
-      setWizardIsOpen(true);
-    };
-  
-    const closeWizard = () => {
+  const [WizardIsOpen, setWizardIsOpen] = useState(false);
+
+  const openWizard = () => {
+    setWizardIsOpen(true);
+  };
+
+  const closeWizard = (save = false) => {
+    if (save) {
+      console.log("Close wizard and save");
       setWizardIsOpen(false);
-    };
+    } else {
+      console.log("Close wizard without saving");
+      confirmAlert({
+        title: "Confirm to close",
+        message: "You have unsaved changes. Are you sure you want to close?",
+        buttons: [
+          {
+            label: "Yes",
+            onClick: () => setWizardIsOpen(false),
+          },
+          {
+            label: "No",
+            onClick: () => {},
+          },
+        ],
+      });
+    }
+  };
 
   const types = {
     "ff8957e3-2eb9-4699-a0c8-ad2cb3ede704": "Wake Up",
@@ -37,7 +56,7 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
     const { when, when_extended, duration } = Behavior["configuration"];
     const timePoint = when?.["time_point"];
     const timeExtended = when_extended?.["start_at"]?.["time_point"];
-  
+
     const formatTime = (time) => `${time["hour"]}:${time["minute"].toString().padStart(2, '0')}`;
     const getTimePoint = (point) => {
       if (!point) return "";
@@ -52,7 +71,7 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
           return "";
       }
     };
-  
+
     switch (Behavior["script_id"]) {
       case "ff8957e3-2eb9-4699-a0c8-ad2cb3ede704":
       case "7e571ac6-f363-42e1-809a-4cbf6523ed72":
@@ -86,7 +105,6 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
         toast.error(`Error occurred: ${error.message}`);
       });
   }
-  
 
   return (
     <>

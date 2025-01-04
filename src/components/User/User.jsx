@@ -57,15 +57,32 @@ const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
-    closeWizard()
+    closeWizard(true);
   };
 
   const openWizard = () => {
     setWizardIsOpen(true);
   };
 
-  const closeWizard = () => {
-    setWizardIsOpen(false);
+  const closeWizard = (save = false) => {
+    if (save) {
+      setWizardIsOpen(false);
+    } else {
+      confirmAlert({
+        title: "Confirm to close",
+        message: "You have unsaved changes. Are you sure you want to close?",
+        buttons: [
+          {
+            label: "Yes",
+            onClick: () => setWizardIsOpen(false),
+          },
+          {
+            label: "No",
+            onClick: () => {},
+          },
+        ],
+      });
+    }
   };
 
   const TransferOptions = () => {
@@ -115,7 +132,7 @@ const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
         </div>
         <Wizard
           isOpen={WizardIsOpen}
-          closeWizard={closeWizard}
+          closeWizard={() => closeWizard(false)}
           headline={WizardName}
         >
           {WizardContent}

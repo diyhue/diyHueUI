@@ -18,6 +18,8 @@
   width: fit-content;
   height: fit-content;
   margin: auto;
+  max-height: 90vh;
+  overflow-y: auto;
 
   &.notificationCenter {
     position: unset;

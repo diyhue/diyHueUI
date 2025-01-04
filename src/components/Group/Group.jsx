@@ -13,7 +13,9 @@ import Scenes from "../Scenes/Scenes";
 import "./group.scss";
 
 const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
-  const [showContainer, setShowContainer] = useState("closed");
+  const [showContainer, setShowContainer] = useState(() => {
+    return localStorage.getItem(`showContainer-${id}`) || "closed";
+  });
   const [sceneModal, setSceneModal] = useState(false);
   const [lightsCapabilities, setLightsCapabilities] = useState([]);
 
@@ -38,17 +40,20 @@ const Group = ({ HOST_IP, api_key, id, group, lights, scenes }) => {
   //lightsCapabilities);
 
   const defaultContainerView = () => {
+    let newShowContainer;
     if (showContainer === "closed") {
       if (lightsCapabilities.includes("xy")) {
-        setShowContainer("colorPicker");
+        newShowContainer = "colorPicker";
       } else if (lightsCapabilities.includes("ct")) {
-        setShowContainer("colorTempPicker");
+        newShowContainer = "colorTempPicker";
       } else {
-        setShowContainer("lights");
+        newShowContainer = "lights";
       }
     } else {
-      setShowContainer("closed");
+      newShowContainer = "closed";
     }
+    setShowContainer(newShowContainer);
+    localStorage.setItem(`showContainer-${id}`, newShowContainer);
   };
 
   return (

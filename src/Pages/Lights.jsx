@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { BsPlusCircle } from "react-icons/bs";
+import { confirmAlert } from "react-confirm-alert";
 
 import AddLight from "../components/AddLight/AddLight";
 import CardGrid from "../components/CardGrid/CardGrid";
@@ -10,6 +11,8 @@ import { ScanIcon } from "../static/icons/scan";
 import Light from "../components/Light/Light";
 import Wizard from "../components/Wizard/Wizard";
 import IconButton from "../components/IconButton/IconButton";
+
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default function Lights({ HOST_IP, API_KEY }) {
   const [lights, setLights] = useState({});
@@ -22,9 +25,26 @@ export default function Lights({ HOST_IP, API_KEY }) {
     setWizardIsOpen(true);
   };
 
-  const closeWizard = () => {
-    setWizardIsOpen(false);
-  };
+  const closeWizard = (save = false) => {
+      if (save) {
+        setWizardIsOpen(false);
+      } else {
+        confirmAlert({
+          title: "Confirm to close",
+          message: "You have unsaved changes. Are you sure you want to close?",
+          buttons: [
+            {
+              label: "Yes",
+              onClick: () => setWizardIsOpen(false),
+            },
+            {
+              label: "No",
+              onClick: () => {},
+            },
+          ],
+        });
+      }
+    };
 
   const searchForLights = () => {
     if (API_KEY !== undefined) {
@@ -138,7 +158,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
 
       <Wizard
         isOpen={WizardIsOpen}
-        closeWizard={closeWizard}
+        closeWizard={() => closeWizard(false)}
         headline="Add Light"
       >
         <AddLight HOST_IP={HOST_IP} API_KEY={API_KEY} closeWizard={closeWizard}></AddLight>

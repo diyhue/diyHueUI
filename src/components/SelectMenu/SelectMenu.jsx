@@ -1,9 +1,9 @@
 import Select from "react-select";
 import "./selectMenu.scss";
 
-const SelectMenu = ({ label, defaultValue, placeholder, options, onChange, close = true , multie = false}) => {
+const SelectMenu = ({ label, defaultValue, placeholder, options, onChange, close = true , multie = false, classOptions = ""}) => {
     return (
-        <div className="dropdown">
+        <div className={`dropdown ${classOptions}`}>
             <label>{label}</label>
             <Select
                 closeMenuOnSelect={close}

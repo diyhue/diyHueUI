@@ -55,6 +55,28 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
       });
   };
 
+  const modelIdAlert = (modelid) => {
+    if (modelid.startsWith("LCX") || modelid === "915005987201") {
+      confirmAlert({
+        title: modelid + " only works with native gradient sketch",
+        message: `See documentation for more information: 
+        https://diyhue.readthedocs.io/en/latest/lights/lightTypes.html`,
+        buttons: [
+          {
+            label: "Continue",
+            onClick: () => setModelId(modelid),
+          },
+          {
+            label: "No",
+          },
+        ],
+      });
+    }
+    else {
+      setModelId(modelid);
+    }
+  };
+
   const setModelId = (modelid) => {
     //console.log({ [id]: modelid });
     axios
@@ -92,7 +114,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
           defaultValue={{ value: light["modelid"], label: light["modelid"] }}
           label=""
           options={options}
-          onChange={(e) => setModelId(e)}
+          onChange={(e) => modelIdAlert(e)}
           placeholder={light["modelid"]}
         />
         <div className="row2">

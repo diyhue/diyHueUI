@@ -58,7 +58,7 @@ const Light = ({ HOST_IP, api_key, id, light }) => {
         <AnimatePresence initial={false}>
           {light["state"]["on"] && (
             <BrightnessSlider
-              defaultValue={light["state"]["bri"]}
+              defaultValue={(light["state"]["bri"] / 254) * 100}
               onChange={(e) => switchLight({ bri: e })}
             />
           )}

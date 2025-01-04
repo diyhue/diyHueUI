@@ -35,7 +35,7 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
-      closeWizard()
+      closeWizard(true);
   };
 
   const protocols = [

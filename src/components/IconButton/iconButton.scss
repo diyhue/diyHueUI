@@ -1,3 +1,11 @@
+.iconbtn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
 .iconbtn {
   &.small {
     flex: 0 0 40px;
@@ -27,6 +35,7 @@
 
     &.blue {
       background: #1a5088;
+      margin-right: 20px; // Adjust margin-right for blue button
 
       &:hover,
       &:active {

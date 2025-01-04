@@ -16,7 +16,6 @@ import FlipSwitch from "../FlipSwitch/FlipSwitch";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
-  console.log(Behavior);
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
 
   const openWizard = () => {
@@ -25,10 +24,8 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
 
   const closeWizard = (save = false) => {
     if (save) {
-      console.log("Close wizard and save");
       setWizardIsOpen(false);
     } else {
-      console.log("Close wizard without saving");
       confirmAlert({
         title: "Confirm to close",
         message: "You have unsaved changes. Are you sure you want to close?",
@@ -92,7 +89,7 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
     axios
       .put(
         `${HOST_IP}/clip/v2/resource/behavior_instance/${id}`,
-        { stateSelection: e.target.checked ? "Enabled" : "Disabled" },
+        { stateSelection: e ? "Enabled" : "Disabled" },
         {
           headers: {
             "hue-application-key": API_KEY,
@@ -108,6 +105,39 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
         toast.error(`Error occurred: ${error.message}`);
       });
   }
+
+  const handleDelete = () => {
+    confirmAlert({
+      title: "Confirm to delete",
+      message: "Are you sure you want to delete this behavior?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            axios
+              .delete(
+                `${HOST_IP}/clip/v2/resource/behavior_instance/${id}`, {
+                headers: {
+                  "hue-application-key": API_KEY,
+                },
+              })
+              .then((response) => {
+                //console.log("Behavior deleted:", response.data);
+                toast.success("Behavior deleted successfully!");
+              })
+              .catch((error) => {
+                console.error(error);
+                toast.error(`Error occurred: ${error.message}`);
+              });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
 
   return (
     <>
@@ -132,13 +162,22 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
               <li>Type: {types[Behavior["script_id"]]}</li>
               <li>Time: {getTime()}</li>
             </ul>
-            <IconButton
-              iconName={MdEditNotifications}
-              title="Edit Behavior"
-              size="small"
-              color="blue"
-              onClick={openWizard}
-            />
+            <div className="iconbtn-container">
+              <IconButton
+                iconName={MdEditNotifications}
+                title="Edit Behavior"
+                size="small"
+                color="blue"
+                onClick={openWizard}
+              />
+              <IconButton
+                iconName={MdDeleteForever}
+                title="Delete Behavior"
+                size="small"
+                color="red"
+                onClick={handleDelete}
+              />
+            </div>
           </div>
         </div>
       </GlassContainer>

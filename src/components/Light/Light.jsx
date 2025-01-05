@@ -114,7 +114,7 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
           defaultValue={{ value: light["modelid"], label: light["modelid"] }}
           label=""
           options={options}
-          onChange={(e) => modelIdAlert(e)}
+          onChange={(e) => modelIdAlert(e.value)}
           placeholder={light["modelid"]}
         />
         <div className="row2">

@@ -16,22 +16,22 @@ import CardGrid from "../components/CardGrid/CardGrid";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-const Bridge = ({ HOST_IP, API_KEY }) => {
-  const [bridgeName, setBridgeName] = useState("");
-  const [swversion, setSwversion] = useState("");
-  const [apiVersion, setApiVersion] = useState("");
-  const [remoteApi, setRemoteApi] = useState(false);
-  const [discovery, setDiscovery] = useState(true);
-  const [timezone, setTimezone] = useState("");
+const Bridge = ({ HOST_IP, API_KEY, CONFIG }) => {
+  const [bridgeName, setBridgeName] = useState(CONFIG.config["name"]);
+  const [swversion, setSwversion] = useState(CONFIG.config["swversion"]);
+  const [apiVersion, setApiVersion] = useState(CONFIG.config["apiversion"]);
+  const [remoteApi, setRemoteApi] = useState(CONFIG.config["Remote API enabled"]);
+  const [discovery, setDiscovery] = useState(CONFIG.config["discovery"]);
+  const [timezone, setTimezone] = useState(CONFIG.config["timezone"]);
   const [timezones, setTimezones] = useState([]);
-  const [readonlyConf, setReadonlyConf] = useState({});
   const [DebugInfo, setDebugInfo] = useState({});
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
   const [WizardName, setWizardName] = useState("");
   const [WizardContent, setWizardContent] = useState({});
   const [AdvanceConfig, setAdvanceConfig] = useState(false);
-  const [UpdateTime, setUpdateTime] = useState("");
-  const [LogLevel, setLogLevel] = useState("INFO");
+  const [UpdateTime, setUpdateTime] = useState(CONFIG.config["swupdate2"]["autoinstall"]["updatetime"].replace("T", ""));
+  const [LogLevel, setLogLevel] = useState(CONFIG.config["LogLevel"]);
+  const readonlyConf = CONFIG.config;
 
   const openWizard = () => {
     setWizardIsOpen(true);
@@ -42,38 +42,15 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
   };
 
   useEffect(() => {
-    const fetchTimezones = () => {
-      if (API_KEY !== undefined) {
-        axios
-          .get(`${HOST_IP}/api/${API_KEY}/info/timezones`)
-          .then((fetchedData) => {
-            //console.log(fetchedData.data);
-            setTimezones(fetchedData.data);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
-    };
-
-    fetchTimezones();
     axios
-      .get(`${HOST_IP}/api/${API_KEY}/config`)
-      .then((result) => {
-        //console.log(result.data);
-        setBridgeName(result.data["name"]);
-        setSwversion(result.data["swversion"]);
-        setApiVersion(result.data["apiversion"]);
-        setDiscovery(result.data["discovery"]);
-        setRemoteApi(result.data["Remote API enabled"]);
-        setTimezone(result.data["timezone"]);
-        setUpdateTime(result.data["swupdate2"]["autoinstall"]["updatetime"].replace("T", ""))
-        setLogLevel(result.data["LogLevel"]);
-        setReadonlyConf(result.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    .get(`${HOST_IP}/api/${API_KEY}/info/timezones`)
+    .then((fetchedData) => {
+      //console.log(fetchedData.data);
+      setTimezones(fetchedData.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
     axios
       .get(`${HOST_IP}/info`)
@@ -459,7 +436,7 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
               <SelectMenu
                 label="Timezone"
                 options={options}
-                onChange={(e) => setTimezone(e)}
+                onChange={(e) => setTimezone(e.value)}
                 placeholder={timezone}
               />
             </div>

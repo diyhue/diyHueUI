@@ -1,14 +1,12 @@
 import { React } from 'react';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const CustomTimePicker = ({ label, value, onChange }) => {
 
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const theme = createTheme({
             palette: {
-                mode: prefersDarkMode ? 'dark' : 'light',
+                mode: 'dark',
             },
         });
 

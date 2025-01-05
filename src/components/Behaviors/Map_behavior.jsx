@@ -15,7 +15,8 @@ import FlipSwitch from "../FlipSwitch/FlipSwitch";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
+const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior, rooms}) => {
+  //console.log("rooms", rooms);
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
 
   const openWizard = () => {
@@ -88,8 +89,8 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
   const handleToggleChange = (e) => {
     axios
       .put(
-        `${HOST_IP}/clip/v2/resource/behavior_instance/${id}`,
-        { stateSelection: e ? "Enabled" : "Disabled" },
+        `${HOST_IP}/clip/v2/resource/behavior_instance/${Behavior["id"]}`,
+        { enabled: e },
         {
           headers: {
             "hue-application-key": API_KEY,
@@ -116,7 +117,7 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
           onClick: () => {
             axios
               .delete(
-                `${HOST_IP}/clip/v2/resource/behavior_instance/${id}`, {
+                `${HOST_IP}/clip/v2/resource/behavior_instance/${Behavior["id"]}`, {
                 headers: {
                   "hue-application-key": API_KEY,
                 },
@@ -190,6 +191,7 @@ const Map_Behavior = ({ HOST_IP, API_KEY, id, Behavior }) => {
           HOST_IP={HOST_IP}
           API_KEY={API_KEY}
           Behavior_item={Behavior}
+          rooms={rooms}
           closeWizard={closeWizard}
         ></Edit_behavior>
       </Wizard>

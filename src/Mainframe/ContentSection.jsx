@@ -13,7 +13,8 @@ const loading = (
   </div>
 );
 
-const ContentSection = ({ HOST_IP, API_KEY }) => {
+const ContentSection = ({ HOST_IP, API_KEY, CONFIG }) => {
+
   return (
     <div className="content">
       <Toaster position="top-right" />
@@ -27,7 +28,7 @@ const ContentSection = ({ HOST_IP, API_KEY }) => {
                     key={idx}
                     path={route.path}
                     element={
-                      <route.component API_KEY={API_KEY} HOST_IP={HOST_IP} />
+                      <route.component API_KEY={API_KEY} HOST_IP={HOST_IP} CONFIG={CONFIG} />
                     }
                   />
                 )

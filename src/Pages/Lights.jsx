@@ -114,7 +114,7 @@ export default function Lights({ HOST_IP, API_KEY }) {
     fetchLightsCatalog();
     const interval = setInterval(() => {
       fetchLights();
-    }, 2000); // <<-- ⏱ 1000ms = 1s
+    }, 10000); // <<-- ⏱ 1000ms = 1s
     return () => clearInterval(interval);
   }, [HOST_IP, API_KEY]);
 

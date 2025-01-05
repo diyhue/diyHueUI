@@ -77,7 +77,7 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
         defaultValue={protocols[0]}
         options={protocols}
         placeholder={lightData.protocol}
-        onChange={(e) => handleChange("protocol", e)}
+        onChange={(e) => handleChange("protocol", e.value)}
       />
     <div className="form-control">
       <GenericText
@@ -104,7 +104,7 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
             label="Emulated light type:"
             options={lightModelIds}
             placeholder={lightData.lightModelID}
-            onChange={(e) => handleChange("lightModelID", e)}
+            onChange={(e) => handleChange("lightModelID", e.value)}
           />
         </div>
       </>
@@ -125,7 +125,7 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
             label="Choose light mode:"
             options={milightModes}
             placeholder={lightData.miModes}
-            onChange={(e) => handleChange("miModes", e)}
+            onChange={(e) => handleChange("miModes", e.value)}
           />
         </div>
         <div className="form-control">
@@ -133,7 +133,7 @@ const AddLight = ({ HOST_IP, API_KEY, closeWizard }) => {
             label="Choose light group:"
             options={milightGroups}
             placeholder={lightData.miGroups}
-            onChange={(e) => handleChange("miGroups", e)}
+            onChange={(e) => handleChange("miGroups", e.value)}
           />
         </div>
       </>

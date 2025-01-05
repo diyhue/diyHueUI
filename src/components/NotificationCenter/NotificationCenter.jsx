@@ -11,33 +11,11 @@ import GenericButton from "../GenericButton/GenericButton";
 import "./notificationCenter.scss";
 
 
-const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications }) => {
+const NotificationCenter = ({HOST_IP, API_KEY, updating, notifications, CONFIG }) => {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
   //const [WizardName, setWizardName] = useState("");
   const [WizardContent, setWizardContent] = useState({});
-  const [swstate, getState] = useState("noupdates");
-
-  useEffect(() => {
-    const fetchUpdate = () => {
-      if (API_KEY !== undefined) {
-        axios
-          .get(`${HOST_IP}/api/${API_KEY}/config/swupdate2`)
-          .then((result) => {
-            getState(result.data["state"]);
-          })
-          .catch((error) => {
-            console.error(error);
-            toast.error(`Error occurred: ${error.message}`);
-          });
-      }
-    };
-
-    fetchUpdate();
-    const interval = setInterval(() => {
-      fetchUpdate();
-    }, 5000); // <<-- ⏱ 1000ms = 1s
-    return () => clearInterval(interval);
-  }, [HOST_IP, API_KEY]);
+  const swstate = CONFIG.config["swupdate2"]["state"];
 
   const handleupdate = (state) => {
     if (state === "anyreadytoinstall" || state === "allreadytoinstall") {

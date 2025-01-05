@@ -13,6 +13,7 @@ import Make_Behaviors from "../components/Behaviors/Make_behavior";
 const Behaviors = ({ HOST_IP, API_KEY }) => {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
   const [Behaviors, setBehaviors] = useState([]);
+  const [rooms, setRooms] = useState([]); // Add this state
 
   const openWizard = () => {
     setWizardIsOpen(true);
@@ -42,7 +43,7 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
     };
 
   useEffect(() => {
-    const fetchLights = () => {
+    const fetchBehaviors = () => {
       if (API_KEY !== undefined) {
         axios
           .get(`${HOST_IP}/clip/v2/resource/behavior_instance`,
@@ -68,12 +69,39 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
             toast.error(`Error occurred: ${error.message}`);
           });
       }
+      else {
+        console.error("API_KEY is undefined");
+      }
     };
 
-    fetchLights();
+    const fetchRooms = () => {
+      axios
+        .get(`${HOST_IP}/clip/v2/resource/room`, 
+          {
+            headers: {
+              "hue-application-key": API_KEY,
+            },
+          }
+        )
+        .then((response) => {
+          const roomOptions = response.data.data.map(room => ({
+            value: room.id,
+            label: room.metadata.name,
+          }));
+          setRooms(roomOptions);
+          //console.log("Rooms fetched:", roomOptions);
+        })
+        .catch((error) => {
+          console.error("Error fetching rooms:", error);
+        });
+    }
+
+    fetchBehaviors();
+    fetchRooms();
     const interval = setInterval(() => {
-      fetchLights();
-    }, 2000); // <<-- ⏱ 1000ms = 1s
+      fetchBehaviors();
+      fetchRooms();
+    }, 10000); // <<-- ⏱ 1000ms = 1s
     return () => clearInterval(interval);
   }, [HOST_IP, API_KEY]);
 
@@ -96,9 +124,10 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
             <Map_Behavior
               key={id}
               HOST_IP={HOST_IP}
-              api_key={API_KEY}
+              API_KEY={API_KEY}
               id={id}
               Behavior={Behavior}
+              rooms={rooms}
             />
           ))}
         </CardGrid>

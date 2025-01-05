@@ -10,8 +10,9 @@ import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import "./headerSection.scss";
 import NotificationCenter from "../components/NotificationCenter/NotificationCenter";
 
-const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
-  const [group0State, setGroup0State] = useState(false);
+const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY, CONFIG }) => {
+  //console.log("HeaderSection: ", CONFIG);
+  const [group0State, setGroup0State] = useState(CONFIG.group0.state.any_on);
 
   const iconVariants = {
     opened: {
@@ -23,29 +24,6 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
       //scale: 1
     },
   };
-
-  useEffect(() => {
-    const fetchGroups = () => {
-      if (API_KEY !== undefined) {
-        axios
-          .get(`${HOST_IP}/api/${API_KEY}/groups/0`)
-          .then((fetchedData) => {
-            //console.log(fetchedData.data);
-            setGroup0State(fetchedData.data["state"]["any_on"]);
-          })
-          .catch((error) => {
-            console.error(error);
-            toast.error(`Error occurred: ${error.message}`);
-          });
-      }
-    };
-
-    fetchGroups();
-    const interval = setInterval(() => {
-      fetchGroups();
-    }, 5000); // <<-- ⏱ 1000ms = 1s
-    return () => clearInterval(interval);
-  }, [HOST_IP, API_KEY]);
 
   const handleToggleChange = (state) => {
     const newState = { on: state };
@@ -60,6 +38,10 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
         console.error("Error updating state: ", error);
       });
   };
+
+  useEffect(() => {
+    setGroup0State(CONFIG.group0.state.any_on);
+  }, [CONFIG]);
 
   return (
     <div className="topbarRight">
@@ -78,6 +60,7 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY }) => {
         updating={true}
         HOST_IP={HOST_IP}
         API_KEY={API_KEY}
+        CONFIG={CONFIG}
       />
 
       <div className="onbtn">

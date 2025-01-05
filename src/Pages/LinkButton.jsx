@@ -14,23 +14,10 @@ import PageContent from "../components/PageContent/PageContent";
 import GenericButton from "../components/GenericButton/GenericButton";
 import CardGrid from "../components/CardGrid/CardGrid";
 
-export default function LinkButton({ HOST_IP, API_KEY }) {
+export default function LinkButton({ HOST_IP, API_KEY, CONFIG }) {
   //console.log(API_KEY)
-
-  const [configTimezone, setConfigTimezone] = useState("");
   const clientTimezone = dayjs.tz.guess();
-  
-  useEffect(() => {
-    axios
-      .get(`${HOST_IP}/api/${API_KEY}/config`)
-      .then((response) => {
-        const { timezone } = response.data;
-        setConfigTimezone(timezone);
-      })
-      .catch((error) => {
-        console.error("Error fetching config: ", error);
-      });
-  }, [HOST_IP, API_KEY]);
+  const configTimezone = CONFIG.config["timezone"];
 
   const pushLinkButton = () => {
     axios
@@ -51,6 +38,7 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
       })
       .catch((error) => {
         console.error(error);
+        toast.error(`Error occurred: ${error.message}`);
       });
   };
 

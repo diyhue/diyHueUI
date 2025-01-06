@@ -5,6 +5,8 @@ import HueSwitch from "../components/POC/HueSwitch";
 import Wizard from "../components/Wizard/Wizard";
 import { HueIcons, HUE_ICONS_MAP } from "../static/icons/hass-hue-icons";
 
+import GradientColorpicker from "../components/ColorPicker/GradientColorpicker";
+
 export default function Testpage({ HOST_IP, API_KEY }) {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
 
@@ -19,6 +21,9 @@ export default function Testpage({ HOST_IP, API_KEY }) {
 
   return (
     <div className="inner">
+
+      <GradientColorpicker/>
+
       <GenericSwitch />
       <HueSwitch />
 

@@ -12,7 +12,7 @@ import NotificationCenter from "../components/NotificationCenter/NotificationCen
 
 const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY, CONFIG }) => {
   //console.log("HeaderSection: ", CONFIG);
-  const [group0State, setGroup0State] = useState(CONFIG.group0.state.any_on);
+  const [group0State, setGroup0State] = useState(CONFIG.group0?.state?.any_on || false);
 
   const iconVariants = {
     opened: {
@@ -40,7 +40,9 @@ const HeaderSection = ({ HOST_IP, showSidebar, setShowSidebar, API_KEY, CONFIG }
   };
 
   useEffect(() => {
-    setGroup0State(CONFIG.group0.state.any_on);
+    if (CONFIG.group0 && CONFIG.group0.state) {
+      setGroup0State(CONFIG.group0.state.any_on);
+    }
   }, [CONFIG]);
 
   return (

@@ -1,9 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import iro from "@jaames/iro";
 
 export default function GradientColorpicker() {
   const pickerRef = useRef(null);
   const picker = useRef(null);
+  const [gradientStyle, setGradientStyle] = useState({});
 
   useEffect(() => {
     const onChange = () => {
@@ -26,6 +27,11 @@ export default function GradientColorpicker() {
           circleElement.setAttribute('stroke', '#fff');
         }
       });
+
+      // Update gradient style
+      setGradientStyle({
+        background: `linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]})`,
+      });
     };
 
     if (pickerRef.current && !picker.current) {
@@ -42,5 +48,10 @@ export default function GradientColorpicker() {
     }
   }, []);
 
-  return <div ref={pickerRef}></div>;
+  return (
+    <div>
+      <div ref={pickerRef}></div>
+      <div style={{ height: '10px', marginTop: '10px', ...gradientStyle }}></div>
+    </div>
+  );
 }

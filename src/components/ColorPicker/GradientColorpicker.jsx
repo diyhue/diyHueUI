@@ -8,10 +8,24 @@ export default function GradientColorpicker() {
   const [gradientStyle, setGradientStyle] = useState({});
 
   useEffect(() => {
+    const interpolateColor = (color1, color2, factor) => {
+      const result = color1.slice(1).match(/.{2}/g).map((hex, i) => {
+        return Math.round(parseInt(hex, 16) + factor * (parseInt(color2.slice(1).match(/.{2}/g)[i], 16) - parseInt(hex, 16)));
+      });
+      return `#${result.map(value => value.toString(16).padStart(2, '0')).join('')}`;
+    };
+
     const onChange = () => {
       const colors = picker.current.colors.map(color => color.hexString);
+      const interpolatedColors = [
+        colors[0],
+        interpolateColor(colors[0], colors[1], 0.5),
+        colors[1],
+        interpolateColor(colors[1], colors[2], 0.5),
+        colors[2]
+      ];
       const gradient = {
-        colors: colors,
+        colors: interpolatedColors,
       };
       console.log(gradient);
       const activeColor = picker.current.color.hexString;
@@ -21,7 +35,7 @@ export default function GradientColorpicker() {
 
       // Update gradient style
       setGradientStyle({
-        background: `linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]})`,
+        background: `linear-gradient(to right, ${interpolatedColors.join(', ')})`,
       });
     };
 

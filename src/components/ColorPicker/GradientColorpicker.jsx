@@ -42,7 +42,7 @@ export default function GradientColorpicker() {
   return (
     <div>
       <div ref={pickerRef}></div>
-      <div style={{ height: '10px', marginTop: '10px', ...gradientStyle }}></div>
+      <div className="gradientDisplay" style={{  ...gradientStyle }}></div>
     </div>
   );
 }

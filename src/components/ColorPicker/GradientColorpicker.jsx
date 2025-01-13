@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import iro from "@jaames/iro";
+import './gradientColorpicker.scss';
 
 export default function GradientColorpicker() {
   const pickerRef = useRef(null);
@@ -17,16 +18,6 @@ export default function GradientColorpicker() {
       const activeColorIndex = picker.current.colors.findIndex(color => color.hexString === activeColor);
       console.log("Active color:", activeColor, "at position:", activeColorIndex);
 
-      // Update handle styles
-      const handles = document.querySelectorAll('.IroHandle');
-      handles.forEach((handle, index) => {
-        const circleElement = handle.querySelector('circle:nth-child(2)');
-        if (handle.classList.contains('IroHandle--isActive')) {
-          circleElement.setAttribute('stroke', '#000');
-        } else {
-          circleElement.setAttribute('stroke', '#fff');
-        }
-      });
 
       // Update gradient style
       setGradientStyle({

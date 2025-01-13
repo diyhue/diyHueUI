@@ -28,15 +28,15 @@ const Behaviors = ({ HOST_IP, API_KEY }) => {
       } else {
         console.log("Close wizard without saving");
         confirmAlert({
-          title: "Confirm to close",
-          message: "You have unsaved changes. Are you sure you want to close?",
+          title: "Unsaved changes",
+          message: "You have unsaved changes. Are you sure you want to leave without saving?",
           buttons: [
             {
-              label: "Yes",
+              label: "Leave without saving",
               onClick: () => setWizardIsOpen(false),
             },
             {
-              label: "No",
+              label: "Cancel",
               onClick: () => {},
             },
           ],

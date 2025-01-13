@@ -1,0 +1,29 @@
+.react-confirm-alert-overlay{
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+
+
+    .react-confirm-alert-body{
+        background: rgba(0, 0, 0, 0.95);
+        color: #fff9f9;
+
+
+        .react-confirm-alert-button-group {
+            button {
+              background: #ccc;
+              color: #000;
+              padding: 15px 30px;
+              font-size: 1rem;
+              border-radius: 30px;
+      
+              &[label="Yes"] {
+                background: #e74c3c;
+              }
+      
+              &[label="No"] {
+                background: #2ecc71;
+              }
+            }
+          }
+    }
+}

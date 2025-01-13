@@ -10,6 +10,8 @@ import CardGrid from "../components/CardGrid/CardGrid";
 import Map_Behavior from "../components/Behaviors/Map_behavior";
 import Make_Behaviors from "../components/Behaviors/Make_behavior";
 
+import "../components/reactConfirmAlert/reactConfirmAlert.scss";
+
 const Behaviors = ({ HOST_IP, API_KEY }) => {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
   const [Behaviors, setBehaviors] = useState([]);

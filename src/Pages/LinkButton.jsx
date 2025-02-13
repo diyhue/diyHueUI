@@ -45,6 +45,7 @@ export default function LinkButton({ HOST_IP, API_KEY, CONFIG }) {
   return (
     <div className="inner">
       <CardGrid options="main">
+        {configTimezone !== clientTimezone && (
           <GlassContainer options="red spacer">
             <PageContent>
               <div className="headline" style={{ color: "red" }}>
@@ -54,9 +55,9 @@ export default function LinkButton({ HOST_IP, API_KEY, CONFIG }) {
               <br />
               <p style={{ fontSize: ".8rem" }}>Timezone in config: {configTimezone} </p>
               <p style={{ fontSize: ".8rem" }} >Your Timezone: {clientTimezone}</p>
-              
             </PageContent>
           </GlassContainer>
+        )}
         <GlassContainer options="spacer">
           <PageContent>
             <div className="headline">Link Button</div>

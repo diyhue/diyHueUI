@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import Layout from "./Mainframe/Layout";
 
@@ -33,9 +35,11 @@ const App = () => {
   }, []);
 
   return (
-    <React.Suspense fallback={loading}>
-      <Layout HOST_IP={HOST_IP} API_KEY={API_KEY} />
-    </React.Suspense>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <React.Suspense fallback={loading}>
+        <Layout HOST_IP={HOST_IP} API_KEY={API_KEY} />
+      </React.Suspense>
+    </LocalizationProvider>
   );
 };
 

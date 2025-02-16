@@ -2,6 +2,12 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
@@ -12,7 +18,7 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
   //console.log(API_KEY)
 
   const [configTimezone, setConfigTimezone] = useState("");
-  const clientTimezone = new Date().toString().match(/\(([^\)]+)\)$/)[1];
+  const clientTimezone = dayjs.tz.guess();
   
   useEffect(() => {
     axios

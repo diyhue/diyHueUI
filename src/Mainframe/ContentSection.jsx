@@ -18,12 +18,7 @@ const ContentSection = ({ HOST_IP, API_KEY }) => {
     <div className="content">
       <Toaster position="top-right" />
       <Suspense fallback={loading}>
-        <HashRouter
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-        >
+        <HashRouter>
           <Routes>
             {routes.map((route, idx) => {
               return (

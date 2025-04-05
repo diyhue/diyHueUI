@@ -1,0 +1,14 @@
+.IroHandle {
+    circle {
+      stroke: #000000;
+    }
+    circle:nth-of-type(2) {
+        stroke: none;
+      }
+  }
+
+.IroHandle--isActive {
+    circle:nth-of-type(2) {
+      stroke: #fff;
+    }
+  }

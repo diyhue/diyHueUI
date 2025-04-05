@@ -5,6 +5,8 @@ import iro from "@jaames/iro";
 
 import { cieToRgb, rgbToCie, } from "../ColorFormatConverter/ColorFormatConverter";
 
+import "./colorPicker.scss";
+
 export default function KelvinPicker({
   HOST_IP,
   api_key,

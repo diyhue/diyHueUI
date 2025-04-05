@@ -60,6 +60,7 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
   return (
     <div className="inner">
       <CardGrid options="main">
+      {configTimezone !== clientTimezone && (
         <GlassContainer options="red spacer">
           <PageContent>
             <div className="headline" style={{ color: "red" }}>
@@ -71,7 +72,8 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
             <p style={{ fontSize: ".8rem" }} >Your Timezone: {clientTimezone}</p>
             
           </PageContent>
-        </GlassContainer>
+         </GlassContainer>
+        )}
         <GlassContainer options="spacer">
           <PageContent>
             <div className="headline">Connection QR-Code</div>

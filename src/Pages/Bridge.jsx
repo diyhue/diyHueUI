@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { confirmAlert } from "react-confirm-alert";
 import { saveAs } from "file-saver";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 import FlipSwitch from "../components/FlipSwitch/FlipSwitch";
 import GenericButton from "../components/GenericButton/GenericButton";
@@ -13,10 +15,13 @@ import GlassContainer from "../components/GlassContainer/GlassContainer";
 import PageContent from "../components/PageContent/PageContent";
 import Wizard from "../components/Wizard/Wizard";
 import CardGrid from "../components/CardGrid/CardGrid";
+import confirmAlert from "../components/reactConfirmAlert/reactConfirmAlert";
 
-import "react-confirm-alert/src/react-confirm-alert.css";
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const Bridge = ({ HOST_IP, API_KEY }) => {
+  const clientTimezone = dayjs.tz.guess();
   const [bridgeName, setBridgeName] = useState("");
   const [swversion, setSwversion] = useState("");
   const [apiVersion, setApiVersion] = useState("");
@@ -457,9 +462,9 @@ const Bridge = ({ HOST_IP, API_KEY }) => {
             </div>
             <div className="form-control">
               <SelectMenu
-                label="Timezone"
+                label={`Timezone (suggested: ${clientTimezone})`}
                 options={options}
-                onChange={(e) => setTimezone(e)}
+                onChange={(e) => setTimezone(e.value)}
                 placeholder={timezone}
               />
             </div>

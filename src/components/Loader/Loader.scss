@@ -1,0 +1,52 @@
+.loading-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-text {
+color: #fff;
+font-size: 1.5rem;
+}
+
+.additional-text {
+color: #fff;
+font-size: 1.2rem; // Slightly smaller than loading-text
+text-align: center;
+}
+
+.spinner {
+position: relative;
+width: 40px;
+height: 40px;
+margin-bottom: 20px;
+}
+
+.double-bounce1, .double-bounce2 {
+width: 100%;
+height: 100%;
+border-radius: 50%;
+background-color: #fff;
+opacity: 0.6;
+position: absolute;
+top: 0;
+left: 0;
+animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+animation-delay: -1.0s;
+}
+
+@keyframes bounce {
+0%, 100% {
+  transform: scale(0.0);
+} 50% {
+  transform: scale(1.0);
+}
+}

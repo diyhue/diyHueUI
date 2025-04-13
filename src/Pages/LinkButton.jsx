@@ -80,7 +80,7 @@ export default function LinkButton({ HOST_IP, API_KEY }) {
             <p>Scan this QR-Code with the Hue app</p>
             <br />
             <QRCode
-              value={`HUE:I:${BridgeId} W:0000`}
+              value={`HUE:I:${BridgeId}`}
               size={256}
               style={{ height: "auto", maxWidth: "100%", width: "100%" }}
               viewBox={`0 0 256 256`}

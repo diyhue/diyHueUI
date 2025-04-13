@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 import { RiApps2Fill } from "react-icons/ri";
-import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 
@@ -10,18 +9,22 @@ import IconButton from "../IconButton/IconButton";
 import GlassContainer from "../GlassContainer/GlassContainer";
 import Wizard from "../Wizard/Wizard";
 import GenericButton from "../GenericButton/GenericButton";
-
-import "react-confirm-alert/src/react-confirm-alert.css";
+import confirmAlert from "../reactConfirmAlert/reactConfirmAlert";
 
 const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
   const [WizardIsOpen, setWizardIsOpen] = useState(false);
   const [WizardName, setWizardName] = useState("");
   const [WizardContent, setWizardContent] = useState({});
+  const [userData, setUserData] = useState(user);
+
+  useEffect(() => {
+    setUserData(user);
+  }, [user]);
 
   const deleteAlert = () => {
-    if (user["name"] === "WebUi") {
+    if (userData["name"] === "WebUi") {
       confirmAlert({
-        title: "Delete User " + user["name"] + " not allowed",
+        title: "Delete User " + userData["name"] + " not allowed",
         message: "This can't be done",
         buttons: [
           {
@@ -31,7 +34,7 @@ const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
       });
     } else {
       confirmAlert({
-        title: "Delete User " + user["name"],
+        title: "Delete User " + userData["name"],
         message: "Are you sure to do this?",
         buttons: [
           {
@@ -57,15 +60,32 @@ const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
         console.error(error);
         toast.error(`Error occurred: ${error.message}`);
       });
-    closeWizard()
+    closeWizard(true);
   };
 
   const openWizard = () => {
     setWizardIsOpen(true);
   };
 
-  const closeWizard = () => {
-    setWizardIsOpen(false);
+  const closeWizard = (save = false) => {
+    if (save) {
+      setWizardIsOpen(false);
+    } else {
+      confirmAlert({
+        title: "Confirm to close",
+        message: "You have unsaved changes. Are you sure you want to close?",
+        buttons: [
+          {
+            label: "Yes",
+            onClick: () => setWizardIsOpen(false),
+          },
+          {
+            label: "No",
+            onClick: () => {},
+          },
+        ],
+      });
+    }
   };
 
   const TransferOptions = () => {
@@ -98,24 +118,26 @@ const User = ({ HOST_IP, api_key, id, user, whitelist }) => {
           <div className="icon">
             <RiApps2Fill />
           </div>
-          <div className="text">{user["name"]}</div>
+          <div className="text">{userData["name"]}</div>
         </div>
         <div className="row2">
           <ul>
-            <li>Last use date: {user["last use date"].replace("T", " ")}</li>
-            <li>Create date: {user["create date"].replace("T", " ")}</li>
+            <li>Last use date: {userData["last use date"].replace("T", " ")}</li>
+            <li>Create date: {userData["create date"].replace("T", " ")}</li>
           </ul>
-          <IconButton
-            iconName={MdDeleteForever}
-            title="Delete"
-            size="small"
-            color="red"
-            onClick={() => deleteAlert()}
-          />
+          {userData["name"] !== "WebUi" && (
+            <IconButton
+              iconName={MdDeleteForever}
+              title="Delete"
+              size="small"
+              color="red"
+              onClick={() => deleteAlert()}
+            />
+          )}
         </div>
         <Wizard
           isOpen={WizardIsOpen}
-          closeWizard={closeWizard}
+          closeWizard={() => closeWizard(false)}
           headline={WizardName}
         >
           {WizardContent}

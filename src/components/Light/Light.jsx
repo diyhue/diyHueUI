@@ -1,15 +1,14 @@
 import axios from "axios";
-import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
+import { Tooltip } from "@mui/material";
 
 import GlassContainer from "../GlassContainer/GlassContainer";
 import { HueIcons } from "../../static/icons/hass-hue-icons";
 import IconButton from "../IconButton/IconButton";
 import LightUpdate from "../LightUpdate/LightUpdate";
 import SelectMenu from "../SelectMenu/SelectMenu";
-
-import "react-confirm-alert/src/react-confirm-alert.css";
+import confirmAlert from "../reactConfirmAlert/reactConfirmAlert";
 
 const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
   const deleteAlert = () => {
@@ -54,6 +53,27 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
       });
   };
 
+  const modelIdAlert = (modelid) => {
+    if (modelid.startsWith("LCX") || modelid === "915005987201") {
+      confirmAlert({
+        title: modelid + " only works with native gradient sketch",
+        message: `See documentation for more information: 
+        https://diyhue.readthedocs.io/en/latest/lights/lightTypes.html`,
+        buttons: [
+          {
+            label: "Confirm",
+            onClick: () => setModelId(modelid),
+          },
+          {
+            label: "Dismiss",
+          },
+        ],
+      });
+    } else {
+      setModelId(modelid);
+    }
+  };
+
   const setModelId = (modelid) => {
     //console.log({ [id]: modelid });
     axios
@@ -76,21 +96,22 @@ const Light = ({ HOST_IP, api_key, id, light, modelIds, lightsCatalog }) => {
     <GlassContainer>
       <div className="top">
         <div className="row1">
-          <div className="hueicon">
-            <HueIcons
-              type={"light-" + light["config"]["archetype"]}
-              color="#eeeeee"
-              onClick={() => alertLight()}
-            />
-          </div>
+          <Tooltip title="Alert" arrow>
+            <div className="hueicon" onClick={() => alertLight()}>
+              <HueIcons
+                type={"light-" + light["config"]["archetype"]}
+                color="#eeeeee"
+              />
+            </div>
+          </Tooltip>
 
           <div className="text">{light["name"]} </div>
         </div>
         <SelectMenu
-          defaultValue={{ value: light["modelid"], label: light["modelid"] }}
+          value={{ value: light["modelid"], label: light["modelid"] }}
           label=""
           options={options}
-          onChange={(e) => setModelId(e)}
+          onChange={(e) => modelIdAlert(e.value)}
           placeholder={light["modelid"]}
         />
         <div className="row2">

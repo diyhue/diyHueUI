@@ -111,14 +111,15 @@ function About() {
           </div>
 
           <div className="contactCard">
-            <div className="name">cheesemarathon</div>
+            <div className="name">Ben</div>
             <div className="position">Github & CI/CD Wizard</div>
             <div className="about">
               Created and maintaining the Github repository, Docker images and
-              Github actions.
+              Github actions. <br />
+              Previously known as cheesemarathon
             </div>
             <div className="iconbox">
-              <a href="https://github.com/cheesemarathon">
+              <a href="https://github.com/BB-BenBridges">
                 <FaGithub />
               </a>
             </div>

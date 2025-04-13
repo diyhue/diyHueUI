@@ -1,15 +1,15 @@
 import Select from "react-select";
 import "./selectMenu.scss";
 
-const SelectMenu = ({ label, defaultValue, placeholder, options, onChange }) => {
+const SelectMenu = ({ label, value, placeholder, options, onChange }) => {
     return (
         <div className="dropdown">
             <label>{label}</label>
             <Select
-                defaultValue={defaultValue}
+                defaultValue={value}
                 options={options}
                 placeholder={placeholder}
-                onChange={(e) => onChange(e.value)}
+                onChange={(e) => onChange(e)}
                 menuPortalTarget={document.body}
                 menuPosition={"fixed"}
             />

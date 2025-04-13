@@ -6,12 +6,7 @@ import { Toaster } from "react-hot-toast";
 import routes from "../routes";
 
 import "./contentSection.scss";
-
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-);
+import loading from "../components/Loader/Loader";
 
 const ContentSection = ({ HOST_IP, API_KEY }) => {
   return (

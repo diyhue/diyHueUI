@@ -2,11 +2,16 @@ import "./battery.scss";
 
 const Battery = ({ battery }) => {
   let batteryColor = "#fff";
+  let textColor = "rgb(88, 88, 88)";
 
   if (battery <= 20) {
     batteryColor = "#e74c3c";
   } else if (battery <= 40) {
     batteryColor = "#e69e22";
+  }
+
+  if (battery < 35) {
+    textColor = "white";
   }
 
   return (
@@ -19,7 +24,7 @@ const Battery = ({ battery }) => {
             backgroundColor: batteryColor,
           }}
         ></div>
-        <div className="text">{battery}</div>
+        <div className="text" style={{ color: textColor }}>{battery}</div>
       </div>
       <div className="knob"></div>
     </div>

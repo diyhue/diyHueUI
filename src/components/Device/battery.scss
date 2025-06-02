@@ -1,0 +1,51 @@
+.batteryContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+
+   .battery{
+    position: relative;
+    width: 35px;
+    height: 18px;
+    background: rgb(172, 172, 172);
+    border-radius: 5px;
+    overflow: hidden;
+
+        .fill{
+        height: 100%;
+        width: 100%; 
+        animation: drain 1s ease-in-out forwards;
+        }
+
+        .text{
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            left: 0;
+            top: 1px;
+            color:rgb(88, 88, 88);
+            font-weight: 1000;
+            font-size: 13px;
+        }
+
+   }
+
+   .knob{
+        width: 2px;
+        height: 5px;
+        margin-left: 1px;
+        background: rgb(172, 172, 172);
+        border-radius: 0 10px 10px 0;
+    }
+}
+
+/* Keyframes for the drain animation */
+@keyframes drain {
+  from {
+    width: 100%;
+  }
+  to {
+    width: var(--battery-level); /* Use a CSS variable */
+  }
+}

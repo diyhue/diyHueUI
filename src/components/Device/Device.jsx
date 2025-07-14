@@ -1,10 +1,7 @@
 import axios from "axios";
 import { FaMagic } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-import { TiBatteryLow, TiBatteryMid, TiBatteryHigh, TiBatteryFull, } from "react-icons/ti";
 import { toast } from "react-hot-toast";
-import { Tooltip } from "@mui/material";
-
 
 
 import FlipSwitch from "../FlipSwitch/FlipSwitch";
@@ -58,21 +55,6 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
       });
   };
 
-  const batteryLevel = () => {
-    let battery = device["config"]["battery"];
-    let batteryLevel = battery + "%";
-    //console.log(battery);
-    if (battery > 90) {
-      return <TiBatteryFull color="#27ae60" title={batteryLevel} />;
-    } else if (battery > 70) {
-      return <TiBatteryHigh color="#1abc9c" title={batteryLevel} />;
-    } else if (battery > 40) {
-      return <TiBatteryMid color="#e67e22" title={batteryLevel} />;
-    } else {
-      return <TiBatteryLow color="#e74c3c" title={batteryLevel} />;
-    }
-  };
-
   return (
     <GlassContainer>
       <div className="top">
@@ -97,18 +79,6 @@ const Device = ({ HOST_IP, api_key, id, device }) => {
           </div>
         <div className="row2">
           <Battery battery={device["config"]["battery"]} />
-          {/*{"battery" in device["config"] &&
-            <Tooltip
-              title={<p style={{ fontSize: "18px" }}>{device["config"]["battery"] + "%"}</p>}
-              arrow
-            >
-              <div className="battery">
-                {batteryLevel()}
-              </div>
-            </Tooltip>
-          }*/}
-          
-
           <IconButton
             iconName={MdDeleteForever}
             title="Delete"

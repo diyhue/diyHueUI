@@ -1,8 +1,20 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import "./brightnessSlider.scss";
 
 const BrightnessSlider = ({ defaultValue, onChange }) => {
+  const initialSliderValue = Math.round((defaultValue / 100) * 253) + 1;
+  const [sliderValue, setSliderValue] = useState(initialSliderValue);
+
+  const percentage = Math.round(((sliderValue - 1) / 253) * 100);
+
+  const handleChange = (e) => {
+    const value = parseInt(e.target.value);
+    setSliderValue(value);
+    onChange(value);
+  };
+
   return (
     <motion.div
       className="sliderContainer"
@@ -23,15 +35,18 @@ const BrightnessSlider = ({ defaultValue, onChange }) => {
         duration: 0.3,
       }}
     >
-      <input
-        type="range"
-        min="1"
-        max="254"
-        defaultValue={Math.round((defaultValue / 100) * 253) + 1}
-        step="1"
-        className="slider"
-        onChange={(e) => onChange(parseInt(e.target.value))}
-      />
+      <span className="sliderValue">{percentage}%</span>
+      <div className="sliderWrapper">
+        <input
+          type="range"
+          min="1"
+          max="254"
+          value={sliderValue}
+          step="1"
+          className="slider"
+          onChange={handleChange}
+        />
+      </div>
     </motion.div>
   );
 };

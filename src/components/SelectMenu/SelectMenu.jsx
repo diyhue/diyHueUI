@@ -12,6 +12,8 @@ const SelectMenu = ({ label, value, placeholder, options, onChange }) => {
                 onChange={(e) => onChange(e)}
                 menuPortalTarget={document.body}
                 menuPosition={"fixed"}
+                className="generic-text-container"
+                classNamePrefix="generic-text"
             />
         </div>);
 };

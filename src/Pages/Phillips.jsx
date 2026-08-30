@@ -30,30 +30,15 @@ const Phillips = ({ HOST_IP, API_KEY }) => {
 
   const pairBridge = () => {
     axios
-      .post(`http://${bridgeIp}/api`, {
-        devicetype: "diyhue#bridge",
-        generateclientkey: true,
+      .post(`${HOST_IP}/api/${API_KEY}/config/hue/link`, {
+        ip: bridgeIp,
       })
       .then((result) => {
         if ("success" in result.data[0]) {
-          setHueUser(result.data[0]["success"]["username"]);
-          setHueKey(result.data[0]["success"]["clientkey"]);
-          axios
-            .put(`${HOST_IP}/api/${API_KEY}/config`, {
-              hue: {
-                ip: bridgeIp,
-                hueUser: result.data[0]["success"]["username"],
-                hueKey: result.data[0]["success"]["clientkey"],
-              },
-            })
-            .then((fetchedData) => {
-              //console.log(fetchedData.data);
-              toast.success("Connected, now scan for lights");
-            })
-            .catch((error) => {
-              console.error(error);
-              toast.error(`Error occurred: ${error.message}`);
-            });
+          const success = result.data[0]["success"];
+          setHueUser(success["username"]);
+          setHueKey(success["clientkey"] || "");
+          toast.success("Connected, now scan for lights");
         } else {
           toast.error(result.data[0]["error"]["description"]);
         }

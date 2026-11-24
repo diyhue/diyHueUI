@@ -65,8 +65,14 @@ export default function Lights({ HOST_IP, API_KEY }) {
         axios
           .get(`${HOST_IP}/lights`)
           .then((fetchedData) => {
-            //console.log(fetchedData.data);
-            setLights(fetchedData.data);
+            // Sockets are shown on the Devices page; keep the light list clean.
+            setLights(
+              Object.fromEntries(
+                Object.entries(fetchedData.data || {}).filter(
+                  ([, light]) => light?.config?.archetype !== "plug"
+                )
+              )
+            );
           })
           .catch((error) => {
             console.error(error);

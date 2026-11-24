@@ -12,11 +12,16 @@ const Devices = ({ HOST_IP, API_KEY }) => {
   useEffect(() => {
     const fetchDevices = () => {
       if (API_KEY !== undefined) {
-        axios
-          .get(`${HOST_IP}/sensors`)
-          .then((fetchedData) => {
-            //console.log(fetchedData.data);
-            setDevices(fetchedData.data);
+        // Sockets are lights in Hue terms; show them here as devices.
+        Promise.all([axios.get(`${HOST_IP}/sensors`), axios.get(`${HOST_IP}/lights`)])
+          .then(([sensorData, lightData]) => {
+            const merged = { ...sensorData.data };
+            Object.entries(lightData.data || {}).forEach(([id, light]) => {
+              if (light?.config?.archetype === "plug") {
+                merged["plug-" + id] = { ...light, type: "ZLLOnOffPlugInUnit" };
+              }
+            });
+            setDevices(merged);
           })
           .catch((error) => {
             console.error(error);

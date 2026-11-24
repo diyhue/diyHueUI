@@ -17,6 +17,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
   const [mqttUser, setMqttUser] = useState("");
   const [mqttPass, setMqttPass] = useState("");
   const [discoveryPrefix, setDiscoveryPrefix] = useState("homeassistant");
+  const [baseTopic, setBaseTopic] = useState("zigbee2mqtt");
 
   useEffect(() => {
     axios
@@ -31,6 +32,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
           setMqttPass(result.data["mqttPassword"]);
         if ("discoveryPrefix" in result.data)
           setDiscoveryPrefix(result.data["discoveryPrefix"]);
+        if ("baseTopic" in result.data) setBaseTopic(result.data["baseTopic"]);
       })
       .catch((error) => {
         console.error(error);
@@ -48,6 +50,7 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
           mqttUser: mqttUser,
           mqttPassword: mqttPass,
           discoveryPrefix: discoveryPrefix,
+          baseTopic: baseTopic,
         },
       })
       .then((fetchedData) => {
@@ -118,6 +121,15 @@ const Mqtt = ({ HOST_IP, API_KEY }) => {
                   placeholder="Discovery prefix"
                   value={discoveryPrefix}
                   onChange={(e) => setDiscoveryPrefix(e)}
+                />
+              </div>
+              <div className="form-control">
+                <GenericText
+                  label="Zigbee2MQTT base topic"
+                  type="text"
+                  placeholder="zigbee2mqtt"
+                  value={baseTopic}
+                  onChange={(e) => setBaseTopic(e)}
                 />
               </div>
               <div className="form-control">
